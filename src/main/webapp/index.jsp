@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,6 @@
 	<h1>push한번해볼래?</h1>
 	
 	<h1>cortles</h1>
-
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
