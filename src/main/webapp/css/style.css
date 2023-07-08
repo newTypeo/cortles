@@ -1,20 +1,22 @@
 @charset "UTF-8";
 header {
   background-color: #000;
+  height: 70px;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   position: sticky;
 }
 
 header ul {
   list-style: none;
+  padding-left: 110px;
   display: flex;
 }
 
 header ul li {
-  margin-right: 20px;
+  margin-right: 50px;
 }
 
 header ul li a {
@@ -23,19 +25,29 @@ header ul li a {
 }
 
 .logo img {
-  width: 100px;
-  height: 100px;
+  width: 140px;
   
 }
 
 .search-bar input[type="text"] {
-  padding: 5px;
+  margin-left: 100px;
+  padding: 10px;
   border: none;
   border-radius: 3px;
 }
-header div.login-container{margin-right:100px;}
+header div.login-container{margin-left:290px;}
 
 #loginFrm table{empty-cells:hide;}
-#loginFrm input[type=submit]{width:60px; height:50px; color:white; background:#3300ff; position:absolute; top:26px;}
+#loginFrm input[type=submit]{width:60px; height:50px; color:white; background:#ff0099; position:absolute; top:13px;}
 #loginFrm input[type=button]{border-radius:3px;}
 #saveId+label{font-size:12px;font-family:'고딕'}
+
+header .login {margin-left:50px;}
+header .login span {padding:20px;}
+a {text-decoration: none;}
+
+
+/********** footer **********/
+footer			{ background-color:#000; display:flex; justify-content:center; text-align:center; clear:both; height:70px; color:#fff;}
+
+
