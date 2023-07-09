@@ -14,29 +14,14 @@ public class Director {
 		this.directorName = directorName;
 	}
 
-	public String getDirectorId() {
-		return directorId;
-	}
+	public String getDirectorId() {return directorId;}
+	public void setDirectorId(String directorId) {this.directorId = directorId;}
 
-	public void setDirectorId(String directorId) {
-		this.directorId = directorId;
-	}
+	public String getMovieCode() {return movieCode;}
+	public void setMovieCode(String movieCode) {this.movieCode = movieCode;}
 
-	public String getMovieCode() {
-		return movieCode;
-	}
-
-	public void setMovieCode(String movieCode) {
-		this.movieCode = movieCode;
-	}
-
-	public String getDirectorName() {
-		return directorName;
-	}
-
-	public void setDirectorName(String directorName) {
-		this.directorName = directorName;
-	}
+	public String getDirectorName() {return directorName;}
+	public void setDirectorName(String directorName) {this.directorName = directorName;}
 
 	@Override
 	public String toString() {

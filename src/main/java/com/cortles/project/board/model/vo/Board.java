@@ -25,61 +25,26 @@ public class Board {
 		this.regDate = regDate;
 	}
 
-	public String getBoardNo() {
-		return boardNo;
-	}
+	public String getBoardNo() {return boardNo;}
+	public void setBoardNo(String boardNo) {this.boardNo = boardNo;}
 
-	public void setBoardNo(String boardNo) {
-		this.boardNo = boardNo;
-	}
+	public String getWriterId() {return writerId;}
+	public void setWriterId(String writerId) {this.writerId = writerId;}
 
-	public String getWriterId() {
-		return writerId;
-	}
+	public String getTitle() {return title;}
+	public void setTitle(String title) {this.title = title;}
 
-	public void setWriterId(String writerId) {
-		this.writerId = writerId;
-	}
+	public String getContent() {return content;}
+	public void setContent(String content) {this.content = content;}
 
-	public String getTitle() {
-		return title;
-	}
+	public int getLikeCount() {return likeCount;}
+	public void setLikeCount(int likeCount) {this.likeCount = likeCount;}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	public int getReadCount() {return readCount;}
+	public void setReadCount(int readCount) {this.readCount = readCount;}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public int getLikeCount() {
-		return likeCount;
-	}
-
-	public void setLikeCount(int likeCount) {
-		this.likeCount = likeCount;
-	}
-
-	public int getReadCount() {
-		return readCount;
-	}
-
-	public void setReadCount(int readCount) {
-		this.readCount = readCount;
-	}
-
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
+	public Date getRegDate() {return regDate;}
+	public void setRegDate(Date regDate) {this.regDate = regDate;}
 
 	@Override
 	public String toString() {

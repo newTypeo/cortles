@@ -14,29 +14,14 @@ public class Actor {
 		this.moiveCode = moiveCode;
 	}
 
-	public String getActorId() {
-		return actorId;
-	}
+	public String getActorId() {return actorId;}
+	public void setActorId(String actorId) {this.actorId = actorId;}
 
-	public void setActorId(String actorId) {
-		this.actorId = actorId;
-	}
+	public String getActorName() {return actorName;}
+	public void setActorName(String actorName) {this.actorName = actorName;}
 
-	public String getActorName() {
-		return actorName;
-	}
-
-	public void setActorName(String actorName) {
-		this.actorName = actorName;
-	}
-
-	public String getMoiveCode() {
-		return moiveCode;
-	}
-
-	public void setMoiveCode(String moiveCode) {
-		this.moiveCode = moiveCode;
-	}
+	public String getMoiveCode() {return moiveCode;}
+	public void setMoiveCode(String moiveCode) {this.moiveCode = moiveCode;}
 
 	@Override
 	public String toString() {

@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  * - 필터 처리순서
  * - 1. web.xml에 등록된 순서
  * - 2. @WebFilter로 등록된 클래스
- * 
  */
 @WebFilter("/*")
 public class LogFilter implements Filter {
@@ -37,9 +36,9 @@ public class LogFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// 서블릿 가기전 작업 공간
-		HttpServletRequest httpReq = (HttpServletRequest) request; 
-		String uri = httpReq.getRequestURI();
-		String method = httpReq.getMethod();
+//		HttpServletRequest httpReq = (HttpServletRequest) request; 
+//		String uri = httpReq.getRequestURI();
+//		String method = httpReq.getMethod();
 		
 //		System.out.println("======================================");
 //		System.out.printf("%s %s\n", method, uri);
@@ -48,9 +47,8 @@ public class LogFilter implements Filter {
 		chain.doFilter(request, response); 
 		
 		// 응답메세지 발송전 작업 공간
-		
-		HttpServletResponse httpRes = (HttpServletResponse) response;
-		int status = httpRes.getStatus();
+//		HttpServletResponse httpRes = (HttpServletResponse) response;
+//		int status = httpRes.getStatus();
 //		System.out.println("______________________________________");
 //		System.out.println(status);
 //		System.out.println("______________________________________");
