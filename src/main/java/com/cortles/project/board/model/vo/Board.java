@@ -51,6 +51,5 @@ public class Board {
 		return "Board [boardNo=" + boardNo + ", writerId=" + writerId + ", title=" + title + ", content=" + content
 				+ ", likeCount=" + likeCount + ", readCount=" + readCount + ", regDate=" + regDate + "]";
 	}
-
 	
 }
