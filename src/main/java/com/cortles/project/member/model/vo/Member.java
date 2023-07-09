@@ -33,93 +33,38 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
-	public String getMemberId() {
-		return memberId;
-	}
+	public String getMemberId() {return memberId;}
+	public void setMemberId(String memberId) {this.memberId = memberId;}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
+	public String getFavoriteGenreId() {return favoriteGenreId;}
+	public void setFavoriteGenreId(String favoriteGenreId) {this.favoriteGenreId = favoriteGenreId;}
 
-	public String getFavoriteGenreId() {
-		return favoriteGenreId;
-	}
+	public String getFavoriteMovieCode() {return favoriteMovieCode;}
+	public void setFavoriteMovieCode(String favoriteMovieCode) {this.favoriteMovieCode = favoriteMovieCode;}
 
-	public void setFavoriteGenreId(String favoriteGenreId) {
-		this.favoriteGenreId = favoriteGenreId;
-	}
+	public String getMemberPw() {return memberPw;}
+	public void setMemberPw(String memberPw) {this.memberPw = memberPw;}
 
-	public String getFavoriteMovieCode() {
-		return favoriteMovieCode;
-	}
+	public String getMemberName() {return memberName;}
+	public void setMemberName(String memberName) {this.memberName = memberName;}
 
-	public void setFavoriteMovieCode(String favoriteMovieCode) {
-		this.favoriteMovieCode = favoriteMovieCode;
-	}
+	public String getEmail() {return email;}
+	public void setEmail(String email) {this.email = email;}
 
-	public String getMemberPw() {
-		return memberPw;
-	}
+	public String getPhone() {return phone;}
+	public void setPhone(String phone) {this.phone = phone;}
 
-	public void setMemberPw(String memberPw) {
-		this.memberPw = memberPw;
-	}
+	public Gender getGender() {return gender;}
+	public void setGender(Gender gender) {this.gender = gender;}
 
-	public String getMemberName() {
-		return memberName;
-	}
+	public MemberRole getMemberRole() {return memberRole;}
+	public void setMemberRole(MemberRole memberRole) {this.memberRole = memberRole;}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+	public Date getBirthday() {return birthday;}
+	public void setBirthday(Date birthday) {this.birthday = birthday;}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public MemberRole getMemberRole() {
-		return memberRole;
-	}
-
-	public void setMemberRole(MemberRole memberRole) {
-		this.memberRole = memberRole;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public Date getEnrollDate() {
-		return enrollDate;
-	}
-
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
-	}
+	public Date getEnrollDate() {return enrollDate;}
+	public void setEnrollDate(Date enrollDate) {this.enrollDate = enrollDate;}
 
 	@Override
 	public String toString() {
@@ -129,5 +74,7 @@ public class Member {
 				+ ", enrollDate=" + enrollDate + "]";
 	}
 
+
+	
 	
 }

@@ -14,11 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-/**
- * Servlet Filter implementation class LoginFilter
- */
 @WebFilter({ 
 //	"/member/memberDetail", 
 //	"/member/memberUpdate", 
@@ -26,36 +21,21 @@ import javax.servlet.http.HttpSession;
 //	"/board/boardCreate",
 //	"/board/boardUpdate",
 //	"/board/boardDelete"
-	
 })
 public class LoginFilter extends HttpFilter implements Filter {
        
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public LoginFilter() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public LoginFilter() {super();}
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() {}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		System.out.println("[Login 체크중...]");
+//		System.out.println("[Login 체크중...]");
 		
-		HttpServletRequest httpReq = (HttpServletRequest) request; 
-		HttpServletResponse httpRes = (HttpServletResponse) response; 
-		
-		HttpSession session = httpReq.getSession();
+//		HttpServletRequest httpReq = (HttpServletRequest) request; 
+//		HttpServletResponse httpRes = (HttpServletResponse) response; 
+//		
+//		HttpSession session = httpReq.getSession();
 //		Member loginMember = (Member) session.getAttribute("loginMember");
 //		if(loginMember == null) {
 //			session.setAttribute("msg", "로그인후 이용하실수 있습니다.");
@@ -63,14 +43,9 @@ public class LoginFilter extends HttpFilter implements Filter {
 //			return;
 //		}
 		
-		chain.doFilter(request, response);
+//		chain.doFilter(request, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	public void init(FilterConfig fConfig) throws ServletException {}
 
 }

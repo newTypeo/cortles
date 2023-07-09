@@ -20,45 +20,20 @@ public class ReportComment {
 		this.reportDate = reportDate;
 	}
 
-	public int getCommentNo() {
-		return commentNo;
-	}
+	public int getCommentNo() {return commentNo;}
+	public void setCommentNo(int commentNo) {this.commentNo = commentNo;}
 
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
-	}
+	public int getReportCount() {return reportCount;}
+	public void setReportCount(int reportCount) {this.reportCount = reportCount;}
 
-	public int getReportCount() {
-		return reportCount;
-	}
+	public String getReportId() {return reportId;}
+	public void setReportId(String reportId) {this.reportId = reportId;}
 
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
-	}
+	public String getReportContent() {return reportContent;}
+	public void setReportContent(String reportContent) {this.reportContent = reportContent;}
 
-	public String getReportId() {
-		return reportId;
-	}
-
-	public void setReportId(String reportId) {
-		this.reportId = reportId;
-	}
-
-	public String getReportContent() {
-		return reportContent;
-	}
-
-	public void setReportContent(String reportContent) {
-		this.reportContent = reportContent;
-	}
-
-	public Date getReportDate() {
-		return reportDate;
-	}
-
-	public void setReportDate(Date reportDate) {
-		this.reportDate = reportDate;
-	}
+	public Date getReportDate() {return reportDate;}
+	public void setReportDate(Date reportDate) {this.reportDate = reportDate;}
 
 	@Override
 	public String toString() {

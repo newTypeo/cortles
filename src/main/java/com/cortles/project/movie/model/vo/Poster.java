@@ -16,29 +16,14 @@ public class Poster {
 		this.posterImg = posterImg;
 	}
 
-	public String getPosterId() {
-		return posterId;
-	}
+	public String getPosterId() {return posterId;}
+	public void setPosterId(String posterId) {this.posterId = posterId;}
 
-	public void setPosterId(String posterId) {
-		this.posterId = posterId;
-	}
+	public String getMovieCode() {return movieCode;}
+	public void setMovieCode(String movieCode) {this.movieCode = movieCode;}
 
-	public String getMovieCode() {
-		return movieCode;
-	}
-
-	public void setMovieCode(String movieCode) {
-		this.movieCode = movieCode;
-	}
-
-	public Blob getPosterImg() {
-		return posterImg;
-	}
-
-	public void setPosterImg(Blob posterImg) {
-		this.posterImg = posterImg;
-	}
+	public Blob getPosterImg() {return posterImg;}
+	public void setPosterImg(Blob posterImg) {this.posterImg = posterImg;}
 
 	@Override
 	public String toString() {

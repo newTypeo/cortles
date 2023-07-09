@@ -12,21 +12,11 @@ public class Genre {
 		this.genreName = genreName;
 	}
 
-	public String getGenreId() {
-		return genreId;
-	}
+	public String getGenreId() {return genreId;}
+	public void setGenreId(String genreId) {this.genreId = genreId;}
 
-	public void setGenreId(String genreId) {
-		this.genreId = genreId;
-	}
-
-	public String getGenreName() {
-		return genreName;
-	}
-
-	public void setGenreName(String genreName) {
-		this.genreName = genreName;
-	}
+	public String getGenreName() {return genreName;}
+	public void setGenreName(String genreName) {this.genreName = genreName;}
 
 	@Override
 	public String toString() {
