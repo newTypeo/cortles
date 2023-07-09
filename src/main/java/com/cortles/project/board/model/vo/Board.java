@@ -52,4 +52,5 @@ public class Board {
 				+ ", likeCount=" + likeCount + ", readCount=" + readCount + ", regDate=" + regDate + "]";
 	}
 
+	
 }
