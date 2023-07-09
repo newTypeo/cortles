@@ -111,6 +111,4 @@ public class Movie {
 				+ director + ", actorId=" + actorId + "]";
 	}
 	
-	
-	
 }
