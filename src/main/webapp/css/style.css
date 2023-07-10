@@ -1,18 +1,23 @@
 @charset "UTF-8";
+
+/******** header ********/
 header {
   background-color: #000;
   height: 70px;
-  padding: 10px;
+  padding: 20px;
+  padding-left: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: sticky;
 }
-
+/* 헤더 기능들 */
 header ul {
   list-style: none;
   padding-left: 110px;
   display: flex;
+  margin-left: 160px;
+  margin-right: 300px;
 }
 
 header ul li {
@@ -28,23 +33,29 @@ header ul li a {
   width: 140px;
   
 }
-
+/* 검색창 */
 .search-bar input[type="text"] {
-  margin-left: 100px;
+  margin-left: 60px;
   padding: 10px;
   border: none;
   border-radius: 3px;
 }
-header div.login-container{margin-left:290px;}
+/*header div.login-container{margin-left:350px;}*/
 
-#loginFrm table{empty-cells:hide;}
-#loginFrm input[type=submit]{width:60px; height:50px; color:white; background:#ff0099; position:absolute; top:13px;}
-#loginFrm input[type=button]{border-radius:3px;}
-#saveId+label{font-size:12px;font-family:'고딕'}
+/*#saveId+label{font-size:12px;font-family:'고딕'}*/
 
 header .login {margin-left:50px;}
-header .login span {padding:20px;}
+header .login span {margin-right:20px; padding-left:30px;}
 a {text-decoration: none;}
+
+
+
+
+/********** body ************/
+section {display:flex;}
+
+
+
 
 
 /********** footer **********/
