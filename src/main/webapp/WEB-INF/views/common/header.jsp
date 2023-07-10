@@ -20,17 +20,22 @@
 			<li><a href="#">New & Popular</a></li>
 			<li><a href="#">My List</a></li>
 		</ul>
-		  
+		
 		<div class="search-bar">
 			<input type="text" placeholder="Search...">
 		</div>
 		<div class="login">
-			<a href="#"><span style="color:#fff;">Login</span></a>
-			<a href="#"><span style="color:#fff;">Sign up</span></a>
+			<a href="#">
+				<span style="color:#fff;">Login</span>
+			</a>
+			<a href="#">
+				<span style="color:#fff;">Sign up</span>
+			</a>
 		</div>
 		
 	</header>
 	
 	<section>
-	
+		<article>a</article>
+		<article>b</article>
 	</section>
