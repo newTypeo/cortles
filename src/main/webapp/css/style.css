@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 /******** header ********/
 header {
   background-color: #000;
@@ -52,13 +59,16 @@ a {text-decoration: none;}
 
 
 /********** body ************/
-section {display:flex;}
+section {margin-top:10px;}
+section span {margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold';}
+section img {width:270px; height:180px; padding-right:10px; padding-top:0px; }
+section article {display:flex; padding:20px; height:200px;}
 
 
 
 
 
 /********** footer **********/
-footer			{ background-color:#000; display:flex; justify-content:center; text-align:center; clear:both; height:70px; color:#fff;}
+footer			{ padding-top:30px; background-color:#000; text-align:center; height:100px; color:#fff;}
 
 
