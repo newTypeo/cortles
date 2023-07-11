@@ -36,6 +36,24 @@
 	</header>
 	
 	<section>
-		<article>a</article>
-		<article>b</article>
+		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
+		<article id="art1">
+			<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+		</article>
+		<hr/>
+		<span>액션 본능이 폭발한다</span>
+		<article id="art2">
+			<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
+			<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+		</article>
+		<hr/>
 	</section>
