@@ -39,7 +39,7 @@ private Properties prop = new Properties();
 			pstmt.setString(5, member.getMemberName());
 			pstmt.setString(6, member.getEmail());
 			pstmt.setString(7, member.getPhone());
-			pstmt.setString(8, member.getGender().name() != null ? member.getGender().name() : "M");
+			pstmt.setString(8, member.getGender().name());
 			pstmt.setDate(9, member.getBirthday());
 			
 			result = pstmt.executeUpdate();
