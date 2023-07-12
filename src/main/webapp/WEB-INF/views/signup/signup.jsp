@@ -18,7 +18,10 @@
 		action="<%= request.getContextPath() %>/member/checkIdDuplicate">
 		<input type="hidden" name="memberId"/>
 	</form>
-	<form name="memberEnrollFrm" action="" method="POST">
+	<form 
+		name="memberEnrollFrm" 
+		action="<%= request.getContextPath() %>/member/memberSignup" 
+		method="POST">
 		<table>
 			<tr>
 				<th>아이디<sup>*</sup></th>
@@ -75,13 +78,22 @@
 				</td>
 			</tr>
 			<tr>
-				<th>취미 </th>
+				<th>선호 장르 </th>
 				<td>
-					<input type="checkbox" name="hobby" id="hobby0" value="운동" checked><label for="hobby0">운동</label>
-					<input type="checkbox" name="hobby" id="hobby1" value="등산" checked><label for="hobby1">등산</label>
-					<input type="checkbox" name="hobby" id="hobby2" value="독서"><label for="hobby2">독서</label><br />
-					<input type="checkbox" name="hobby" id="hobby3" value="게임"><label for="hobby3">게임</label>
-					<input type="checkbox" name="hobby" id="hobby4" value="여행"><label for="hobby4">여행</label><br />
+					<input type="checkbox" name="genre" id="genre0" value="호러" checked><label for="genre0">호러</label>
+					<input type="checkbox" name="genre" id="genre1" value="로맨스" checked><label for="genre1">로맨스</label>
+					<input type="checkbox" name="genre" id="genre2" value="코미디"><label for="genre2">코미디</label>
+					<br/>
+					<input type="checkbox" name="genre" id="genre3" value="액션"><label for="genre3">액션</label>
+					<input type="checkbox" name="genre" id="genre4" value="스릴러"><label for="genre4">스릴러</label>
+					<input type="checkbox" name="genre" id="genre5" value="SF"><label for="genre4">SF</label>
+					<br/>
+					<input type="checkbox" name="genre" id="genre6" value="애니메이션"><label for="genre4">애니메이션</label>
+					<input type="checkbox" name="genre" id="genre7" value="뮤지컬"><label for="genre4">뮤지컬</label>
+					<br/>
+					<input type="checkbox" name="genre" id="genre8" value="판타지"><label for="genre4">판타지</label>
+					<input type="checkbox" name="genre" id="genre9" value="재난"><label for="genre4">재난</label>
+					<input type="checkbox" name="genre" id="genre10" value="범죄"><label for="genre4">범죄</label>
 				</td>
 			</tr>
 		</table>
