@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.SQLException;
 import java.util.Properties;
 
 import com.cortles.project.member.model.exception.MemberException;
@@ -58,10 +58,22 @@ private Properties prop = new Properties();
 	/*
 	 * 회원 조회 - 주혜 
 	 */
-	public List<Member> findAll() {
+	public List<Member> findAll(Connection conn) {
 		List<Member> members = new ArrayList<>();
 		String sql = prop.getProperty("findAll");
 		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			ResultSet rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member member = handleMemberResultSet (rset);
+				members.add(member);
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
 		
 		
 		return members;
@@ -105,6 +117,25 @@ private Properties prop = new Properties();
 		
 		member = new Member(_memberId, favoriteGenreName, favoriteMovieCode, memberPw, memberName, email, phone, gender, memberRole, birthday, enrollDate);
 		return member;
+	}
+	
+	/*
+	 * 회원 조회
+	 */
+	private Member handleMemberResultSet (ResultSet rset) throws SQLException {
+		String memberId = rset.getString("member_id");
+		String memberName = rset.getString("member_name");
+		Date birthday = rset.getDate("birthday");
+		String email = rset.getString("email");
+		String phone = rset.getString("phone");
+		String _gender = rset.getString("gender");
+		Gender gender = _gender != null ? Gender.valueOf(_gender) : null;
+		String favoriteGenre = rset.getString("favorite_genre_name");
+		Date enrollDate = rset.getDate("enroll_date");
+		String _memberRole = rset.getString("member_role");
+		MemberRole memberRole = _memberRole != null ? MemberRole.valueOf(_memberRole) : null;
+		
+		return new Member(memberId,favoriteGenre,null,null,memberName,email,phone,gender,memberRole,birthday,enrollDate);
 	}
 	
 	

@@ -1,3 +1,6 @@
+<%@page import="com.cortles.project.member.model.vo.MemberRole"%>
+<%@page import="com.cortles.project.member.model.vo.Member"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,6 +9,11 @@
 <meta charset="UTF-8">
 <title>회원 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%
+
+	List<Member> members = (List<Member>) request.getAttribute("members");
+
+%>
 </head>
 <style>
         table {
@@ -35,19 +43,40 @@
                 <th>휴대폰</th>
                 <th>성별</th>
                 <th>선호장르</th>
+                <th>가입일</th>
+                <th>권한</th>
             </tr>
         </thead>
         <tbody>
+	        	<% if(members == null || members.isEmpty()) { %>
+					<tr>
+						<td colspan="10">조회 결과가 없습니다.</td>
+					</tr>
+				<%	
+					} 
+					else { 
+						for(Member member : members) {
+				%>
             <tr>
-                <td>홍길동</td>
-                <td>30</td>
-                <td>1990-09-09</td>
-                <td>hong@example.com</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>스릴러,코미디</td>
+                <td><%= member.getMemberId()%></td>
+                <td><%= member.getMemberName() %></td>
+                <td><%= member.getBirthday() %></td>
+                <td><%= member.getEmail() != null ? member.getEmail() : "" %></td>
+                <td><%= member.getPhone() %></td>
+                <td><%= member.getGender() != null ? member.getGender():"" %></td>
+                <td><%= member.getFavoriteGenre() != null ? member.getFavoriteGenre() : ""%></td>
+                <td><%= member.getEnrollDate() %></td>
+                <td>
+                	<select class="member-role" data-member-id="<%= member.getMemberId()%>">
+                		<option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
+                		<option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
+                	</select>
+                </td>
             </tr>
-           
+           <%
+				}
+			}
+           %>
         </tbody>
     </table>
 </body>
