@@ -50,6 +50,18 @@ public class MemberService {
 		return members;
 	}
 
+	/**
+	 * 찜 목록추가 - 경빈
+	 * @param movieCode 
+	 */
+	public int addMyList(String memberId, String movieCode) {
+		Connection conn = getConnection();
+		int result = 0;
+		result = memberDao.addMyList(conn, memberId, movieCode);
+		close(conn);
+		return result;
+	}
+
 	
 
 }

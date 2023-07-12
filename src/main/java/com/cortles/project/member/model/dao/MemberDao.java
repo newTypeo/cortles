@@ -79,6 +79,26 @@ private Properties prop = new Properties();
 		return members;
 	}
 
+	/**
+	 * 찜 목록 추가 - 경빈
+	 * @param movieCode 
+	 */
+	public int addMyList(Connection conn, String memberId, String movieCode) {
+		int result = 0;
+		// update member set favorite_genre_id = ? where member_id = ?
+		String sql = prop.getProperty("addMyList");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, movieCode);
+			pstmt.setString(2, memberId);
+			try (ResultSet rset = pstmt.executeQuery()){
+					result = pstmt.executeUpdate();
+			}
+		}
+		catch (Exception e) {
+			throw new MemberException();
+		}
+		return result;
+	}
 	public Member findById(Connection conn, String memberId) {
 		String sql = prop.getProperty("findById");
 		Member member = null;
