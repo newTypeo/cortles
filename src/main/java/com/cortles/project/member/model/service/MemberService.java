@@ -1,6 +1,7 @@
 package com.cortles.project.member.model.service;
 import static com.cortles.project.common.JdbcTemplate.*;
 import java.sql.Connection;
+import java.util.List;
 
 import com.cortles.project.member.model.dao.MemberDao;
 import com.cortles.project.member.model.vo.Member;
@@ -34,5 +35,17 @@ public class MemberService {
 		}
 		return result;
 	}
+
+	/*
+	 * 회원 조회 - 주혜
+	 */
+	public List<Member> findAll() {
+		Connection conn = getConnection();
+		List<Member> members = memberDao.findAll();
+		close(conn);
+		return members;
+	}
+
+	
 
 }
