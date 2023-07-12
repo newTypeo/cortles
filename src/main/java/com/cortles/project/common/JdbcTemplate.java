@@ -3,11 +3,15 @@ package com.cortles.project.common;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 /**
  * 
@@ -23,10 +27,10 @@ import java.util.Properties;
  */
 public class JdbcTemplate {
 	
-	private static String driverClass;
-	private static String url;
-	private static String user;
-	private static String password;
+//	private static String driverClass;
+//	private static String url;
+//	private static String user;
+//	private static String password;
 	
 	{
 		// 인스턴스 초기화 블럭 - 객체생성시 마다 실행
@@ -34,43 +38,57 @@ public class JdbcTemplate {
 		// 객체 필드 초기화 순서 : 타입별기본값 - 명시적으로 작성한 값 - 초기화블럭 설정값 - 생성자에서 설정값
 	}
 	
-	static {
-		// static 초기화 블럭 - 해당클래스를 최초사용할때 딱 한번 실행
-		// static변수 초기화용으로 사용
-		// static 필드 초기화 순서 : 타입별기본값 - 명시적으로 작성한 값 - 초기화블럭 설정값
-		
-		// resources/datasource.properties 설정값 읽어오기
-		Properties prop = new Properties();
-		try {
-			// Web App인 경우, build/classes 하위에서 파일을 참조한다. 
-			String filename = JdbcTemplate.class.getResource("/datasource.properties").getPath();
-			// System.out.println(filename); // /C:/Workspaces/web_server_workspace/hello-mvc/build/classes/datasource.properties
-			prop.load(new FileReader(filename));
-			driverClass = prop.getProperty("driverClass");
-			url = prop.getProperty("url");
-			user = prop.getProperty("user");
-			password = prop.getProperty("password");			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		// 드라이버 클래스 등록 (프로그램단 최초 1번)
-		try {
-			Class.forName(driverClass);
-//			System.out.println("[드라이버클래스가 등록되었습니다.]");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+//	static {
+//		// static 초기화 블럭 - 해당클래스를 최초사용할때 딱 한번 실행
+//		// static변수 초기화용으로 사용
+//		// static 필드 초기화 순서 : 타입별기본값 - 명시적으로 작성한 값 - 초기화블럭 설정값
+//		
+//		// resources/datasource.properties 설정값 읽어오기
+//		Properties prop = new Properties();
+//		try {
+//			// Web App인 경우, build/classes 하위에서 파일을 참조한다. 
+//			String filename = JdbcTemplate.class.getResource("/datasource.properties").getPath();
+//			// System.out.println(filename); // /C:/Workspaces/web_server_workspace/hello-mvc/build/classes/datasource.properties
+//			prop.load(new FileReader(filename));
+//			driverClass = prop.getProperty("driverClass");
+//			url = prop.getProperty("url");
+//			user = prop.getProperty("user");
+//			password = prop.getProperty("password");			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		
+//		// 드라이버 클래스 등록 (프로그램단 최초 1번)
+//		try {
+//			Class.forName(driverClass);
+////			System.out.println("[드라이버클래스가 등록되었습니다.]");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
+	/**
+	 * JNDI Java Name and Directory Interface
+	 * - 서로 다른 서비스(자원)을 참조하기 위한 규격
+	 * - jndi루트디렉토리 하위에 자원을 등록/참조
+	 * - jndi루트디렉토리/comp/env/자원
+	 * 
+	 * - /comp/env/jdbc/hellooracle 하위 DataSource객체를 등록/참조
+	 * 
+	 * @return
+	 */
 	public static Connection getConnection() {
 		
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection(url, user, password);
+			// conn = DriverManager.getConnection(url, user, password);			
+			Context ctx = new InitialContext();
+			DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/hellooracle");
+			conn = ds.getConnection(); // Connection Pool로부터 Connection 가져오기
+//			System.out.println("JDBC conn = " + conn);
 			conn.setAutoCommit(false);
-		} catch (SQLException e) {
+		} catch (SQLException | NamingException e) {
 			e.printStackTrace();
 		}
 		return conn;
@@ -92,7 +110,6 @@ public class JdbcTemplate {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public static void close(Connection conn) {
@@ -120,13 +137,5 @@ public class JdbcTemplate {
 			e.printStackTrace();
 		}	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
