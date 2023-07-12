@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cortles.project.common.util.CortlesUtils;
 import com.cortles.project.member.model.service.MemberService;
@@ -54,6 +55,12 @@ public class MemberSignupServlet extends HttpServlet {
 		int result = memberService.signup(member);
 		if(result == 1)
 			System.out.println("회원가입 성공!");
+		
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("msg", "회원가입 성공!");
+		
+		response.sendRedirect(request.getContextPath());
 		
 		
 	}

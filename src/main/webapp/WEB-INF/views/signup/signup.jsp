@@ -19,8 +19,8 @@
 		<input type="hidden" name="memberId"/>
 	</form>
 	<form 
-		name="memberEnrollFrm" 
-		action="<%= request.getContextPath() %>/member/memberSignup" 
+		name="memberEnrollFrm"
+		action="<%= request.getContextPath() %>/member/memberSignup"
 		method="POST">
 		<table>
 			<tr>
@@ -71,7 +71,7 @@
 			<tr>
 				<th>성별 </th>
 				<td>
-					<input type="radio" name="gender" id="gender0" value="M">
+					<input type="radio" name="gender" id="gender0" value="M" checked>
 					<label for="gender0">남</label>
 					<input type="radio" name="gender" id="gender1" value="F">
 					<label for="gender1">여</label>
