@@ -6,17 +6,6 @@
 <%
 	List<Board> boards = (List<Board>) request.getAttribute("boards");
 %>
-<style>
-table {
-	margin: 20px 0;
-	border: 1px solid #000;
-	border-collapse: collapse;
-}
-th, td {
-	border: 1px solid #000;
-	padding: 5px;
-}
-</style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
 </head>
@@ -27,7 +16,7 @@ th, td {
 	<thead>
 		<tr>
 			<th>번호</th>
-			<th >제목</th>
+			<th>제목</th>
 			<th>조회</th>
 			<th>추천</th>
 			<th>글쓴이</th>
