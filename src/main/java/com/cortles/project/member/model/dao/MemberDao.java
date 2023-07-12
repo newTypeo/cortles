@@ -68,7 +68,6 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				Member member = handleMemberResultSet(rset);
 				members.add(member);
-				
 			}
 			
 		} catch (SQLException e) {
