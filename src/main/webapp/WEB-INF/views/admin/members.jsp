@@ -10,28 +10,13 @@
 <title>회원 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%
-
 	List<Member> members = (List<Member>) request.getAttribute("members");
-
 %>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/members.css" />
 </head>
-<style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 <body>
+<section>
   <h1>members</h1>
 	 <table>
         <thead>
@@ -79,5 +64,29 @@
            %>
         </tbody>
     </table>
+</section>
 </body>
+<script>
+
+// 권한 수정 
+document.querySelectorAll(".member-role").forEach((elem)=>{
+	elem.addEventListener("change",(e)=>{
+		
+		if(confirm("회원 관한을 수정하겠습니까?")){
+			const memberRoleVal = e.target.value;
+			const memberIdVal = e.target.dataset.memberId;
+			
+			const frm = document.memberRoleUpdateFrm;
+			frm.memberRoleVal.value = memberRoleVal;
+			frm.memberIdVal.value = memberIdVal;
+			frm.submit();
+		}else{
+			e.target.querySelector("option[selected]").selected = true;
+		}
+	});
+});
+
+</script>
+
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>
