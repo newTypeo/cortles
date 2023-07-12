@@ -62,6 +62,25 @@ private Properties prop = new Properties();
 		
 		return members;
 	}
+
+	/**
+	 * 찜 목록 추가 - 경빈
+	 * @param movieCode 
+	 */
+	public int addMyList(Connection conn, String memberId, String movieCode) {
+		int result = 0;
+		String sql = prop.getProperty("addMyList");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			try (){
+				
+			} catch (SQLException e) {
+				
+			}
+		} catch (Exception e) {
+			
+		}
+		return result;
+	}
 	
 	
 	
