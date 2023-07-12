@@ -69,11 +69,11 @@
 				</td>
 			</tr>
 			<tr>
-				<th>성별 </th>
+				<th>성별<sup>*</sup></th>
 				<td>
-					<input type="radio" name="gender" id="gender0" value="M" checked>
+					<input type="radio" name="gender" id="gender0" value="M">
 					<label for="gender0">남</label>
-					<input type="radio" name="gender" id="gender1" value="F">
+					<input type="radio" name="gender" id="gender1" value="F" checked>
 					<label for="gender1">여</label>
 				</td>
 			</tr>
