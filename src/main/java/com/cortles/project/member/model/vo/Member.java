@@ -14,7 +14,6 @@ public class Member {
 	private MemberRole memberRole;
 	private Date birthday ;
 	private Date enrollDate;
-
 	
 	public Member() {}
 
