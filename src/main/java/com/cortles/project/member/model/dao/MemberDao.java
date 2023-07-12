@@ -163,6 +163,8 @@ private Properties prop = new Properties();
 		String sql = prop.getProperty("deleteMyList");
 		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, movieCode);
 			
 			try(ResultSet rset = pstmt.executeQuery()){
 				
