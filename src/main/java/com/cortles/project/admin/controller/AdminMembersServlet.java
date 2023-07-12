@@ -28,6 +28,7 @@ public class AdminMembersServlet extends HttpServlet {
 		
 		List<Member> members = memberService.findAll();
 		System.out.println("members = " + members);
+		
 		request.setAttribute("members", members);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/members.jsp")
