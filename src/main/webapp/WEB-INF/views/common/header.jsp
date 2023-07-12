@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>movie cortles</title>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css" />
+	href="<%=request.getContextPath()%>/css/style.css"/>
 </head>
 <body>
 	<header>
