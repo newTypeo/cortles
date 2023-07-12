@@ -30,6 +30,11 @@
 		}
 	}
 %>
+<style>
+#login-member{
+color: white;
+}
+</style>
 <script>
 window.onload = () => {
 <% 	if(msg != null) { %>
@@ -69,7 +74,7 @@ window.onload = () => {
 			<!-- 로그인사용자정보 시작 -->
 					<table id="login">
 			            <tr>
-			                <td>
+			                <td id="login-member">
 			                	<%= loginMember.getMemberName() %>님, 안녕하세요.
 			                	<span id="notification"></span>
 			                </td>

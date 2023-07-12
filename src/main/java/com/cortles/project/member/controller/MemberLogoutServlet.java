@@ -16,15 +16,16 @@ public class MemberLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 로그아웃 - 현우
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
 			if(session != null)
 				session.invalidate();
 			
 			// 응답처리
+			
 			response.sendRedirect(request.getContextPath() + "/");
 	}
 
