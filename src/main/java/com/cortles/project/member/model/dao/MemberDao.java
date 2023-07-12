@@ -66,7 +66,7 @@ private Properties prop = new Properties();
 			ResultSet rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Member member = handleMemberResultSet (rset);
+				Member member = handleMemberListResultSet(rset);
 				members.add(member);
 				
 			}
@@ -98,7 +98,7 @@ private Properties prop = new Properties();
 		return member;
 	}
 
-	private Member handleMemberResultSet(ResultSet rset) throws SQLException {
+	private Member handleMemberListResultSet(ResultSet rset) throws SQLException {
 		
 		Member member;
 		String _memberId = rset.getString("member_id");
