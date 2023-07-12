@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.board.model.service.BoardService;
-import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.board.model.vo.Board;
+import com.cortles.project.common.util.CortlesUtils;
 
 /**
  * Servlet implementation class BoardServlet
@@ -39,19 +40,21 @@ public class BoardListServlet extends HttpServlet {
 		int end = cpage * LIMIT;
 		
 		// 2. 업무로직
-		List<BoardEntity> boards = boardService.findAll(start, end);
+		List<Board> boards = boardService.findAll(start, end);
 		System.out.println("boards = " + boards);
 		
 		// xss공격대비처리
-		for(BoardEntity board : boards) {
-			board.setTitle(HelloMvcUtils.escapeHtml(board.getTitle()));
+		if(boards != null) {
+			for(Board board : boards) {
+				board.setTitle(CortlesUtils.escapeHtml(board.getTitle()));
+			}
 		}
 		
 		// 페이지바영역 처리
 		int totalContent = boardService.getTotalContent();
 		System.out.println("totalContent = " + totalContent);
-		String url = request.getRequestURI(); // /mvc/board/boardList
-		String pagebar = HelloMvcUtils.getPagebar(cpage, LIMIT, totalContent, url);
+		String url = request.getRequestURI(); // /cortles/board/boardList
+		String pagebar = CortlesUtils.getPagebar(cpage, LIMIT, totalContent, url);
 		System.out.println("pagebar = " + pagebar);
 		
 		request.setAttribute("boards", boards);
