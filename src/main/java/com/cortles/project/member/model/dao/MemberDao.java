@@ -7,7 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -44,7 +43,7 @@ private Properties prop = new Properties();
 			pstmt.setString(5, member.getMemberName());
 			pstmt.setString(6, member.getEmail());
 			pstmt.setString(7, member.getPhone());
-			pstmt.setString(8, member.getGender().name() != null ? member.getGender().name() : "M");
+			pstmt.setString(8, member.getGender().name());
 			pstmt.setDate(9, member.getBirthday());
 			
 			result = pstmt.executeUpdate();
@@ -78,6 +77,38 @@ private Properties prop = new Properties();
 		
 		
 		return members;
+	}
+
+	public Member findById(Connection conn, String memberId) {
+		String sql = prop.getProperty("findById");
+		Member member = null;
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			try(ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					String _memberId = rset.getString("member_id");
+					String favoriteGenreName = rset.getString("favorite_genre_name");
+					String favoriteMovieCode = rset.getString("favorite_movie_code");
+					String memberPw = rset.getString("member_pw");
+					String memberName = rset.getString("member_name");
+					String email = rset.getString("email");
+					String phone = rset.getString("phone");
+					String _gender = rset.getString("gender");
+					Gender gender = _gender != null ? Gender.valueOf(_gender) : null;
+					String _meberRole = rset.getString("member_role");
+					MemberRole memberRole = _memberId != null ? MemberRole.valueOf(_meberRole) : null;
+					Date birthday = rset.getDate("birthday");
+					Date enrollDate = rset.getDate("enroll_date");
+					
+					member = new Member(_memberId, favoriteGenreName, favoriteMovieCode, memberPw, memberName, email, phone, gender, memberRole, birthday, enrollDate);	
+				}
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MemberException();
+		}		
+		return member;
 	}
 	
 	/*

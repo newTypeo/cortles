@@ -1,31 +1,43 @@
 --=============================
 -- cortles계정 생성 @관리자
 --=============================
-ALTER SYSTEM KILL SESSION 'sid, serial#';
-
-alter session set "_oracle_script" = true;
-
-create user cortles
-identified by cortles
-default tablespace users;
-
-grant connect, resource to cortles;
-
-alter user cortles quota unlimited on users;
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
 
 
-SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+--SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
---DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "POSTER" CASCADE CONSTRAINTS;
+--DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "GENRE" CASCADE CONSTRAINTS;
+--DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR_MOVIE" CASCADE CONSTRAINTS;
+--DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "CELEB" CASCADE CONSTRAINTS;
---DROP TABLE "PHOTO" CASCADE CONSTRAINTS;
+--DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
 
 
 --===============================
 -- cortles 계정
 --===============================
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -312,5 +324,18 @@ REFERENCES movie (
 
 
 
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 
 

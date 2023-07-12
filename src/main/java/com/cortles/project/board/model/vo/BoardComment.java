@@ -2,16 +2,16 @@ package com.cortles.project.board.model.vo;
 
 import java.sql.Date;
 
-public class BoardComent {
+public class BoardComment {
 	private int commentNo;
 	private int boardNo;
 	private String writerId;
 	private String content;
 	private Date regDate;
 	
-	public BoardComent() {}
+	public BoardComment() {}
 
-	public BoardComent(int commentNo, int boardNo, String writerId, String content, Date regDate) {
+	public BoardComment(int commentNo, int boardNo, String writerId, String content, Date regDate) {
 		super();
 		this.commentNo = commentNo;
 		this.boardNo = boardNo;
