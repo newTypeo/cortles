@@ -30,6 +30,11 @@
 		}
 	}
 %>
+<style>
+#login-member{
+color: white;
+}
+</style>
 <script>
 window.onload = () => {
 <% 	if(msg != null) { %>

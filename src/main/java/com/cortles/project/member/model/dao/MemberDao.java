@@ -156,6 +156,24 @@ private Properties prop = new Properties();
 		
 		return new Member(memberId,favoriteGenre,null,null,memberName,email,phone,gender,memberRole,birthday,enrollDate);
 	}
+
+	public int deleteMyList(Connection conn, String memberId, String movieCode) {
+		int result = 0;
+		String sql = prop.getProperty("deleteMyList");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, movieCode);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				
+			}
+			
+		} catch (Exception e) {
+			throw new MemberException();
+		}
+		return result;
+	}
 	
 	
 	
