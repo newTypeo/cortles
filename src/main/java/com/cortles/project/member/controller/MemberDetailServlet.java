@@ -22,6 +22,8 @@ public class MemberDetailServlet extends HttpServlet {
 		Member loginMember = (Member) session.getAttribute("loginMember");
 //		System.out.println("loginMember = " + loginMember);
 		
+		request.getRequestDispatcher("/WEB-INF/views/member/memberDetail.jsp")
+		.forward(request, response);
 		
 	}
 
