@@ -85,11 +85,13 @@ private Properties prop = new Properties();
 	 */
 	public int addMyList(Connection conn, String memberId, String movieCode) {
 		int result = 0;
+		// update member set favorite_genre_id = ? where member_id = ?
 		String sql = prop.getProperty("addMyList");
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setString(1, memberId);
-			pstmt.setString(2, movieCode);
+			pstmt.setString(1, movieCode);
+			pstmt.setString(2, memberId);
 			try (ResultSet rset = pstmt.executeQuery()){
+				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				
 			}
