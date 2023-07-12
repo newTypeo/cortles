@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String msg = (String) session.getAttribute("msg");
+	if(msg != null) session.removeAttribute("msg"); // 1회용
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,5 +39,12 @@
 		</div>
 		
 	</header>
+<script>
+window.onload = () => {
+	<% if(msg != null) { %>
+	alert('<%= msg %>');
+	<% } %>
+};
+</script>
 	
 	
