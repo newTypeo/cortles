@@ -14,7 +14,7 @@
 
 	<h1>이경빈</h1>
 	
-	<h1>push한번해볼래?</h1>
+	<h1>종환 푸시 마스터 -> newTypeo로 변경</h1>
 	
 	<h1>cortles</h1>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
