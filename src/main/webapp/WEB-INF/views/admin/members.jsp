@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <style>
@@ -28,27 +28,26 @@
 	 <table>
         <thead>
             <tr>
+                <th>아이디</th>
                 <th>이름</th>
-                <th>나이</th>
+                <th>생년월일</th>
                 <th>이메일</th>
+                <th>휴대폰</th>
+                <th>성별</th>
+                <th>선호장르</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>홍길동</td>
                 <td>30</td>
+                <td>1990-09-09</td>
                 <td>hong@example.com</td>
+                <td>010-0000-0000</td>
+                <td>남</td>
+                <td>스릴러,코미디</td>
             </tr>
-            <tr>
-                <td>김철수</td>
-                <td>25</td>
-                <td>kim@example.com</td>
-            </tr>
-            <tr>
-                <td>이영희</td>
-                <td>35</td>
-                <td>lee@example.com</td>
-            </tr>
+           
         </tbody>
     </table>
 </body>
