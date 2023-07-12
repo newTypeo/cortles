@@ -39,11 +39,12 @@ public class MemberLoginServlet extends HttpServlet {
 		password = CortlesUtils.getEncryptedPassword(password, memberId);
 		// 업무로직
 		Member member = memberService.findById(memberId);
-		
+		System.out.println("member@loginservice = " + member);
 		// 응답처리
 		HttpSession session = request.getSession(); // request.getSession(true)와 동일.
 //		System.out.println(session.getId());
-		
+		System.out.println("db비번 = " + member.getMemberPw());
+		System.out.println("사용자 입력비번 = " + password);
 		if(member != null && password.equals(member.getMemberPw())) {
 			// 로그인 성공
 			session.setAttribute("loginMember", member);
