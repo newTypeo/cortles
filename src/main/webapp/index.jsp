@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<title>종환이의 푸시 확인</title>
-<section>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
+	<section>
 		<div>
 		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
 			<article id="art1">
@@ -76,6 +84,13 @@
 		</div>
 		<hr/>
 	</section>
-
-
+	
+	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+
+
+
+
+

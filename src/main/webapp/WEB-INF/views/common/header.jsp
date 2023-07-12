@@ -16,6 +16,7 @@
 		<ul>
 			<li><a href="#">Home</a></li>
 			<li><a href="<%= request.getContextPath() %>/board/boardList">Community</a></li>
+			<li><a href="<%= request.getContextPath() %>">Home</a></li>
 			<li><a href="#">My List</a></li>
 			<li><a href="#">Members</a></li> <!-- 관리자  -->
 			<li><a href="#">Report</a></li> <!-- 관리자  -->
@@ -28,7 +29,7 @@
 			<a href="#">
 				<span style="color:#fff;">Login</span>
 			</a>
-			<a href="#">
+			<a href="<%= request.getContextPath() %>/member/memberSignup">
 				<span style="color:#fff;">Sign up</span>
 			</a>
 		</div>
