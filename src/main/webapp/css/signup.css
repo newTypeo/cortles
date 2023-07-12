@@ -45,14 +45,14 @@
 
 #enroll-container input[type="submit"],
 #enroll-container input[type="reset"] {
-  background-color: #4CAF50;
+  background-color: #df0b0b;
   color: #fff;
   cursor: pointer;
 }
 
 #enroll-container input[type="submit"]:hover,
 #enroll-container input[type="reset"]:hover {
-  background-color: #45a049;
+  background-color: #00ff00;
 }
 
 #enroll-container input[type="button"] {
