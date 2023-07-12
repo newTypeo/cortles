@@ -22,7 +22,7 @@ public class MemberSignupServlet extends HttpServlet {
     private final MemberService memberService = new MemberService();   
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/signup/signup.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/member/signup.jsp")
 			.forward(request, response);
 	}
 
