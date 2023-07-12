@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.board.model.service.BoardService;
-import com.cortles.project.board.model.vo.Board;
+import com.cortles.project.board.model.vo.BoardEntity;
 import com.cortles.project.common.util.CortlesUtils;
 
 /**
@@ -37,11 +37,11 @@ public class BoardListServlet extends HttpServlet {
 		
 		
 		// 2. 업무로직
-		List<Board> boards = boardService.findAll(start, end);
+		List<BoardEntity> boards = boardService.findAll(start, end);
 		System.out.println("boards = "+boards);
 		
 		// xss공격대비처리
-		for(Board board : boards) {
+		for(BoardEntity board : boards) {
 			board.setTitle(CortlesUtils.escapeHtml(board.getTitle()));
 		}
 		
