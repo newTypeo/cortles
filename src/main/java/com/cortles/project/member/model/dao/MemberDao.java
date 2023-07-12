@@ -3,8 +3,11 @@ package com.cortles.project.member.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Properties;
 
+import com.cortles.project.member.model.exception.MemberException;
 import com.cortles.project.member.model.vo.Member;
 
 public class MemberDao {
@@ -12,8 +15,6 @@ public class MemberDao {
 private Properties prop = new Properties();
 	
 	public MemberDao() {
-		// src/main/resources/sql/member/member-query.properties 작성
-		// build/classes/sql/member/member-query.properties 톰캣용 읽기파일
 		String filename = 
 			MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
 		try {
@@ -22,14 +23,28 @@ private Properties prop = new Properties();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public int signup(Connection conn, Member member) {
 		int result = 0;
 		String sql = prop.getProperty("signup");
-		System.out.println(sql);
 		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getFavoriteGenre());
+			pstmt.setString(3, null);
+			pstmt.setString(4, member.getMemberPw());
+			pstmt.setString(5, member.getMemberName());
+			pstmt.setString(6, member.getEmail());
+			pstmt.setString(7, member.getPhone());
+			pstmt.setString(8, member.getGender().name() != null ? member.getGender().name() : "M");
+			pstmt.setDate(9, member.getBirthday());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
 		
 		return result;
 	}
