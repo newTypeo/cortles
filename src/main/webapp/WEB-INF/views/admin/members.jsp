@@ -61,12 +61,10 @@
                 <td><%= member.getMemberId()%></td>
                 <td><%= member.getMemberName() %></td>
                 <td><%= member.getBirthday() %></td>
-                <td><%= member.getEmail() %></td>
+                <td><%= member.getEmail() != null ? member.getEmail() : "" %></td>
                 <td><%= member.getPhone() %></td>
-                <td>
-                
-                </td>
-                <td><%= member.getFavoriteGenre() %></td>
+                <td><%= member.getGender() != null ? member.getGender():"" %></td>
+                <td><%= member.getFavoriteGenre() != null ? member.getFavoriteGenre() : ""%></td>
                 <td><%= member.getEnrollDate() %></td>
                 <td>
                 	<select class="member-role" data-member-id="<%= member.getMemberId()%>">
