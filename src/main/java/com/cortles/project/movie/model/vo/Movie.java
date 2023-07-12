@@ -3,15 +3,15 @@ package com.cortles.project.movie.model.vo;
 import java.sql.Date;
 
 public class Movie {
-	private String movieCode;
-	private String title;
-	private int movieGrade;
-	private String story;
-	private Date openDate;
-	private Date runtime;
-	private String posterId;
-	private String director;
-	private String actorId;
+	private String movieCode; // 영화코드 (api)
+	private String title;	// 제목 (api)
+	private int movieGrade; // 영화평점
+	private String story;	// 줄거리
+	private Date openDate;	// 개봉일 (api)
+	private Date runtime;	// 상영시간 (api)
+	private String posterId;// 포스터 아이디
+	private String director;// 감독 (api)
+	private String actorId; // 배우 (api)
 	
 	public Movie() {}
 	
