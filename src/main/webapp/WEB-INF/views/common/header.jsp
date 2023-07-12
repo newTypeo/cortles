@@ -1,6 +1,10 @@
 <%@page import="com.cortles.project.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String msg = (String) session.getAttribute("msg");
+	if(msg != null) session.removeAttribute("msg"); // 1회용
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +13,6 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css"/>
 <%
-	String msg = (String) session.getAttribute("msg");
-	if(msg != null) session.removeAttribute("msg"); // 1회용
 	// System.out.println("msg = " + msg);
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
@@ -63,5 +65,12 @@ window.onload = () => {
 		</div>
 		
 	</header>
+<script>
+window.onload = () => {
+	<% if(msg != null) { %>
+	alert('<%= msg %>');
+	<% } %>
+};
+</script>
 	
 	
