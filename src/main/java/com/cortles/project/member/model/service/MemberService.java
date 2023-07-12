@@ -12,10 +12,14 @@ public class MemberService {
 	
 	/**
 	 * 아이디로 회원 조회
+	 * 로그인 - 현우
 	 */
 	public Member findById(String memberId) {
+		Connection conn = getConnection();
+		Member member = memberDao.findById(conn, memberId);
+		close(conn);
 		
-		return null;
+		return member;
 	}
 
 	/**
@@ -41,9 +45,21 @@ public class MemberService {
 	 */
 	public List<Member> findAll() {
 		Connection conn = getConnection();
-		List<Member> members = memberDao.findAll();
+		List<Member> members = memberDao.findAll(conn);
 		close(conn);
 		return members;
+	}
+
+	/**
+	 * 찜 목록추가 - 경빈
+	 * @param movieCode 
+	 */
+	public int addMyList(String memberId, String movieCode) {
+		Connection conn = getConnection();
+		int result = 0;
+		result = memberDao.addMyList(conn, memberId, movieCode);
+		close(conn);
+		return result;
 	}
 
 	
