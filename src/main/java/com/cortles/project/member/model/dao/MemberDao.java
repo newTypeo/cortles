@@ -74,15 +74,16 @@ private Properties prop = new Properties();
 	public int addMyList(Connection conn, String memberId, String movieCode) {
 		int result = 0;
 		String sql = prop.getProperty("addMyList");
-//		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
-//			try (){
-//				
-//			} catch (SQLException e) {
-//				
-//			}
-//		} catch (Exception e) {
-//			
-//		}
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, movieCode);
+			try (ResultSet rset = pstmt.executeQuery()){
+			} catch (SQLException e) {
+				
+			}
+		} catch (Exception e) {
+			
+		}
 		return result;
 	}
 	public Member findById(Connection conn, String memberId) {
