@@ -3,7 +3,7 @@ package com.cortles.project.board.model.vo;
 import java.sql.Date;
 
 public class Board {
-	private String boardNo;
+	private int boardNo;
 	private String writerId;
 	private String title;
 	private String content;
@@ -13,7 +13,7 @@ public class Board {
 	
 	public Board() {}
 
-	public Board(String boardNo, String writerId, String title, String content, int likeCount, int readCount,
+	public Board(int boardNo, String writerId, String title, String content, int likeCount, int readCount,
 			Date regDate) {
 		super();
 		this.boardNo = boardNo;
@@ -25,8 +25,8 @@ public class Board {
 		this.regDate = regDate;
 	}
 
-	public String getBoardNo() {return boardNo;}
-	public void setBoardNo(String boardNo) {this.boardNo = boardNo;}
+	public int getBoardNo() {return boardNo;}
+	public void setBoardNo(int boardNo) {this.boardNo = boardNo;}
 
 	public String getWriterId() {return writerId;}
 	public void setWriterId(String writerId) {this.writerId = writerId;}
