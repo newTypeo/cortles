@@ -49,10 +49,11 @@ public class MemberSignupServlet extends HttpServlet {
 		member.setPhone(phone);
 		member.setFavoriteGenre(favoriteGenre);
 		
-//		System.out.println(member);
+		System.out.println(member);
 		
 		int result = memberService.signup(member);
-		
+		if(result == 1)
+			System.out.println("회원가입 성공!");
 		
 		
 	}
