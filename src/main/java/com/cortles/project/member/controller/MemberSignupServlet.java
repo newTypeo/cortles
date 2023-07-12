@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.common.util.CortlesUtils;
+import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Gender;
 import com.cortles.project.member.model.vo.Member;
 
@@ -17,7 +18,8 @@ import com.cortles.project.member.model.vo.Member;
 @WebServlet("/member/memberSignup")
 public class MemberSignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private final MemberService memberService = new MemberService();   
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/signup/signup.jsp")
 			.forward(request, response);
@@ -47,7 +49,11 @@ public class MemberSignupServlet extends HttpServlet {
 		member.setPhone(phone);
 		member.setFavoriteGenre(favoriteGenre);
 		
-		System.out.println(member);
+//		System.out.println(member);
+		
+		int result = memberService.signup(member);
+		
+		
 		
 	}
 
