@@ -66,7 +66,7 @@ private Properties prop = new Properties();
 			ResultSet rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Member member = handleMemberResultSet (rset);
+				Member member = handleMemberResultSet(rset);
 				members.add(member);
 				
 			}
@@ -79,6 +79,26 @@ private Properties prop = new Properties();
 		return members;
 	}
 
+	/**
+	 * 찜 목록 추가 - 경빈
+	 * @param movieCode 
+	 */
+	public int addMyList(Connection conn, String memberId, String movieCode) {
+		int result = 0;
+		// update member set favorite_genre_id = ? where member_id = ?
+		String sql = prop.getProperty("addMyList");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, movieCode);
+			pstmt.setString(2, memberId);
+			try (ResultSet rset = pstmt.executeQuery()){
+					result = pstmt.executeUpdate();
+			}
+		}
+		catch (Exception e) {
+			throw new MemberException();
+		}
+		return result;
+	}
 	public Member findById(Connection conn, String memberId) {
 		String sql = prop.getProperty("findById");
 		Member member = null;
@@ -86,21 +106,8 @@ private Properties prop = new Properties();
 			pstmt.setString(1, memberId);
 			try(ResultSet rset = pstmt.executeQuery()) {
 				while(rset.next()) {
-					String _memberId = rset.getString("member_id");
-					String favoriteGenreName = rset.getString("favorite_genre_name");
-					String favoriteMovieCode = rset.getString("favorite_movie_code");
-					String memberPw = rset.getString("member_pw");
-					String memberName = rset.getString("member_name");
-					String email = rset.getString("email");
-					String phone = rset.getString("phone");
-					String _gender = rset.getString("gender");
-					Gender gender = _gender != null ? Gender.valueOf(_gender) : null;
-					String _meberRole = rset.getString("member_role");
-					MemberRole memberRole = _memberId != null ? MemberRole.valueOf(_meberRole) : null;
-					Date birthday = rset.getDate("birthday");
-					Date enrollDate = rset.getDate("enroll_date");
 					
-					member = new Member(_memberId, favoriteGenreName, favoriteMovieCode, memberPw, memberName, email, phone, gender, memberRole, birthday, enrollDate);	
+					member = handleMemberResultSet(rset);	
 				}
 				
 			}
@@ -110,11 +117,32 @@ private Properties prop = new Properties();
 		}		
 		return member;
 	}
+
+	private Member handleMemberResultSet(ResultSet rset) throws SQLException {
+		
+		Member member;
+		String _memberId = rset.getString("member_id");
+		String favoriteGenreName = rset.getString("favorite_genre_name");
+		String favoriteMovieCode = rset.getString("favorite_movie_code");
+		String memberPw = rset.getString("member_pw");
+		String memberName = rset.getString("member_name");
+		String email = rset.getString("email");
+		String phone = rset.getString("phone");
+		String _gender = rset.getString("gender");
+		Gender gender = _gender != null ? Gender.valueOf(_gender) : null;
+		String _meberRole = rset.getString("member_role");
+		MemberRole memberRole = _memberId != null ? MemberRole.valueOf(_meberRole) : null;
+		Date birthday = rset.getDate("birthday");
+		Date enrollDate = rset.getDate("enroll_date");
+		
+		member = new Member(_memberId, favoriteGenreName, favoriteMovieCode, memberPw, memberName, email, phone, gender, memberRole, birthday, enrollDate);
+		return member;
+	}
 	
 	/*
 	 * 회원 조회
 	 */
-	private Member handleMemberResultSet (ResultSet rset) throws SQLException {
+	private Member handleMembeListrResultSet (ResultSet rset) throws SQLException {
 		String memberId = rset.getString("member_id");
 		String memberName = rset.getString("member_name");
 		Date birthday = rset.getDate("birthday");
@@ -128,6 +156,24 @@ private Properties prop = new Properties();
 		MemberRole memberRole = _memberRole != null ? MemberRole.valueOf(_memberRole) : null;
 		
 		return new Member(memberId,favoriteGenre,null,null,memberName,email,phone,gender,memberRole,birthday,enrollDate);
+	}
+
+	public int deleteMyList(Connection conn, String memberId, String movieCode) {
+		int result = 0;
+		String sql = prop.getProperty("deleteMyList");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, movieCode);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				
+			}
+			
+		} catch (Exception e) {
+			throw new MemberException();
+		}
+		return result;
 	}
 	
 	

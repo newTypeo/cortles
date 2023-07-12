@@ -30,6 +30,11 @@
 		}
 	}
 %>
+<style>
+#login-member{
+color: white;
+}
+</style>
 <script>
 window.onload = () => {
 <% 	if(msg != null) { %>
@@ -51,6 +56,8 @@ window.onload = () => {
 			<li><a href="<%= request.getContextPath() %>/report">Report</a></li> <!-- 관리자  -->
 		</ul>
 		
+		<% if(loginMember == null) { %>
+		
 		<div class="search-bar">
 			<input type="text" placeholder="Search...">
 		</div>
@@ -63,6 +70,30 @@ window.onload = () => {
 				<span style="color:#fff;">Sign up</span>
 			</a>
 		</div>
+		<% } else { %>
+			<!-- 로그인사용자정보 시작 -->
+					<table id="login">
+			            <tr>
+			                <td id="login-member">
+			                	<%= loginMember.getMemberName() %>님, 안녕하세요.
+			                	<span id="notification"></span>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <input 
+			                    	type="button" 
+			                    	value="내정보보기"
+			                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberDetail';">
+			                    <input 
+			                    	type="button" 
+			                    	value="로그아웃" 
+			                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">
+			                </td>
+			            </tr>
+			        </table>
+		<% } %>
+		
 		
 	</header>
 <script>
