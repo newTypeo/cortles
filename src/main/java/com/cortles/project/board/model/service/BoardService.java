@@ -12,8 +12,10 @@ public class BoardService {
 	private final BoardDao boardDao = new BoardDao();
 
 	public List<Board> findAll(int start, int end) {
-		
-		return null;
+		Connection conn = getConnection();
+		List<Board> boards = boardDao.findAll(conn, start, end);
+		close(conn);
+		return boards;
 	}
 
 	public int getTotalContent() {
