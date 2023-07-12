@@ -18,7 +18,6 @@ import com.cortles.project.common.util.CortlesUtils;
  */
 @WebServlet("/board/boardList")
 public class BoardListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
 	private final int LIMIT = 10; // 한페이지당 게시물수
 
@@ -33,27 +32,23 @@ public class BoardListServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			// 예외처리외에 아무것도 하지 않음.
 		}
-		// cpage = 1 -> start = 1, end = 10
-		// cpage = 2 -> start = 11, end = 20
-		// cpage = 3 -> start = 21, end = 30
 		int start = (cpage - 1) * LIMIT + 1;
 		int end = cpage * LIMIT;
 		
+		
 		// 2. 업무로직
 		List<Board> boards = boardService.findAll(start, end);
-		System.out.println("boards = " + boards);
+		System.out.println("boards = "+boards);
 		
 		// xss공격대비처리
-		if(boards != null) {
-			for(Board board : boards) {
-				board.setTitle(CortlesUtils.escapeHtml(board.getTitle()));
-			}
+		for(Board board : boards) {
+			board.setTitle(CortlesUtils.escapeHtml(board.getTitle()));
 		}
 		
 		// 페이지바영역 처리
 		int totalContent = boardService.getTotalContent();
 		System.out.println("totalContent = " + totalContent);
-		String url = request.getRequestURI(); // /cortles/board/boardList
+		String url = request.getRequestURI(); // /mvc/board/boardList
 		String pagebar = CortlesUtils.getPagebar(cpage, LIMIT, totalContent, url);
 		System.out.println("pagebar = " + pagebar);
 		

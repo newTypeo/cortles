@@ -3,6 +3,7 @@ package com.cortles.project.board.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,17 +45,24 @@ public class BoardDao {
 	public List<Board> findAll(Connection conn, int start, int end) {
 		List<Board> boards = new ArrayList<>();
 		String sql = prop.getProperty("findAll");
-		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
-			try(ResultSet rset = pstmt.executeQuery()) {
+			try(ResultSet rset = pstmt.executeQuery()){
 				while(rset.next()) {
-					Board board = handleBoardResultSet(rset);
-//					board.setAttachCnt(rset.getInt("attach_cnt"));
-//					board.setCommentCnt(rset.getInt("comment_cnt"));
+					int boardNo = rset.getInt("board_no");
+					String writerId = rset.getString("writer_id");
+					String title = rset.getString("title");
+					String content = rset.getString("content");
+					int likeCount = rset.getInt("like_count");
+					int readCount = rset.getInt("read_count");
+					Date regDate = rset.getDate("reg_date");
+					Board board = new Board(boardNo, writerId, title, content, likeCount, readCount, regDate);
+					
 					boards.add(board);
 				}
 			}
+			
 		} catch (SQLException e) {
 			throw new BoardException(e);
 		}
@@ -62,15 +70,18 @@ public class BoardDao {
 	}
 
 
-	private Board handleBoardResultSet(ResultSet rset) throws SQLException {
-		Board board = new Board();
-		board.setBoardNo(rset.getString("board_no"));
-		board.setTitle(rset.getString("title"));
-		board.setWriterId(rset.getString("writer_id"));
-		board.setContent(rset.getString("content"));
-		board.setReadCount(rset.getInt("read_count"));
-		board.setLikeCount(rset.getInt("like_count"));
-		board.setRegDate(rset.getDate("reg_date"));
-		return board;	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
