@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.cortles.project.board.model.exception.BoardException;
-import com.cortles.project.board.model.vo.Board;
+import com.cortles.project.board.model.vo.BoardEntity;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -42,8 +42,8 @@ public class BoardDao {
 	}
 
 
-	public List<Board> findAll(Connection conn, int start, int end) {
-		List<Board> boards = new ArrayList<>();
+	public List<BoardEntity> findAll(Connection conn, int start, int end) {
+		List<BoardEntity> boards = new ArrayList<>();
 		String sql = prop.getProperty("findAll");
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, start);
@@ -57,7 +57,7 @@ public class BoardDao {
 					int likeCount = rset.getInt("like_count");
 					int readCount = rset.getInt("read_count");
 					Date regDate = rset.getDate("reg_date");
-					Board board = new Board(boardNo, writerId, title, content, likeCount, readCount, regDate);
+					BoardEntity board = new BoardEntity(boardNo, writerId, title, content, likeCount, readCount, regDate);
 					
 					boards.add(board);
 				}

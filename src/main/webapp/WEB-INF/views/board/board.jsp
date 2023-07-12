@@ -1,10 +1,10 @@
-<%@page import="com.cortles.project.board.model.vo.Board"%>
+<%@page import="com.cortles.project.board.model.vo.BoardEntity"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<Board> boards = (List<Board>) request.getAttribute("boards");
+List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
 %>
 <style>
 table {
@@ -19,15 +19,22 @@ th, td {
 </style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
+<style>
+button {
+margin-left: 540px;
+margin-bottom: 10px;
+}
+</style>
 </head>
 <body>
 <section id="board-container">
-	<h2>게시판 </h2>
+	<h2>게시판 </h2><br>
+	<button>글쓰기</button>
 <table id="tbl-board">
 	<thead>
 		<tr>
 			<th>번호</th>
-			<th >제목</th>
+			<th>제목</th>
 			<th>조회</th>
 			<th>추천</th>
 			<th>글쓴이</th>
@@ -35,9 +42,9 @@ th, td {
 		</tr>
 	</thead>
 	<tbody>
-			<% 
-				if(boards != null && !boards.isEmpty()){ 
-					for(Board board : boards){					
+			<%
+			if(boards != null && !boards.isEmpty()){ 
+						for(BoardEntity board : boards){
 			%>
 						<tr>
 							<td><%= board.getBoardNo() %></td>
