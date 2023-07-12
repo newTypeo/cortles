@@ -58,40 +58,41 @@ window.onload = () => {
 		
 		<% if(loginMember == null) { %>
 		
-		<div class="search-bar">
-			<input type="text" placeholder="Search...">
-		</div>
-		<div class="login">
-			<a href="<%= request.getContextPath()%>/member/memberLogin">
-				<span style="color:#fff;">Login</span>
-			</a>
+			<div class="search-bar">
+				<input type="text" placeholder="Search...">
+			</div>
+			<div class="login">
+				<a href="<%= request.getContextPath()%>/member/memberLogin">
+					<span style="color:#fff;">Login</span>
+				</a>
+				
+				<a href="<%= request.getContextPath() %>/member/memberSignup">
+					<span style="color:#fff;">Sign up</span>
+				</a>
+			</div>
 			
-			<a href="<%= request.getContextPath() %>/member/memberSignup">
-				<span style="color:#fff;">Sign up</span>
-			</a>
-		</div>
 		<% } else { %>
 			<!-- 로그인사용자정보 시작 -->
-					<table id="login">
-			            <tr>
-			                <td id="login-member">
-			                	<%= loginMember.getMemberName() %>님, 안녕하세요.
-			                	<span id="notification"></span>
-			                </td>
-			            </tr>
-			            <tr>
-			                <td>
-			                    <input 
-			                    	type="button" 
-			                    	value="내정보보기"
-			                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberDetail';">
-			                    <input 
-			                    	type="button" 
-			                    	value="로그아웃" 
-			                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">
-			                </td>
-			            </tr>
-			        </table>
+			<table id="login">
+	            <tr>
+	                <td>
+	                	<%= loginMember.getMemberName() %>님, 안녕하세요.
+	                	<span id="notification"></span>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    <input 
+	                    	type="button" 
+	                    	value="내정보보기"
+	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberDetail';">
+	                    <input 
+	                    	type="button" 
+	                    	value="로그아웃" 
+	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">
+	                </td>
+	            </tr>
+	        </table>
 		<% } %>
 		
 		
