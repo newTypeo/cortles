@@ -48,6 +48,8 @@ CREATE TABLE member (
 	enroll_date	 date DEFAULT sysdate
 );
 
+
+
 CREATE TABLE movie (
 	movie_code	varchar2(200)		NOT NULL,
 	title	varchar2(100)		NOT NULL,
@@ -318,6 +320,6 @@ REFERENCES movie (
 	movie_code
 );
 
-
-
+insert into member values('admin', null,null,1234,'관리자',null,'010-1234-1234','M','A', '1901-01-01', default);
+select * from member;
 
