@@ -160,6 +160,17 @@ private Properties prop = new Properties();
 
 	public int deleteMyList(Connection conn, String memberId, String movieCode) {
 		int result = 0;
+		String sql = prop.getProperty("deleteMyList");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				
+			}
+			
+		} catch (Exception e) {
+			throw new MemberException();
+		}
 		return result;
 	}
 	
