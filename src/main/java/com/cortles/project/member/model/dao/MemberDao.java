@@ -91,12 +91,11 @@ private Properties prop = new Properties();
 			pstmt.setString(1, movieCode);
 			pstmt.setString(2, memberId);
 			try (ResultSet rset = pstmt.executeQuery()){
-				result = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				
+					result = pstmt.executeUpdate();
 			}
-		} catch (Exception e) {
-			
+		}
+		catch (Exception e) {
+			throw new MemberException();
 		}
 		return result;
 	}
