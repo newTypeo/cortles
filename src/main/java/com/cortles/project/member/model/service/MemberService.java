@@ -45,7 +45,7 @@ public class MemberService {
 	 */
 	public List<Member> findAll() {
 		Connection conn = getConnection();
-		List<Member> members = memberDao.findAll();
+		List<Member> members = memberDao.findAll(conn);
 		close(conn);
 		return members;
 	}
