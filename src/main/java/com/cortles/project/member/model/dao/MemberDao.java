@@ -66,9 +66,8 @@ private Properties prop = new Properties();
 			ResultSet rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Member member = handleMemberResultSet (rset);
+				Member member = handleMemberResultSet(rset);
 				members.add(member);
-				
 			}
 			
 		} catch (SQLException e) {
