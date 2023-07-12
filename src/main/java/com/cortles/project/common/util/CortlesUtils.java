@@ -24,12 +24,12 @@ public class CortlesUtils {
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		System.out.println(new String(output));
+//		System.out.println(new String(output));
 		
 		// 2. 인코딩
 		Encoder encoder = Base64.getEncoder();
 		encryptedPassword = encoder.encodeToString(output);
-		System.out.println(encryptedPassword);
+//		System.out.println(encryptedPassword);
 		
 		return encryptedPassword;
 	}

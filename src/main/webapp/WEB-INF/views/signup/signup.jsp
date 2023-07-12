@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/signup.css" />
 </head>
 
 <body>
@@ -76,13 +78,22 @@
 				</td>
 			</tr>
 			<tr>
-				<th>취미 </th>
+				<th>선호 장르 </th>
 				<td>
 					<input type="checkbox" name="genre" id="genre0" value="호러" checked><label for="genre0">호러</label>
 					<input type="checkbox" name="genre" id="genre1" value="로맨스" checked><label for="genre1">로맨스</label>
-					<input type="checkbox" name="genre" id="genre2" value="코미디"><label for="genre2">코미디</label><br />
+					<input type="checkbox" name="genre" id="genre2" value="코미디"><label for="genre2">코미디</label>
+					<br/>
 					<input type="checkbox" name="genre" id="genre3" value="액션"><label for="genre3">액션</label>
-					<input type="checkbox" name="genre" id="genre4" value="스릴러"><label for="genre4">스릴러</label><br />
+					<input type="checkbox" name="genre" id="genre4" value="스릴러"><label for="genre4">스릴러</label>
+					<input type="checkbox" name="genre" id="genre5" value="SF"><label for="genre4">SF</label>
+					<br/>
+					<input type="checkbox" name="genre" id="genre6" value="애니메이션"><label for="genre4">애니메이션</label>
+					<input type="checkbox" name="genre" id="genre7" value="뮤지컬"><label for="genre4">뮤지컬</label>
+					<br/>
+					<input type="checkbox" name="genre" id="genre8" value="판타지"><label for="genre4">판타지</label>
+					<input type="checkbox" name="genre" id="genre9" value="재난"><label for="genre4">재난</label>
+					<input type="checkbox" name="genre" id="genre10" value="범죄"><label for="genre4">범죄</label>
 				</td>
 			</tr>
 		</table>
