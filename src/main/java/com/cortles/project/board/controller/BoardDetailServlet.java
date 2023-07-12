@@ -68,7 +68,7 @@ public class BoardDetailServlet extends HttpServlet {
 //		String secureTitle = HelloMvcUtils.escapeHtml(unsecureTitle);
 //		board.setTitle(secureTitle);
 		
-		request.setAttribute(boardCookieVal, boardCookieVal)
+		//request.setAttribute(boardCookieVal, boardCookieVal)
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
