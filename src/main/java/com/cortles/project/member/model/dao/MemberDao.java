@@ -114,7 +114,7 @@ private Properties prop = new Properties();
 	 * 회원 조회
 	 */
 	private Member handleMemberResultSet (ResultSet rset) throws SQLException {
-		String memberId = rset.getString("memberId");
+		String memberId = rset.getString("member_id");
 		String memberName = rset.getString("member_name");
 		Date birthday = rset.getDate("birthday");
 		String email = rset.getString("email");
