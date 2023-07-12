@@ -21,5 +21,6 @@ public class MemberMyListServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/views/mylist/myList.jsp")
 			.forward(request, response);
 	}
+	
 
 }
