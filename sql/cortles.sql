@@ -33,6 +33,10 @@
 --===============================
 -- cortles 계정
 --===============================
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -319,3 +323,7 @@ REFERENCES movie (
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
