@@ -33,7 +33,6 @@
 --===============================
 -- cortles 계정
 --===============================
-
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -47,6 +46,8 @@ CREATE TABLE member (
 	birthday	date		NOT NULL,
 	enroll_date	 date DEFAULT sysdate
 );
+
+
 
 CREATE TABLE movie (
 	movie_code	varchar2(200)		NOT NULL,
@@ -317,7 +318,10 @@ ALTER TABLE movie_genre ADD CONSTRAINT FK_movie_TO_movie_genre_1 FOREIGN KEY (
 REFERENCES movie (
 	movie_code
 );
+<<<<<<< HEAD
+=======
 
+insert into member values('admin', null,null,1234,'관리자',null,'010-1234-1234','M','A', '1901-01-01', default);
+select * from member;
 
-
-
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git

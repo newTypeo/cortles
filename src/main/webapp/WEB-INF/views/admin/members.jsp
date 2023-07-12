@@ -65,6 +65,13 @@
         </tbody>
     </table>
 </section>
+<form
+	name="memberRoleUpdateFrm"
+	action="<%= request.getContextPath() %>/admin/memberRoleUpdate"
+	method="POST">
+	<input type="hidden" name="memberRole"/>
+	<input type="hidden" name="memberId"/>
+</form>
 </body>
 <script>
 
