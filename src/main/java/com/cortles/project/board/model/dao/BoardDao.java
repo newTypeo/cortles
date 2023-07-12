@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.cortles.project.board.model.exception.BoardException;
+import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardEntity;
 
 public class BoardDao {
@@ -67,6 +68,33 @@ public class BoardDao {
 			throw new BoardException(e);
 		}
 		return boards;
+	}
+
+
+	public Board findById(Connection conn, int boardNo) {
+		Board board = null;
+		String sql = prop.getProperty("findById");
+		// select * from board where board_no = ?
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			
+			try(ResultSet rset = pstmt.executeQuery()) {
+				if(rset.next()) {
+					board.setBoardNo(boardNo);
+					board.setWriterId(rset.getString("writer_id"));
+					board.setTitle(rset.getString("title"));
+					board.setContent(rset.getString("content"));
+					board.setLikeCount(rset.getInt("like_count"));
+					board.setReadCount(rset.getInt("read_count"));
+					board.setRegDate(rset.getDate("reg_date"));
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return board;
 	}
 
 
