@@ -33,10 +33,6 @@
 --===============================
 -- cortles 계정
 --===============================
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -320,10 +316,3 @@ ALTER TABLE movie_genre ADD CONSTRAINT FK_movie_TO_movie_genre_1 FOREIGN KEY (
 REFERENCES movie (
 	movie_code
 );
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
