@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/signup.css" />
 </head>
 
 <body>

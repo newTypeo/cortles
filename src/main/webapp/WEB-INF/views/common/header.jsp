@@ -25,9 +25,10 @@
 			<input type="text" placeholder="Search...">
 		</div>
 		<div class="login">
-			<a href="#">
+			<a href="<%= request.getContextPath()%>/member/memberLogin">
 				<span style="color:#fff;">Login</span>
 			</a>
+			
 			<a href="<%= request.getContextPath() %>/member/memberSignup">
 				<span style="color:#fff;">Sign up</span>
 			</a>
