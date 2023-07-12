@@ -26,8 +26,6 @@ public class MemberLoginServlet extends HttpServlet {
 //		System.out.println("넘어왔는지 확인");
 		request.getRequestDispatcher("/WEB-INF/views/login/login.jsp").
 			forward(request, response);
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,13 +41,10 @@ public class MemberLoginServlet extends HttpServlet {
 		// 응답처리
 		HttpSession session = request.getSession(); // request.getSession(true)와 동일.
 //		System.out.println(session.getId());
-		System.out.println("db비번 = " + member.getMemberPw());
-		System.out.println("사용자 입력비번 = " + password);
 		if(member != null && password.equals(member.getMemberPw())) {
 			// 로그인 성공
 			session.setAttribute("loginMember", member);
 			// session.setAttribute("msg", "로그인에 성공했습니다.");
-			System.out.println("비밀번호 매칭 성공");
 			// 아이디저장 쿠키처리
 			// - Path : 쿠키를 사용할 url. 서버전송시 부모경로만 지정. 
 			//    - / 설정시 모든 요청에 사용. 
@@ -75,7 +70,7 @@ public class MemberLoginServlet extends HttpServlet {
 			// 로그인 실패
 			session.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			String referer = request.getHeader("Referer");
-			System.out.println("referer = " + referer);
+//			System.out.println("referer = " + referer);
 			response.sendRedirect(referer);
 		}
 		

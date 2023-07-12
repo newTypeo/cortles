@@ -34,7 +34,7 @@ public class MemberCheckIdDuplicateServlet extends HttpServlet {
 		request.setAttribute("available", available);
 		
 		// 3. 응답 html
-		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/signup/checkIdDuplicate.jsp");
+		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/member/checkIdDuplicate.jsp");
 		reqDispatcher.forward(request, response);
 	}
 

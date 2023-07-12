@@ -6,17 +6,6 @@
 <%
 	List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
 %>
-<style>
-table {
-	margin: 20px 0;
-	border: 1px solid #000;
-	border-collapse: collapse;
-}
-th, td {
-	border: 1px solid #000;
-	padding: 5px;
-}
-</style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
 <style>
