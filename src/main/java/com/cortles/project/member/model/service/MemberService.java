@@ -12,10 +12,14 @@ public class MemberService {
 	
 	/**
 	 * 아이디로 회원 조회
+	 * 로그인 - 현우
 	 */
 	public Member findById(String memberId) {
+		Connection conn = getConnection();
+		Member member = memberDao.findById(conn, memberId);
+		close(conn);
 		
-		return null;
+		return member;
 	}
 
 	/**
