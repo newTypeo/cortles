@@ -66,7 +66,7 @@ private Properties prop = new Properties();
 			ResultSet rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Member member = handleMemberListResultSet(rset);
+				Member member = handleMemberResultSet(rset);
 				members.add(member);
 				
 			}
@@ -118,7 +118,7 @@ private Properties prop = new Properties();
 		return member;
 	}
 
-	private Member handleMemberListResultSet(ResultSet rset) throws SQLException {
+	private Member handleMemberResultSet(ResultSet rset) throws SQLException {
 		
 		Member member;
 		String _memberId = rset.getString("member_id");
@@ -142,7 +142,7 @@ private Properties prop = new Properties();
 	/*
 	 * 회원 조회
 	 */
-	private Member handleMemberResultSet (ResultSet rset) throws SQLException {
+	private Member handleMembeListrResultSet (ResultSet rset) throws SQLException {
 		String memberId = rset.getString("member_id");
 		String memberName = rset.getString("member_name");
 		Date birthday = rset.getDate("birthday");
