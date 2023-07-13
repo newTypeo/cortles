@@ -1,4 +1,17 @@
+
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
+
 --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+
 
 
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
@@ -16,6 +29,13 @@
 --DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
+
+--DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
+
+
+--select * from member;
+--select * from board;
 
 
 CREATE TABLE member (
@@ -350,7 +370,7 @@ REFERENCES member (
 ----------- 시퀀스 생성 ------------
 create sequence seq_board_no;
 create sequence seq_attachment_no;
-create sequence seq_board_comment_no;
+<<<<<<< HEAD
 ---------------------------------
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
@@ -409,6 +429,77 @@ insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 );
 
+
 commit;
 
 select * from member;
+
+--select seq_board_no.currval from dual;
+
+select * from board;
+
+select * from attachment;
+
+create sequence seq_board_comment_no;
+---------------------------------
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+--drop sequence seq_board_comment_no;
+select * from board;
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+);
+
+
+--alter table
+--    member
+--modify
+--    favorite_genre_name varchar2(200);
+

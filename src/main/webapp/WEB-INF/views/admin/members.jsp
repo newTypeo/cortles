@@ -6,19 +6,23 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%
 	List<Member> members = (List<Member>) request.getAttribute("members");
+
+	String keyword = request.getParameter("keyword");
 %>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/members.css" />
 <section>
   
-    <div class="search-container">
-    <input type="text" class="search-input" placeholder="검색">
-   	<span class="btn-wrapper">
-    <button class="btn">Button</button>
-	</span>
-  </div>
-  
-  
+    <div class="search-container" id="search-name">
+   	 <form action="<%= request.getContextPath()%>/admin/searchMember" name="searchMemberFrm">
+    	<input type="hidden" name="searchType" value="name"/>
+   		 <input type="text" name="searchKeyword" class="search-input" placeholder="이름으로 검색">
+   			<span class="btn-wrapper">
+    			<button class="btn" type="submit">Button</button>
+			</span>
+   	 </form>
+	</div>
+
 	 <table>
         <thead>
             <tr>
@@ -74,7 +78,15 @@
 	<input type="hidden" name="memberId"/>
 </form>
 <script>
-
+document.querySelector(".search-container").onsubmit = (e) => {
+	const frm = e.target;
+	const name = frm.searchKeyword.value;
+	// 한글 검사
+	if (!/^[가-힣]+$/.test(name)) {
+		alert("한글만 입력해주세요.");
+		return false;
+	}
+}
 // 권한 수정 
 document.querySelectorAll(".member-role").forEach((elem)=>{
 	elem.addEventListener("change",(e)=>{
