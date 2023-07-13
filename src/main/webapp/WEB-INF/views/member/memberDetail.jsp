@@ -4,10 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<!DOCTYPE html>
-<head>
-<meta charset="UTF-8">
-<title>내 정보 보기</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/signup.css" />
 <%
@@ -19,8 +15,6 @@
 		System.out.println(genres);
 	}
 %>
-</head>
-<body>
 <section id=enroll-container>
 	<h2>회원정보 수정</h2>
 	<form 
