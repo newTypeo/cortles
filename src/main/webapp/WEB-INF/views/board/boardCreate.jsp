@@ -1,6 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardCreate.css" />
+<div id="board-wrapper">
+  <section id="board-container">
+    <h2>게시판 작성</h2>
+    <form name="boardCreateFrm" action="<%=request.getContextPath() %>/board/boardCreate" method="post" enctype="multipart/form-data">
+        <table id="tbl-board-view">
+            <tr>
+                <th>제목</th>
+                <td><input type="text" name="title" required></td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td><input type="text" name="writer" value="" readonly></td>
+            </tr>
+            <tr>
+                <th>첨부파일</th>
+                <td>
+                    <input type="file" name="upFile1">
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td><textarea rows="5" cols="40" name="content"></textarea></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <input type="submit" value="등록하기">
+                </th>
+            </tr>
+        </table>
+    </form>
+  </section>
+</div>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<h2>게시글 작성</h2>
