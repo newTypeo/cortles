@@ -23,8 +23,8 @@ public class AdminMemberRoleUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("member_id");
-		String _memberRole = request.getParameter("member_role");
+		String memberId = request.getParameter("memberId");
+		String _memberRole = request.getParameter("memberRole");
 		MemberRole memberRole = MemberRole.valueOf(_memberRole);
 		
 		int result = memberService.memberRoleUpdate(memberId,memberRole);

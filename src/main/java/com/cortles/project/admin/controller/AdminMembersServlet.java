@@ -27,7 +27,7 @@ public class AdminMembersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Member> members = memberService.findAll();
-		System.out.println("members = " + members);
+		//System.out.println("members = " + members);
 		
 		request.setAttribute("members", members);
 		
