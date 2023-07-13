@@ -150,7 +150,7 @@ function openModal() {
 
 // 모달 닫기
 function closeModal() {
-	scroll.style.overflow = "block";
+	scroll.style.overflow = "auto";
   document.getElementById("myModal").style.display = "none";
 }
 
