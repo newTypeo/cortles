@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardCreate.css" />
+
+<div id="board-wrapper">
 <section id="board-container">
 	<h2>게시글 작성</h2>
 	<form
@@ -37,6 +39,8 @@
 	</table>
 	</form>
 </section>
+</div>
+
 <script>
 /**
 * boardCreateFrm 유효성 검사

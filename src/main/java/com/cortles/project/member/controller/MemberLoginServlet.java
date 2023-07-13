@@ -37,6 +37,7 @@ public class MemberLoginServlet extends HttpServlet {
 		password = CortlesUtils.getEncryptedPassword(password, memberId);
 		// 업무로직
 		Member member = memberService.findById(memberId);
+		System.out.println("MemberLogin = " + member);
 		
 		
 		// 응답처리
@@ -75,6 +76,7 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		
 		// 3. 응답처리
+		
 	}
 
 }
