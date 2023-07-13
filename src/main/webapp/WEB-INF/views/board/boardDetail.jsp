@@ -37,7 +37,7 @@
 				method="post" 
 				name="boardCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
-                <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+                <input type="hidden" name="writerId" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
 				<textarea name="content" cols="60" rows="3"></textarea>
                 <button type="submit" id="btn-comment-enroll1">등록</button>
             </form>

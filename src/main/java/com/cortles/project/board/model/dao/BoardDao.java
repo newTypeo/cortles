@@ -189,6 +189,22 @@ public class BoardDao {
 	}
 
 
+	public int insertBoardComment(Connection conn, BoardComment boardComment) {
+		int result = 0;
+		String sql = prop.getProperty("insertBoardComment");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardComment.getBoardNo());
+			pstmt.setString(2, boardComment.getWriterId());
+			pstmt.setString(3, boardComment.getContent());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
+
 
 }
 
