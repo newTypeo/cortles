@@ -28,6 +28,7 @@ public class AdminMemberRoleUpdateServlet extends HttpServlet {
 		MemberRole memberRole = MemberRole.valueOf(_memberRole);
 		
 		int result = memberService.memberRoleUpdate(memberId,memberRole);
+		System.out.println("서블릿"+result);
 		
 		response.sendRedirect(request.getContextPath()+"/members");
 	}

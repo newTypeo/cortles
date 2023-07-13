@@ -180,6 +180,7 @@ private Properties prop = new Properties();
 	 */
 	public int memberRoleUpdate(Connection conn, String memberId, MemberRole memberRole) {
 		int result = 0;
+		System.out.println("result"+result);
 		String sql = prop.getProperty("memberRoleUpdate");
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, memberRole.name());
