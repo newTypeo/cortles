@@ -65,7 +65,7 @@ public class BoardCreateServlet extends HttpServlet {
 			board.setTitle(title);
 			board.setWriterId(writer);
 			board.setContent(content);
-//			System.out.println(board); 
+			System.out.println("확인용 = " + board); 
 			
 			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2
 			while(filenames.hasMoreElements()) {
