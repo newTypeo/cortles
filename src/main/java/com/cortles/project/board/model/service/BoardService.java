@@ -32,8 +32,8 @@ public class BoardService {
 		Connection conn = getConnection();
 		Board board = boardDao.findById(conn, boardNo);
 		System.out.println("boardService = " + boardNo);
-		List<Attachment> attachments = boardDao.findAttachmentByBoardNo(conn, boardNo);
-		board.setAttachments(attachments);
+//		List<Attachment> attachments = boardDao.findAttachmentByBoardNo(conn, boardNo);
+//		board.setAttachments(attachments);
 		close(conn);
 		
 		return board;
