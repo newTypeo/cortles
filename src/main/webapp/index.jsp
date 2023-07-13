@@ -8,13 +8,26 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/index.css" />
 </head>
 <body>
 	<section>
 		<div>
 		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
 			<article id="art1">
+			<div class="modal">
+      			<div class="modal_body">
+      				Hello
+      				<form action="" method="POST" >
+					<input type="button" value="찜하기">
+				</form>	
+      			</div>
+    		</div>
+				
+				<div class="div-open-popup">
 				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+				</div>
 				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
@@ -83,6 +96,16 @@
 			</article>
 		</div>
 		<hr/>
+		<script>
+		const modal = document.querySelector(".modal");
+		const divopenPopup =document.querySelector(".div-open-popup");
+		
+		divopenPopup.addEventListener('click', () => {
+			modal.style.display = 'block';
+		});
+		
+		
+		</script>
 	</section>
 	
 	
