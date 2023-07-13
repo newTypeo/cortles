@@ -18,7 +18,9 @@ margin-bottom: 10px;
 <body>
 <section id="board-container">
 	<h2>게시판 </h2><br>
-	<button>글쓰기</button>
+	<input 
+			type="button" id="btn-add" value="글쓰기" 
+			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';" />
 <table id="tbl-board">
 	<thead>
 		<tr>
