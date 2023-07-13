@@ -2,14 +2,14 @@
 
 
 .modal {
-position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 300px;
-  overflow: auto; /* 스크롤 가능한 영역을 만듭니다. */
+ position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: auto; /* 모달 전체에 스크롤 가능한 영역 생성 */
   
 }
 

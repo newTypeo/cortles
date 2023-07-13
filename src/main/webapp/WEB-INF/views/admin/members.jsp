@@ -3,19 +3,13 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%
 	List<Member> members = (List<Member>) request.getAttribute("members");
 %>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/members.css" />
-</head>
-<body>
+
 <section>
   <h1>members</h1>
 	 <table>
@@ -72,7 +66,6 @@
 	<input type="hidden" name="memberRole"/>
 	<input type="hidden" name="memberId"/>
 </form>
-</body>
 <script>
 
 // 권한 수정 
@@ -96,4 +89,3 @@ document.querySelectorAll(".member-role").forEach((elem)=>{
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-</html>

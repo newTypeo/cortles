@@ -12,6 +12,7 @@
 	href="<%=request.getContextPath()%>/css/index.css" />
 </head>
 <body>
+
 	<section>
 		<div>
 		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
@@ -29,6 +30,7 @@
 				<div class="div-open-popup">
 				<img src='https://ifh.cc/g/JlsdD9.jpg'>
 				</div>
+				<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
 				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
