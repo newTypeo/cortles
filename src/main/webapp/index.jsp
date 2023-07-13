@@ -14,7 +14,7 @@
 		<div>
 		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
 			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+				<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
 				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
