@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/login.css" />
-
+	<section>
 	 <div class="container">
     <form
     	id="loginFrm"
@@ -25,3 +25,6 @@
       </div>
     </form>
   </div>
+  </section>
+  
+  <%@ include file="/WEB-INF/views/common/footer.jsp" %>
