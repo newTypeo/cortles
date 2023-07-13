@@ -18,13 +18,8 @@ public class MemberDetailServlet extends HttpServlet {
     private final MemberService memberService = new MemberService();   
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member loginMember = (Member) session.getAttribute("loginMember");
-//		System.out.println("loginMember = " + loginMember);
-		
 		request.getRequestDispatcher("/WEB-INF/views/member/memberDetail.jsp")
 		.forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

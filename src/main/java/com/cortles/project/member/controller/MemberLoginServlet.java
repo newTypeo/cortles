@@ -31,7 +31,7 @@ public class MemberLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 사용자 입력 값 처리
-		String memberId = request.getParameter("memberId");	
+		String memberId = request.getParameter("memberId");
 		String password = request.getParameter("password");
 		String saveId = request.getParameter("saveId");
 		password = CortlesUtils.getEncryptedPassword(password, memberId);
