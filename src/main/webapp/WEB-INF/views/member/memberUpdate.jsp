@@ -4,6 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>내 정보 보기</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/signup.css" />
 <%
@@ -15,13 +19,16 @@
 		System.out.println(genres);
 	}
 %>
+</head>
+<body>
 <section id=enroll-container>
 	<h2>회원정보 수정</h2>
 	<form 
 		name="memberEnrollFrm"
-		action="<%= request.getContextPath() %>/member/memberSignup"
+		action="<%= request.getContextPath() %>/member/memberUpdate"
 		method="POST">
 		<table>
+		<input type="hidden"  name="memberId" id="memberId" value="<%= loginMember.getMemberId() %>">
 			<tr>
 				<th>이름<sup>*</sup></th>
 				<td>	
@@ -91,22 +98,6 @@
 	</form>
 </section>
 <script>
-
-
-
-/**
- * 아이디 중복검사 함수
- * - 팝업창으로 폼을 제출
- */
-const checkIdDuplicate = () => {
-	const title = "checkIdDuplicatePopup";
-	const popup = open("", title, "width=500px, height=300px");
-	
-	const frm = document.checkIdDuplicateFrm;
-	frm.target = title; // 폼의 제출대상으로 팝업창으로 연결
-	frm.memberId.value = document.querySelector("#_memberId").value;
-	frm.submit();
-}
 
 // 폼 유효성검사
 document.memberEnrollFrm.onsubmit = (e) => {

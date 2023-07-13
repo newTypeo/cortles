@@ -60,6 +60,7 @@ a {text-decoration: none;}
 /********** body ************/
 section {margin-top:10px;}
 section span {margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold';}
+section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold'; font-size: 20px;}
 section img {width:270px; height:180px; padding-right:10px; padding-top:0px; }
 section article {display:flex; padding:20px; height:200px;}
 
