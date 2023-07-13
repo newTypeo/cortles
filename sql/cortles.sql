@@ -324,7 +324,7 @@ REFERENCES movie (
 
 insert into member values('admin', null,null,1234,'관리자',null,'010-1234-1234','M','A', '1901-01-01', default);
 select * from member;
-
+update member set member_name = '신종환', gender ='F', birthday = '1955-11-11', email = 'susu@ba.com', phone = '01088888888', favirite_genre = '호러' where member_id = 'asdasd'
 select * from board;
 select * from movie;
 INSERT INTO movie (movie_code, title, movie_grade, story, open_date, runtime, poster_id, director_id, actor_id) 
