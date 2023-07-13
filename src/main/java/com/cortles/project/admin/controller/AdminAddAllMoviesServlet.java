@@ -2,11 +2,9 @@ package com.cortles.project.admin.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,8 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.connector.Response;
 
 import com.cortles.project.admin.model.service.AdminService;
 import com.cortles.project.movie.model.vo.Movie;
@@ -46,11 +42,9 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 			String runtime = movieInfo[6];	// 상영시간 (api)
 			String[] _posterUrl = movieInfo[7].split("jpg");// 포스터
 			String posterUrl = _posterUrl[0] + "jpg";// 포스터
-			System.out.println(posterUrl);
 			String director = movieInfo[8];// 감독 (api)
 			String actors = movieInfo[9]; // 배우 (api)
 			String vod = movieInfo[10]; // vod (api)
-			
 			
 			Movie movie = new Movie(movieCode, title, titleEng, 0, genre, story, openDate, runtime, posterUrl, director, actors, vod);
 			movies.add(movie);
@@ -58,7 +52,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 		
 		int result = adminService.addAllMovies(movies);
 		System.out.println("result addMovies = " + result);
-		resp.sendRedirect(req.getContextPath());
+		resp.sendRedirect(req.getContextPath() + "/");
 	}
 	
 	// String to Date 변환 메소드
