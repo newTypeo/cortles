@@ -19,16 +19,16 @@
 			<article id="art1">
 			<div class="modal">
       			<div class="modal_body">
-      				Hello
+      				대충내용
       				<button class="closepopup">닫기</button>
-      				<form action="" method="POST" >
+      				<form action="" method="POST" > <!-- addmylist요청보내기  -->
 					<input type="button" value="찜하기">
 				</form>	
       			</div>
     		</div>
 				
 				<div class="div-open-popup">
-				<img src='https://ifh.cc/g/JlsdD9.jpg'>
+					<img src='https://ifh.cc/g/JlsdD9.jpg'>
 				</div>
 				<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
 				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
