@@ -34,42 +34,7 @@
     </form>
   </section>
 </div>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
-<section id="board-container">
-	<h2>게시글 작성</h2>
-	<form
-		name="boardCreateFrm"
-		action="<%=request.getContextPath() %>/board/boardCreate"
-		method="post"
-		enctype="multipart/form-data">
-		<table id="tbl-board-view">
-		<tr>
-			<th>제 목</th>
-			<td><input type="text" name="title" required></td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>
-				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
-			</td>
-		</tr>
-		<tr>
-			<th>첨부파일</th>
-			<td style="text-align:left;">			
-				<input type="file" name="upFile1">
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><textarea rows="5" cols="40" name="content"></textarea></td>
-		</tr>
-		<tr>
-			<th colspan="2">
-				<input type="submit" value="등록하기">
-			</th>
-		</tr>
-	</table>
-	</form>
-</section>
+
 <script>
 /**
 * boardCreateFrm 유효성 검사
