@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.cortles.project.board.model.dao.BoardDao;
+import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardEntity;
 
@@ -30,6 +31,8 @@ public class BoardService {
 	public Board findById(int boardNo) {
 		Connection conn = getConnection();
 		Board board = boardDao.findById(conn, boardNo);
+		List<Attachment> attachments = boardDao.findAttachmentByBoardNo(conn, boardNo);
+		board.setAttachments(attachments);
 		close(conn);
 		return board;
 	}

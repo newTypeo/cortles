@@ -74,7 +74,7 @@
     <div class="comment-container">
         <div class="comment-editor">
             <form
-            	action="<%=request.getContextPath()%>/board/boardCommentCreate" 
+            	action="<%=request.getContextPath()%>/board/boardDetail" 
             	method="post" 
             	name="boardCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
