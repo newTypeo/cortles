@@ -12,60 +12,21 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
-	<h2>게시판</h2>
-	<table id="tbl-board-view">
-		<tr>
-			<th>글번호</th>
-			<td><%= board.getBoardNo() %></td>
-		</tr>
-		<tr>
-			<th>제 목</th>
-			<td><%= board.getTitle() %></td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td><%= board.getWriterId() %></td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td><%= board.getReadCount() %></td>
-		</tr>
-		<%
-			if (attachments != null && !attachments.isEmpty()) {
-				for(Attachment attach : attachments) {
-		%>
-			<tr>
-				<th>첨부파일</th>
-				<td>
-					<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
-					<img alt="첨부파일" src="<%=request.getContextPath() %>/images/file.png" width=16px>
-					<a href="<%= request.getContextPath() %>/board/fileDownload?no=<%= attach.getNo() %>"><%= attach.getOriginalFilename() %></a>
-				</td>
-			</tr>
-		<%		}
-			}
-		%>
-		<tr>
-			<th>내 용</th>
-			<td>
-				<textarea readonly style="resize: none;"><%= board.getContent() %></textarea>
-			</td>
-		</tr>
-		
-			<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
-		<%--ㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷ<% if(loginMember != null 
-				&& (board.getWriter().equals(loginMember.getMemberId()) 
-						|| loginMember.getMemberRole() == MemberRole.A)) { ㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷㄱㄷ--%>
-						
-		<tr>
-			<th colspan="2">
-				<%-- 첨부파일이 없는 게시물 수정 --%>
-				<input type="button" value="수정하기" onclick="updateBoard()">
-				<input type="button" value="삭제하기" onclick="deleteBoard()">
-			</th>
-		</tr>
-		<%--<% } --%>
-	</table>
+	<div id="board" style ="width: 605px;">
+    <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br>
+      <span>작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
+      <span id="option">
+        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
+      </span>
+    </div>
+
+    <hr>
+
+    <div id="board_content">
+      <textarea readonly="" style="resize: none;width: 100%;height: 400px;">sadfsadfwef</textarea>
+    </div>
+    <button>추천</button>
+  </div>
 	
 	<hr style="margin-top:30px;" />    
 	
