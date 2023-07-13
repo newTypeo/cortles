@@ -62,7 +62,7 @@
 <form
 	name="memberRoleUpdateFrm"
 	action="<%= request.getContextPath() %>/admin/memberRoleUpdate"
-	method="POST">
+	method="post">
 	<input type="hidden" name="memberRole"/>
 	<input type="hidden" name="memberId"/>
 </form>
@@ -75,10 +75,13 @@ document.querySelectorAll(".member-role").forEach((elem)=>{
 		if(confirm("회원 권한을 수정하겠습니까?")){
 			const memberRoleVal = e.target.value;
 			const memberIdVal = e.target.dataset.memberId;
+			console.log("memberRoleVal",memberRoleVal);
+			console.log("memberIdVal",memberIdVal);
 			
 			const frm = document.memberRoleUpdateFrm;
-			frm.memberRoleVal.value = memberRoleVal;
-			frm.memberIdVal.value = memberIdVal;
+			console.log("frm",frm);
+			frm.memberRole.value = memberRoleVal;
+			frm.memberId.value = memberIdVal;
 			frm.submit();
 		}else{
 			e.target.querySelector("option[selected]").selected = true;

@@ -37,7 +37,7 @@ public class AdminFilter extends HttpFilter implements Filter {
 //		}
 //		
 //		// pass the request along the filter chain
-//		chain.doFilter(request, response);
+		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {}

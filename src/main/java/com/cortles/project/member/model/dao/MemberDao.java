@@ -180,7 +180,7 @@ private Properties prop = new Properties();
 	 */
 	public int memberRoleUpdate(Connection conn, String memberId, MemberRole memberRole) {
 		int result = 0;
-		System.out.println("result"+result);
+		//System.out.println("result"+result);
 		String sql = prop.getProperty("memberRoleUpdate");
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, memberRole.name());
@@ -192,6 +192,30 @@ private Properties prop = new Properties();
 			throw new MemberException(e);
 		}
 		
+		return result;
+	}
+
+	/**
+	 * 회원정보 수정 - 종환
+	 */
+	public int updateMember(Connection conn, Member member) {
+		int result = 0;
+		String sql = prop.getProperty("updateMember");
+		// update member set member_name = ?, gender = ?, birthday = ?, email = ?, phone = ?, favorite_genre_name = ? where member_id = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, member.getMemberName());
+			pstmt.setString(2, member.getGender().name());
+			pstmt.setDate(3, member.getBirthday());
+			pstmt.setString(4, member.getEmail());
+			pstmt.setString(5, member.getPhone());
+			pstmt.setString(6, member.getFavoriteGenre());
+			pstmt.setString(7, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
 		return result;
 	}
 	
