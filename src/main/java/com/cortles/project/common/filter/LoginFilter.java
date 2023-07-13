@@ -18,7 +18,7 @@ import com.cortles.project.member.model.vo.Member;
 
 @WebFilter({ 
 	"/member/logout",
-	"/member/memberDetail"
+	"/member/memberUpdate"
 })
 public class LoginFilter extends HttpFilter implements Filter {
        
