@@ -7,7 +7,7 @@ section#board-container{width:600px; margin:0 auto; text-align:center;}
 section#board-container h2{margin:10px 0;}
 table#tbl-board{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
 table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;} 
-section {height:680px; padding:20px;}
+section {padding:20px;}
 
 /*글쓰기버튼*/
 input#btn-add{float:right; margin: 0 0 15px;}
@@ -19,7 +19,7 @@ div#pagebar a{margin-right: 5px;}
 
 /*게시글 작성/상세보기 테이블*/
 table#tbl-board-view {
-	width:500px; 
+	width:600px; 
 	margin:0 auto; 
 	border:1px solid black; 
 	border-collapse:collapse;  
@@ -33,10 +33,13 @@ table#tbl-board-view th {
 table#tbl-board-view td {
 	border:1px solid; 
 	padding: 5px 0 5px 15px; 
-	text-align:left;
+	text-align:center;
 }
 table#tbl-board-view img {width: 16px;}
+table#tbl-board-view input[type=text] {width: 400px; height: 20px;}
 table#tbl-board-view input[type=file] {margin: 3px 0;}
+table#tbl-board-view textarea {margin: 3px 0; width:550px; height:250px; resize:none;}
+
 
 /*게시글 수정하기*/
 span#fname{

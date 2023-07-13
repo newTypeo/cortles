@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.cortles.project.board.model.exception.BoardException;
 import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
+import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
 
 public class BoardDao {
@@ -132,6 +133,47 @@ public class BoardDao {
 		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
+
+	public List<BoardComment> findBoardCommentByBoardNo(Connection conn, int boardNo) {
+		List<BoardComment> boardComments = new ArrayList<>();
+		String sql = prop.getProperty("findBoardCommentByBoardNo");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					//int boardNo = rset.getInt("board_no");
+					String writerId = rset.getString("writer_id");
+					String content = rset.getString("content");
+					int commentNo = rset.getInt("comment_no");
+					Date regDate = rset.getDate("reg_date");
+					BoardComment boardComment = new BoardComment(commentNo, boardNo, writerId, content, regDate);
+					boardComments.add(boardComment);
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return boardComments;
+	}
+
+
+	public int insertBoardComment(Connection conn, BoardComment boardComment) {
+		int result = 0;
+		String sql = prop.getProperty("insertBoardComment");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardComment.getBoardNo());
+			pstmt.setString(2, boardComment.getWriterId());
+			pstmt.setString(3, boardComment.getContent());
+			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new BoardException(e);

@@ -8,6 +8,7 @@ import java.util.List;
 import com.cortles.project.board.model.dao.BoardDao;
 import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
+import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
 
 public class BoardService {
@@ -46,6 +47,28 @@ public class BoardService {
 			result = boardDao.updateReadCount(conn, boardNo);
 			commit(conn);
 		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public List<BoardComment> findBoardCommentByBoardNo(int boardNo) {
+		Connection conn = getConnection();
+		List<BoardComment> boardComments = boardDao.findBoardCommentByBoardNo(conn, boardNo);
+		close(conn);
+		return boardComments;
+	}
+
+	public int insertBoardComment(BoardComment boardComment) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = boardDao.insertBoardComment(conn, boardComment);
+			commit(conn);
+		} catch (Exception e) {
 			rollback(conn);
 			throw e;
 		} finally {
