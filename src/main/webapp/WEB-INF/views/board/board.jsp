@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
+	List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
