@@ -87,7 +87,6 @@ public class BoardDao {
 					board.setLikeCount(rset.getInt("like_count"));
 					board.setReadCount(rset.getInt("read_count"));
 					board.setRegDate(rset.getDate("reg_date"));
-					System.out.println("boardDao = " + board);
 				}
 			}
 		} catch (SQLException e) {
@@ -136,6 +135,56 @@ public class BoardDao {
 		} catch (SQLException e) {
 			throw new BoardException(e);
 		}
+		return result;
+	}
+
+
+	public int insertBoard(Connection conn, Board board) {
+		int result = 0;
+		String sql = prop.getProperty("insertBoard");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriterId());
+			pstmt.setString(3, board.getContent());
+			
+			result = pstmt.executeUpdate(); 
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return result;
+	}
+
+
+	public int getLastBoardNo(Connection conn) {
+		int boardNo = 0;
+		String sql = prop.getProperty("getLastBoardNo");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next()) {
+					boardNo = rset.getInt(1); // 첫번째 컬럼값
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return boardNo;
+	}
+
+
+	public int insertAttachment(Connection conn, Attachment attach) {
+		int result = 0;
+		String sql = prop.getProperty("insertAttachment");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, attach.getBoardNo());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
 		return result;
 	}
 
