@@ -12,9 +12,8 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
-	<h2>게시판</h2>
-	<div id="board">
-    <div id="board_header"><span id="board_title"><%= board.getTitle() %></span><br>
+	<div id="board" style ="width: 605px;">
+    <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br>
       <span>작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
         <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
@@ -24,8 +23,9 @@
     <hr>
 
     <div id="board_content">
-      <textarea readonly style="resize: none;"><%= board.getContent() %></textarea>
+      <textarea readonly="" style="resize: none;width: 100%;height: 400px;">sadfsadfwef</textarea>
     </div>
+    <button>추천</button>
   </div>
 	
 	<hr style="margin-top:30px;" />    
