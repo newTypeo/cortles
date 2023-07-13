@@ -1,5 +1,4 @@
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
-
+-- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
@@ -10,8 +9,6 @@
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
-
-
 
 
 CREATE TABLE member (
@@ -30,17 +27,17 @@ CREATE TABLE member (
 
 CREATE TABLE movie (
 	movie_code	varchar2(200)		NOT NULL,
-	title	varchar2(100)		NOT NULL,
-	title_eng	varchar2(100),
-	movie_grade	number default 0,
+	title	varchar2(200)		NOT NULL,
+	title_eng	varchar2(200),
+	movie_grade	number		NOT NULL,
 	genre	varchar2(100)		NOT NULL,
 	story	varchar2(3000)		NOT NULL,
 	open_date	date		NOT NULL,
 	runtime	varchar2(100)		NOT NULL,
-	poster_url	varchar2(200)		NOT NULL,
-	directors	varchar2(200)		NOT NULL,
-	actors	varchar2(50)		NOT NULL,
-	vod	varchar2(200)		NOT NULL
+	poster_url	varchar2(500)		NOT NULL,
+	director 	varchar2(200)		NOT NULL,
+	actors	varchar2(500)		NOT NULL,
+	vod	varchar2(500)		NOT NULL
 );
 
 CREATE TABLE board (
@@ -220,89 +217,83 @@ REFERENCES member (
 );
 
 ----------- 시퀀스 생성 ------------
-create sequence seq_board_no;
-create sequence seq_attachment_no;
-create sequence seq_board_comment_no;
----------------------------------
+--create sequence seq_board_no;
+--create sequence seq_attachment_no;
+--create sequence seq_board_comment_no;
+---------시퀀스 삭제 ----------------
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
 --drop sequence seq_board_comment_no;
+
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);insert into board values (
+--   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+--);
 select * from board;
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);insert into board values (
-   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
-);
-
---alter table
---    member
---modify
---    favorite_genre_name varchar2(200);
+select * from attachment;
+----------- 시퀀스 생성 ------------
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+---------------------------------
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
 
 
 
-CREATE TABLE movie (
-	movie_code	varchar2(200)		NOT NULL,
-	title	varchar2(100)		NOT NULL,
-	title_eng	varchar2(100),
-	movie_grade	number default 0,
-	genre	varchar2(100)		NOT NULL,
-	story	varchar2(3000)		NOT NULL,
-	open_date	date		NOT NULL,
-	runtime	varchar2(100)		NOT NULL,
-	poster_url	varchar2(200)		NOT NULL,
-	directors	varchar2(200)		NOT NULL,
-	actors	varchar2(50)		NOT NULL,
-	vod	varchar2(200)		NOT NULL
-);
+--select seq_board_no.currval from dual;
+
+select * from board;
+
+select * from attachment;
+
 
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 select * from movie;
 
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
-

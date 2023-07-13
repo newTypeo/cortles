@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cortles.project.member.model.service.MemberService;
 
@@ -27,6 +28,17 @@ public class AddMyListServlet extends HttpServlet {
 		
 		
 		int result = memberService.addMyList(memberId, movieCode);
+		
+		
+		if(result > 1 ) {
+			System.out.println("등록완료");
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("msg", "mylist추가 완료 ! ! !");
+		
+		response.sendRedirect(request.getContextPath());
+
+
 
 	}
 }
