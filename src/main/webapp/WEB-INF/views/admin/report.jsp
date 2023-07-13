@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <title>신고 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-</head>
 <style>
         table {
             border-collapse: collapse;
@@ -23,7 +18,6 @@
             background-color: #f2f2f2;
         }
     </style>
-<body>
 	<h1>report list</h1>
 		<table>
 			<thead>
@@ -43,5 +37,4 @@
 				</tr>
 			</tbody>
 		</table>
-</body>
 </html>

@@ -96,19 +96,6 @@
         </table>
         <%--<% } --%>
     </div>
-    
-    
-    
-	<script>
-	
-	</script>
 	</section>
-	
-
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-	
-	
-	
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
