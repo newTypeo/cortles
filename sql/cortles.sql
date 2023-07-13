@@ -1,8 +1,9 @@
 --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 
---DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
+--DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "DIRECTOR" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
 --DROP TABLE "POSTER" CASCADE CONSTRAINTS;
@@ -15,15 +16,11 @@
 --DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
---DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
---DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
-
-
 
 
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
-	favorite_genre_name	varchar2(30),
+	favorite_genre_name	varchar2(200),
 	favorite_movie_code	varchar2(200),
 	member_pw	varchar2(300)		NOT NULL,
 	member_name	varchar2(30)		NOT NULL,
@@ -358,6 +355,9 @@ create sequence seq_board_comment_no;
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
 
+select * from board;
+
+
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 
@@ -408,3 +408,7 @@ insert into board values (
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 );
+
+commit;
+
+select * from member;
