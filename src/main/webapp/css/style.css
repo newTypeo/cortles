@@ -9,14 +9,14 @@
 
 /******** header ********/
 header {
-  background-color: #000;
-  height: 70px;
+  background-color: #141414;
+  height: 50px;
   padding: 20px;
   padding-left: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: sticky;
+  position: relative;
 }
 /* 헤더 기능들 */
 header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 300px;}
@@ -35,7 +35,7 @@ header .login {margin-left:50px;}
 header .login span {margin-right:20px; padding-left:30px;}
 
 /********** body ************/
-body {margin: 0;}
+body {margin: 0; background-color:#141414; color: white;}
 section {margin-top:10px;}
 section article {display:flex; padding:20px; height:200px;}
 section img {width:270px; height:180px; padding-right:10px; padding-top:0px;}
@@ -43,5 +43,5 @@ section span {margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold';
 section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold'; font-size: 20px;}
 
 /********** footer **********/
-footer { padding-top:30px; background-color:#000; text-align:center; height:100px; color:#fff;}
+footer { padding-top:30px; background-color:#141414; text-align:center; height:100px; color:#fff;}
 
