@@ -174,6 +174,14 @@ private Properties prop = new Properties();
 		}
 		return result;
 	}
+
+	/*
+	 * 권한 수정 - 주혜 
+	 */
+	public int memberRoleUpdate(Connection conn, String memberId, MemberRole memberRole) {
+		int result = 0;
+		return 0;
+	}
 	
 	
 	
