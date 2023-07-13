@@ -19,54 +19,29 @@ header {
   position: sticky;
 }
 /* 헤더 기능들 */
-header ul {
-  list-style: none;
-  padding-left: 110px;
-  display: flex;
-  margin-left: 160px;
-  margin-right: 300px;
-}
+header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 300px;}
+header ul li {margin-right: 50px;}
+header ul li a {color: #fff; text-decoration: none;}
+.logo img {width: 140px;}
 
-header ul li {
-  margin-right: 50px;
-}
-
-header ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.logo img {
-  width: 140px;
-  
-}
 /* 검색창 */
-.search-bar input[type="text"] {
-  margin-left: 60px;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-}
+.search-bar input[type="text"] {margin-left: 60px; padding: 10px; border: none; border-radius: 3px;}
 /*header div.login-container{margin-left:350px;}*/
 
 /*#saveId+label{font-size:12px;font-family:'고딕'}*/
 
+a {text-decoration: none;}
 header .login {margin-left:50px;}
 header .login span {margin-right:20px; padding-left:30px;}
-a {text-decoration: none;}
-
 
 /********** body ************/
+body {margin: 0;}
 section {margin-top:10px;}
+section article {display:flex; padding:20px; height:200px;}
+section img {width:270px; height:180px; padding-right:10px; padding-top:0px;}
 section span {margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold';}
 section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold'; font-size: 20px;}
-section img {width:270px; height:180px; padding-right:10px; padding-top:0px; }
-section article {display:flex; padding:20px; height:200px;}
-
-
-
 
 /********** footer **********/
-footer			{ padding-top:30px; background-color:#000; text-align:center; height:100px; color:#fff;}
-
+footer { padding-top:30px; background-color:#000; text-align:center; height:100px; color:#fff;}
 
