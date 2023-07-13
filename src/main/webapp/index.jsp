@@ -50,7 +50,6 @@
 				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
 			</article>
 		</div>
-		<hr/>
 		<div>
 		<span>액션</span>
 			<article id="art1">
@@ -62,7 +61,6 @@
 				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
 			</article>
 		</div>
-		<hr/>
 		<div>
 		<span>호러</span>
 			<article id="art1">
@@ -74,7 +72,6 @@
 				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
 			</article>
 		</div>
-		<hr/>
 		<div>
 		<span>로맨스</span>
 			<article id="art1">
@@ -86,7 +83,6 @@
 				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
 			</article>
 		</div>
-		<hr/>
 		<div>
 		<span>코미디</span>
 			<article id="art1">
