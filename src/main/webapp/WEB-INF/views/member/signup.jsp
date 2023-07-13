@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원 가입</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/signup.css" />
-</head>
-
-<body>
 <section id=enroll-container>
 	<h2>회원 가입 정보 입력</h2>
 	<form 
@@ -176,9 +168,4 @@ document.memberEnrollFrm.onsubmit = (e) => {
 	}
 	
 };
-
-
 </script>
-</body>
-
-</html>
