@@ -17,6 +17,7 @@ header {
   justify-content: flex-start;
   align-items: center;
   position: sticky;
+
 }
 /* 헤더 기능들 */
 header ul {
