@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Gender;
@@ -45,6 +46,17 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setPhone(phone);
 		member.setFavoriteGenre(favoriteGenre);
 		
+		int result = memberService.updateMember(member);
+		// System.out.println("회원수정 결과 : " + result);
+		
+		// session의 속성 loginMember도 바로 갱신
+		HttpSession session = request.getSession();
+		session.setAttribute("loginMember", memberService.findById(memberId));
+
+		// 4. 사용자피드백 및 리다이렉트 처리
+		session.setAttribute("msg", "성공적으로 회원정보를 수정했습니다.");
+
+		response.sendRedirect(request.getContextPath());
 		
 		
 	}
