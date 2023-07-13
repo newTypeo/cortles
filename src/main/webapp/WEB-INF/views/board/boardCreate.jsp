@@ -27,9 +27,6 @@
 			</td>
 		</tr>
 		<tr>
-			<th colspan="2">내 용</th>
-		</tr>
-		<tr>
 			<td colspan="2"><textarea rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
