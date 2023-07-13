@@ -5,18 +5,11 @@
 	boolean available = (boolean) request.getAttribute("available");
 	
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>아이디중복검사</title>
 <style>
 div#checkId-container{text-align:center; padding-top:50px;}
 span#available {color:green; font-weight:bold;}
 span#duplicated {color:red; font-weight:bold;}
 </style>
-</head>
-<body>
 	<div id="checkId-container">
 	<%	if (available) { %>
 		<p>
@@ -43,5 +36,4 @@ span#duplicated {color:red; font-weight:bold;}
 		self.close(); // 현재 팝업창 닫기
 	};
 	</script>
-</body>
-</html>
+

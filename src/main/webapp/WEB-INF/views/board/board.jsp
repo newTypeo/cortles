@@ -14,8 +14,6 @@ margin-left: 540px;
 margin-bottom: 10px;
 }
 </style>
-</head>
-<body>
 <section id="board-container">
 	<h2>게시판 </h2><br>
 	<input 
