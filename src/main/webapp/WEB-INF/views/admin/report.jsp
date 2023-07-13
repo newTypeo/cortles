@@ -14,7 +14,7 @@
 					<th>신고사유</th>
 					<th>신고자</th>
 					<th>신고날짜</th>
-					<th>처리</th>
+					<th>탈퇴처리</th>
 				</tr>
 			</thead>
 			<tbody>
