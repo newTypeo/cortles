@@ -66,7 +66,7 @@ private Properties prop = new Properties();
 			ResultSet rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Member member = handleMemberResultSet(rset);
+				Member member = handleMemberListResultSet(rset);
 				members.add(member);
 			}
 			
@@ -119,7 +119,7 @@ private Properties prop = new Properties();
 
 	private Member handleMemberResultSet(ResultSet rset) throws SQLException {
 		
-		Member member;
+		Member member = null;
 		String _memberId = rset.getString("member_id");
 		String favoriteGenreName = rset.getString("favorite_genre_name");
 		String favoriteMovieCode = rset.getString("favorite_movie_code");
@@ -141,7 +141,7 @@ private Properties prop = new Properties();
 	/*
 	 * 회원 조회
 	 */
-	private Member handleMembeListrResultSet (ResultSet rset) throws SQLException {
+	private Member handleMemberListResultSet (ResultSet rset) throws SQLException {
 		String memberId = rset.getString("member_id");
 		String memberName = rset.getString("member_name");
 		Date birthday = rset.getDate("birthday");
@@ -218,8 +218,29 @@ private Properties prop = new Properties();
 		}
 		return result;
 	}
+
+	/*
+	 * 회원 검색 - 주혜 
+	 */
+	public List<Member> searchMember(Connection conn,String keyword) {
+		List<Member> members = new ArrayList<>();
+		String sql = prop.getProperty("searchMember");
+		//System.out.println("keyword:" + keyword);
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, "%" + keyword + "%");
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					Member member = handleMemberListResultSet(rset);
+					members.add(member);
+				}
+			}
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
+		return members;
+	}
 	
-	
+
 	
 	
 	

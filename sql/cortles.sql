@@ -23,7 +23,7 @@
 
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
-	favorite_genre_name	varchar2(30),
+	favorite_genre_name	varchar2(200),
 	favorite_movie_code	varchar2(200),
 	member_pw	varchar2(300)		NOT NULL,
 	member_name	varchar2(30)		NOT NULL,
@@ -357,7 +357,8 @@ create sequence seq_board_comment_no;
 ---------------------------------
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
-
+--drop sequence seq_board_comment_no;
+select * from board;
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 
@@ -408,3 +409,9 @@ insert into board values (
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 );
+
+--alter table
+--    member
+--modify
+--    favorite_genre_name varchar2(200);
+
