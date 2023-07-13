@@ -23,7 +23,7 @@
     <hr>
 
     <div id="board_content">
-      <textarea readonly="" style="resize: none;width: 100%;height: 400px;">sadfsadfwef</textarea>
+      <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
     </div>
     <button>추천</button>
   </div>
