@@ -9,9 +9,16 @@
 %>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/members.css" />
-
 <section>
-  <h1>members</h1>
+  
+    <div class="search-container">
+    <input type="text" class="search-input" placeholder="검색">
+   	<span class="btn-wrapper">
+    <button class="btn">Button</button>
+	</span>
+  </div>
+  
+  
 	 <table>
         <thead>
             <tr>

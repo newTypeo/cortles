@@ -6,3 +6,71 @@ table {border-collapse: collapse;width: 100%;}
 th, td {border: 1px solid #dddddd;text-align: left;padding: 8px;}
 
 th {background-color: #f2f2f2;}
+
+/*검색창*/
+    .search-container {
+      position: relative;
+      width: 300px;
+      margin: 50px auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      background: transparent;
+      transition: border-color 0.3s;
+    }
+
+    .search-input:focus {
+      border-color: #e50914;
+    }
+    
+/* 버튼  */
+.btn-wrapper {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    font-size: 15px;
+    padding: 10px 15px;
+    border: 3px solid #e50914 ;
+    background-color: transparent;
+    color: #e50914 ;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #e50914;
+    top: 100%;
+    left: 0;
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateY(-100%);
+}
+
+.btn:hover {
+    color: white;
+    cursor: pointer;
+}
