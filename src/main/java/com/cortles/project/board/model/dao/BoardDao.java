@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.cortles.project.board.model.exception.BoardException;
+import com.cortles.project.board.model.vo.Attachment;
+import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardEntity;
 
 public class BoardDao {
@@ -67,6 +69,72 @@ public class BoardDao {
 			throw new BoardException(e);
 		}
 		return boards;
+	}
+
+
+	public Board findById(Connection conn, int boardNo) {
+		Board board = null;
+		String sql = prop.getProperty("findById");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, boardNo);
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next())
+					board.setBoardNo(boardNo);
+					board.setWriterId(rset.getString("writer_id"));
+					board.setTitle(rset.getString("title"));
+					board.setContent(rset.getString("content"));
+					board.setLikeCount(rset.getInt("like_count"));
+					board.setReadCount(rset.getInt("read_count"));
+					board.setRegDate(rset.getDate("reg_date"));
+					System.out.println("boardDao = " + board);
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return board;
+	}
+
+
+	public List<Attachment> findAttachmentByBoardNo(Connection conn, int boardNo) {
+		List<Attachment> attachments = new ArrayList<>();
+		String sql = prop.getProperty("findAttachmentByBoardNo");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, boardNo);
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					Attachment attach = new Attachment();
+					attach.setNo(rset.getInt("no"));
+					attach.setBoardNo(rset.getInt("board_no"));
+					attach.setOriginalFilename(rset.getString("original_filename"));
+					attach.setRenamedFilename(rset.getString("renamed_filename"));
+					attach.setRegDate(rset.getDate("reg_date"));
+					
+					attachments.add(attach);
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		
+		return attachments;
+	}
+
+
+	public int updateReadCount(Connection conn, int boardNo) {
+		int result = 0;
+		String sql = prop.getProperty("updateReadCount");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
 	}
 
 

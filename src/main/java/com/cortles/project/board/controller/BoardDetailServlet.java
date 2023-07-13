@@ -28,8 +28,8 @@ public class BoardDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리 ?no=12
-		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("no = " + no);
+		int boardNo = Integer.parseInt(request.getParameter("no"));
+		System.out.println("boardNo = " + boardNo);
 		// 2. 업무로직
 		// 게시글 읽음 여부 검사
 		Cookie[] cookies = request.getCookies();
@@ -41,34 +41,37 @@ public class BoardDetailServlet extends HttpServlet {
 				String value = cookie.getValue();
 				if("boardCookie".equals(name)) {
 					boardCookieVal = value; // 기존값 대입
-					if(value.contains("[" + no + "]")) {
+					if(value.contains("[" + boardNo + "]")) {
 						hasRead = true;
 					}
 				}
 			}
 		}
 		
-//		if(!hasRead) {
-//			int result = boardService.updateReadCount(no);
-//			
-//			// 쿠키생성
-//			Cookie cookie = new Cookie("boardCookie", boardCookieVal + "[" + no + "]");
-//			cookie.setPath(request.getContextPath() + "/board/boardDetail");
-//			cookie.setMaxAge(60 * 60 * 24 * 365);
-//			response.addCookie(cookie); // Set-Cookie : boardCookie=[10][20]
-//		}
+		if(!hasRead) {
+			int result = boardService.updateReadCount(boardNo);
+			
+			// 쿠키생성
+			Cookie cookie = new Cookie("boardCookie", boardCookieVal + "[" + boardNo + "]");
+			cookie.setPath(request.getContextPath() + "/board/boardDetail");
+			cookie.setMaxAge(60 * 60 * 24 * 365);
+			response.addCookie(cookie); // Set-Cookie : boardCookie=[10][20]
+		}
 //		
-//		Board board = boardService.findById(no); // Board, List<Attachment>
-//		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(no);
-//		System.out.println("board = " + board);
+		System.out.println("보드넘버는 이거야!" + boardNo);
+		Board board = boardService.findById(boardNo); // Board, List<Attachment>
+//		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
+		System.out.println("board = " + board);
 //		System.out.println("boardComments = " + boardComments);
-//		
-//		// secure coding처리
-//		String unsecureTitle = board.getTitle();
-//		String secureTitle = HelloMvcUtils.escapeHtml(unsecureTitle);
-//		board.setTitle(secureTitle);
 		
-		//request.setAttribute(boardCookieVal, boardCookieVal)
+		// secure coding처리
+		String unsecureTitle = board.getTitle();
+		String secureTitle = CortlesUtils.escapeHtml(unsecureTitle);
+		board.setTitle(secureTitle);
+		
+		// 3. 응답처리 jsp
+		request.setAttribute("board", board);
+//		request.setAttribute("boardComments", boardComments);
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
