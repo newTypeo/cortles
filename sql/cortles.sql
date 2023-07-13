@@ -323,3 +323,7 @@ insert into member values('admin', null,null,1234,'관리자',null,'010-1234-123
 select * from member;
 
 select * from board;
+select * from movie;
+INSERT INTO movie (movie_code, title, movie_grade, story, open_date, runtime, poster_id, director_id, actor_id) 
+VALUES ('1', '범죄도시1', 5, '범죄도시1의 스토리입니다.', '2023-07-13', CURRENT_TIMESTAMP, 'poste', '마동석', '마동석
+');

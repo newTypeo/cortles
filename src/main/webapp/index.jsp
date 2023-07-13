@@ -19,6 +19,7 @@
 			<div class="modal">
       			<div class="modal_body">
       				Hello
+      				<button class="closepopup">닫기</button>
       				<form action="" method="POST" >
 					<input type="button" value="찜하기">
 				</form>	
@@ -26,7 +27,7 @@
     		</div>
 				
 				<div class="div-open-popup">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+				<img src='https://ifh.cc/g/JlsdD9.jpg'>
 				</div>
 				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
 				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
@@ -99,7 +100,11 @@
 		<script>
 		const modal = document.querySelector(".modal");
 		const divopenPopup =document.querySelector(".div-open-popup");
+		const closepopup = document.querySelector(".closepopup");
 		
+		closepopup.addEventListener('click', () => {
+			modal.style.display = 'none';
+		})
 		divopenPopup.addEventListener('click', () => {
 			modal.style.display = 'block';
 		});

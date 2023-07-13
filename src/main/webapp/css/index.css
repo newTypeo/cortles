@@ -2,16 +2,15 @@
 
 
 .modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
+position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 300px;
+  overflow: auto; /* 스크롤 가능한 영역을 만듭니다. */
   display: none;
-
-  background-color: rgba(0, 0, 0, 0.4);
+  
 }
 
 .modal.show {
@@ -23,16 +22,21 @@
   top: 50%;
   left: 50%;
 
-  width: 1000em;
+  width: 100em;
   height: 600px;
 
   padding: 40px;
 
   text-align: center;
 
-  background-color: black;
+  background-color: red;
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
   transform: translateX(-50%) translateY(-50%);
+}
+.closepopup{
+  position: absolute;
+  top: 10px; /* 모달 창 위쪽 여백 조절 */
+  right: 10px; /* 모달 창 오른쪽 여백 조절 */
 }
