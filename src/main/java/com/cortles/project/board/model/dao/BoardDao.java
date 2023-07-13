@@ -88,7 +88,6 @@ public class BoardDao {
 					board.setLikeCount(rset.getInt("like_count"));
 					board.setReadCount(rset.getInt("read_count"));
 					board.setRegDate(rset.getDate("reg_date"));
-					System.out.println("boardDao = " + board);
 				}
 			}
 		} catch (SQLException e) {
@@ -141,28 +140,53 @@ public class BoardDao {
 	}
 
 
-	public List<BoardComment> findBoardCommentByBoardNo(Connection conn, int boardNo) {
-		List<BoardComment> boardComments = new ArrayList<>();
-		String sql = prop.getProperty("findBoardCommentByBoardNo");
-		
+	public int insertBoard(Connection conn, Board board) {
+		int result = 0;
+		String sql = prop.getProperty("insertBoard");
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, boardNo);
-			try (ResultSet rset = pstmt.executeQuery()) {
-				while(rset.next()) {
-					//int boardNo = rset.getInt("board_no");
-					String writerId = rset.getString("writer_id");
-					String content = rset.getString("content");
-					int commentNo = rset.getInt("comment_no");
-					Date regDate = rset.getDate("reg_date");
-					BoardComment boardComment = new BoardComment(commentNo, boardNo, writerId, content, regDate);
-					boardComments.add(boardComment);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriterId());
+			pstmt.setString(3, board.getContent());
+			
+			result = pstmt.executeUpdate(); 
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return result;
+	}
+
+
+	public int getLastBoardNo(Connection conn) {
+		int boardNo = 0;
+		String sql = prop.getProperty("getLastBoardNo");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next()) {
+					boardNo = rset.getInt(1); // 첫번째 컬럼값
 				}
 			}
 		} catch (SQLException e) {
 			throw new BoardException(e);
 		}
+		return boardNo;
+	}
+
+
+	public int insertAttachment(Connection conn, Attachment attach) {
+		int result = 0;
+		String sql = prop.getProperty("insertAttachment");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, attach.getBoardNo());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
 		
-		return boardComments;
+		return result;
 	}
 
 
@@ -180,6 +204,31 @@ public class BoardDao {
 		}
 		return result;
 	}
+
+
+	public List<BoardComment> findBoardCommentByBoardNo(Connection conn, int boardNo) {
+        List<BoardComment> boardComments = new ArrayList<>();
+        String sql = prop.getProperty("findBoardCommentByBoardNo");
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, boardNo);
+            try (ResultSet rset = pstmt.executeQuery()) {
+                while(rset.next()) {
+                    //int boardNo = rset.getInt("board_no");
+                    String writerId = rset.getString("writer_id");
+                    String content = rset.getString("content");
+                    int commentNo = rset.getInt("comment_no");
+                    Date regDate = rset.getDate("reg_date");
+                    BoardComment boardComment = new BoardComment(commentNo, boardNo, writerId, content, regDate);
+                    boardComments.add(boardComment);
+                }
+            }
+        } catch (SQLException e) {
+            throw new BoardException(e);
+        }
+
+        return boardComments;
+    }
 
 
 
