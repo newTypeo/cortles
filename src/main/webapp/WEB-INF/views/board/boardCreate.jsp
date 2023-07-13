@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
-	<h2>게시판 작성</h2>
+	<h2>게시글 작성</h2>
 	<form
 		name="boardCreateFrm"
 		action="<%=request.getContextPath() %>/board/boardCreate"
@@ -17,7 +17,7 @@
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer" value="" readonly/>
+				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
 			</td>
 		</tr>
 		<tr>
