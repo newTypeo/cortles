@@ -22,19 +22,13 @@
   position: absolute;
   top: 80%;
   left: 50%;
-
   width: 50em;
   height: 600px;
-
   padding: 40px;
-
   text-align: center;
-  
-
   background-color:white;
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
   transform: translateX(-50%) translateY(-50%);
 }
 .closepopup{
