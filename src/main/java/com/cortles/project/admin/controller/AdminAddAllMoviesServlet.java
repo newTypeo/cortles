@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -43,17 +44,20 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 			String story = movieInfo[4];	// 줄거리
 			Date openDate = transformDate(movieInfo[5]); 
 			String runtime = movieInfo[6];	// 상영시간 (api)
-			String posterUrl = movieInfo[7];// 포스터 아이디
+			String[] _posterUrl = movieInfo[7].split("jpg");// 포스터
+			String posterUrl = _posterUrl[0] + "jpg";// 포스터
+			System.out.println(posterUrl);
 			String director = movieInfo[8];// 감독 (api)
 			String actors = movieInfo[9]; // 배우 (api)
 			String vod = movieInfo[10]; // vod (api)
 			
-			Movie movie = new Movie(movieCode, title, titleEng, 0, genre, story, openDate, runtime, posterUrl, director, actors, vod); 
+			
+			Movie movie = new Movie(movieCode, title, titleEng, 0, genre, story, openDate, runtime, posterUrl, director, actors, vod);
 			movies.add(movie);
 		}
 		
 		int result = adminService.addAllMovies(movies);
-		 System.out.println("result addMovies = " + result);
+		System.out.println("result addMovies = " + result);
 		resp.sendRedirect(req.getContextPath());
 	}
 	

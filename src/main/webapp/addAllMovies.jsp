@@ -25,7 +25,7 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 		url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
 		data : {
 			ServiceKey : "8N7WULS3PZ7ER312R70R",
-			listCount : 60,
+			listCount : 100,
 			releaseDts : "20210101"
 		},
 		dataType : 'json',
@@ -62,6 +62,8 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 							actors += movie.actors.actor[i].actorNm;
 						else
 							actors += movie.actors.actor[i].actorNm + ",";
+						
+						if(i == 5) break;
 					}
 					
 					// console.log("DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl", DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl);
