@@ -1,10 +1,15 @@
 package com.cortles.project.member.model.service;
-import static com.cortles.project.common.JdbcTemplate.*;
+import static com.cortles.project.common.JdbcTemplate.close;
+import static com.cortles.project.common.JdbcTemplate.commit;
+import static com.cortles.project.common.JdbcTemplate.getConnection;
+import static com.cortles.project.common.JdbcTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
 
 import com.cortles.project.member.model.dao.MemberDao;
 import com.cortles.project.member.model.vo.Member;
+import com.cortles.project.member.model.vo.MemberRole;
 
 public class MemberService {
 	private final MemberDao memberDao = new MemberDao();
@@ -67,6 +72,23 @@ public class MemberService {
 		int result = 0;
 		result = memberDao.deleteMyList(conn, memberId, movieCode);
 		close(conn);
+		return result;
+	}
+
+	/*
+	 * 권한 수정 - 주혜 
+	 */
+	public int memberRoleUpdate(String memberId, MemberRole memberRole) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = memberDao.memberRoleUpdate(conn,memberId,memberRole);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
 		return result;
 	}
 
