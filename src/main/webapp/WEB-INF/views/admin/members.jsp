@@ -79,7 +79,7 @@
 document.querySelectorAll(".member-role").forEach((elem)=>{
 	elem.addEventListener("change",(e)=>{
 		
-		if(confirm("회원 관한을 수정하겠습니까?")){
+		if(confirm("회원 권한을 수정하겠습니까?")){
 			const memberRoleVal = e.target.value;
 			const memberIdVal = e.target.dataset.memberId;
 			
