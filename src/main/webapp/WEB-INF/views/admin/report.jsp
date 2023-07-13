@@ -2,22 +2,8 @@
     pageEncoding="UTF-8"%>
 <title>신고 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/report.css" />
 	<h1>report list</h1>
 		<table>
 			<thead>
