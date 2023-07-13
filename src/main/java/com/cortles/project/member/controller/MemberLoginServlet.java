@@ -37,7 +37,8 @@ public class MemberLoginServlet extends HttpServlet {
 		password = CortlesUtils.getEncryptedPassword(password, memberId);
 		// 업무로직
 		Member member = memberService.findById(memberId);
-		System.out.println("member@loginservice = " + member);
+		
+		
 		// 응답처리
 		HttpSession session = request.getSession(); // request.getSession(true)와 동일.
 //		System.out.println(session.getId());
@@ -51,7 +52,6 @@ public class MemberLoginServlet extends HttpServlet {
 			//    - /mvc 설정시 /mvc로 시작하는 모든 요청에 사용
 			// - Session Cookie : setMaxAge설정하지 않은 경우. 접속한 동안만 클라이언트에 보관
 			// - Persistent Cookie : setMaxAge설정한 경우. 지정한 시각까지만 클라이언트에 보관
-			
 			
 			Cookie cookie = new Cookie("saveId", memberId);
 			cookie.setPath(request.getContextPath()); // 쿠키를 사용할 url

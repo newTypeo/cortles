@@ -31,10 +31,27 @@ public class BoardService {
 	public Board findById(int boardNo) {
 		Connection conn = getConnection();
 		Board board = boardDao.findById(conn, boardNo);
+		System.out.println("boardService = " + boardNo);
 		List<Attachment> attachments = boardDao.findAttachmentByBoardNo(conn, boardNo);
 		board.setAttachments(attachments);
 		close(conn);
+		
 		return board;
+	}
+
+	public int updateReadCount(int boardNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = boardDao.updateReadCount(conn, boardNo);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
 	}
 
 }

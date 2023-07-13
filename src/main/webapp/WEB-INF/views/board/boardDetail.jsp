@@ -8,7 +8,7 @@
 <%
 	Board board = (Board) request.getAttribute("board");
 	List<Attachment> attachments = board.getAttachments();
-	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
+	// List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">

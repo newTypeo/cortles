@@ -48,28 +48,30 @@ public class BoardDetailServlet extends HttpServlet {
 			}
 		}
 		
-//		if(!hasRead) {
-//			int result = boardService.updateReadCount(no);
-//			
-//			// 쿠키생성
-//			Cookie cookie = new Cookie("boardCookie", boardCookieVal + "[" + no + "]");
-//			cookie.setPath(request.getContextPath() + "/board/boardDetail");
-//			cookie.setMaxAge(60 * 60 * 24 * 365);
-//			response.addCookie(cookie); // Set-Cookie : boardCookie=[10][20]
-//		}
+		if(!hasRead) {
+			int result = boardService.updateReadCount(boardNo);
+			
+			// 쿠키생성
+			Cookie cookie = new Cookie("boardCookie", boardCookieVal + "[" + boardNo + "]");
+			cookie.setPath(request.getContextPath() + "/board/boardDetail");
+			cookie.setMaxAge(60 * 60 * 24 * 365);
+			response.addCookie(cookie); // Set-Cookie : boardCookie=[10][20]
+		}
 //		
+		System.out.println("보드넘버는 이거야!" + boardNo);
 		Board board = boardService.findById(boardNo); // Board, List<Attachment>
+//		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
 		System.out.println("board = " + board);
-//		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(no);
-//		System.out.println("board = " + board);
 //		System.out.println("boardComments = " + boardComments);
-//		
-//		// secure coding처리
-//		String unsecureTitle = board.getTitle();
-//		String secureTitle = HelloMvcUtils.escapeHtml(unsecureTitle);
-//		board.setTitle(secureTitle);
 		
+		// secure coding처리
+		String unsecureTitle = board.getTitle();
+		String secureTitle = CortlesUtils.escapeHtml(unsecureTitle);
+		board.setTitle(secureTitle);
+		
+		// 3. 응답처리 jsp
 		request.setAttribute("board", board);
+//		request.setAttribute("boardComments", boardComments);
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
