@@ -169,3 +169,5 @@ document.memberEnrollFrm.onsubmit = (e) => {
 	
 };
 </script>
+
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>

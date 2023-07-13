@@ -16,6 +16,7 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: sticky;
   position: relative;
 }
 /* 헤더 기능들 */
