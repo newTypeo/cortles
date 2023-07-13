@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardCreate.css" />
+
+<div id="board-wrapper">
 <section id="board-container">
-	<h2>게시판 작성</h2>
+	<h2>게시글 작성</h2>
 	<form
 		name="boardCreateFrm"
 		action="<%=request.getContextPath() %>/board/boardCreate"
@@ -17,7 +19,7 @@
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer" value="" readonly/>
+				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
 			</td>
 		</tr>
 		<tr>
@@ -37,6 +39,8 @@
 	</table>
 	</form>
 </section>
+</div>
+
 <script>
 /**
 * boardCreateFrm 유효성 검사

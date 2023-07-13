@@ -16,9 +16,11 @@ margin-bottom: 10px;
 </style>
 <section id="board-container">
 	<h2>게시판 </h2><br>
+	<% if(loginMember != null) { %>
 	<input 
 			type="button" id="btn-add" value="글쓰기" 
 			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';" />
+	<% } %>
 <table id="tbl-board">
 	<thead>
 		<tr>
