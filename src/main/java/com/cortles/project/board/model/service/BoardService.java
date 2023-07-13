@@ -62,4 +62,19 @@ public class BoardService {
 		return boardComments;
 	}
 
+	public int insertBoardComment(BoardComment boardComment) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = boardDao.insertBoardComment(conn, boardComment);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
 }
