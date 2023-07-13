@@ -1,4 +1,19 @@
+<<<<<<< HEAD
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+<<<<<<< HEAD
+=======
 
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
@@ -17,9 +32,15 @@
 --DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 
 
 
+<<<<<<< HEAD
+--select * from member;
+--select * from board;
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
@@ -353,6 +374,68 @@ REFERENCES member (
 ----------- 시퀀스 생성 ------------
 create sequence seq_board_no;
 create sequence seq_attachment_no;
+<<<<<<< HEAD
+---------------------------------
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+);
+
+--select seq_board_no.currval from dual;
+
+select * from board;
+
+select * from attachment;
+=======
 create sequence seq_board_comment_no;
 ---------------------------------
 --drop sequence seq_board_no;
@@ -409,9 +492,13 @@ insert into board values (
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 );
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+=======
 
 --alter table
 --    member
 --modify
 --    favorite_genre_name varchar2(200);
 
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
