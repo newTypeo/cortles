@@ -1,18 +1,5 @@
---=============================
--- cortles계정 생성 @관리자
---=============================
---alter session set "_oracle_script" = true;
---
---create user cortles
---identified by cortles
---default tablespace users;
---
---grant connect, resource to cortles;
---
---alter user cortles quota unlimited on users;
-
-
 --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
@@ -28,13 +15,11 @@
 --DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
+--DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
 
 
---===============================
--- cortles 계정
---===============================
 
-select * from member;
 
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
@@ -47,10 +32,8 @@ CREATE TABLE member (
 	gender	char(1)		NOT NULL,
 	member_role	char(1)	DEFAULT 'U',
 	birthday	date		NOT NULL,
-	enroll_date	 date DEFAULT sysdate
+	enroll_date	date	DEFAULT sysdate
 );
-
-
 
 CREATE TABLE movie (
 	movie_code	varchar2(200)		NOT NULL,
@@ -81,15 +64,15 @@ CREATE TABLE board (
 	writer_id	varchar2(50)		NOT NULL,
 	title	varchar2(50)		NOT NULL,
 	content	varchar2(3000)		NOT NULL,
-	like_count	number	,
-	read_count	number	,
+	like_count	number default 0,
+	read_count	number default 0,
 	reg_date	date	DEFAULT sysdate
 );
 
 CREATE TABLE poster (
 	poster_id	varchar2(50)		NOT NULL,
 	movie_code	varchar2(200)		NOT NULL,
-	poster_img	blob		NOT NULL
+	poster_img	varchar2(100)		NOT NULL
 );
 
 CREATE TABLE quit_member (
@@ -112,7 +95,7 @@ CREATE TABLE genre (
 
 CREATE TABLE report_comment (
 	comment_no	number		NOT NULL,
-	report_count	number	DEFAULT 0,
+	report_count	number	DEFAULT 0	NULL,
 	report_id	varchar2(50)		NOT NULL,
 	report_content	varchar2(1000)		NOT NULL,
 	report_date	date	DEFAULT sysdate
@@ -123,7 +106,7 @@ CREATE TABLE movie_comment (
 	writer_id	varchar2(50)		NOT NULL,
 	movie_code	varchar2(200)		NOT NULL,
 	movie_content	varchar2(3000)		NOT NULL,
-	reg_date	date	DEFAULT sysdate,
+	reg_date	date	DEFAULT sysdate	NULL,
 	star_grade	number		NOT NULL
 );
 
@@ -147,12 +130,33 @@ CREATE TABLE board_comment (
 	board_no	number		NOT NULL,
 	writer_id	varchar2(50)		NOT NULL,
 	content	varchar2(3000)		NOT NULL,
-	reg_date	date	DEFAULT sysdate
+	reg_date	date	DEFAULT sysdate	
 );
 
 CREATE TABLE movie_genre (
 	genre_id	varchar2(100)		NOT NULL,
 	movie_code	varchar2(200)		NOT NULL
+);
+
+CREATE TABLE attachment (
+	attachment_no	number		NOT NULL,
+	board_no	number		NOT NULL,
+	original_filename	varchar2(100)		NOT NULL,
+	renamed_filename	varchar2(100)		NOT NULL,
+	reg_date	date	DEFAULT sysdate	NOT NULL
+);
+
+CREATE TABLE favorite (
+	movie_code	varchar2(200)		NOT NULL,
+	member_id	varchar2(50)		NOT NULL,
+	title	varchar2(100)		NOT NULL,
+	movie_grade	number		NOT NULL,
+	story	varchar2(3000)		NOT NULL,
+	open_date	date		NOT NULL,
+	runtime	timestamp		NOT NULL,
+	poster_id	varchar2(200)		NOT NULL,
+	director_id	varchar2(50)		NOT NULL,
+	actor_id	varchar2(50)		NOT NULL
 );
 
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
@@ -222,6 +226,16 @@ ALTER TABLE board_comment ADD CONSTRAINT PK_BOARD_COMMENT PRIMARY KEY (
 ALTER TABLE movie_genre ADD CONSTRAINT PK_MOVIE_GENRE PRIMARY KEY (
 	genre_id,
 	movie_code
+);
+
+ALTER TABLE attachment ADD CONSTRAINT PK_ATTACHMENT PRIMARY KEY (
+	attachment_no,
+	board_no
+);
+
+ALTER TABLE favorite ADD CONSTRAINT PK_FAVORITE PRIMARY KEY (
+	movie_code,
+	member_id
 );
 
 ALTER TABLE poster ADD CONSTRAINT FK_movie_TO_poster_1 FOREIGN KEY (
@@ -322,8 +336,75 @@ REFERENCES movie (
 	movie_code
 );
 
-insert into member values('admin', null,null,1234,'관리자',null,'010-1234-1234','M','A', '1901-01-01', default);
-delete member values('admin', null,null,1234,'관리자',null,'010-1234-1234','M','A', '1901-01-01', default);
-select * from member;
-update member set member_name = '신종환', gender ='F', birthday = '1955-11-11', email = 'susu@ba.com', phone = '01088888888', favirite_genre = '호러' where member_id = 'asdasd'
-select * from board;
+ALTER TABLE attachment ADD CONSTRAINT FK_board_TO_attachment_1 FOREIGN KEY (
+	board_no
+)
+REFERENCES board (
+	board_no
+);
+
+ALTER TABLE favorite ADD CONSTRAINT FK_member_TO_favorite_1 FOREIGN KEY (
+	member_id
+)
+REFERENCES member (
+	member_id
+);
+
+----------- 시퀀스 생성 ------------
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+create sequence seq_board_comment_no;
+---------------------------------
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+);
