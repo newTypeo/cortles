@@ -5,6 +5,7 @@ import static com.cortles.project.common.JdbcTemplate.getConnection;
 import static com.cortles.project.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cortles.project.member.model.dao.MemberDao;
@@ -108,6 +109,17 @@ public class MemberService {
 			close(conn);
 		}
 		return result;
+	}
+
+	/*
+	 * 회원 검색 - 주혜 
+	 */
+	public List<Member> searchMember(String keyword) {
+		List<Member> members = new ArrayList<>();
+		Connection conn = getConnection();
+		members = memberDao.searchMember(conn,keyword);
+		close(conn);
+		return members;
 	}
 
 }
