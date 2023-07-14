@@ -110,7 +110,7 @@ const findAllMovies = () => {
 			<hr/>
 		<% } %>
 			<div>
-			<span>액션</span>
+			<span>action</span>
 				<article id="action">
 				</article>
 			</div>
@@ -122,41 +122,41 @@ const findAllMovies = () => {
 			</div>
 			<hr/>
 			<div>
-			<span>호러</span>
+			<span>horror</span>
 				<article id="horror">
 				</article>
 			</div>
 			<hr/>
 			<div>
-			<span>스릴러</span>
+			<span>thriller</span>
 				<article id="thriller">
 				</article>
 			</div>
 			<hr/>
 			<div>
-			<span>로맨스</span>
+			<span>romance</span>
 				<article id="romance">
 				</article>
 			</div>
 			<hr/>
 			<div>
-			<span>드라마</span>
+			<span>drama</span>
 				<article id="drama">
 				</article>
 			</div>
 			<hr/>
 			<div>
-			<span>코미디</span>
+			<span>comedy</span>
 				<article id="comedy">
 				</article>
 			<div>
-			<span>판타지</span>
+			<span>fantasy</span>
 				<article id="fantasy">
 				</article>
 			</div>
 			<hr/>
 			<div>
-			<span>미스터리</span>
+			<span>mystery</span>
 				<article id="mystery">
 				</article>
 			</div>
