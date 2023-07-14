@@ -292,10 +292,52 @@ create sequence seq_board_comment_no;
 --);
 select * from board;
 select * from attachment;
+<<<<<<< HEAD
+----------- 시퀀스 생성 ------------
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+---------------------------------
+----------- 트리거 생성 ------------
+create or replace trigger trig_user_quit
+    before
+    delete on member
+    for each row 
+begin
+    -- 사용자탈퇴시
+    insert into 
+        quit_member (no, user_id, log)
+    values(
+        seq_tbl_user_log_no.nextval, 
+        :old.id,
+        :old.name || '(' || :old.id || ') 사용자 탈퇴'
+    );
+end;
+/
+---------------------------------
 
+
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+
+<<<<<<< HEAD
+--select seq_board_no.currval from dual;
+
+---------------- 조회 ------------------
+select * from board;
+=======
 commit;
 
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 select * from movie;
+<<<<<<< HEAD
+select * from attachment;
+--insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
+--insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 
 
 

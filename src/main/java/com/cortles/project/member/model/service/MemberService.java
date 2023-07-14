@@ -122,4 +122,22 @@ public class MemberService {
 		return members;
 	}
 
+	/**
+	 * 회원 탈퇴 - 종환
+	 */
+	public int deleteMemberById(String delMemberId) {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		try {
+			result = memberDao.deleteMemberById(conn, delMemberId);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
 }
