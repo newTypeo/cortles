@@ -39,10 +39,7 @@ public class BoardCommentCreateServlet extends HttpServlet {
 				// 2. 업무로직
 				// 댓글 등록
 				int result = boardService.insertBoardComment(boardComment);
-				int commentCnt = boardService.totalCommentCnt(boardNo);
-				System.out.println("commentCnt = " + commentCnt);
 				
-				request.setAttribute("commentCnt", commentCnt);
 				// 댓글 등록 실시간 알림
 //				Board board = boardService.findById(boardNo);
 //				result = notificationService.notifyNewBoardComment(board);
