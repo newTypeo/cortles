@@ -12,98 +12,99 @@
 
 
 CREATE TABLE member (
-	member_id	varchar2(50)		NOT NULL,
+	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
 	favorite_movie_code	varchar2(200),
-	member_pw	varchar2(300)		NOT NULL,
-	member_name	varchar2(30)		NOT NULL,
+	member_pw	varchar2(300)	NOT NULL,
+	member_name	varchar2(30)	NOT NULL,
 	email	varchar2(50),
-	phone	varchar2(20)		NOT NULL,
-	gender	char(1)		NOT NULL,
+	phone	varchar2(20)	NOT NULL,
+	gender	char(1)	NOT NULL,
 	member_role	char(1)	DEFAULT 'U',
-	birthday	date		NOT NULL,
+	birthday	date	NOT NULL,
 	enroll_date	date	DEFAULT sysdate
 );
 
 CREATE TABLE movie (
-	movie_code	varchar2(200)		NOT NULL,
-	title	varchar2(200)		NOT NULL,
-	title_eng	varchar2(200),
-	movie_grade	number		NOT NULL,
-	genre	varchar2(100)		NOT NULL,
-	story	varchar2(3000)		NOT NULL,
-	open_date	date		NOT NULL,
-	runtime	varchar2(100)		NOT NULL,
-	poster_url	varchar2(500)		NOT NULL,
-	director 	varchar2(200)		NOT NULL,
-	actors	varchar2(500)		NOT NULL,
-	vod	varchar2(500)		NOT NULL
+	movie_code	varchar2(200)	NOT NULL,
+	title	varchar2(200)	NOT NULL,
+	title_eng	varchar2(200)	NOT NULL,
+	movie_grade	number	DEFAULT 0,
+	genre	varchar2(100)	NOT NULL,
+	story	varchar2(3000)	NOT NULL,
+	open_date	date	NOT NULL,
+	runtime varchar2(100)	NOT NULL,
+	poster_url	varchar2(500)	NOT NULL,
+	director	varchar2(200)	NOT NULL,
+	actors	varchar2(500)	NOT NULL,
+	vod	varchar2(500)	NOT NULL
 );
-
+--select * from movie;
 CREATE TABLE board (
-	board_no	number		NOT NULL,
-	writer_id	varchar2(50)		NOT NULL,
-	title	varchar2(50)		NOT NULL,
-	content	varchar2(3000)		NOT NULL,
+	board_no	number	NOT NULL,
+	writer_id	varchar2(50)	NOT NULL,
+	title	varchar2(50)	NOT NULL,
+	content	varchar2(3000)	NOT NULL,
 	like_count	number,
 	read_count	number,
-	reg_date	date	DEFAULT sysdate
+	reg_date	date DEFAULT sysdate
 );
 
 CREATE TABLE quit_member (
-	member_id	varchar2(50)		NOT NULL,
-	member_pw	varchar2(300)		NOT NULL,
-	name	varchar2(30)		NOT NULL,
-	email	varchar2(50)		NOT NULL,
-	phone	varchar2(20)		NOT NULL,
-	gender	char(1)		NOT NULL,
-	member_role	char(1)		NOT NULL,
-	birthday	date		NOT NULL,
-	enroll_date	date		NOT NULL,
-	quit_date	date	DEFAULT sysdate
+	no	number	NOT NULL,
+	member_id	varchar2(50)	NOT NULL,
+	member_pw	varchar2(300)	NOT NULL,
+	member_name	varchar2(30)	NOT NULL,
+	email	varchar2(50)	NOT NULL,
+	phone	varchar2(20)	NOT NULL,
+	gender	char(1)	NOT NULL,
+	member_role	char(1)	NOT NULL,
+	birthday	date	NOT NULL,
+	enroll_date	date	NOT NULL,
+	quit_date	date DEFAULT sysdate
 );
 
 CREATE TABLE report_comment (
-	comment_no	number		NOT NULL,
-	report_count	number	DEFAULT 0	NULL,
-	report_id	varchar2(50)		NOT NULL,
-	report_content	varchar2(1000)		NOT NULL,
-	report_date	date	DEFAULT sysdate
+	comment_no	number	NOT NULL,
+	report_count	number DEFAULT 0,
+	report_id	varchar2(50)	NOT NULL,
+	report_content	varchar2(1000)	NOT NULL,
+	report_date	date DEFAULT sysdate
 );
 
 CREATE TABLE movie_comment (
-	comment_no	number		NOT NULL,
-	writer_id	varchar2(50)		NOT NULL,
-	movie_code	varchar2(200)		NOT NULL,
-	movie_content	varchar2(3000)		NOT NULL,
-	reg_date	date	DEFAULT sysdate	NULL,
-	star_grade	number		NOT NULL
+	comment_no	number	NOT NULL,
+	writer_id	varchar2(50)	NOT NULL,
+	movie_code	varchar2(200)	NOT NULL,
+	movie_content	varchar2(3000)	NOT NULL,
+	reg_date	date DEFAULT sysdate,
+	star_grade	number	NOT NULL
 );
 
 CREATE TABLE member_report (
-	comment_no	number		NOT NULL,
-	member_id	varchar2(50)		NOT NULL
+	comment_no	number	NOT NULL,
+	member_id	varchar2(50)	NOT NULL
 );
 
 CREATE TABLE board_comment (
-	comment_no	number		NOT NULL,
-	board_no	number		NOT NULL,
-	writer_id	varchar2(50)		NOT NULL,
-	content	varchar2(3000)		NOT NULL,
-	reg_date	date	DEFAULT sysdate	
+	comment_no	number	NOT NULL,
+	board_no	number	NOT NULL,
+	writer_id	varchar2(50)	NOT NULL,
+	content	varchar2(3000)	NOT NULL,
+	reg_date	date DEFAULT sysdate
 );
 
 CREATE TABLE attachment (
-	attachment_no	number		NOT NULL,
-	board_no	number		NOT NULL,
-	original_filename	varchar2(100)		NOT NULL,
-	renamed_filename	varchar2(100)		NOT NULL,
-	reg_date	date	DEFAULT sysdate	NOT NULL
+	attachment_no	number	NOT NULL,
+	board_no	number	NOT NULL,
+	original_filename	varchar2(100)	NOT NULL,
+	renamed_filename	varchar2(100)	NOT NULL,
+	reg_date	date DEFAULT sysdate
 );
 
 CREATE TABLE favorite (
-	movie_code	varchar2(200)		NOT NULL,
-	member_id	varchar2(50)		NOT NULL
+	movie_code	varchar2(200)	NOT NULL,
+	member_id	varchar2(50)	NOT NULL
 );
 
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
@@ -119,7 +120,7 @@ ALTER TABLE board ADD CONSTRAINT PK_BOARD PRIMARY KEY (
 );
 
 ALTER TABLE quit_member ADD CONSTRAINT PK_QUIT_MEMBER PRIMARY KEY (
-	member_id
+	no
 );
 
 ALTER TABLE report_comment ADD CONSTRAINT PK_REPORT_COMMENT PRIMARY KEY (
@@ -150,13 +151,6 @@ ALTER TABLE attachment ADD CONSTRAINT PK_ATTACHMENT PRIMARY KEY (
 
 ALTER TABLE favorite ADD CONSTRAINT PK_FAVORITE PRIMARY KEY (
 	movie_code,
-	member_id
-);
-
-ALTER TABLE quit_member ADD CONSTRAINT FK_member_TO_quit_member_1 FOREIGN KEY (
-	member_id
-)
-REFERENCES member (
 	member_id
 );
 
@@ -217,9 +211,9 @@ REFERENCES member (
 );
 
 ----------- 시퀀스 생성 ------------
---create sequence seq_board_no;
---create sequence seq_attachment_no;
---create sequence seq_board_comment_no;
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+create sequence seq_board_comment_no;
 ---------시퀀스 삭제 ----------------
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
@@ -277,12 +271,6 @@ REFERENCES member (
 --);
 select * from board;
 select * from attachment;
------------ 시퀀스 생성 ------------
-create sequence seq_board_no;
-create sequence seq_attachment_no;
----------------------------------
---drop sequence seq_board_no;
---drop sequence seq_attachment_no;
 
 
 
