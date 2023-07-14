@@ -26,14 +26,25 @@
       <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
     </div>
     
-    <!-- 추천 폼 시작 -->
+    <!-- 추천 폼 시작 경빈 -->
 	 <form action="<%= request.getContextPath()%>/board/boardLikeGood" method="post" name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
    <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
    <input type="hidden" name="likeCount" value="<%= board.getLikeCount() %>" />
    <button type="submit" class="like_good">추천 <%= board.getLikeCount() %></button>
 </form>
-
    <!-- 추천 폼 끝 -->
+    <br>
+    <br><br>
+   	<%-- 글삭제-주혜 --%>
+   	<%
+   		boolean showButton = loginMember != null
+   			&& (loginMember.getMemberId().equals(board.getWriterId())
+   					|| loginMember.getMemberRole()==MemberRole.A);
+   		if(showButton){
+   	%>
+   	<input type="button" value="수정" onclick="" />
+   	<input type="button" value="삭제" onclick="boardDelete()"/>
+  	<% } %>
   </div>
 	
 	<hr style="margin-top:30px;" />    
@@ -183,35 +194,18 @@
 	    
     
 	</section>
+<% if(showButton){ %>
+<form action="<%= request.getContextPath()%>/board/boardDelete" name="boardDeleteFrm" method="POST">
+	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
+</form>
+<script>
+const boardDelete = () =>{
+	if(confirm("글을 삭제하시겠습니까?")){
+		document.boardDeleteFrm.submit();
+	}
+};
+</script>
+<% } %>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

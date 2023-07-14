@@ -5,9 +5,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
-<head>
-<meta charset="UTF-8">
-<title>내 정보 보기</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/signup.css" />
 <%
@@ -19,8 +16,6 @@
 		System.out.println(genres);
 	}
 %>
-</head>
-<body>
 <section id=enroll-container>
 	<h2>회원정보 수정</h2>
 	<form 
@@ -93,11 +88,22 @@
 				</td>
 			</tr>
 		</table>
+		<input type= "button" value="탈퇴" onclick="deleteMember()">
 		<input type="submit" value="수정" >
 		<input type="reset" value="취소" onclick="location.href='<%= request.getContextPath() %>';">
 	</form>
 </section>
+<form
+	name="delMemberIdFrm"
+	action="<%= request.getContextPath() %>/member/memberDelete"
+	method="POST">
+	<input type="hidden" name="delMemberId" value="<%= loginMember.getMemberId() %>">
+</form>
 <script>
+deleteMember = () => {
+	if(!confirm("탈퇴하면 기능 이용이 제한되는데 정말로 탈퇴하실건가요..?😥")) return;
+	document.delMemberIdFrm.submit();
+}
 
 // 폼 유효성검사
 document.memberEnrollFrm.onsubmit = (e) => {
