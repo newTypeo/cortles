@@ -25,7 +25,19 @@
     <div id="board_content">
       <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
     </div>
+    <br>
     <button>추천</button>
+    <br><br>
+   	<%-- 글삭제-주혜 --%>
+   	<%
+   		boolean showButton = loginMember != null
+   			&& (loginMember.getMemberId().equals(board.getWriterId())
+   					|| loginMember.getMemberRole()==MemberRole.A);
+   		if(showButton){
+   	%>
+   	<input type="button" value="수정" onclick="" />
+   	<input type="button" value="삭제" onclick="boardDelete()"/>
+  	<% } %>
   </div>
 	
 	<hr style="margin-top:30px;" />    
@@ -75,5 +87,16 @@
 	</div>    
     
 	</section>
-	
+<% if(showButton){ %>
+<form action="<%= request.getContextPath()%>/board/boardDelete" name="boardDeleteFrm" method="POST">
+	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
+</form>
+<script>
+const boardDelete = () =>{
+	if(confirm("글을 삭제하시겠습니까?")){
+		document.boardDeleteFrm.submit();
+	}
+};
+</script>
+<% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
