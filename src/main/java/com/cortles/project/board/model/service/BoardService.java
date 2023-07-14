@@ -109,6 +109,24 @@ public class BoardService {
         return boardComments;
     }
 
+	/*
+	 * 게시글 삭제-주혜
+	 */
+	public int boardDelete(int no) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = boardDao.boardDelete(conn,no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	
+	
 	public int deleteBoardComment(int commentNo) {
 		int result = 0 ;
 		Connection conn = getConnection();

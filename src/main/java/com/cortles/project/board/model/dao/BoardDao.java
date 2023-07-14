@@ -16,6 +16,7 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.member.model.vo.Member;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -229,6 +230,21 @@ public class BoardDao {
 
         return boardComments;
     }
+
+	/*
+	 * 게시글 삭제 - 주혜 
+	 */
+	public int boardDelete(Connection conn, int no) {
+		int result = 0;
+		String sql = prop.getProperty("boardDelete");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1,no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
 
 
 	public int deleteBoardComment(Connection conn, int commentNo) {
