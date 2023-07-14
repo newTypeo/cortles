@@ -24,11 +24,11 @@ public class BoardDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int no = Integer.parseInt(request.getParameter("no"));
 		String filename = request.getParameter("filename");
 		
 		int result = boardService.boardDelete(no);
-		
 		// 		/upload/board 하위의 사진 삭제
 		ServletContext application = getServletContext();
 		String saveDirectory = application.getRealPath("/upload/board");

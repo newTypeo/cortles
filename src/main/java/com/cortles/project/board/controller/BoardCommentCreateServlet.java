@@ -24,7 +24,8 @@ public class BoardCommentCreateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 사용자입력값 처리
+		
+				// 1. 사용자입력값 처리
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				String writerId = request.getParameter("writerId");
 				String content = request.getParameter("content");

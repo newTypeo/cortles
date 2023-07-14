@@ -46,3 +46,48 @@ section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJ
 /********** footer **********/
 footer { padding-top:30px; background-color:#141414; text-align:center; height:100px; color:#fff;}
 
+/* 버튼  */
+.btn-wrapper {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    font-size: 15px;
+    padding: 10px 15px;
+    border: 3px solid #e50914 ;
+    background-color: transparent;
+    color: #e50914 ;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #e50914;
+    top: 100%;
+    left: 0;
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateY(-100%);
+}
+
+.btn:hover {
+    color: white;
+    cursor: pointer;
+}

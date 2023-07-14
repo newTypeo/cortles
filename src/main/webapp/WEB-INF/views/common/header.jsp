@@ -90,11 +90,12 @@ window.onload = () => {
 	                    <input 
 	                    	type="button" 
 	                    	value="내정보보기"
-	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';">
+	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';"
+	                    	class='btn' style="width: 10px;">
 	                    <input 
 	                    	type="button" 
 	                    	value="로그아웃" 
-	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">
+	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';" class='btn'>
 	                </td>
 	            </tr>
 	        </table>
