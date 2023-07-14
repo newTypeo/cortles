@@ -123,7 +123,7 @@
 
 
 	 function checkLoginForm() {
-	      if (<%= loginMember %> == null) {
+	      if (<%= loginMember.getMemberId() %> == null) {
 	         alert('로그인이 필요합니다.');
 	         return false; // 폼 제출 취소
 	      }else{
