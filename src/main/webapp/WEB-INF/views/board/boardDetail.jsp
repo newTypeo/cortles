@@ -48,10 +48,29 @@
    					|| loginMember.getMemberRole() == MemberRole.A);
    		if(showButton){
    	%>
-   	<input type="button" value="수정" onclick="" />
+   	<input type="button" value="수정" onclick="updateBoard()" />
    	<input type="button" value="삭제" onclick="boardDelete()"/>
   	<% } %>
   </div>
+  	<script>
+  	const updateBoard = () => {
+  		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+  	};
+	const boardDelete = () =>{
+		if(confirm("글을 삭제하시겠습니까?")){
+			document.boardDeleteFrm.submit();
+		}
+	};
+	</script>
+	<%-- 게시글 수정 서블릿 전달용 hidden frm --%>
+  	<form 
+		action="<%= request.getContextPath() %>/board/boardUpdate" 
+		name="boardUpdateFrm"
+		method="POST">
+		<input type="hidden" name="no" />
+		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+	</form>
+	
 	<script>
 	$(document).ready(function() {
 	      $('#board_content').on( 'keyup', 'textarea', function (e){
@@ -137,8 +156,6 @@
 	
 	
 
-
-	
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
 			if(confirm("해당 댓글을 삭제하시겠습니까?")){
@@ -229,12 +246,6 @@
 	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
 	<input type="hidden" name="filename" value="<%= attachment.getRenamedFilename() %>" />
 </form>
-<script>
-const boardDelete = () =>{
-	if(confirm("글을 삭제하시겠습니까?")){
-		document.boardDeleteFrm.submit();
-	}
-};
-</script>
+
 <% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
