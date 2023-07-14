@@ -6,6 +6,7 @@
 	String msg = (String) session.getAttribute("msg");
 	if(msg != null) session.removeAttribute("msg"); // 1회용
 %>
+<script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <!DOCTYPE html>
 <html>
 <head>

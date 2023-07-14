@@ -38,7 +38,6 @@ public class BoardListServlet extends HttpServlet {
 		
 		// 2. 업무로직
 		List<BoardEntity> boards = boardService.findAll(start, end);
-		System.out.println("boards = "+boards);
 		
 		// xss공격대비처리
 		for(BoardEntity board : boards) {
@@ -47,10 +46,8 @@ public class BoardListServlet extends HttpServlet {
 		
 		// 페이지바영역 처리
 		int totalContent = boardService.getTotalContent();
-		System.out.println("totalContent = " + totalContent);
 		String url = request.getRequestURI(); // /mvc/board/boardList
 		String pagebar = CortlesUtils.getPagebar(cpage, LIMIT, totalContent, url);
-		System.out.println("pagebar = " + pagebar);
 		
 		request.setAttribute("boards", boards);
 		request.setAttribute("pagebar", pagebar);

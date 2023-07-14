@@ -40,6 +40,8 @@ table#tbl-board-view input[type=text] {width: 400px; height: 20px;}
 table#tbl-board-view input[type=file] {margin: 3px 0;}
 table#tbl-board-view textarea {margin: 3px 0; width:550px; height:250px; resize:none;}
 
+#board_content img {margin: 10px; width: 500px; height: 300px;}
+
 
 /*게시글 수정하기*/
 span#fname{

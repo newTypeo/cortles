@@ -109,6 +109,42 @@ public class BoardService {
         return boardComments;
     }
 
+	public int updateLike(int boardNo, int likeCount) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = boardDao.updateLike(conn, boardNo, likeCount);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	/*
+	 * 게시글 삭제-주혜
+	 */
+	public int boardDelete(int no) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			Attachment attachment = boardDao.findAttachmentByBoardNo(conn, no);
+			if(attachment != null) {
+				result = boardDao.deleteAttachmentByBoardNo(conn, no);
+			}
+			result = boardDao.boardDelete(conn, no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	
+	
 	public int deleteBoardComment(int commentNo) {
 		int result = 0 ;
 		Connection conn = getConnection();
@@ -124,6 +160,21 @@ public class BoardService {
 		}
 		
 		return result;
+	}
+
+	public Attachment findAttachmentByBoardNo(int boardNo) {
+		Connection conn = getConnection();
+		Attachment attachment = boardDao.findAttachmentByBoardNo(conn, boardNo);
+		close(conn);
+		return attachment;
+	}
+
+	public int totalBoardCommentCnt(int boardNo) {
+		int boardCommentCnt = 0;
+		Connection conn = getConnection();
+		boardCommentCnt = boardDao.totalBoardCommentCnt(conn,boardNo);
+		commit(conn);
+		return boardCommentCnt;
 	}
 
 }
