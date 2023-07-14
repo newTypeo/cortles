@@ -35,6 +35,7 @@
                 <th>선호장르</th>
                 <th>가입일</th>
                 <th>권한</th>
+                <th>탈퇴처리</th>
             </tr>
         </thead>
         <tbody>
@@ -62,11 +63,13 @@
                 		<option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
                 	</select>
                 </td>
+                <td>
+						<input type="radio" name="out" id="yes" value="Y"/>
+						<label for="yes">Y</label>
+						<input type="radio" name="out" id="no" value="N" checked="checked"/>
+						<label for="no">N</label>
+                </td>
             </tr>
-           <%
-				}
-			}
-           %>
         </tbody>
     </table>
 </section>
@@ -77,7 +80,27 @@
 	<input type="hidden" name="memberRole"/>
 	<input type="hidden" name="memberId"/>
 </form>
+<form
+	name="delMemberIdFrm"
+	action="<%= request.getContextPath() %>/member/memberDelete"
+	method="POST">
+	<input type="hidden" name="delMemberId" value="<%= loginMember.getMemberRole() == MemberRole.A %>">
+</form>
 <script>
+
+//강제 탈퇴 
+document.querySelector("#yes").onclick = () => {
+	//e.addEventListener("delete",(e)=>{
+		
+		if(confirm("<%= member.getMemberName() %>님을 탈퇴처리 하시겠습니까?")){
+			document.delMemberIdFrm.submit();
+		}else{
+			return;
+		}
+	//});
+};
+
+// 검색 
 document.querySelector(".search-container").onsubmit = (e) => {
 	const frm = e.target;
 	const name = frm.searchKeyword.value;
@@ -87,6 +110,10 @@ document.querySelector(".search-container").onsubmit = (e) => {
 		return false;
 	}
 }
+           <%
+				}
+			}
+           %>
 // 권한 수정 
 document.querySelectorAll(".member-role").forEach((elem)=>{
 	elem.addEventListener("change",(e)=>{

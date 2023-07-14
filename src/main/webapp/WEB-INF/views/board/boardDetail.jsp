@@ -10,7 +10,7 @@
 	List<Attachment> attachments = board.getAttachments();
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
-	String commentCnt = (String)request.getAttribute("commentCnt");
+	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
@@ -18,7 +18,7 @@
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br><br><br>
       <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
-        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 <%= commentCnt %></span>
+        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 <%= boardCommentCnt %></span>
       </span>
     </div>
 
@@ -97,9 +97,11 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>" onclick="updateBoardComment()">수정</button>
 								<%  } %>
 							</td>
 						</tr>
+						
 				<%
 					}
 				%>
@@ -114,6 +116,12 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
+	const updateBoard = () => {
+		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+	}
+	
+
+
 	 function checkLoginForm() {
 	      if (<%= loginMember %> == null) {
 	         alert('로그인이 필요합니다.');
@@ -205,6 +213,7 @@
 	};
 
 	</script>
+	
 	    
     
 	</section>

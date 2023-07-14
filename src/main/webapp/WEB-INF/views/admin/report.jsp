@@ -15,11 +15,13 @@
 				<tr>
 					<th>아이디</th>
 					<th>이름</th>
+					<th>글번호</th>
+					<th>댓글번호</th>
 					<th>댓글내용</th>
 					<th>신고사유</th>
 					<th>신고자</th>
 					<th>신고날짜</th>
-					<th>탈퇴처리</th>
+					<th>탈퇴처리여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,13 +32,15 @@
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
+					<td></td>
 					<td>
-						<input type="radio" name="out" id="yes" value="Y"/>
-						<label for="yes">Y</label>
-						<input type="radio" name="out" id="no" value="N" checked="checked"/>
-						<label for="no">N</label>
+					 
 					</td>
 				</tr>
 			</tbody>
 		</table>
+<script>
+
+</script>
 </html>

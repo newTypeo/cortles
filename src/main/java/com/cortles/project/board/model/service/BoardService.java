@@ -169,16 +169,12 @@ public class BoardService {
 		return attachment;
 	}
 
-	public int totalCommentCnt(int boardNo) {
+	public int totalBoardCommentCnt(int boardNo) {
+		int boardCommentCnt = 0;
 		Connection conn = getConnection();
-		int result = 0;
-		
-		result = boardDao.totalCommentCnt(conn, boardNo);
-			
+		boardCommentCnt = boardDao.totalBoardCommentCnt(conn,boardNo);
 		commit(conn);
-		
-		
-		return result;
+		return boardCommentCnt;
 	}
 
 }

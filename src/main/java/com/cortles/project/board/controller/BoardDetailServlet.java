@@ -60,14 +60,13 @@ public class BoardDetailServlet extends HttpServlet {
 			response.addCookie(cookie); // Set-Cookie : boardCookie=[10][20]
 		}
 		Board board = boardService.findById(boardNo); // Board, List<Attachment>
-		int commentCnt = boardService.totalCommentCnt(boardNo);
 //		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
 //		System.out.println("board = " + board);
 //		System.out.println("boardComments = " + boardComments);
 		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
 
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
-		
+		int boardCommentCnt = boardService.totalBoardCommentCnt(boardNo);
 		
 		// secure coding처리
 		String unsecureTitle = board.getTitle();
@@ -78,8 +77,7 @@ public class BoardDetailServlet extends HttpServlet {
 		request.setAttribute("board", board);
 		request.setAttribute("boardComments", boardComments);
 		request.setAttribute("attachment", attachment);
-		request.setAttribute("commentCnt", commentCnt);
-		
+		request.setAttribute("boardCommentCnt", boardCommentCnt);
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);

@@ -1,4 +1,23 @@
 ------------- 삭제할 테이블 조회 -------------
+<<<<<<< HEAD
+ --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+ 
+--------------- 테이블 조회 -----------------
+select * from board;
+select * from movie;
+select * from member;
+select * from attachment;
+select * from quit_member;
+
+------------- 테이블 행 삭제 ----------------
+-- delete from member where member_id = 'sejong';
+
+---------------- 시퀀스 생성 -----------------
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+create sequence seq_quit_member_no;
+create sequence seq_board_comment_no;
+=======
 -- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --------------- 테이블 조회 -----------------
 --select * from board;
@@ -37,9 +56,20 @@ create sequence seq_board_comment_no;
 --grant connect, resource to cortles;
 --
 --alter user cortles quota unlimited on users;
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 
+---------------시퀀스 삭제 ------------------
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+--drop sequence seq_board_comment_no;
+--drop sequence seq_quit_member_no;
 
+---------------쿼리문 확인용 ------------------
+--insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
+--insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
+<<<<<<< HEAD
+=======
 SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 
 >>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
@@ -72,6 +102,7 @@ SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables
 >>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 =======
 >>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -358,6 +389,8 @@ end;
 --    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 --);
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 select * from board;
 select * from attachment;
 <<<<<<< HEAD
@@ -399,7 +432,10 @@ end;
 >>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 
 <<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 --select seq_board_no.currval from dual;
+<<<<<<< HEAD
+=======
 
 ---------------- 조회 ------------------
 select * from board;
@@ -436,3 +472,4 @@ select * from attachment;
 =======
 --select seq_board_no.currval from dual;
 >>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
