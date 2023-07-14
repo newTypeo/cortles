@@ -8,19 +8,26 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
-<style>
-button {
-margin-left: 540px;
-margin-bottom: 10px;
-}
-</style>
+
 <section id="board-container">
-	<h2>게시판 </h2><br>
+	<h2>게시판 </h2>
+	<br>
+    <div class="search-container" id="search-name">
+   	 <form action="<%= request.getContextPath()%>/board/searchTitle" name="searchTitleFrm">
+    	<input type="hidden" name="searchType" value="name"/>
+   		 <input type="text" name="searchKeyword" class="search-input" placeholder="제목으로 검색">
+   			<span class="btn-wrapper">
+    			<button class="btn" type="submit">Button</button>
+			</span>
+   	 </form>
+	</div>
+	<br>
 	<% if(loginMember != null) { %>
 	<input 
 			type="button" id="btn-add" value="글쓰기" 
 			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';" />
 	<% } %>
+	<br>
 <table id="tbl-board">
 	<thead>
 		<tr>

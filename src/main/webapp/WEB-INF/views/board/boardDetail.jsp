@@ -11,6 +11,7 @@
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
+
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
@@ -35,7 +36,7 @@
 	 <form action="<%= request.getContextPath()%>/board/boardLikeGood" method="post" name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
    <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
    <input type="hidden" name="likeCount" value="<%= board.getLikeCount() %>" />
-   <button type="submit" class="like_good">추천 <%= board.getLikeCount() %></button>
+   <button type="submit" class="like_good" onclick="alertLikeResult();">추천 <%= board.getLikeCount() %></button>
 </form>
    <!-- 추천 폼 끝 -->
     <br>
@@ -116,7 +117,7 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
-								<button class="btn-update" value="<%= bc.getCommentNo() %>" onclick="updateBoardComment()">수정</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
 								<button class="btn-report" value="<%= bc.getCommentNo() %>" onclick="reportBoardComment()">신고</button>
 								<%  } %>
 							</td>
@@ -135,18 +136,26 @@
 		<input type="hidden" name="no" />
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
+	<form 
+		action="<%= request.getContextPath() %>/board/boardCommentUpdate" 
+		name="boardCommentUpdateFrm"
+		method="get">
+		<input type="hidden" name="no" />
+		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+	</form>
 	<script>
-
-	<%--function checkLoginForm() {
-	      if (<%= loginMember.getMemberId() %> == null) {
-	         alert('로그인이 필요합니다.');
-	         return false; // 폼 제출 취소
-	      }else{
-	    	  alert("추천!");
-	      }
-	      return true; // 폼 제출 진행
-	   }--%>
+	document.querySelectorAll(".btn-update").forEach((button) => {
+		button.onclick = (e) => {
+			const frm = document.boardCommentUpdateFrm;
+			const {value} = e.target;
+			console.log(value);
+			frm.no.value = value;
+			frm.submit();
+		}
+	});
 	
+	
+
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
 			if(confirm("해당 댓글을 삭제하시겠습니까?")){
