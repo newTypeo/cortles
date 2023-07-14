@@ -241,10 +241,21 @@ public class BoardDao {
             
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new BoardException(e);
+        	throw new BoardException(e);
         }
+		return result;
+	}
 		
 		
+	public int deleteBoardComment(Connection conn, int commentNo) {
+		int result = 0;
+		String sql = prop.getProperty("deleteBoardComment");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
 		return result;
 	}
 
