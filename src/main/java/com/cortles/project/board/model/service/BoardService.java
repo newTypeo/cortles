@@ -116,7 +116,11 @@ public class BoardService {
 		int result = 0;
 		Connection conn = getConnection();
 		try {
-			result = boardDao.boardDelete(conn,no);
+			Attachment attachment = boardDao.findAttachmentByBoardNo(conn, no);
+			if(attachment != null) {
+				result = boardDao.deleteAttachmentByBoardNo(conn, no);
+			}
+			result = boardDao.boardDelete(conn, no);
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);

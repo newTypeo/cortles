@@ -1,6 +1,9 @@
 package com.cortles.project.board.controller;
 
+import java.io.File;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +25,17 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
+		String filename = request.getParameter("filename");
 		
 		int result = boardService.boardDelete(no);
+		
+		// 		/upload/board 하위의 사진 삭제
+		ServletContext application = getServletContext();
+		String saveDirectory = application.getRealPath("/upload/board");
+		File file = new File(saveDirectory, filename);
+		
+		if(file != null)
+			file.delete();
 		
 		request.getSession().setAttribute("msg", "게시글을 성공적으로 삭제했습니다.");
 		response.sendRedirect(request.getContextPath()+"/board/boardList");

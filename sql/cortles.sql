@@ -169,7 +169,10 @@ ALTER TABLE favorite ADD CONSTRAINT PK_FAVORITE PRIMARY KEY (
 	movie_code,
 	member_id
 );
-
+--select * from board;
+--select * from attachment;
+--delete from board where board_no = 24;
+--delete from attachment where board_no = 24;
 ALTER TABLE movie_comment ADD CONSTRAINT FK_member_TO_movie_comment_1 FOREIGN KEY (
 	writer_id
 )
