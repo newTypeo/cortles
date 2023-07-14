@@ -1,17 +1,23 @@
 @charset "UTF-8";
 
+
+/*height_wrapper*/
+#height_wrapper {
+	position: absolute;
+ 	z-index: 2;
+ 	height:1200px; 
+ 	padding:60px;
+ 	
+}
+
 /*section*/
 #enroll-container {
   max-width: 600px;
   margin: 100px auto;
-  background-color: #fff;
+  background-color: #222;
   padding: 40px;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #000000;
-  position: absolute;
-  z-index: 2;
- 
 }
 
 #enroll-container h2 {
