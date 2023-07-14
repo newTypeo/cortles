@@ -11,6 +11,8 @@
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
+	String msg1 = (String) session.getAttribute("msg1");
+	session.removeAttribute("msg1");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
@@ -35,7 +37,7 @@
 	 <form action="<%= request.getContextPath()%>/board/boardLikeGood" method="post" name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
    <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
    <input type="hidden" name="likeCount" value="<%= board.getLikeCount() %>" />
-   <button type="submit" class="like_good">추천 <%= board.getLikeCount() %></button>
+   <button type="submit" class="like_good" onclick="alertLikeResult();">추천 <%= board.getLikeCount() %></button>
 </form>
    <!-- 추천 폼 끝 -->
     <br>
@@ -119,6 +121,15 @@
 	<script>
 	const updateBoard = () => {
 		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+	}
+	const likegood = document.querySelector(".like_good");
+	
+	alertLikeResult = () => {
+		
+		if("<%= msg1 %>" != null){
+			alert("<%=msg1%>");
+		}
+		
 	}
 	
 
