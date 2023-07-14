@@ -1,15 +1,36 @@
--- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
---DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+
+
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
+
+
+SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
+--DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
+--DROP TABLE "POSTER" CASCADE CONSTRAINTS;
 --DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "GENRE" CASCADE CONSTRAINTS;
 --DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
-
 
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
@@ -272,16 +293,11 @@ create sequence seq_board_comment_no;
 select * from board;
 select * from attachment;
 
+commit;
 
-
---select seq_board_no.currval from dual;
-
-select * from board;
-
-select * from attachment;
-
-
---insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 select * from movie;
 
---insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
+
+
+
+
