@@ -64,7 +64,7 @@ window.onload = () => {
 			<div class="search-bar">
 				<input type="text" placeholder="Search...">
 			</div>
-			<div class="login">
+			<div class="login1">
 				<a href="<%= request.getContextPath()%>/member/memberLogin">
 					<span style="color:#fff;">Login</span>
 				</a>
