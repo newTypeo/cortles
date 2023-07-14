@@ -25,7 +25,14 @@
     <div id="board_content">
       <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
     </div>
-    <button>추천</button>
+    <!-- 추천 폼 시작 -->
+   <form action="<%= request.getContextPath()%>/board/boardLikeGood"
+   method="post"
+   name="boardLikeGoodFrm">
+   <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
+    <button type="submit" class="like_good">추천 <%= board.getLikeCount() %></button>
+   </form>
+   <!-- 추천 폼 끝 -->
   </div>
 	
 	<hr style="margin-top:30px;" />    
@@ -74,9 +81,4 @@
 		<% 	} %>
 	</div>    
 	</section>
-	
-    <script>
-    
-    </script>
-	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

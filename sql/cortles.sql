@@ -1,14 +1,5 @@
--- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
---DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
---DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
---DROP TABLE "BOARD" CASCADE CONSTRAINTS;
---DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
---DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
---DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
---DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
+
+
 
 
 CREATE TABLE member (
@@ -49,6 +40,8 @@ CREATE TABLE board (
 	read_count	number,
 	reg_date	date	DEFAULT sysdate
 );
+
+
 
 CREATE TABLE quit_member (
 	member_id	varchar2(50)		NOT NULL,
@@ -174,14 +167,14 @@ REFERENCES movie (
 	movie_code
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_report_1 FOREIGN KEY (
 	comment_no
 )
 REFERENCES report_comment (
 	comment_no
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_report_1 FOREIGN KEY (
 	member_id
 )
 REFERENCES member (
@@ -280,6 +273,7 @@ select * from attachment;
 ----------- 시퀀스 생성 ------------
 create sequence seq_board_no;
 create sequence seq_attachment_no;
+create sequence seq_board_comment_no;
 ---------------------------------
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
@@ -291,7 +285,6 @@ create sequence seq_attachment_no;
 select * from board;
 
 select * from attachment;
-
 
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 select * from movie;
