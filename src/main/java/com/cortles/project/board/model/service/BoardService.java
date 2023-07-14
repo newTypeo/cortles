@@ -109,4 +109,39 @@ public class BoardService {
         return boardComments;
     }
 
+	public int deleteBoardComment(int commentNo) {
+		int result = 0 ;
+		Connection conn = getConnection();
+		try{
+			result = boardDao.deleteBoardComment(conn, commentNo);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+			
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
