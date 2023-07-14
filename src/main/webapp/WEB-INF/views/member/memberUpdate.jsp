@@ -97,7 +97,7 @@
 	name="delMemberIdFrm"
 	action="<%= request.getContextPath() %>/member/memberDelete"
 	method="POST">
-	<input type="hidden" name="delMemberId" value="<%= loginMember.getMemberId() %>">
+	<input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>">
 </form>
 <script>
 deleteMember = () => {
