@@ -38,8 +38,8 @@ header .login1 span {margin-right:20px; padding-left:30px;}
 /********** body ************/
 body {margin: 0; background-color:#141414; color: white;}
 section {margin-top:10px;}
-section article {display:flex; padding:20px; height:200px;}
-section img {width:500px; padding-right:10px; padding-top:0px;}
+section article {display:flex; padding:20px; height:300px;}
+/* section img {width:500px; padding-right:10px; padding-top:0px;} */
 section span {margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold';}
 section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold'; font-size: 20px;}
 

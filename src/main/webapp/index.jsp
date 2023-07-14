@@ -100,11 +100,7 @@ const findAllMovies = () => {
 		<% if(loginMember != null) { %>
 			<span><%= loginMember.getMemberId() %> 님의 좋아할만한 콘텐츠</span>
 				<article id="art1">
-				
-					
-					<a href="javascript:void(0);" onclick="openModal();">
-						<img src='https://ifh.cc/g/JlsdD9.jpg'>
-					</a>
+					<a href="javascript:void(0);" onclick="openModal();"></a>
 				</article>
 			</div>
 			<hr/>

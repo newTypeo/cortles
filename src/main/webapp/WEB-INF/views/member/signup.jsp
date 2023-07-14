@@ -359,6 +359,7 @@
     <span></span>
     <span></span>
     <span></span>
+<div id=height_wrapper>
 <section id=enroll-container>
 	<h2>회원 가입 정보 입력</h2>
 	<form 
@@ -372,52 +373,52 @@
 		method="POST">
 		<table>
 			<tr>
-				<th>아이디<sup>*</sup></th>
+				<th>ID<sup>*</sup></th>
 				<td>
 					<input type="text" placeholder="4글자이상" name="memberId" id="_memberId" value="sejong" required>
-					<input type="button" value="중복검사" onclick="checkIdDuplicate();"/>
+					<input type="button" value="Duplicate inspection" onclick="checkIdDuplicate();"/>
 					<input type="hidden" id="idValid" value="0"/>
 					<%-- id검사여부 확인용: 0-유효하지않음, 1-유효한 아이디 --%>
 				</td>
 			</tr>
 			<tr>
-				<th>패스워드<sup>*</sup></th>
+				<th>password<sup>*</sup></th>
 				<td>
 					<input type="password" name="password" id="_password" value="1234" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>패스워드확인<sup>*</sup></th>
+				<th>passwordCF<sup>*</sup></th>
 				<td>	
 					<input type="password" id="passwordConfirmation" value="1234" required><br>
 				</td>
 			</tr>  
 			<tr>
-				<th>이름<sup>*</sup></th>
+				<th>name<sup>*</sup></th>
 				<td>	
 				<input type="text"  name="name" id="name" value="세종대왕" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>생년월일</th>
+				<th>birthdate</th>
 				<td>	
 				<input type="date" name="birthday" id="birthday" value="1999-09-09"><br />
 				</td>
 			</tr> 
 			<tr>
-				<th>이메일</th>
+				<th>email</th>
 				<td>	
 					<input type="email" placeholder="abc@xyz.com" name="email" id="email" value="sejong@naver.com"><br>
 				</td>
 			</tr>
 			<tr>
-				<th>휴대폰<sup>*</sup></th>
+				<th>phone<sup>*</sup></th>
 				<td>	
 					<input type="tel" placeholder="(-없이)01012345678" name="phone" id="phone" maxlength="11" value="01012341234" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>성별<sup>*</sup></th>
+				<th>gender<sup>*</sup></th>
 				<td>
 					<input type="radio" name="gender" id="gender0" value="M">
 					<label for="gender0">남</label>
@@ -426,29 +427,30 @@
 				</td>
 			</tr>
 			<tr>
-				<th>선호 장르 </th>
+				<th>prepergenre</th>
 				<td>
 					<input type="checkbox" name="genre" id="genre0" value="호러" checked><label for="genre0">호러</label>
 					<input type="checkbox" name="genre" id="genre1" value="로맨스" checked><label for="genre1">로맨스</label>
-					<input type="checkbox" name="genre" id="genre2" value="코미디"><label for="genre2">코미디</label>
-					<br/>
+					<input type="checkbox" name="genre" id="genre9" value="재난"><label for="genre4">재난</label>
 					<input type="checkbox" name="genre" id="genre3" value="액션"><label for="genre3">액션</label>
-					<input type="checkbox" name="genre" id="genre4" value="스릴러"><label for="genre4">스릴러</label>
-					<input type="checkbox" name="genre" id="genre5" value="SF"><label for="genre4">SF</label>
 					<br/>
-					<input type="checkbox" name="genre" id="genre6" value="애니메이션"><label for="genre4">애니메이션</label>
+					<input type="checkbox" name="genre" id="genre4" value="스릴러"><label for="genre4">스릴러</label>
+					<input type="checkbox" name="genre" id="genre2" value="코미디"><label for="genre2">코미디</label>
+					<input type="checkbox" name="genre" id="genre5" value="SF"><label for="genre4">SF</label>
 					<input type="checkbox" name="genre" id="genre7" value="뮤지컬"><label for="genre4">뮤지컬</label>
 					<br/>
 					<input type="checkbox" name="genre" id="genre8" value="판타지"><label for="genre4">판타지</label>
-					<input type="checkbox" name="genre" id="genre9" value="재난"><label for="genre4">재난</label>
+					<input type="checkbox" name="genre" id="genre6" value="애니메이션"><label for="genre4">애니메이션</label>
 					<input type="checkbox" name="genre" id="genre10" value="범죄"><label for="genre4">범죄</label>
+					<br/>
 				</td>
 			</tr>
 		</table>
-		<input type="submit" value="가입" >
-		<input type="reset" value="취소">
+		<input type="submit" value="sign Up" >
+		<input type="reset" value="cancel">
 	</form>
 </section>
+</div>
 </div>
 
 <script>
