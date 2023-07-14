@@ -59,7 +59,6 @@ const findAllMovies = () => {
           
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
-              <h3>동영상 재생</h3>
               <form>
                   <iframe width="560" height="315" src="https://www.youtube.com/embed/WXLfyrmKQUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </form>

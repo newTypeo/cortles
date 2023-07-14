@@ -247,6 +247,22 @@ public class BoardDao {
 	}
 
 
+	public int updateLike(Connection conn, int boardNo, int likeCount) {
+		int result = 0;
+		String sql = prop.getProperty("updateLike");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, likeCount);
+            pstmt.setInt(2, boardNo);
+            
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+        	throw new BoardException(e);
+        }
+		return result;
+	}
+		
+		
 	public int deleteBoardComment(Connection conn, int commentNo) {
 		int result = 0;
 		String sql = prop.getProperty("deleteBoardComment");
@@ -257,6 +273,32 @@ public class BoardDao {
 			throw new BoardException(e);
 		}
 		return result;
+	}
+
+
+	public Attachment findAttachmentByBoardNo(Connection conn, int boardNo) {
+		Attachment attachment = new Attachment();
+		String sql = prop.getProperty("findAttachmentByBoardNo");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			try (ResultSet rset = pstmt.executeQuery()) {
+				if(rset.next()) {
+					attachment.setNo(rset.getInt("attachment_no"));
+					attachment.setBoardNo(boardNo);
+					attachment.setOriginalFilename(rset.getString("original_filename"));
+					attachment.setRenamedFilename(rset.getString("renamed_filename"));
+					attachment.setRegDate(rset.getDate("reg_date"));
+					
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		
+		return attachment;
 	}
 
 

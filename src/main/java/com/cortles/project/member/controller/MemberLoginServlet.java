@@ -29,7 +29,6 @@ public class MemberLoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("내가만 든 로긴");
 		// 사용자 입력 값 처리
 		String memberId = request.getParameter("memberId");
 		String password = request.getParameter("password");
