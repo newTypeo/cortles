@@ -16,6 +16,7 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.member.model.vo.Member;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -230,6 +231,21 @@ public class BoardDao {
         return boardComments;
     }
 
+	/*
+	 * 게시글 삭제 - 주혜 
+	 */
+	public int boardDelete(Connection conn, int no) {
+		int result = 0;
+		String sql = prop.getProperty("boardDelete");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1,no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
 
 	public int deleteBoardComment(Connection conn, int commentNo) {
 		int result = 0;
@@ -241,6 +257,32 @@ public class BoardDao {
 			throw new BoardException(e);
 		}
 		return result;
+	}
+
+
+	public Attachment findAttachmentByBoardNo(Connection conn, int boardNo) {
+		Attachment attachment = new Attachment();
+		String sql = prop.getProperty("findAttachmentByBoardNo");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			try (ResultSet rset = pstmt.executeQuery()) {
+				if(rset.next()) {
+					attachment.setNo(rset.getInt("attachment_no"));
+					attachment.setBoardNo(boardNo);
+					attachment.setOriginalFilename(rset.getString("original_filename"));
+					attachment.setRenamedFilename(rset.getString("renamed_filename"));
+					attachment.setRegDate(rset.getDate("reg_date"));
+					
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		
+		return attachment;
 	}
 
 

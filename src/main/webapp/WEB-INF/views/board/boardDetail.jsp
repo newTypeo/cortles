@@ -9,6 +9,7 @@
 	Board board = (Board) request.getAttribute("board");
 	List<Attachment> attachments = board.getAttachments();
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
+	Attachment attachment = (Attachment) request.getAttribute("attachment");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
@@ -23,10 +24,24 @@
     <hr>
 
     <div id="board_content">
-    	<img src="<%= request.getContextPath() %>/images/city1.PNG" />
+    	<% if(attachment.getRenamedFilename() != null) { %>
+    		<img src="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>" />
+   		<% } %>
       <textarea readonly="" style="background-color: #141414; color: white; border: none; resize: none;width: 100%; height: auto;"><%= board.getContent() %></textarea>
     </div>
+    <br>
     <button>추천</button>
+    <br><br>
+   	<%-- 글삭제-주혜 --%>
+   	<%
+   		boolean showButton = loginMember != null
+   			&& (loginMember.getMemberId().equals(board.getWriterId())
+   					|| loginMember.getMemberRole() == MemberRole.A);
+   		if(showButton){
+   	%>
+   	<input type="button" value="수정" onclick="" />
+   	<input type="button" value="삭제" onclick="boardDelete()"/>
+  	<% } %>
   </div>
 	<script>
 	$(document).ready(function() {
@@ -35,7 +50,7 @@
 	        $(this).height( this.scrollHeight );
 	      });
 	      $('#board_content').find( 'textarea' ).keyup();
-	    });
+    });
 	</script>
 	<hr style="margin-top:30px;" />    
 	
@@ -174,9 +189,22 @@
 	    
     
 	</section>
-	
+
+<% if(showButton){ %>
+<form action="<%= request.getContextPath()%>/board/boardDelete" name="boardDeleteFrm" method="POST">
+	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
+</form>
+<script>
+const boardDelete = () =>{
+	if(confirm("글을 삭제하시겠습니까?")){
+		document.boardDeleteFrm.submit();
+	}
+};
+</script>
+<% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
+	
 
 
 
@@ -206,3 +234,6 @@
 
 
 
+
+
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git

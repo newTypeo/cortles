@@ -26,6 +26,7 @@ create sequence seq_board_comment_no;
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
+
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -175,14 +176,14 @@ ALTER TABLE movie_comment ADD CONSTRAINT FK_member_TO_movie_comment_1 FOREIGN KE
 REFERENCES member (
 	member_id
 );
-
+select * from attachment;
 ALTER TABLE movie_comment ADD CONSTRAINT FK_movie_TO_movie_comment_1 FOREIGN KEY (
 	movie_code
 )
 REFERENCES movie (
 	movie_code
 );
-
+--select * from attachment where board_no = 19;
 ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_member_report_1 FOREIGN KEY (
 	comment_no
 )
