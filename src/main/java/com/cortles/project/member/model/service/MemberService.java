@@ -140,22 +140,6 @@ public class MemberService {
 		return result;
 	}
 
-	/*
-	 * 관리자 회원 탈퇴 - 주혜
-	 */
-	public int adminMemberDelete(String memberId) {
-		int result = 0;
-		System.out.println("service");
-		Connection conn = getConnection();
-		try {
-			result = memberDao.adminMemberDelete(conn,memberId);
-			commit(conn);
-		}catch(Exception e) {
-			rollback(conn);
-		}finally {
-			close(conn);
-		}
-		return result;
-	}
+	
 
 }

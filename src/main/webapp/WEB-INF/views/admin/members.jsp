@@ -80,18 +80,24 @@
 	<input type="hidden" name="memberRole"/>
 	<input type="hidden" name="memberId"/>
 </form>
+<form
+	name="delMemberIdFrm"
+	action="<%= request.getContextPath() %>/member/memberDelete"
+	method="POST">
+	<input type="hidden" name="delMemberId" value="<%= loginMember.getMemberRole() == MemberRole.A %>">
+</form>
 <script>
 
 //강제 탈퇴 
-document.querySelector("#yes").onclick = (e) => {
-	e.addeventListener("delete",(e)=>{
+document.querySelector("#yes").onclick = () => {
+	//e.addEventListener("delete",(e)=>{
 		
 		if(confirm("<%= member.getMemberName() %>님을 탈퇴처리 하시겠습니까?")){
-			
+			document.delMemberIdFrm.submit();
 		}else{
-			e.target.querySelector("#no").selected= true;
+			return;
 		}
-	})
+	//});
 };
 
 // 검색 

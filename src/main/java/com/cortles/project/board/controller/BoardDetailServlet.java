@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.board.model.service.BoardService;
+import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.common.util.CortlesUtils;
@@ -63,6 +64,9 @@ public class BoardDetailServlet extends HttpServlet {
 //		System.out.println("boardComments = " + boardComments);
 		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
 		
+		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
+		
+		
 		// secure coding처리
 		String unsecureTitle = board.getTitle();
 		String secureTitle = CortlesUtils.escapeHtml(unsecureTitle);
@@ -71,6 +75,7 @@ public class BoardDetailServlet extends HttpServlet {
 		// 3. 응답처리 jsp
 		request.setAttribute("board", board);
 		request.setAttribute("boardComments", boardComments);
+		request.setAttribute("attachment", attachment);
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
