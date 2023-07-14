@@ -1,7 +1,8 @@
+<%@page import="com.cortles.project.movie.model.vo.Movie"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,24 @@
 	href="<%=request.getContextPath()%>/css/index.css" />
 </head>
 <body>
+<%
+	List<Movie> movies = (List<Movie>) session.getAttribute("movies");
+	System.out.println("movies= " + movies);
+	if(movies != null){
+		for(Movie movie : movies){
+			System.out.println(movie);
+		}
+	}
+%>
+<script>
+window.addEventListener("load", () => {
+	if(<%= movies %> == null) {
+		window.location.href = '<%= request.getContextPath() %>/movie/findAllMovies';
+		console.log("영화서블릿 가기");
+	}
+});
+</script>
+
 
 	<section>
 <div id="myModal" class="modal" style="display: none;">
@@ -61,35 +80,36 @@
     </div>
   </div>
 </div>
-
-		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
-			<article id="art1">
-			
+		<% if(loginMember != null) { %>
+			<span><%= loginMember.getMemberId() %> 님의 좋아할만한 콘텐츠</span>
+				<article id="art1">
 				
-				<a href="javascript:void(0);" onclick="openModal();">
-					<img src='https://ifh.cc/g/JlsdD9.jpg'>
-				</a>
-				<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-			</article>
-		</div>
-		<hr/>
+					
+					<a href="javascript:void(0);" onclick="openModal();">
+						<img src='https://ifh.cc/g/JlsdD9.jpg'>
+					</a>
+					<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
+					<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
+					<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+				</article>
+			</div>
+			<hr/>
+		<% } %>
 		<div>
 		<span>액션</span>
 			<article id="art1">

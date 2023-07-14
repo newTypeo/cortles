@@ -36,6 +36,7 @@ private Properties prop = new Properties();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rset = pstmt.executeQuery();
 		){
+			// System.out.println("movieDao test");
 			while(rset.next())
 				movies.add(handleMovieResultSet(rset));
 			
@@ -59,9 +60,6 @@ private Properties prop = new Properties();
 		movie.setDirector(rset.getString("director"));
 		movie.setActors(rset.getString("actors"));
 		movie.setVod(rset.getString("vod"));
-		
-		
-		
 		return movie;
 	}
 
