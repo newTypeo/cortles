@@ -84,9 +84,100 @@
 				%>
 			</table>
 		<% 	} %>
-	</div>    
+	</div>
+	<form 
+		action="<%= request.getContextPath() %>/board/boardCommentDelete" 
+		name="boardCommentDelFrm"
+		method="POST">
+		<input type="hidden" name="no" />
+		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+	</form>
+	<script>
+	document.querySelectorAll(".btn-delete").forEach((button) => {
+		button.onclick = (e) => {
+			if(confirm("해당 댓글을 삭제하시겠습니까?")){
+				const frm = document.boardCommentDelFrm;
+				const {value} = e.target;
+				console.log(value);
+				frm.no.value = value;
+				frm.submit();
+			}
+		}
+	});
+	
+	document.querySelectorAll(".btn-reply").forEach((button) => {
+		button.onclick = (e) => {
+			const {value} = e.target;
+			const parentTr = e.target.parentElement.parentElement;
+			console.log(parentTr);
+			
+			const tr = `
+				<tr>
+					<td colspan="2">
+						<form
+							action="<%=request.getContextPath()%>/board/boardCommentCreate" 
+							method="post"
+							name="boardCommentFrm">
+			                <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
+			                <input type="hidden" name="writerId" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+							<textarea name="content" cols="60" rows="1"></textarea>
+			                <button type="submit" class="btn-comment-enroll2">등록</button>
+			            </form>
+					</td>
+				</tr>
+			`;
+			// beforebegin 시작태그전 - 이전형제요소로 추가
+			// afterbegin 시작태그후 - 첫자식요소로 추가
+			// beforeend 종료태그전 - 마지막요소로 추가
+			// afterend 종료태그후 - 다음형제요소로 추가
+			parentTr.insertAdjacentHTML('afterend', tr);
+			
+			button.onclick = null; // 이벤트핸들러 제거 (1회용)
+		};
+	});
+	
+	// 이벤트버블링을 이용한 textarea focus핸들러
+	// focus, blur 버블링되지 않음. 대신 focusin, focusout 사용.
+	<%--document.addEventListener("focusin", (e) => {
+		if(e.target.matches("form[name=boardCommentFrm] textarea")) {
+			<% 	if (loginMember == null) { %>
+				loginAlert();
+			<% 	} %>
+		}
+	});--%>
+	
+	// 이벤트버블링을 이용한 폼유효성 검사 
+	document.addEventListener("submit", (e) => {
+		
+		// 특정선택자와 매칭여부 matches
+		if (e.target.matches("form[name=boardCommentFrm]")) {			
+			<% 	if (loginMember == null) { %>
+				loginAlert();
+				e.preventDefault();
+				return;
+			<% 	} %>
+			
+			const frm = e.target;
+			const content = frm.content;
+			
+			if(!/^(.|\n)+$/.test(content.value)) {
+				alert("내용을 작성해주세요.");
+				e.preventDefault();
+				return;
+			}
+		}
+		
+	});
+	
+	const loginAlert = () => {
+		alert("로그인후 댓글을 작성할 수 있습니다.");
+	};
+
+	</script>
+	    
     
 	</section>
+<<<<<<< HEAD
 <% if(showButton){ %>
 <form action="<%= request.getContextPath()%>/board/boardDelete" name="boardDeleteFrm" method="POST">
 	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
@@ -100,3 +191,37 @@ const boardDelete = () =>{
 </script>
 <% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+=======
+	
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git

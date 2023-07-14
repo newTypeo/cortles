@@ -239,6 +239,19 @@ private Properties prop = new Properties();
 		}
 		return members;
 	}
+
+	public int deleteMemberById(Connection conn, String delMemberId) {
+		int result = 0;
+		String sql = prop.getProperty("deleteMemberById");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, delMemberId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
+		return result;
+	}
 	
 
 	
