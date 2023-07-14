@@ -31,6 +31,7 @@ public class BoardDetailServlet extends HttpServlet {
 		// 1. 사용자입력값 처리 ?no=12
 		int boardNo = Integer.parseInt(request.getParameter("no"));
 		
+		
 		// 2. 업무로직
 		// 게시글 읽음 여부 검사
 		Cookie[] cookies = request.getCookies();
@@ -63,7 +64,7 @@ public class BoardDetailServlet extends HttpServlet {
 //		System.out.println("board = " + board);
 //		System.out.println("boardComments = " + boardComments);
 		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
-		
+
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
 		int boardCommentCnt = boardService.totalBoardCommentCnt(boardNo);
 		

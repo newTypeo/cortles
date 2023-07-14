@@ -16,6 +16,8 @@ import com.cortles.project.member.model.vo.Gender;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class MemberDao {
 
 private Properties prop = new Properties();
@@ -252,6 +254,8 @@ private Properties prop = new Properties();
 		}
 		return result;
 	}
+
+
 	
 
 	
