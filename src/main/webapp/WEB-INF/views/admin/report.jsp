@@ -1,7 +1,12 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <title>신고 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%
+
+%>
+
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/report.css" />
 	<h1>report list</h1>
@@ -20,6 +25,17 @@
 			<tbody>
 				<tr>
 					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<input type="radio" name="out" id="yes" value="Y"/>
+						<label for="yes">Y</label>
+						<input type="radio" name="out" id="no" value="N" checked="checked"/>
+						<label for="no">N</label>
+					</td>
 				</tr>
 			</tbody>
 		</table>
