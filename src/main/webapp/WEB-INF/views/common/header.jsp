@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>movie cortles</title>
+<script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css"/>
 <%
