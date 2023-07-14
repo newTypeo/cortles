@@ -361,13 +361,13 @@
     <span></span>
 <div id=height_wrapper>
 <section id=enroll-container>
-	<h2>회원 가입 정보 입력</h2>
+	<h2>Sign UP</h2>
 	<form 
 		name="checkIdDuplicateFrm" 
 		action="<%= request.getContextPath() %>/member/checkIdDuplicate">
 		<input type="hidden" name="memberId"/>
 	</form>
-	<form 
+	<form
 		name="memberEnrollFrm"
 		action="<%= request.getContextPath() %>/member/memberSignup"
 		method="POST">
