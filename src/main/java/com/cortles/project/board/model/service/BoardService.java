@@ -177,6 +177,14 @@ public class BoardService {
 		return boardCommentCnt;
 	}
 
+	public BoardComment boardCommentfindById(int no) {
+		BoardComment updateBoardComment = null;
+		Connection conn = getConnection();
+		updateBoardComment = boardDao.boardCommentfindById(conn, no);
+		commit(conn);
+		return updateBoardComment;
+	}
+
 }
 
 
