@@ -11,8 +11,7 @@
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
-	String msg1 = (String) session.getAttribute("msg1");
-	session.removeAttribute("msg1");
+
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
@@ -122,15 +121,7 @@
 	const updateBoard = () => {
 		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
 	}
-	const likegood = document.querySelector(".like_good");
 	
-	alertLikeResult = () => {
-		
-		if("<%= msg1 %>" != null){
-			alert("<%=msg1%>");
-		}
-		
-	}
 	
 
 
