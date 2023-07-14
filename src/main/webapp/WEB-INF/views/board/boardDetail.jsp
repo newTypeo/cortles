@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<div id="board" style ="width: 605px;">
-    <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br>
+    <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br><br><br>
       <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
         <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
@@ -209,6 +209,7 @@
 <% if(showButton){ %>
 <form action="<%= request.getContextPath()%>/board/boardDelete" name="boardDeleteFrm" method="POST">
 	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
+	<input type="hidden" name="filename" value="<%= attachment.getRenamedFilename() %>" />
 </form>
 <script>
 const boardDelete = () =>{
@@ -219,7 +220,3 @@ const boardDelete = () =>{
 </script>
 <% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-	
-
-

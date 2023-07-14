@@ -302,6 +302,21 @@ public class BoardDao {
 	}
 
 
+	public int deleteAttachmentByBoardNo(Connection conn, int no) {
+		int result = 0;
+		String sql = prop.getProperty("deleteAttachmentByBoardNo");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return result;
+	}
+
+
 
 }
 
