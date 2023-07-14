@@ -1,7 +1,8 @@
+<%@page import="com.cortles.project.movie.model.vo.Movie"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,42 @@
 	href="<%=request.getContextPath()%>/css/index.css" />
 </head>
 <body>
+<script>
+window.addEventListener("load", () => {
+	findAllMovies();	
+});
+const findAllMovies = () => {
+	$.ajax({
+		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
+		dataType : "json",
+		success(movies) {
+			console.log(movies);
+			movies.forEach((movie) => {
+				const {posterUrl, genre} = movie;
+				if(genre != null && genre.includes("액션"))
+					document.querySelector("#action").innerHTML += `<img src="\${posterUrl}"/>`;
+				if(genre != null && genre.includes("SF"))
+					document.querySelector("#sf").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("공포"))
+					document.querySelector("#horror").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("로맨스"))
+					document.querySelector("#romance").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("드라마"))
+					document.querySelector("#drama").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("코메디"))
+					document.querySelector("#comedy").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("스릴러"))
+					document.querySelector("#thriller").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("판타지"))
+					document.querySelector("#fantasy").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("미스터리"))
+					document.querySelector("#mystery").innerHTML += `<img src="\${posterUrl}"/>`;
+			})
+		}
+	});
+};
+</script>
+
 
 	<section>
 <div id="myModal" class="modal" style="display: none;">
@@ -60,83 +97,66 @@
     </div>
   </div>
 </div>
-
-		<span>홍길동 님의 취향저격 베스트 콘텐츠</span>
-			<article id="art1">
-			
-				
-				<a href="javascript:void(0);" onclick="openModal();">
-					<img src='https://ifh.cc/g/JlsdD9.jpg'>
-				</a>
-				<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>액션</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>호러</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>로맨스</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>코미디</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-			</article>
-		</div>
-		<hr/>
+		<% if(loginMember != null) { %>
+			<span><%= loginMember.getMemberId() %> 님의 좋아할만한 콘텐츠</span>
+				<article id="art1">
+					<a href="javascript:void(0);" onclick="openModal();"></a>
+				</article>
+			</div>
+			<hr/>
+		<% } %>
+			<div>
+			<span>action</span>
+				<article id="action">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>SF</span>
+				<article id="sf">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>horror</span>
+				<article id="horror">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>thriller</span>
+				<article id="thriller">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>romance</span>
+				<article id="romance">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>drama</span>
+				<article id="drama">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>comedy</span>
+				<article id="comedy">
+				</article>
+			<div>
+			<span>fantasy</span>
+				<article id="fantasy">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>mystery</span>
+				<article id="mystery">
+				</article>
+			</div>
+			<hr/>
 <script>
 
 const scroll = document.querySelector("body");
@@ -192,7 +212,6 @@ function getFormattedDate() {
   
   return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 }
-
 
 </script>
 	</section>
