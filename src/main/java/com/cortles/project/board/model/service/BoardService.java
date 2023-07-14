@@ -109,6 +109,20 @@ public class BoardService {
         return boardComments;
     }
 
+	public int updateLike(int boardNo, int likeCount) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = boardDao.updateLike(conn, boardNo, likeCount);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
 	/*
 	 * 게시글 삭제-주혜
 	 */

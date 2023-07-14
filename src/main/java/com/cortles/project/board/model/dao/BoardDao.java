@@ -247,6 +247,22 @@ public class BoardDao {
 	}
 
 
+	public int updateLike(Connection conn, int boardNo, int likeCount) {
+		int result = 0;
+		String sql = prop.getProperty("updateLike");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, likeCount);
+            pstmt.setInt(2, boardNo);
+            
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+        	throw new BoardException(e);
+        }
+		return result;
+	}
+		
+		
 	public int deleteBoardComment(Connection conn, int commentNo) {
 		int result = 0;
 		String sql = prop.getProperty("deleteBoardComment");
