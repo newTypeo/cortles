@@ -79,6 +79,10 @@ table#tbl-comment button.btn-comment-enroll2{width:60px; height:23px; color:whit
 table#tbl-comment button.btn-delete{background:red; color:white; display:none;}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
 
+/* 수정버튼관련 */
+table#tbl-comment button.btn-update{background:red; color:white; display:none;}
+table#tbl-comment tr:hover button.btn-update{display:inline;}
+
 /* 테이블 테두리 */
 table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
 th, td {border: 1px solid #000; padding: 5px;}

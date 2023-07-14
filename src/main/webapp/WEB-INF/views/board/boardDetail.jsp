@@ -64,9 +64,11 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>" onclick="updateBoardComment()">수정</button>
 								<%  } %>
 							</td>
 						</tr>
+						
 				<%
 					}
 				%>
@@ -81,6 +83,12 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
+	const updateBoard = () => {
+		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+	}
+	
+
+
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
 			if(confirm("해당 댓글을 삭제하시겠습니까?")){
@@ -162,6 +170,7 @@
 	};
 
 	</script>
+	
 	    
     
 	</section>
