@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+ SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+--DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+=======
 
 
 --alter session set "_oracle_script" = true;
@@ -14,6 +18,7 @@
 
 SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
@@ -32,6 +37,11 @@ SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
