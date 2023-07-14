@@ -17,7 +17,7 @@
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br>
       <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
-        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
+        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 <%=  %></span>
       </span>
     </div>
 
@@ -69,6 +69,7 @@
 				name="boardCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
                 <input type="hidden" name="writerId" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+                <input type="hidden" name="boardCnt" value="<%= board.getCommentCnt() %>" />
 				<textarea name="content" cols="60" rows="3"></textarea>
                 <button type="submit" id="btn-comment-enroll1">등록</button>
             </form>
