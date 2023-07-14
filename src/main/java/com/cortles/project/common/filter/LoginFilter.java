@@ -21,7 +21,7 @@ import com.cortles.project.member.model.vo.Member;
 	"/member/memberUpdate",
 	"/board/boardCreate",
 	"/board/boardUpdate",
-//	"/board/boardDelete",
+	"/board/boardDelete",
 	"/board/boardCommentCreate"
 	
 })
