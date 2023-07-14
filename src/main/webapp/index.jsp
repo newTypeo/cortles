@@ -105,80 +105,62 @@ const findAllMovies = () => {
 					<a href="javascript:void(0);" onclick="openModal();">
 						<img src='https://ifh.cc/g/JlsdD9.jpg'>
 					</a>
-					<a href=""><img src="<%= request.getContextPath() %>/images/flower1.PNG"/></a>
-					<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-					<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
 				</article>
 			</div>
 			<hr/>
 		<% } %>
-		<div>
-		<span>액션</span>
-			<article id="action">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>SF</span>
-			<article id="sf">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>호러</span>
-			<article id="horror">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>스릴러</span>
-			<article id="thriller">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>로맨스</span>
-			<article id="romance">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>드라마</span>
-			<article id="drama">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>코미디</span>
-			<article id="comedy">
-			</article>
-		<div>
-		<span>판타지</span>
-			<article id="fantasy">
-			</article>
-		</div>
-		<hr/>
-		<div>
-		<span>미스터리</span>
-			<article id="mystery">
-			</article>
-		</div>
-		<hr/>
+			<div>
+			<span>액션</span>
+				<article id="action">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>SF</span>
+				<article id="sf">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>호러</span>
+				<article id="horror">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>스릴러</span>
+				<article id="thriller">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>로맨스</span>
+				<article id="romance">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>드라마</span>
+				<article id="drama">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>코미디</span>
+				<article id="comedy">
+				</article>
+			<div>
+			<span>판타지</span>
+				<article id="fantasy">
+				</article>
+			</div>
+			<hr/>
+			<div>
+			<span>미스터리</span>
+				<article id="mystery">
+				</article>
+			</div>
+			<hr/>
 <script>
 
 const scroll = document.querySelector("body");
