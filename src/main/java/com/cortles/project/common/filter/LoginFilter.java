@@ -21,9 +21,9 @@ import com.cortles.project.member.model.vo.Member;
 	"/member/memberUpdate",
 	"/board/boardCreate",
 	"/board/boardUpdate",
-//	"/board/boardDelete",
+	"/board/boardDelete",
+	"/board/boardLikeGood",
 	"/board/boardCommentCreate"
-	
 })
 public class LoginFilter extends HttpFilter implements Filter {
        
@@ -42,10 +42,14 @@ public class LoginFilter extends HttpFilter implements Filter {
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		if(loginMember == null) {
 			session.setAttribute("msg", "로그인후 이용하실수 있습니다.");
-			httpRes.sendRedirect(httpReq.getContextPath() + "/");
+//			httpRes.sendRedirect(httpReq.getContextPath() + "/");
+			String referer = httpReq.getHeader("Referer");
+			httpRes.sendRedirect(referer);
+			
 			return;
 		}
 		chain.doFilter(request, response);
+		
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {}

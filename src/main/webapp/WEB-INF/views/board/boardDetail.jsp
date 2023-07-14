@@ -98,6 +98,7 @@
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
 								<button class="btn-update" value="<%= bc.getCommentNo() %>" onclick="updateBoardComment()">수정</button>
+								<button class="btn-report" value="<%= bc.getCommentNo() %>" onclick="reportBoardComment()">신고</button>
 								<%  } %>
 							</td>
 						</tr>
@@ -122,15 +123,15 @@
 	
 
 
-	 function checkLoginForm() {
-	      if (<%= loginMember %> == null) {
+	<%--function checkLoginForm() {
+	      if (<%= loginMember.getMemberId() %> == null) {
 	         alert('로그인이 필요합니다.');
 	         return false; // 폼 제출 취소
 	      }else{
 	    	  alert("추천!");
 	      }
 	      return true; // 폼 제출 진행
-	   }
+	   }--%>
 	
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
