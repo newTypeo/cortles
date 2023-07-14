@@ -66,7 +66,7 @@
 	                <td>
 						<input type="radio" name="<%= member.getMemberName() %>" id="yes" value="<%= member.getMemberId() %>"/>
 						<label for="yes">Y</label>
-						<input type="radio" name="out" id="no" value="N" checked="checked"/>
+						<input type="radio" name="<%= member.getMemberName() %>" id="no" value="N" checked/>
 						<label for="no">N</label>
 	                </td>
 	            </tr>
@@ -101,7 +101,7 @@ document.querySelector("#yes").onclick = (e) => {
 		document.delMemberIdFrm.querySelector("#delMemberId").value = memberId;
 		document.delMemberIdFrm.submit();
 	}else{
-		return;
+		document.querySelector("#no").checked = true;
 	}
 };
 
