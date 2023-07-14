@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/signup.css" />
+	href="<%=request.getContextPath()%>/css/memberUpdate.css" />
 <%
 	 String genre = loginMember.getFavoriteGenre();
 	// 선호장르 List로 처리하기
@@ -16,8 +16,363 @@
 		System.out.println(genres);
 	}
 %>
+<div id="blocksection">
+<span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 <section id=enroll-container>
-	<h2>회원정보 수정</h2>
+	<h2>Modifying Membership</h2>
 	<form 
 		name="memberEnrollFrm"
 		action="<%= request.getContextPath() %>/member/memberUpdate"
@@ -25,31 +380,31 @@
 		<table>
 		<input type="hidden"  name="memberId" id="memberId" value="<%= loginMember.getMemberId() %>">
 			<tr>
-				<th>이름<sup>*</sup></th>
+				<th>name<sup>*</sup></th>
 				<td>	
 				<input type="text"  name="name" id="name" value="<%= loginMember.getMemberName() %>" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>생년월일</th>
+				<th>birthdate</th>
 				<td>	
 				<input type="date" name="birthday" id="birthday" value="<%= loginMember.getBirthday() %>"><br />
 				</td>
 			</tr> 
 			<tr>
-				<th>이메일</th>
+				<th>email</th>
 				<td>	
 					<input type="email" placeholder="abc@xyz.com" name="email" id="email" value="<%= loginMember.getEmail() %>"><br>
 				</td>
 			</tr>
 			<tr>
-				<th>휴대폰<sup>*</sup></th>
+				<th>phone<sup>*</sup></th>
 				<td>	
 					<input type="tel" placeholder="(-없이)01012345678" name="phone" id="phone" minlength="11" maxlength="11" value="<%= loginMember.getPhone() %>" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>성별<sup>*</sup></th>
+				<th>gender<sup>*</sup></th>
 				<td>
 					<input type="radio" name="gender" id="gender0" value="M" <%= loginMember.getGender() == Gender.M ? "checked" : "" %>>
 					<label for="gender0">남</label>
@@ -58,7 +413,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>선호 장르 </th>
+				<th>prepergenre</th>
 				<td>
 					<label for="genre0">호러</label>
 					<input type="checkbox" name="genre" id="genre0" value="호러" <%= genres != null && genres.contains("호러") ? "checked" : "" %>>
@@ -88,9 +443,9 @@
 				</td>
 			</tr>
 		</table>
-		<input type= "button" value="탈퇴" onclick="deleteMember()">
-		<input type="submit" value="수정" >
-		<input type="reset" value="취소" onclick="location.href='<%= request.getContextPath() %>';">
+		<input type= "button" value="quit" onclick="deleteMember()">
+		<input type="submit" value="update" >
+		<input type="reset" value="cacel" onclick="location.href='<%= request.getContextPath() %>';">
 	</form>
 </section>
 <form
@@ -99,6 +454,7 @@
 	method="POST">
 	<input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>">
 </form>
+</div>
 <script>
 deleteMember = () => {
 	if(!confirm("탈퇴하면 기능 이용이 제한되는데 정말로 탈퇴하실건가요..?😥")) return;
@@ -126,5 +482,3 @@ document.memberEnrollFrm.onsubmit = (e) => {
 };
 
 </script>
-
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>

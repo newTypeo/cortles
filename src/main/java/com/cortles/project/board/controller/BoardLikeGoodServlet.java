@@ -43,19 +43,19 @@ public class BoardLikeGoodServlet extends HttpServlet {
 	        session.setAttribute("likedBoards", likedBoards);
 	    }
 
-	    // 추천 했을 시
+	    // 추천 이미 했을 시
 	    if (likedBoards.contains(boardNo)) {
-	    	response.setContentType("text/html;charset=UTF-8");
-	    	PrintWriter out = response.getWriter();
-	    	out.println("<script>alert('이미 추천하셨습니다.'); location.href='" + request.getContextPath() + "/board/boardDetail?no=" + boardNo + "';</script>");
+		   
 
+    	// 추천 안 했을 시
 	    } else {
-	        // 추천 안 했을 시
+	    	
 	        likedBoards.add(boardNo); // 추천한 게시글 번호를 세션에 추가
 
 	        int likeCount = Integer.parseInt(request.getParameter("likeCount"));
 	        System.out.println("boardNo = " + boardNo);
 	        System.out.println("likeCount = " + likeCount);
+		   
 
 	        // 2. 업무로직
 	        int result = boardService.updateLike(boardNo, likeCount);

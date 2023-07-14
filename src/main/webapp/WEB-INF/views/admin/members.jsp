@@ -18,7 +18,7 @@
     	<input type="hidden" name="searchType" value="name"/>
    		 <input type="text" name="searchKeyword" class="search-input" placeholder="이름으로 검색">
    			<span class="btn-wrapper">
-    			<button class="btn" type="submit">Button</button>
+    			<button class="btn" type="submit">select</button>
 			</span>
    	 </form>
 	</div>
@@ -66,7 +66,7 @@
 	                <td>
 						<input type="radio" name="<%= member.getMemberName() %>" id="yes" value="<%= member.getMemberId() %>"/>
 						<label for="yes">Y</label>
-						<input type="radio" name="out" id="no" value="N" checked="checked"/>
+						<input type="radio" name="<%= member.getMemberName() %>" id="no" value="N" checked/>
 						<label for="no">N</label>
 	                </td>
 	            </tr>
@@ -76,6 +76,42 @@
 %>
         </tbody>
     </table>
+    <br><br>
+    <span class="btn-wrapper">
+    			<button class="btn" id="quit" type="submit">quit</button>
+			</span>
+	<br><br>
+	<table>
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>이메일</th>
+					<th>휴대폰</th>
+					<th>성별</th>
+					<th>선호장르</th>
+					<th>가입일</th>
+					<th>탈퇴일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+					 
+					</td>
+				</tr>
+			</tbody>
+		</table>
+			
 </section>
 <form
 	name="memberRoleUpdateFrm"
@@ -101,7 +137,7 @@ document.querySelector("#yes").onclick = (e) => {
 		document.delMemberIdFrm.querySelector("#delMemberId").value = memberId;
 		document.delMemberIdFrm.submit();
 	}else{
-		return;
+		document.querySelector("#no").checked = true;
 	}
 };
 

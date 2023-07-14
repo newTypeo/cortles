@@ -336,6 +336,32 @@ public class BoardDao {
 	}
 
 
+	public BoardComment boardCommentfindById(Connection conn, int no) {
+		BoardComment updateBoardComment = null;
+		String sql = prop.getProperty("boardCommentfindById");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, no);
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					int commentNo = rset.getInt("comment_no");
+					int boardNo = rset.getInt("board_no");
+					String writerId = rset.getString("writer_id");
+					String content = rset.getString("content");
+					Date regDate = rset.getDate("reg_date");
+					updateBoardComment = new BoardComment(commentNo, boardNo, writerId, content, regDate);
+
+					
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return updateBoardComment;
+	}
+
+
 
 
 
