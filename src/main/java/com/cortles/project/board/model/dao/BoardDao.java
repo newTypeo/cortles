@@ -317,6 +317,25 @@ public class BoardDao {
 	}
 
 
+	public int totalBoardCommentCnt(Connection conn, int boardNo) {
+		int boardCommentCnt = 0;
+		String sql = prop.getProperty("totalBoardCommentCnt");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, boardNo);
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next()) {
+					
+					boardCommentCnt = rset.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return boardCommentCnt;
+	}
+
+
 
 }
 

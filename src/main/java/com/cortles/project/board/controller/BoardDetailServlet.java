@@ -65,7 +65,7 @@ public class BoardDetailServlet extends HttpServlet {
 		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
 		
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
-		
+		int boardCommentCnt = boardService.totalBoardCommentCnt(boardNo);
 		
 		// secure coding처리
 		String unsecureTitle = board.getTitle();
@@ -76,6 +76,7 @@ public class BoardDetailServlet extends HttpServlet {
 		request.setAttribute("board", board);
 		request.setAttribute("boardComments", boardComments);
 		request.setAttribute("attachment", attachment);
+		request.setAttribute("boardCommentCnt", boardCommentCnt);
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
