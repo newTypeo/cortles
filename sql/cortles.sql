@@ -11,36 +11,26 @@
 --alter user cortles quota unlimited on users;
 
 
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 
-
-
-
--- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
---DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
-
---DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
 --DROP TABLE "DIRECTOR" CASCADE CONSTRAINTS;
-
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
+--DROP TABLE "POSTER" CASCADE CONSTRAINTS;
 --DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "GENRE" CASCADE CONSTRAINTS;
 --DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
-
 --DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
-
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
-
-
---select * from member;
---select * from board;
-
 
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
@@ -308,92 +298,12 @@ REFERENCES member (
 --);
 select * from board;
 select * from attachment;
------------ 시퀀스 생성 ------------
-create sequence seq_board_no;
-create sequence seq_attachment_no;
----------------------------------
---drop sequence seq_board_no;
---drop sequence seq_attachment_no;
-
-select * from board;
-
-
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
->>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
-
-
 
 commit;
 
-select * from member;
-
---select seq_board_no.currval from dual;
-
-select * from board;
-
-select * from attachment;
-<<<<<<< HEAD
-
-create sequence seq_board_comment_no;
----------------------------------
---drop sequence seq_board_no;
---drop sequence seq_attachment_no;
---drop sequence seq_board_comment_no;
-select * from board;
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);insert into board values (
-   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
-);
-insert into board values (
-    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
-);
-
-
---insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 select * from movie;
 
---insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
+
+
+
+
