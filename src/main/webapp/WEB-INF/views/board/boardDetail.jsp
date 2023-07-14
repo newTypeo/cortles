@@ -97,7 +97,7 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
-								<button class="btn-update" value="<%= bc.getCommentNo() %>" onclick="updateBoardComment()">수정</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
 								<button class="btn-report" value="<%= bc.getCommentNo() %>" onclick="reportBoardComment()">신고</button>
 								<%  } %>
 							</td>
@@ -116,22 +116,26 @@
 		<input type="hidden" name="no" />
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
+	<form 
+		action="<%= request.getContextPath() %>/board/boardCommentUpdate" 
+		name="boardCommentUpdateFrm"
+		method="get">
+		<input type="hidden" name="no" />
+		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+	</form>
 	<script>
-	const updateBoard = () => {
-		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
-	}
+	document.querySelectorAll(".btn-update").forEach((button) => {
+		button.onclick = (e) => {
+			const frm = document.boardCommentUpdateFrm;
+			const {value} = e.target;
+			console.log(value);
+			frm.no.value = value;
+			frm.submit();
+		}
+	});
 	
 
 
-	<%--function checkLoginForm() {
-	      if (<%= loginMember.getMemberId() %> == null) {
-	         alert('로그인이 필요합니다.');
-	         return false; // 폼 제출 취소
-	      }else{
-	    	  alert("추천!");
-	      }
-	      return true; // 폼 제출 진행
-	   }--%>
 	
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
