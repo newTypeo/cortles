@@ -72,7 +72,7 @@ window.addEventListener("load", () => {
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
               <form>
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/WXLfyrmKQUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  <iframe class="trailer" width="560" height="315" src="https://www.youtube.com/embed/WXLfyrmKQUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </form>
             </div>
             
@@ -172,7 +172,9 @@ function openModal(movie_code) {
 		url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
 		data : {movie_code},
 		success(movieInfo){
-			console.log("어디야?2", movieInfo);
+			console.log("여기는 success= 	", movieInfo);
+			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod} = movieInfo;
+			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
 		}

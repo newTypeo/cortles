@@ -52,6 +52,7 @@ private Properties prop = new Properties();
 		movie.setMovieCode(rset.getString("movie_code"));
 		movie.setTitle(rset.getString("title"));
 		movie.setTitleEng(rset.getString("title_eng"));
+		movie.setMovieGrade(rset.getInt("movie_grade"));
 		movie.setGenre(rset.getString("genre"));
 		movie.setStory(rset.getString("story"));
 		movie.setOpenDate(rset.getDate("open_date"));
@@ -60,6 +61,23 @@ private Properties prop = new Properties();
 		movie.setDirector(rset.getString("director"));
 		movie.setActors(rset.getString("actors"));
 		movie.setVod(rset.getString("vod"));
+		return movie;
+	}
+
+	public Movie findOneMovies(Connection conn, String movie_code) {
+		Movie movie = null;
+		String sql = prop.getProperty("findOneMovies");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, movie_code);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next())
+					movie = handleMovieResultSet(rset);
+			}
+		} catch (SQLException e) {
+			throw new MovieException(e);
+		}
 		return movie;
 	}
 
