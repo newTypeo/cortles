@@ -78,6 +78,9 @@
 #enroll-container input[type="button"]:hover {
   background-color: #333;
 }
+#enroll-container sup{
+	color:red;
+}
 
 
 /*배경 블록*/
