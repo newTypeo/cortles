@@ -1,17 +1,24 @@
 @charset "UTF-8";
 
+
+
+/*height_wrapper*/
+#height_wrapper {
+	position: absolute;
+ 	z-index: 2;
+ 	height:1200px; 
+ 	padding:60px;
+ 	
+}
+
 /*section*/
 #enroll-container {
   max-width: 600px;
   margin: 100px auto;
-  background-color: #fff;
+  background-color: #222;
   padding: 40px;
   border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #000000;
-  position: absolute;
-  z-index: 2;
- 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 #enroll-container h2 {
@@ -57,7 +64,7 @@
 
 #enroll-container input[type="submit"]:hover,
 #enroll-container input[type="reset"]:hover {
-  background-color: #00ff00;
+  background-color: #ff6064;
 }
 
 #enroll-container input[type="button"] {
@@ -71,6 +78,9 @@
 
 #enroll-container input[type="button"]:hover {
   background-color: #333;
+}
+#enroll-container sup{
+	color:red;
 }
 
 
@@ -122,7 +132,7 @@
     /*3번*/
     #blocksection span:hover
     {
-        background: #0f0;
+        background: #df0b0b;
         transition: 0s;
     }
     
