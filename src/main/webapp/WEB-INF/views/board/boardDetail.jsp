@@ -14,7 +14,7 @@
 <section id="board-container">
 	<div id="board" style ="width: 605px;">
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br>
-      <span>작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
+      <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
         <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
       </span>
@@ -24,7 +24,7 @@
 
     <div id="board_content">
     	<img src="<%= request.getContextPath() %>/images/city1.PNG" />
-      <textarea readonly="" style="background-color: #141414; color: white; border: none; resize: none;width: 100%; height: auto;"><%= board.getContent() %>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</textarea>
+      <textarea readonly="" style="background-color: #141414; color: white; border: none; resize: none;width: 100%; height: auto;"><%= board.getContent() %></textarea>
     </div>
     <button>추천</button>
   </div>
