@@ -16,6 +16,8 @@ import com.cortles.project.member.model.vo.Gender;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class MemberDao {
 
 private Properties prop = new Properties();
@@ -239,6 +241,21 @@ private Properties prop = new Properties();
 		}
 		return members;
 	}
+
+	public int deleteMemberById(Connection conn, String delMemberId) {
+		int result = 0;
+		String sql = prop.getProperty("deleteMemberById");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, delMemberId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
+		return result;
+	}
+
+
 	
 
 	
