@@ -24,6 +24,7 @@ import com.cortles.project.member.model.vo.Member;
 	"/board/boardDelete",
 	"/board/boardCommentCreate"
 	
+	
 })
 public class LoginFilter extends HttpFilter implements Filter {
        
