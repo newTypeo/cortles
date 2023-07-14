@@ -37,5 +37,6 @@ public class AdminMemberFindServlet extends HttpServlet {
 		.forward(request, response);
 	}
 
+	
 
 }
