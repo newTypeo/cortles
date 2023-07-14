@@ -25,13 +25,14 @@
     <div id="board_content">
       <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
     </div>
+    
     <!-- 추천 폼 시작 -->
-   <form action="<%= request.getContextPath()%>/board/boardLikeGood"
-   method="post"
-   name="boardLikeGoodFrm">
+	 <form action="<%= request.getContextPath()%>/board/boardLikeGood" method="post" name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
    <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
-    <button type="submit" class="like_good">추천 <%= board.getLikeCount() %></button>
-   </form>
+   <input type="hidden" name="likeCount" value="<%= board.getLikeCount() %>" />
+   <button type="submit" class="like_good">추천 <%= board.getLikeCount() %></button>
+</form>
+
    <!-- 추천 폼 끝 -->
   </div>
 	
@@ -80,7 +81,6 @@
 			</table>
 		<% 	} %>
 	</div>    
-	</div>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentDelete" 
 		name="boardCommentDelFrm"
@@ -89,6 +89,16 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
+	 function checkLoginForm() {
+	      if (<%= loginMember %> == null) {
+	         alert('로그인이 필요합니다.');
+	         return false; // 폼 제출 취소
+	      }else{
+	    	  alert("추천!");
+	      }
+	      return true; // 폼 제출 진행
+	   }
+	
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
 			if(confirm("해당 댓글을 삭제하시겠습니까?")){
@@ -205,4 +215,3 @@
 
 
 
->>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git

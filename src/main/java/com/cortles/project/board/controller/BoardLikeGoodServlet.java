@@ -21,9 +21,14 @@ public class BoardLikeGoodServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("여기는 찍히겠지?");
 		// 1. 사용자 입력값 처리
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String boardNoString = request.getParameter("boardNo");
+		int boardNo = 0; // 기본값 설정
+
+		if (boardNoString != null) {
+		    boardNo = Integer.parseInt(boardNoString);
+		}
 		int likeCount = Integer.parseInt(request.getParameter("likeCount"));
 		System.out.println("boardNo = " +  boardNo);
 		System.out.println("likeCount = " + likeCount);
