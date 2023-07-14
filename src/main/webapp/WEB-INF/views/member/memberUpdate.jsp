@@ -101,13 +101,8 @@
 </form>
 <script>
 deleteMember = () => {
-	if(!confirm("탈퇴하면 기능 이용이 제한되는데 정말로 탈퇴하실건가요..?")){
-		return;
-	}
-	
-	
-	
-	
+	if(!confirm("탈퇴하면 기능 이용이 제한되는데 정말로 탈퇴하실건가요..?😥")) return;
+	document.delMemberIdFrm.submit();
 }
 
 // 폼 유효성검사
