@@ -9,12 +9,13 @@
 	Board board = (Board) request.getAttribute("board");
 	List<Attachment> attachments = board.getAttachments();
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
+	Attachment attachment = (Attachment) request.getAttribute("attachment");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<div id="board" style ="width: 605px;">
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br>
-      <span>작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
+      <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
         <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
       </span>
@@ -23,7 +24,10 @@
     <hr>
 
     <div id="board_content">
-      <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
+    	<% if(attachment.getRenamedFilename() != null) { %>
+    		<img src="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>" />
+   		<% } %>
+      <textarea readonly="" style="background-color: #141414; color: white; border: none; resize: none;width: 100%; height: auto;"><%= board.getContent() %></textarea>
     </div>
     <br>
     <button>추천</button>
@@ -32,14 +36,22 @@
    	<%
    		boolean showButton = loginMember != null
    			&& (loginMember.getMemberId().equals(board.getWriterId())
-   					|| loginMember.getMemberRole()==MemberRole.A);
+   					|| loginMember.getMemberRole() == MemberRole.A);
    		if(showButton){
    	%>
    	<input type="button" value="수정" onclick="" />
    	<input type="button" value="삭제" onclick="boardDelete()"/>
   	<% } %>
   </div>
-	
+	<script>
+	$(document).ready(function() {
+	      $('#board_content').on( 'keyup', 'textarea', function (e){
+	        $(this).css('height', 'auto' );
+	        $(this).height( this.scrollHeight );
+	      });
+	      $('#board_content').find( 'textarea' ).keyup();
+    });
+	</script>
 	<hr style="margin-top:30px;" />    
 	
 	<div class="comment-container">
@@ -177,7 +189,7 @@
 	    
     
 	</section>
-<<<<<<< HEAD
+
 <% if(showButton){ %>
 <form action="<%= request.getContextPath()%>/board/boardDelete" name="boardDeleteFrm" method="POST">
 	<input type="hidden" name="no" value="<%= board.getBoardNo() %>" />
@@ -191,9 +203,9 @@ const boardDelete = () =>{
 </script>
 <% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-=======
+
 	
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 
 
 

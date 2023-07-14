@@ -144,6 +144,13 @@ public class BoardService {
 		return result;
 	}
 
+	public Attachment findAttachmentByBoardNo(int boardNo) {
+		Connection conn = getConnection();
+		Attachment attachment = boardDao.findAttachmentByBoardNo(conn, boardNo);
+		close(conn);
+		return attachment;
+	}
+
 }
 
 
