@@ -13,22 +13,40 @@
 	href="<%=request.getContextPath()%>/css/index.css" />
 </head>
 <body>
-<%
-	List<Movie> movies = (List<Movie>) session.getAttribute("movies");
-	System.out.println("movies= " + movies);
-	if(movies != null){
-		for(Movie movie : movies){
-			System.out.println(movie);
-		}
-	}
-%>
 <script>
 window.addEventListener("load", () => {
-	if(<%= movies %> == null) {
-		window.location.href = '<%= request.getContextPath() %>/movie/findAllMovies';
-		console.log("영화서블릿 가기");
-	}
+	findAllMovies();	
 });
+const findAllMovies = () => {
+	$.ajax({
+		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
+		dataType : "json",
+		success(movies) {
+			console.log(movies);
+			movies.forEach((movie) => {
+				const {posterUrl, genre} = movie;
+				if(genre != null && genre.includes("액션"))
+					document.querySelector("#action").innerHTML += `<img src="\${posterUrl}"/>`;
+				if(genre != null && genre.includes("SF"))
+					document.querySelector("#sf").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("공포"))
+					document.querySelector("#horror").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("로맨스"))
+					document.querySelector("#romance").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("드라마"))
+					document.querySelector("#drama").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("코메디"))
+					document.querySelector("#comedy").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("스릴러"))
+					document.querySelector("#thriller").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("판타지"))
+					document.querySelector("#fantasy").innerHTML += `<img src="\${posterUrl}"/>`;
+				if (genre != null && genre.includes("미스터리"))
+					document.querySelector("#mystery").innerHTML += `<img src="\${posterUrl}"/>`;
+			})
+		}
+	});
+};
 </script>
 
 
@@ -112,49 +130,53 @@ window.addEventListener("load", () => {
 		<% } %>
 		<div>
 		<span>액션</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+			<article id="action">
+			</article>
+		</div>
+		<hr/>
+		<div>
+		<span>SF</span>
+			<article id="sf">
 			</article>
 		</div>
 		<hr/>
 		<div>
 		<span>호러</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+			<article id="horror">
+			</article>
+		</div>
+		<hr/>
+		<div>
+		<span>스릴러</span>
+			<article id="thriller">
 			</article>
 		</div>
 		<hr/>
 		<div>
 		<span>로맨스</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+			<article id="romance">
+			</article>
+		</div>
+		<hr/>
+		<div>
+		<span>드라마</span>
+			<article id="drama">
 			</article>
 		</div>
 		<hr/>
 		<div>
 		<span>코미디</span>
-			<article id="art1">
-				<img src="<%= request.getContextPath() %>/images/flower1.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower2.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower3.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower4.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/flower5.PNG"/>
-				<img src="<%= request.getContextPath() %>/images/river1.PNG"/>
+			<article id="comedy">
+			</article>
+		<div>
+		<span>판타지</span>
+			<article id="fantasy">
+			</article>
+		</div>
+		<hr/>
+		<div>
+		<span>미스터리</span>
+			<article id="mystery">
 			</article>
 		</div>
 		<hr/>
@@ -213,7 +235,6 @@ function getFormattedDate() {
   
   return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 }
-
 
 </script>
 	</section>

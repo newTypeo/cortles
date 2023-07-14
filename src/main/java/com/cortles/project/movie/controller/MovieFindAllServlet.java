@@ -13,8 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import com.cortles.project.movie.model.service.MovieService;
 import com.cortles.project.movie.model.vo.Movie;
+import com.google.gson.Gson;
 
-@WebServlet("/movie/findAllMovies")
+@WebServlet("/movie/json/findAllMovies")
 public class MovieFindAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final MovieService movieService = new MovieService(); 
@@ -26,9 +27,9 @@ public class MovieFindAllServlet extends HttpServlet {
 		
 		List<Movie> movies = movieService.findAllMovies();
 		
-		request.getSession().setAttribute("movies", movies);
-		request.getRequestDispatcher(request.getContextPath())
-			.forward(request, response);
+		response.setContentType("application/json; charset=utf-8");
+				
+		new Gson().toJson(movies, response.getWriter());
 		
 	}
 
