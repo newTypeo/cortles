@@ -23,11 +23,20 @@
     <hr>
 
     <div id="board_content">
-      <textarea readonly="" style="resize: none;width: 100%;height: 400px;"><%= board.getContent() %></textarea>
+    	<img src="<%= request.getContextPath() %>/images/city1.PNG" />
+      <textarea readonly="" style="background-color: #141414; color: white; border: none; resize: none;width: 100%; height: auto;"><%= board.getContent() %>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</textarea>
     </div>
     <button>추천</button>
   </div>
-	
+	<script>
+	$(document).ready(function() {
+	      $('#board_content').on( 'keyup', 'textarea', function (e){
+	        $(this).css('height', 'auto' );
+	        $(this).height( this.scrollHeight );
+	      });
+	      $('#board_content').find( 'textarea' ).keyup();
+	    });
+	</script>
 	<hr style="margin-top:30px;" />    
 	
 	<div class="comment-container">
