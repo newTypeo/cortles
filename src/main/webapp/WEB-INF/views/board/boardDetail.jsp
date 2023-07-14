@@ -53,8 +53,8 @@
   </div>
   	<script>
   	const updateBoard = () => {
-		document.
-	}
+  		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+  	};
 	const boardDelete = () =>{
 		if(confirm("글을 삭제하시겠습니까?")){
 			document.boardDeleteFrm.submit();

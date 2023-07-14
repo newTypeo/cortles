@@ -25,9 +25,8 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 		url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
 		data : {
 			ServiceKey : "8N7WULS3PZ7ER312R70R",
-			listCount : 60,
-			releaseDts : "20000201",
-			genre : "πÃΩ∫≈Õ∏Æ"
+			listCount : 100,
+			releaseDts : "20220201"
 		},
 		dataType : 'json',
 		success(responseData){
@@ -54,7 +53,7 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 				if(
 					vod !== "" && story !== "" && director !== "" && title !== "" && titleEng !== "" && genre !== "" 
 					&& repRlsDate !== "" && runtime !== "" && posters !== ""
-					&& !story.includes('ø¡≈‰≥”')
+					&& !story.includes('ø¡≈‰≥”') && !genre.includes('ø°∑Œ')
 				) {
 					
 					let actors = ''; // πËøÏµÈ

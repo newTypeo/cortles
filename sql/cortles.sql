@@ -39,6 +39,7 @@ create sequence seq_board_comment_no;
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
 select * from board;
+select * from movie;
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
