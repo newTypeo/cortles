@@ -169,6 +169,14 @@ public class BoardService {
 		return attachment;
 	}
 
+	public int totalBoardCommentCnt(int boardNo) {
+		int boardCommentCnt = 0;
+		Connection conn = getConnection();
+		boardCommentCnt = boardDao.totalBoardCommentCnt(conn,boardNo);
+		commit(conn);
+		return boardCommentCnt;
+	}
+
 }
 
 

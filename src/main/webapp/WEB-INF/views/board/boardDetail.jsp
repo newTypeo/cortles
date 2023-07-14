@@ -10,6 +10,7 @@
 	List<Attachment> attachments = board.getAttachments();
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
+	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
@@ -17,7 +18,7 @@
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br><br><br>
       <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
       <span id="option">
-        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 1</span>
+        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 <%= boardCommentCnt %></span>
       </span>
     </div>
 
@@ -69,6 +70,7 @@
 				name="boardCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
                 <input type="hidden" name="writerId" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+                <input type="hidden" name="boardCnt" value="<%= board.getCommentCnt() %>" />
 				<textarea name="content" cols="60" rows="3"></textarea>
                 <button type="submit" id="btn-comment-enroll1">등록</button>
             </form>
@@ -95,9 +97,12 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>" onclick="updateBoardComment()">수정</button>
+								<button class="btn-report" value="<%= bc.getCommentNo() %>" onclick="reportBoardComment()">신고</button>
 								<%  } %>
 							</td>
 						</tr>
+						
 				<%
 					}
 				%>
@@ -112,15 +117,21 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
-	 function checkLoginForm() {
-	      if (<%= loginMember %> == null) {
+	const updateBoard = () => {
+		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+	}
+	
+
+
+	<%--function checkLoginForm() {
+	      if (<%= loginMember.getMemberId() %> == null) {
 	         alert('로그인이 필요합니다.');
 	         return false; // 폼 제출 취소
 	      }else{
 	    	  alert("추천!");
 	      }
 	      return true; // 폼 제출 진행
-	   }
+	   }--%>
 	
 	document.querySelectorAll(".btn-delete").forEach((button) => {
 		button.onclick = (e) => {
@@ -203,6 +214,7 @@
 	};
 
 	</script>
+	
 	    
     
 	</section>
