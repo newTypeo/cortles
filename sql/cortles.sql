@@ -1,18 +1,4 @@
 ------------- 삭제할 테이블 조회 -------------
-<<<<<<< HEAD
--- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
---DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
---DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
---DROP TABLE "BOARD" CASCADE CONSTRAINTS;
---DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
---DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
---DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
---DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
-
-=======
 --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
@@ -26,7 +12,6 @@
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
  
  
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 --------------- 테이블 조회 -----------------
 select * from board;
 select * from movie;
@@ -53,10 +38,7 @@ create sequence seq_board_comment_no;
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+select * from board;
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),

@@ -53,7 +53,7 @@
   </div>
   	<script>
   	const updateBoard = () => {
-		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
+		document.
 	}
 	const boardDelete = () =>{
 		if(confirm("글을 삭제하시겠습니까?")){
@@ -61,7 +61,15 @@
 		}
 	};
 	</script>
-  
+	<%-- 게시글 수정 서블릿 전달용 hidden frm --%>
+  	<form 
+		action="<%= request.getContextPath() %>/board/boardUpdate" 
+		name="boardUpdateFrm"
+		method="POST">
+		<input type="hidden" name="no" />
+		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+	</form>
+	
 	<script>
 	$(document).ready(function() {
 	      $('#board_content').on( 'keyup', 'textarea', function (e){
