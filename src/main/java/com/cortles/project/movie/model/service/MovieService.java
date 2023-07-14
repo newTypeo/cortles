@@ -20,6 +20,11 @@ public class MovieService {
 		close(conn);
 		return movies;
 	}
+
+	public Movie findOneMovies(String movie_code) {
+		
+		return null;
+	}
 	
 	
 	
