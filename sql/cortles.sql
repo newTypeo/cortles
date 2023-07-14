@@ -27,6 +27,51 @@ create sequence seq_board_comment_no;
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
 
+<<<<<<< HEAD
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
+
+
+SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+--DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
+--DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR" CASCADE CONSTRAINTS;
+--DROP TABLE "BOARD" CASCADE CONSTRAINTS;
+--DROP TABLE "POSTER" CASCADE CONSTRAINTS;
+--DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
+--DROP TABLE "GENRE" CASCADE CONSTRAINTS;
+--DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "ACTOR_MOVIE" CASCADE CONSTRAINTS;
+--DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
+--DROP TABLE "DIRECTOR_MOVIE" CASCADE CONSTRAINTS;
+--DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "MOVIE_GENRE" CASCADE CONSTRAINTS;
+--DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
+
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -65,6 +110,8 @@ CREATE TABLE board (
 	read_count	number,
 	reg_date	date DEFAULT sysdate
 );
+
+
 
 CREATE TABLE quit_member (
 	no	number	NOT NULL,
@@ -186,15 +233,20 @@ ALTER TABLE movie_comment ADD CONSTRAINT FK_movie_TO_movie_comment_1 FOREIGN KEY
 REFERENCES movie (
 	movie_code
 );
+<<<<<<< HEAD
+
+ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_report_1 FOREIGN KEY (
+=======
 --select * from attachment where board_no = 19;
 ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_member_report_1 FOREIGN KEY (
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 	comment_no
 )
 REFERENCES report_comment (
 	comment_no
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_report_1 FOREIGN KEY (
 	member_id
 )
 REFERENCES member (
@@ -305,4 +357,82 @@ end;
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 --);
+<<<<<<< HEAD
+select * from board;
+select * from attachment;
+<<<<<<< HEAD
+----------- 시퀀스 생성 ------------
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+<<<<<<< HEAD
+create sequence seq_board_comment_no;
+---------------------------------
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+=======
+---------------------------------
+----------- 트리거 생성 ------------
+create or replace trigger trig_user_quit
+    before
+    delete on member
+    for each row 
+begin
+    -- 사용자탈퇴시
+    insert into 
+        quit_member (no, user_id, log)
+    values(
+        seq_tbl_user_log_no.nextval, 
+        :old.id,
+        :old.name || '(' || :old.id || ') 사용자 탈퇴'
+    );
+end;
+/
+---------------------------------
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+
+
+--drop sequence seq_board_no;
+--drop sequence seq_attachment_no;
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+
+<<<<<<< HEAD
 --select seq_board_no.currval from dual;
+
+---------------- 조회 ------------------
+select * from board;
+=======
+commit;
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+--select seq_board_no.currval from dual;
+
+select * from board;
+
+select * from attachment;
+
+--insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+select * from movie;
+<<<<<<< HEAD
+select * from attachment;
+--insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
+--insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
+
+=======
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+
+
+
+
+
+=======
+--select seq_board_no.currval from dual;
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
