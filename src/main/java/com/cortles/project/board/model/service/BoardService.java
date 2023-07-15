@@ -3,6 +3,7 @@ package com.cortles.project.board.model.service;
 import static com.cortles.project.common.JdbcTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cortles.project.board.model.dao.BoardDao;
@@ -183,6 +184,15 @@ public class BoardService {
 		updateBoardComment = boardDao.boardCommentfindById(conn, no);
 		commit(conn);
 		return updateBoardComment;
+	}
+
+	public List<Board> searchboard(String keyword) {
+		Connection conn = getConnection();
+		List<Board> boards = new ArrayList<>();
+		boards = boardDao.searchboard(conn,keyword);
+		close(conn);
+		
+		return boards;
 	}
 
 }
