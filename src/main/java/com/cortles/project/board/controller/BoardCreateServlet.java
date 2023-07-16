@@ -18,6 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
+
 /**
  * Servlet implementation class BoardCreateServlet
  */
@@ -53,6 +54,7 @@ public class BoardCreateServlet extends HttpServlet {
 			// 파일명 재지정 정책객체
 			// 한글.txt --> 20230629_160430123_999.txt
 			FileRenamePolicy policy = new DefaultFileRenamePolicy();
+			  
 			
 			MultipartRequest multiReq = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
 			
