@@ -1,5 +1,5 @@
 ------------- 삭제할 테이블 조회 -------------
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+-- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
@@ -10,8 +10,7 @@
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
- 
- 
+
 --------------- 테이블 조회 -----------------
 select * from board;
 select * from movie;
@@ -38,8 +37,6 @@ create sequence seq_board_comment_no;
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
-select * from board;
-select * from movie;
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -197,14 +194,14 @@ REFERENCES movie (
 	movie_code
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_report_1 FOREIGN KEY (
 	comment_no
 )
 REFERENCES report_comment (
 	comment_no
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_report_1 FOREIGN KEY (
 	member_id
 )
 REFERENCES member (
@@ -271,52 +268,57 @@ end;
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);insert into board values (
---   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
---);
---insert into board values (
---    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
---);
---select seq_board_no.currval from dual;
-<<<<<<< HEAD
-=======
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+);
+select seq_board_no.currval from dual;
+
+select * from board;
+update member set favorite_movie_code = '123' where member_id = 'rudqls';
+update member set favorite_movie_code = favorite_movie_code || ',1' where member_id = 'rudqls';
+update member set favorite_movie_code = favorite_movie_code || ',2' where member_id = 'rudqls';
 
 
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+select * from member;
+
+

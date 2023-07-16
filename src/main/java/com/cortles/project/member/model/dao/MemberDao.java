@@ -91,12 +91,11 @@ private Properties prop = new Properties();
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, movieCode);
 			pstmt.setString(2, memberId);
-			try (ResultSet rset = pstmt.executeQuery()){
+				
 					result = pstmt.executeUpdate();
-			}
 		}
 		catch (Exception e) {
-			throw new MemberException();
+			throw new MemberException(e);
 		}
 		return result;
 	}
