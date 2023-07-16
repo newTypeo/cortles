@@ -26,9 +26,6 @@ public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
 		int no = Integer.parseInt(request.getParameter("no"));
@@ -44,13 +41,10 @@ public class BoardUpdateServlet extends HttpServlet {
 			.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = getServletContext();
 		String saveDirectory = application.getRealPath("/upload/board");
-		System.out.println("saveDirectory = " + saveDirectory);
+		// System.out.println("saveDirectory = " + saveDirectory);
 		
 		int maxPostSize = 1024 * 1024 * 10;
 		String encoding = "utf-8";
@@ -73,7 +67,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		board.setTitle(title);
 		board.setWriterId(writer);
 		board.setContent(content);
-		System.out.println(board);
+		// System.out.println(board);
 		
 		// Attachment객체 생성 (Board 추가)
 		Enumeration<String> filenames = multiReq.getFileNames();

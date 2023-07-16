@@ -11,7 +11,6 @@
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
-
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
