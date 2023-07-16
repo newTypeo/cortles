@@ -399,6 +399,23 @@ public class BoardDao {
 	}
 
 
+	public int updateBoardComment(Connection conn, int no, String content) {
+		int result = 0;
+		String sql = prop.getProperty("updateBoardComment");
+		// update board_comment set content = ? where comment_no = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, content);
+			pstmt.setInt(2, no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return result;
+	}
+
+
 
 
 

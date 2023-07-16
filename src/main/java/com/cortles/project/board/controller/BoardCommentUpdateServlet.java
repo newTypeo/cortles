@@ -26,7 +26,7 @@ public class BoardCommentUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("no = " + no);
+
 		// 2. 업무로직
 		BoardComment updateBoardComment = boardService.boardCommentfindById(no);
 		System.out.println("updateBoardComment = " + updateBoardComment);
@@ -41,7 +41,21 @@ public class BoardCommentUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect(request.getContextPath());
+		int no = Integer.parseInt(request.getParameter("no"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String content = request.getParameter("content");
+		
+		
+		BoardComment _updateBoardComment = boardService.boardCommentfindById(no);
+		// update board_comment set content = ? where comment_no = ?
+		int result = boardService.updateBoardComment(no, content);
+		_updateBoardComment.setContent(content);
+		System.out.println("_updateBoardComment = " + _updateBoardComment);
+		
+		request.setAttribute("_updateBoardComment", _updateBoardComment);
+		
+		
+		response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + boardNo);
 	}
 
 }
