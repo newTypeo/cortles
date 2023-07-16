@@ -8,6 +8,7 @@
 --
 --alter user cortles quota unlimited on users;
 
+ 
 ------------- 삭제할 테이블 조회 -------------
 -- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
@@ -27,7 +28,8 @@ select * from movie;
 select * from member;
 select * from attachment;
 select * from quit_member;
-
+update member set favorite_movie_code = favorite_movie_code || ',' || + '1' where member_id = 'sejong';
+update member set favorite_movie_code = favorite_movie_code || '1' where member_id = 'sejong';
 ------------- 테이블 행 삭제 ----------------
 -- delete from member where member_id = 'sejong';
 
