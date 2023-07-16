@@ -63,7 +63,13 @@ public class MemberService {
 	public int addMyList(String memberId, String movieCode) {
 		Connection conn = getConnection();
 		int result = 0;
-		result = memberDao.addMyList(conn, memberId, movieCode);
+		try {
+			result = memberDao.addMyList(conn, memberId, movieCode);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
 		close(conn);
 		return result;
 	}

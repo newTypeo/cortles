@@ -67,6 +67,18 @@ window.addEventListener("load", () => {
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
+      <% if(loginMember != null) { %>
+      <form
+      	name="myListFrm"
+      	action="<%=request.getContextPath()%>/member/AddMyListServlet"
+      	method="post"
+      >
+      	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
+      	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
+      	  <button type="button" id="ggimButton">찜</button>
+      	  
+      </form>
+      <% } %>	  
           <span class="close" onclick="closeModal();">&times;</span>
           
           <!-- 동영상 재생 구역 -->
@@ -161,7 +173,25 @@ window.addEventListener("load", () => {
 				<article id="mystery"></article>
 			</div>
 			<hr/>
+			
+			<form
+		      	name="myList"
+		      	action="<%=request.getContextPath()%>/member/myList"
+		      	method="get"
+		      >
+		      <% if(loginMember != null) { %>
+		      	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>      	  
+		      <% } %>
+      		</form>
+			
+			
 <script>
+const mylist = () => {
+	const frm = document.myList;
+	frm.submit();
+};
+
+
 
 const scroll = document.querySelector("body");
 
@@ -173,10 +203,24 @@ function openModal(movie_code) {
 		data : {movie_code},
 		success(movieInfo){
 			console.log("여기는 success= 	", movieInfo);
-			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod} = movieInfo;
+			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
 			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
+		  
+		  	  // 버튼을 클릭했을 때 실행되는 코드
+		  	document.querySelector("#ggimButton").addEventListener("click", (e) => {
+		  		console.log(e.target);
+		  		console.log(document.myListFrm);
+		  		const frm = document.myListFrm;
+		  		frm.movieCode.value = movieCode;
+		  		document.myListFrm.submit();
+		  		
+		  		//e.preventDefault();
+		  	});
+		  		
+		
+		  	
 		}
 	}) // ajax
 };
