@@ -18,33 +18,23 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
-/**
- * Servlet implementation class BoardCreateServlet
- */
 @WebServlet("/board/boardCreate")
 public class BoardCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final BoardService boardService = new BoardService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardCreate.jsp")
 			.forward(request, response);
-		
 	}
 	
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// 업로드파일 저장경로 C:\\Workspaces\\web_server_workspace\\hello-mvc\\src\\main\\webapp\\upload\\board
 			ServletContext application = getServletContext();
 			String saveDirectory = application.getRealPath("/upload/board");
-			System.out.println("saveDirectory = " + saveDirectory);
+			// System.out.println("saveDirectory = " + saveDirectory);
+			
 			// 파일하나당 최대크기 10MB
 			int maxPostSize = 1024 * 1024 * 10;
 			// 인코딩
@@ -65,7 +55,7 @@ public class BoardCreateServlet extends HttpServlet {
 			board.setTitle(title);
 			board.setWriterId(writer);
 			board.setContent(content);
-			System.out.println("확인용 = " + board); 
+			// System.out.println("확인용 = " + board); 
 			
 			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2
 			while(filenames.hasMoreElements()) {

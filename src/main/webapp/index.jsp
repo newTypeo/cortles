@@ -72,7 +72,7 @@ window.addEventListener("load", () => {
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
               <form>
-                  <iframe class="trailer" width="560" height="315" src="https://www.youtube.com/embed/WXLfyrmKQUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </form>
             </div>
             
@@ -177,6 +177,11 @@ function openModal(movie_code) {
 			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
+		},
+		complete (){
+			// const src = document.querySelector('.video-container iframe').src;
+			// console.log(src.getElementsByClassName('.play'));
+			// document.querySelector(".trailer .play").click();
 		}
 	}) // ajax
 };
