@@ -71,7 +71,6 @@ public class BoardDetailServlet extends HttpServlet {
 		request.setAttribute("boardComments", boardComments);
 		request.setAttribute("attachment", attachment);
 		request.setAttribute("boardCommentCnt", boardCommentCnt);
-		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
 	}
