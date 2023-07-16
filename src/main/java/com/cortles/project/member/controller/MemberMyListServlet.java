@@ -18,6 +18,10 @@ public class MemberMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String memberId = request.getParameter("memberId");
+		System.out.println("memberId@mylist = " + memberId);
+		
+		
 		request.getRequestDispatcher("/WEB-INF/views/member/myList.jsp")
 			.forward(request, response);
 	}

@@ -17,7 +17,7 @@
 	</tr>
 </table>
 <button class="btn-update" value="<%= updateBoardComment.getCommentNo() %>">수정</button>
-<button>취소</button>
+<button type="button" class="btn-cancle">취소</button>
 <form 
 	action="<%= request.getContextPath() %>/board/boardCommentUpdate" 
 	name="boardCommentUpdateFrm"
@@ -28,6 +28,11 @@
 
 </section>
 <script>
+document.querySelector(".btn-cancle").onclick = (e) => {
+	window.history.back();
+}
+
+
 document.querySelector(".btn-update").onclick = (e) => {
 	const frm = document.boardCommentUpdateFrm;
 	const content = document.querySelector("#content");
