@@ -1,16 +1,13 @@
-------------- 삭제할 테이블 조회 -------------
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
---DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
---DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
---DROP TABLE "BOARD" CASCADE CONSTRAINTS;
---DROP TABLE "QUIT_MEMBER" CASCADE CONSTRAINTS;
---DROP TABLE "REPORT_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "MOVIE_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "MEMBER_REPORT" CASCADE CONSTRAINTS;
---DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
---DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
- 
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
  
 ------------- 삭제할 테이블 조회 -------------
 -- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
@@ -327,5 +324,3 @@ end;
 --    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 --);
 --select seq_board_no.currval from dual;
-
-

@@ -15,8 +15,7 @@ import com.cortles.project.member.model.exception.MemberException;
 import com.cortles.project.member.model.vo.Gender;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
-
-import oracle.jdbc.proxy.annotation.Pre;
+import com.cortles.project.member.model.vo.QuitMember;
 
 public class MemberDao {
 
@@ -156,6 +155,31 @@ private Properties prop = new Properties();
 		
 		return new Member(memberId,favoriteGenre,null,null,memberName,email,phone,gender,memberRole,birthday,enrollDate);
 	}
+	
+	private QuitMember handleQuitMemberListResultSet (ResultSet rset) throws SQLException {
+		String memberId = rset.getString("member_id");
+		String name = rset.getString("member_name");
+		String email = rset.getString("email");
+		String phone = rset.getString("phone");
+		String _gender = rset.getString("gender");
+		Gender gender = _gender != null ? Gender.valueOf(_gender) : null;
+		String _memberRole = rset.getString("member_role");
+		MemberRole memberRole = _memberRole != null ? MemberRole.valueOf(_memberRole) : null;
+		Date birthday = rset.getDate("birthday");
+		Date enrollDate = rset.getDate("enroll_date");
+		Date quitDate = rset.getDate("quit_date");
+		QuitMember quitMember = new QuitMember();
+		quitMember.setMemberId(memberId);
+		quitMember.setName(name);
+		quitMember.setEmail(email);
+		quitMember.setPhone(phone);
+		quitMember.setGender(gender);
+		quitMember.setMemberRole(memberRole);
+		quitMember.setBirthday(birthday);
+		quitMember.setEnrollDate(enrollDate);
+		quitMember.setQuitDate(quitDate);
+		return quitMember;
+	}
 
 	public int deleteMyList(Connection conn, String memberId, String movieCode) {
 		int result = 0;
@@ -251,6 +275,28 @@ private Properties prop = new Properties();
 			throw new MemberException(e);
 		}
 		return result;
+	}
+	/*
+	 * 탈퇴 회원 조회 - 주혜 
+	 */
+	public List<QuitMember> quitMemberFindAll(Connection conn) {
+		List<QuitMember> quitMembers = new ArrayList<>();
+		String sql = prop.getProperty("quitMemberFindAll");
+//		System.out.println("Dao");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rset = pstmt.executeQuery();
+				){
+			System.out.println("하이 ");
+			while(rset.next()) {
+				System.out.println("하이 in while");
+				QuitMember quitMember = handleQuitMemberListResultSet(rset);
+				System.out.println("하이 after resultSet");
+				quitMembers.add(quitMember);
+			}
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
+		return quitMembers;
 	}
 
 
