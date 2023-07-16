@@ -1,5 +1,15 @@
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
 ------------- 삭제할 테이블 조회 -------------
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+-- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
@@ -10,8 +20,7 @@
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
- 
- 
+
 --------------- 테이블 조회 -----------------
 select * from board;
 select * from movie;
@@ -38,8 +47,6 @@ create sequence seq_board_comment_no;
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
-select * from board;
-select * from movie;
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -315,8 +322,3 @@ end;
 --    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 --);
 --select seq_board_no.currval from dual;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git

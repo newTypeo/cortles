@@ -17,10 +17,10 @@ public class MemberDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String delMemberId = request.getParameter("memberId");
 		String delOnMembers = request.getParameter("delOnMembers");
-		//System.out.println("delMemberId =" + delMemberId);
+		System.out.println("delMemberId =" + delMemberId);
 		
 		int result = memberService.deleteMemberById(delMemberId);
-		//System.out.println("주혜result@deleteMemberservlet=" + result);
+		System.out.println("주혜result@deleteMemberservlet=" + result);
 		
 		// 세션 회원 삭제해야함
 		if(delOnMembers == null || "".equals(delOnMembers)) { // 회원 조회에서 탈퇴 시 
