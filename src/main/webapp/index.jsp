@@ -177,8 +177,7 @@ function openModal(movie_code) {
 			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
-		  	})
-		},
+		}),
 		complete (){
 			// const src = document.querySelector('.video-container iframe').src;
 			// console.log(src.getElementsByClassName('.play'));
