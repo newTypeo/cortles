@@ -167,16 +167,17 @@ const scroll = document.querySelector("body");
 
 //모달 열기
 function openModal(movie_code) {
-	console.log("movie_code", movie_code);
+	// console.log("movie_code", movie_code);
 	$.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
 		data : {movie_code},
 		success(movieInfo){
 			console.log("여기는 success= 	", movieInfo);
-			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod} = movieInfo;
+			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
 			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
+		  	})
 		},
 		complete (){
 			// const src = document.querySelector('.video-container iframe').src;

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.Attachment;
@@ -73,8 +74,9 @@ public class BoardCreateServlet extends HttpServlet {
 			int result = boardService.insertBoard(board);
 			
 			// 3. 응답처리 (목록페이지로 redirect) - POST방식 DML처리후 url변경을 위해 redirect처리
-			request.getSession().setAttribute("msg", "게시글 등록 완료!");
-			
+			HttpSession session = request.getSession();
+			session.setAttribute("msg", "게시글 등록 완료!");
+			// session.setAttribute("boar", session)
 			response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + board.getBoardNo());
 	}
 
