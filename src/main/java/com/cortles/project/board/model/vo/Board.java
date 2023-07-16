@@ -1,55 +1,46 @@
 package com.cortles.project.board.model.vo;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Board {
-	private String boardNo;
-	private String writerId;
-	private String title;
-	private String content;
-	private int likeCount;
-	private int readCount;
-	private Date regDate;
+
+public class Board extends BoardEntity {
+	private int attachCnt; // 첨부파일 갯수
+	private List<Attachment> attachments = new ArrayList<>();
+	private int commentCnt; // 댓글 갯수
 	
-	public Board() {}
-
-	public Board(String boardNo, String writerId, String title, String content, int likeCount, int readCount,
-			Date regDate) {
-		super();
-		this.boardNo = boardNo;
-		this.writerId = writerId;
-		this.title = title;
-		this.content = content;
-		this.likeCount = likeCount;
-		this.readCount = readCount;
-		this.regDate = regDate;
+	public int getAttachCnt() {
+		return attachCnt;
 	}
 
-	public String getBoardNo() {return boardNo;}
-	public void setBoardNo(String boardNo) {this.boardNo = boardNo;}
+	public void setAttachCnt(int attachCnt) {
+		this.attachCnt = attachCnt;
+	}
+	
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+	
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
+	}
 
-	public String getWriterId() {return writerId;}
-	public void setWriterId(String writerId) {this.writerId = writerId;}
+	public void addAttachment(Attachment attach) {
+		if(attach != null)
+			this.attachments.add(attach);
+	}
+	
+	public int getCommentCnt() {
+		return commentCnt;
+	}
 
-	public String getTitle() {return title;}
-	public void setTitle(String title) {this.title = title;}
-
-	public String getContent() {return content;}
-	public void setContent(String content) {this.content = content;}
-
-	public int getLikeCount() {return likeCount;}
-	public void setLikeCount(int likeCount) {this.likeCount = likeCount;}
-
-	public int getReadCount() {return readCount;}
-	public void setReadCount(int readCount) {this.readCount = readCount;}
-
-	public Date getRegDate() {return regDate;}
-	public void setRegDate(Date regDate) {this.regDate = regDate;}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 
 	@Override
 	public String toString() {
-		return "Board [boardNo=" + boardNo + ", writerId=" + writerId + ", title=" + title + ", content=" + content
-				+ ", likeCount=" + likeCount + ", readCount=" + readCount + ", regDate=" + regDate + "]";
+		return "Board [attachCnt=" + attachCnt + ", attachments=" + attachments + ", commentCnt=" + commentCnt
+				+ ", toString()=" + super.toString() + "]";
 	}
-	
 }

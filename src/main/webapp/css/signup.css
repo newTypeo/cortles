@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+
+
+/*height_wrapper*/
+#height_wrapper {
+ 	height:1200px; 
+ 	padding:60px;
+ 	position: absolute;
+    z-index: 2;
+ 	
+}
+
+/*section*/
+#enroll-container {
+  max-width: 600px;
+  margin: 100px auto;
+  background-color: #222;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  
+}
+
+#enroll-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#enroll-container table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#enroll-container th,
+#enroll-container td {
+  padding: 10px;
+}
+
+#enroll-container th {
+  text-align: left;
+}
+
+#enroll-container input[type="text"],
+#enroll-container input[type="password"],
+#enroll-container input[type="date"],
+#enroll-container input[type="email"],
+#enroll-container input[type="tel"],
+#enroll-container input[type="submit"],
+#enroll-container input[type="reset"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+#enroll-container input[type="submit"],
+#enroll-container input[type="reset"] {
+  background-color: #df0b0b;
+  color: #fff;
+  cursor: pointer;
+}
+
+#enroll-container input[type="submit"]:hover,
+#enroll-container input[type="reset"]:hover {
+  background-color: #ff6064;
+}
+
+#enroll-container input[type="button"] {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#enroll-container input[type="button"]:hover {
+  background-color: #333;
+}
+#enroll-container sup{
+	color:red;
+}
+
+
+/*배경 블록*/
+
+#blocksection
+    {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;    
+        flex-wrap: wrap;
+        overflow: hidden;
+  		z-index: 1;
+    }
+
+#blocksection::before
+    {
+        clear: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: animate 5s linear infinite;
+    }
+
+    @keyframes animate
+    {
+        0%
+        {
+            transform: translateY(-100%);
+        }
+        100%
+        {
+            transform: translateY(100%);
+        }
+    }
+    #blocksection span
+    {
+        position: relative;
+        display: block;
+        width: calc(4.55vw - 2px);
+        height: calc(4.55vw - 2px);
+        background: #181818;
+        transition: 1.5s;
+    }
+    /*3번*/
+    #blocksection span:hover
+    {
+        background: #df0b0b;
+        transition: 0s;
+    }
+    
+/*헤데랑 섹션 길이 조절*/
+
+
+
+
+
+	

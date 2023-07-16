@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* 스타일링을 적용할 부모 컨테이너 */
+  #board-container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+       
+  }
+  
+  #board-wrapper {
+  	height:680px;
+    padding:20px;
+  }
+
+  /* 제목 입력란 스타일 */
+  #tbl-board-view input[name="title"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* 작성자 입력란 스타일 */
+  #tbl-board-view input[name="writer"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    cursor: not-allowed;
+  }
+
+  /* 첨부파일 입력란 스타일 */
+  #tbl-board-view input[name="upFile1"] {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* 내용 입력란 스타일 */
+  #tbl-board-view textarea[name="content"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    height: 150px;
+  }
+
+  /* 등록 버튼 스타일 */
+  #tbl-board-view input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* 등록 버튼 마우스 호버 스타일 */
+  #tbl-board-view input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+
+  
