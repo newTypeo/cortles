@@ -118,7 +118,7 @@
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
 								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
-								<button class="btn-report" value="<%= bc.getCommentNo() %>" onclick="reportBoardComment()">신고</button>
+								<button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
 								<%  } %>
 							</td>
 						</tr>
@@ -129,6 +129,13 @@
 			</table>
 		<% 	} %>
 	</div>    
+	<form 
+		action="<%= request.getContextPath() %>/board/boardCommentReport" 
+		name="boardCommentReportFrm"
+		method="get">
+		<input type="hidden" name="no" />
+		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+	</form>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentDelete" 
 		name="boardCommentDelFrm"
