@@ -195,6 +195,22 @@ public class BoardService {
 		return boards;
 	}
 
+	public int updateBoardComment(int no, String content) {
+		int result = 0;
+		Connection conn = getConnection();
+		try{
+			result = boardDao.updateBoardComment(conn, no, content);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 }
 
 
