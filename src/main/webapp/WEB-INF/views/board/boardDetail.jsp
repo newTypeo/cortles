@@ -11,6 +11,7 @@
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
+	
 %>
 <style>
 	/* 모달 스타일링 */
@@ -172,8 +173,40 @@
 	<div id="myModal" class="modal">
 	    <div class="modal-content">
 	        <span class="close" onclick="closeModal()">&times;</span>
-	        <h2><% %></h2>
-	        <p>모달 내용...</p>
+			<table id="report_table" style="width: 100%;">
+			<tr>
+				<td>제목</td>
+				<td colspan="3"><textarea style="background-color: white;  resize: none;width: 100%; height: auto;"></textarea></td>
+			</tr>
+			<tr>
+				<td>신고자</td>
+				<td><textarea readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea></td>
+				<td>신고유형</td>
+				<td>
+					<select>
+						<option value="">욕설</option>
+						<option value="">성적수치심</option>
+						<option value="">폭력성</option>
+						<option value="">기타</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td colspan="3"><textarea style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
+				</tr>
+			</table>
+			<button>신고</button>
+			<button>취소</button>
+			<form 
+				action="<%= request.getContextPath() %>/board/boardCommentReport" 
+				name="boardCommentReportFrm"
+				method="post">
+				<input type="hidden" name="no" />
+				<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+				<input type="hidden" name="reporterId" value="<%= loginMember.getMemberId() %>"/>
+				<input type="hidden" name="reportedId" value=""/>
+			</form>
 	    </div>
 	</div>
 	<form 
