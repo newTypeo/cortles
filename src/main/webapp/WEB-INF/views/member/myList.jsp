@@ -15,7 +15,7 @@
 	<!-- 사진부분 회원 테이블의 찜 영화코드 조회 후 script로 넣기 -->
 	<script>
   <% if (loginMember != null && loginMember.getFavoriteMovieCode() != null) { %>
-	    const favorite = '<%= loginMember.getFavoriteMovieCode() %>'.split(",");
+	    const favorite = '<%= loginMember.getFavoriteMovieCode() %>
 	    // 찜한 영화코드를 배열로 만들어서 forEach
 	    favorite.forEach((movieCode) => {
 	      $.ajax({
