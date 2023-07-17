@@ -15,7 +15,7 @@ public class Movie {
 	private String posterUrl;// 포스터 아이디
 	private String director;// 감독 (api)
 	private String actors; // 배우 (api)
-	private String vod; // vod (api)
+	private String vod; // vod (api) 
 	
 	public Movie() {}
 
