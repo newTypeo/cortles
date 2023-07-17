@@ -12,6 +12,10 @@
 	// System.out.print("memberIsLogin" + memberIsLogin);
 %>
 <script>
+document.querySelector("#myList").addEventListener('click', (e) => {
+	const frm = document.myList;
+	frm.submit();
+});
 window.addEventListener("load", () => {
 	findAllMovies();
 });
@@ -205,10 +209,9 @@ window.addEventListener("load", () => {
 			
 			
 <script>
-const mylist = () => {
-	const frm = document.myList;
-	frm.submit();
-};
+//const mylist = () => {
+	
+//};
 
 
 
