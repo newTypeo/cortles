@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
+import com.cortles.project.member.model.vo.QuitMember;
 
 /**
  * Servlet implementation class AdminMembersServlet
@@ -28,6 +29,9 @@ public class AdminMembersServlet extends HttpServlet {
 		
 		List<Member> members = memberService.findAll();
 		//System.out.println("members = " + members);
+		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
+		
+		request.getSession().setAttribute("quitMembers", quitMembers);
 		
 		request.setAttribute("members", members);
 		
