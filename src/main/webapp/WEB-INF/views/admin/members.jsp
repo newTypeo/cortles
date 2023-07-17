@@ -6,8 +6,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%
-	List<Member> members = (List<Member>) request.getAttribute("members");
-	List<QuitMember> quitMembers = (List<QuitMember>) request.getAttribute("quitMembers");
+	List<Member> members = (List<Member>) session.getAttribute("members");
+	List<QuitMember> quitMembers = (List<QuitMember>) session.getAttribute("quitMembers");
 
 	String keyword = request.getParameter("keyword");
 %>
@@ -80,14 +80,15 @@
     </table>
     <br><br>
      <div class="search-container" id="search-name">
-   	 <form action="<%= request.getContextPath()%>/admin/quitMember" name="quitMemberFrm">
+   	 <form name="quitMemberFrm">
    			 <span class="btn-wrapper">
-    			<button class="btn" id="quit" type="submit">quit</button>
+    			<button class="btn" id="quit" type="button">quit</button>
 			</span>
    	 </form>
 	</div>
-	<br><br>
-	<table>
+	<br>
+	
+	<table id="quitTable" style="display: none;">
 			<thead>
 				<tr>
 					<th>아이디</th>
@@ -101,7 +102,7 @@
 					<th>탈퇴일</th>
 				</tr>
 			</thead>
-		<tbody>
+			<tbody>
 			<% if(quitMembers == null || quitMembers.isEmpty()) { %>
 			<tr>
 				<td colspan="10">조회 결과가 없습니다.</td>
@@ -122,13 +123,30 @@
 					<td><%= quitMember.getEnrollDate() %></td>
 					<td><%= quitMember.getQuitDate()%></td>
 				</tr>
-		</table>
 			<%
 			}
 		}
 %>
-	</tbody>
+			</tbody>
+		</table>
 </section>
+<script>
+const quitButton = document.querySelector("#quit");
+const quitTable = document.querySelector("#quitTable");
+
+let isTableVisible = false;
+
+quitButton.addEventListener('click', (e) => {
+  if (!isTableVisible) {
+    quitTable.style.display = "table";
+    isTableVisible = true;
+  } else {
+    quitTable.style.display = "none";
+    isTableVisible = false;
+  }
+});
+	
+</script>
 <form
 	name="memberRoleUpdateFrm"
 	action="<%= request.getContextPath() %>/admin/memberRoleUpdate"
@@ -144,6 +162,7 @@
 	<input type="hidden" name="delOnMembers" id="delOnMembers" value="delOnMembers">
 </form>
 <script>
+
 
 //강제 탈퇴 
 document.querySelector("#yes").onclick = (e) => {
