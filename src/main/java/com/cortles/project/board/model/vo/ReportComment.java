@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ReportComment {
 	private int commentNo;
 	private int reportCount;
-	private String reportId;
+	private String reportId; 
 	private String reportContent;
 	private Date reportDate;
 	
