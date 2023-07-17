@@ -10,7 +10,7 @@
 <table id="report_table" style="width: 100%;">
 	<tr>
 		<td>제목</td>
-		<td colspan="3"><textarea></textarea></td>
+		<td colspan="3"><textarea style="background-color: #141414; color: white; border: none; resize: none;width: 100%; height: auto;"></textarea></td>
 	</tr>
 </table>
 
