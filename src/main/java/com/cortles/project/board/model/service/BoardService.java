@@ -11,6 +11,7 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.board.model.vo.ReportComment;
 
 public class BoardService {
 	private final BoardDao boardDao = new BoardDao();
@@ -211,6 +212,38 @@ public class BoardService {
 		return result;
 	}
 
+	public int insertReportBoardComment(ReportComment reportComment) {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		try {
+			result = boardDao.insertReportBoardComment(conn, reportComment);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 신고댓글 조회 - 주혜 
+	 */
+	public List<ReportComment> reportCommentFindAll() {
+		Connection conn = getConnection();
+		List<ReportComment> reportComments = boardDao.reportCommentFindAll(conn);
+		
+		close(conn);
+		return reportComments;
+	}
+	
+	
+	/**
+	 * 게시글 수정 - 창환 
+	 */
 	public int updateBoard(Board board) {
 		int result = 0;
 		Connection conn = getConnection();
@@ -258,21 +291,5 @@ public class BoardService {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
