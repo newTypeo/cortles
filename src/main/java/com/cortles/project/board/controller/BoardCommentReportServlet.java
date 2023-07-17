@@ -20,29 +20,26 @@ public class BoardCommentReportServlet extends HttpServlet {
 	private final BoardService boardService = new BoardService();
 	
 
-//	/**
-//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int no = Integer.parseInt(request.getParameter("no"));
-//		
-//		BoardComment _reportComment = boardService.boardCommentfindById(no);
-//		System.out.println("_reportComment = " + _reportComment);
-//		
-//		request.setAttribute("_reportComment", _reportComment);
-//		
-//		request.getRequestDispatcher("/WEB-INF/views/board/boardCommentReport.jsp")
-//			.forward(request, response);
-//		
-//		
-//	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		 int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		 int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		 String reportTitle = request.getParameter("reportTitle");
+		 String reporterId = request.getParameter("reporterId");
+		 String reportType = request.getParameter("reportType");
+		 String reportContent = request.getParameter("reportContent");
+		 String reportedId = request.getParameter("reportedId");
+		 
+		 ReportComment reportComment = new ReportComment(commentNo, boardNo, 0, reporterId, reportedId, reportContent, reportType, null);
+		 
+		 int result = boardService.insertReportBoardComment(reportComment);
+		 
+		 
+		 
+		 
+		 response.sendRedirect(request.getContextPath());
 	}
 
 }

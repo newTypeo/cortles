@@ -11,6 +11,7 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.board.model.vo.ReportComment;
 
 public class BoardService {
 	private final BoardDao boardDao = new BoardDao();
@@ -200,6 +201,22 @@ public class BoardService {
 		Connection conn = getConnection();
 		try{
 			result = boardDao.updateBoardComment(conn, no, content);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+	public int insertReportBoardComment(ReportComment reportComment) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = boardDao.insertReportBoardComment(conn, reportComment);
 			commit(conn);
 		}catch (Exception e) {
 			rollback(conn);

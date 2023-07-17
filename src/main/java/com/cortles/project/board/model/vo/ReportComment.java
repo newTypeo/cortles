@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReportComment {
 	private int commentNo;
-	private int boardCommentNo;
+	private int boardNo;
 	private int reportCount;
 	private String reporterId;
 	private String reportedId;
@@ -16,11 +16,11 @@ public class ReportComment {
 		
 	}
 
-	public ReportComment(int commentNo, int boardCommentNo, int reportCount, String reporterId, String reportedId,
+	public ReportComment(int commentNo, int boardNo, int reportCount, String reporterId, String reportedId,
 			String reportContent, String reportType, Date reportDate) {
 		super();
 		this.commentNo = commentNo;
-		this.boardCommentNo = boardCommentNo;
+		this.boardNo = boardNo;
 		this.reportCount = reportCount;
 		this.reporterId = reporterId;
 		this.reportedId = reportedId;
@@ -37,12 +37,12 @@ public class ReportComment {
 		this.commentNo = commentNo;
 	}
 
-	public int getBoardCommentNo() {
-		return boardCommentNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setBoardCommentNo(int boardCommentNo) {
-		this.boardCommentNo = boardCommentNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public int getReportCount() {
@@ -95,12 +95,11 @@ public class ReportComment {
 
 	@Override
 	public String toString() {
-		return "ReportComment [commentNo=" + commentNo + ", boardCommentNo=" + boardCommentNo + ", reportCount="
-				+ reportCount + ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportContent="
-				+ reportContent + ", reportType=" + reportType + ", reportDate=" + reportDate + "]";
+		return "ReportComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", reportCount=" + reportCount
+				+ ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportContent=" + reportContent
+				+ ", reportType=" + reportType + ", reportDate=" + reportDate + "]";
 	}
-	
-	
+
 	
 	
 	

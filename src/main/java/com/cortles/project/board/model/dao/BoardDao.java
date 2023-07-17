@@ -16,6 +16,7 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.board.model.vo.ReportComment;
 import com.cortles.project.member.model.vo.Member;
 
 public class BoardDao {
@@ -411,6 +412,30 @@ public class BoardDao {
 		} catch (SQLException e) {
 			throw new BoardException(e);
 		}
+		
+		return result;
+	}
+
+
+	public int insertReportBoardComment(Connection conn, ReportComment reportComment) {
+		int result = 0;
+		String sql = prop.getProperty("insertReportBoardComment");
+		//insert into report_comment values(?,1,?,?,sysdate,?,?,?)
+		// comment_no, reporter_id, report_content,reported_id, report_type, board_no
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, reportComment.getCommentNo());
+			pstmt.setString(2, reportComment.getReporterId());
+			pstmt.setString(3, reportComment.getReportContent());
+			pstmt.setString(4, reportComment.getReportedId());
+			pstmt.setString(5, reportComment.getReportType());
+			pstmt.setInt(6, reportComment.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
 		
 		return result;
 	}
