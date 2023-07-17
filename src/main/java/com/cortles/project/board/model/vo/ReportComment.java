@@ -113,9 +113,4 @@ public class ReportComment {
 	
 	
 	
-	
-	
-	
-	
-	
 }
