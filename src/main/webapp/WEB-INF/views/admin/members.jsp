@@ -122,12 +122,12 @@
 					<td><%= quitMember.getEnrollDate() %></td>
 					<td><%= quitMember.getQuitDate()%></td>
 				</tr>
-		</table>
 			<%
 			}
 		}
 %>
 	</tbody>
+		</table>
 </section>
 <form
 	name="memberRoleUpdateFrm"

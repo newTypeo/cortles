@@ -211,6 +211,52 @@ public class BoardService {
 		return result;
 	}
 
+	public int updateBoard(Board board) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = boardDao.updateBoard(conn, board);
+			
+			List<Attachment> attachments = board.getAttachments();
+			if(attachments != null && !attachments.isEmpty()) {
+				for(Attachment attach : attachments) {
+					result = boardDao.insertAttachment(conn, attach);
+				}
+			}
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+	public int deleteAttachment(int attachNo) {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		try {
+			result = boardDao.deleteAttachment(conn, attachNo);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public Attachment findAttachmentById(int attachNo) {
+		Connection conn = getConnection();
+		Attachment attach = boardDao.findAttachmentById(conn, attachNo);
+		close(conn);
+		return attach;
+	}
+
 }
 
 
