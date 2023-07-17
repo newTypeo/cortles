@@ -46,6 +46,7 @@
 	    	</div>
 	    
 	    <button type="submit">수정하기</button>
+	    <button onclick="history.go(-1);">취소</button>
 	</form>
     
     <br>
@@ -100,6 +101,7 @@
 		<input id="writer" type="hidden" name="writer" value=""/>
 	</form>
 	
+	<%-- textarea 안에 있는 글의 길이가 넘어가면 자동 높낮이 조정 --%>
 	<script>
 	$(document).ready(function() {
 	      $('#board_content').on( 'keyup', 'textarea', function (e){
