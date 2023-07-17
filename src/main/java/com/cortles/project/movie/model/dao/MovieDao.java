@@ -14,6 +14,8 @@ import com.cortles.project.member.model.dao.MemberDao;
 import com.cortles.project.movie.model.exception.MovieException;
 import com.cortles.project.movie.model.vo.Movie;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class MovieDao {
 	
 private Properties prop = new Properties();
@@ -79,6 +81,26 @@ private Properties prop = new Properties();
 			throw new MovieException(e);
 		}
 		return movie;
+	}
+
+	public List<Movie> searchMovie(Connection conn, String inputText) {
+		List<Movie> movies = new ArrayList<>();
+		String sql = prop.getProperty("searchMovie");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, inputText);
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					Movie movie = handleMovieResultSet(rset);				
+					movies.add(movie);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MovieException();
+		}
+		
+		
+		return movies;
 	}
 
 }

@@ -7,7 +7,6 @@
 	if(msg != null) session.removeAttribute("msg"); // 1회용
 	
 %>
-<script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,11 +60,11 @@ window.onload = () => {
 			<!--  } %>  -->
 		</ul>
 		
-		<% if(loginMember == null) { %>
-		
 			<div class="search-bar">
 				<input type="text" placeholder="Search...">
 			</div>
+		
+		<% if(loginMember == null) { %>
 			<div class="login1">
 				<a href="<%= request.getContextPath()%>/member/memberLogin">
 					<span style="color:#fff;">Login</span>
@@ -110,6 +109,24 @@ window.onload = () => {
 	     <% } %>
  	</form>
 <script>
+document.querySelector(".search-bar").oninput = (e) => {
+		// console.log("e.target = ", e.target.value);
+		const input_text = e.target.value;
+		$.ajax({
+			url: "<%=request.getContextPath()%>/movie/json/searchMovies",
+			data : {input_text},
+			method : "get",
+			dataType : "json",
+			success(searchMovie) {
+				console.log("멋지다 종환아~~!! 브라보~~!!");
+			},
+		
+		})
+
+};
+
+
+
 window.onload = () => {
 	<% if(msg != null) { %>
 		alert('<%= msg %>');

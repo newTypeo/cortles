@@ -1,5 +1,6 @@
 package com.cortles.project.movie.model.service;
-import static com.cortles.project.common.JdbcTemplate.*;
+import static com.cortles.project.common.JdbcTemplate.close;
+import static com.cortles.project.common.JdbcTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.List;
@@ -26,6 +27,14 @@ public class MovieService {
 		Movie movie = movieDao.findOneMovies(conn, movie_code);
 		close(conn);
 		return movie;
+	}
+
+	public List<Movie> searchMovie(String inputText) {
+		Connection conn = getConnection();
+		List<Movie> movies = movieDao.searchMovie(conn, inputText);
+		close(conn);
+		
+		return movies;
 	}
 	
 	
