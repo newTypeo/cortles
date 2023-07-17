@@ -13,9 +13,7 @@ public class ReportComment {
 	private String reportType;
 	private Date reportDate;
 	
-	public ReportComment() {
-		
-	}
+	public ReportComment() {}
 
 	public ReportComment(int commentNo, int boardNo, int reportCount, String reporterId, String reportedId,
 			String reportedName,
@@ -112,6 +110,8 @@ public class ReportComment {
 				+ reportDate + "]";
 	}
 
+	
+	
 	
 	
 	

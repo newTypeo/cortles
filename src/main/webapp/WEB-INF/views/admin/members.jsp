@@ -78,7 +78,6 @@
 %>
         </tbody>
     </table>
-    <br><br>
      <div class="search-container" id="search-name">
    	 <form name="quitMemberFrm">
    			 <span class="btn-wrapper">
@@ -86,49 +85,47 @@
 			</span>
    	 </form>
 	</div>
-	<br>
 	
 	<table id="quitTable" style="display: none;">
-			<thead>
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>생년월일</th>
-					<th>이메일</th>
-					<th>휴대폰</th>
-					<th>성별</th>
-					<th>권한</th>
-					<th>가입일</th>
-					<th>탈퇴일</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% if(quitMembers == null || quitMembers.isEmpty()) { %>
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>생년월일</th>
+				<th>이메일</th>
+				<th>휴대폰</th>
+				<th>성별</th>
+				<th>권한</th>
+				<th>가입일</th>
+				<th>탈퇴일</th>
+			</tr>
+		</thead>
+		<tbody>
+<% 				if(quitMembers == null || quitMembers.isEmpty()) { 		%>
 			<tr>
 				<td colspan="10">조회 결과가 없습니다.</td>
 			</tr>
-<%	
-			} 
-			else { 
-				for(QuitMember quitMember : quitMembers) {
-					%>
-				<tr>
-					<td><%= quitMember.getMemberId()%></td>
-					<td><%= quitMember.getName() %></td>
-					<td><%= quitMember.getBirthday() %></td>
-					<td><%= quitMember.getEmail() %></td>
-					<td><%= quitMember.getPhone() %></td>
-					<td><%= quitMember.getGender() %></td>
-					<td><%= quitMember.getMemberRole() %></td>
-					<td><%= quitMember.getEnrollDate() %></td>
-					<td><%= quitMember.getQuitDate()%></td>
-				</tr>
-			<%
-			}
-		}
+	
+<%				} else { 
+	
+						for(QuitMember quitMember : quitMembers) {   	%>
+							<tr>
+								<td><%= quitMember.getMemberId()%></td>
+								<td><%= quitMember.getName() %></td>
+								<td><%= quitMember.getBirthday() %></td>
+								<td><%= quitMember.getEmail() %></td>
+								<td><%= quitMember.getPhone() %></td>
+								<td><%= quitMember.getGender() %></td>
+								<td><%= quitMember.getMemberRole() %></td>
+								<td><%= quitMember.getEnrollDate() %></td>
+								<td><%= quitMember.getQuitDate()%></td>
+							</tr>
+<%
+						}
+				}
 %>
-			</tbody>
-		</table>
+		</tbody>
+	</table>
 </section>
 <script>
 const quitButton = document.querySelector("#quit");
@@ -137,13 +134,13 @@ const quitTable = document.querySelector("#quitTable");
 let isTableVisible = false;
 
 quitButton.addEventListener('click', (e) => {
-  if (!isTableVisible) {
-    quitTable.style.display = "table";
-    isTableVisible = true;
-  } else {
-    quitTable.style.display = "none";
-    isTableVisible = false;
-  }
+	  if (!isTableVisible) {
+	    quitTable.style.display = "table";
+	    isTableVisible = true;
+	  } else {
+	    quitTable.style.display = "none";
+	    isTableVisible = false;
+	  }
 });
 	
 </script>

@@ -180,6 +180,8 @@ public class BoardDao {
 	public int insertAttachment(Connection conn, Attachment attach) {
 		int result = 0;
 		String sql = prop.getProperty("insertAttachment");
+		// insert into attachment(attachment_no, board_no, original_filename, renamed_filename) 
+		// values(seq_attachment_no.nextval, ?, ?, ?)
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, attach.getBoardNo());
 			pstmt.setString(2, attach.getOriginalFilename());
@@ -458,6 +460,61 @@ public class BoardDao {
 		Date reportDate = rset.getDate("report_date");
 		
 		return new ReportComment(commentNo,boardNo,reportCount,reporterId,reportedId,null,reportContent,reportType,reportDate);
+	}
+
+
+	public int updateBoard(Connection conn, Board board) {
+		int result = 0;
+		String sql = prop.getProperty("updateBoard");
+		// update board set title = ?, content = ?  where board_no = ?
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
+
+	public int deleteAttachment(Connection conn, int attachNo) {
+		int result = 0;
+		String sql = prop.getProperty("deleteAttachment");
+		// delete from attachment where attachment_no = ?
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, attachNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
+
+	public Attachment findAttachmentById(Connection conn, int attachNo) {
+		Attachment attach = new Attachment();
+		String sql = prop.getProperty("findAttachmentById");
+		// findAttachmentById = select * from attachment where no = ?
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, attachNo);
+			try(ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					attach.setNo(rset.getInt("attachment_no"));
+					attach.setBoardNo(rset.getInt("board_no"));
+					attach.setOriginalFilename(rset.getString("original_filename"));
+					attach.setRenamedFilename(rset.getString("renamed_filename"));
+					attach.setRegDate(rset.getDate("reg_date"));
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return attach;
 	}
 
 

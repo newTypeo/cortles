@@ -20,22 +20,22 @@ public class BoardCommentReportServlet extends HttpServlet {
 	private final BoardService boardService = new BoardService();
 	
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));
-		
-		BoardComment _reportComment = boardService.boardCommentfindById(no);
-		System.out.println("_reportComment = " + _reportComment);
-		
-		request.setAttribute("_reportComment", _reportComment);
-		
-		request.getRequestDispatcher("/WEB-INF/views/board/boardCommentReport.jsp")
-			.forward(request, response);
-		
-		
-	}
+//	/**
+//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+//	 */
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		int no = Integer.parseInt(request.getParameter("no"));
+//		
+//		BoardComment _reportComment = boardService.boardCommentfindById(no);
+//		System.out.println("_reportComment = " + _reportComment);
+//		
+//		request.setAttribute("_reportComment", _reportComment);
+//		
+//		request.getRequestDispatcher("/WEB-INF/views/board/boardCommentReport.jsp")
+//			.forward(request, response);
+//		
+//		
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
