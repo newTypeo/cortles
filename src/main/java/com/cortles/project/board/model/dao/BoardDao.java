@@ -17,6 +17,7 @@ import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
 import com.cortles.project.board.model.vo.ReportComment;
+import com.cortles.project.member.model.exception.MemberException;
 import com.cortles.project.member.model.vo.Member;
 
 public class BoardDao {
@@ -24,6 +25,7 @@ public class BoardDao {
 	public BoardDao() {
 		String filename = 
 				BoardDao.class.getResource("/sql/board/board-query.properties").getPath();
+				//BoardDao.class.getResource("/sql/member/member-query.properties").getPath();
 			try {
 				prop.load(new FileReader(filename));
 			} catch (IOException e) {
@@ -416,6 +418,48 @@ public class BoardDao {
 		}
 		
 		return result;
+	}
+
+	/*
+	 * 신고 댓글 조회 - 주혜 
+	 */
+	public List<ReportComment> reportCommentFindAll(Connection conn) {
+		List<ReportComment> reportComments = new ArrayList<>();
+		String sql = prop.getProperty("reportCommentFindAll");
+		//String sql2 = prop.getProperty("searchMember");
+		//searchMemberId = select * from member where member_id = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);  
+				
+			ResultSet rset = pstmt.executeQuery();
+				
+		){
+			while(rset.next()) {
+				ReportComment reportComment = handleReportCommentResultSet(rset);
+				reportComment.setReportedName(rset.getString("member_name"));
+				reportComments.add(reportComment);
+			}
+		
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return reportComments;
+	}
+
+	/*
+	 * 신고 댓글 조회 메소드 - 주혜 
+	 */
+	private ReportComment handleReportCommentResultSet(ResultSet rset) throws SQLException {
+		int commentNo = rset.getInt("comment_no");
+		int boardNo = rset.getInt("board_no");
+		int reportCount = rset.getInt("report_count");
+		String reporterId = rset.getString("reporter_id"); // 신고자
+		String reportedId = rset.getString("reported_id"); // 범죄자
+		String reportContent = rset.getString("report_content");
+		String reportType = rset.getString("report_type");
+		Date reportDate = rset.getDate("report_date");
+		
+		return new ReportComment(commentNo,boardNo,reportCount,reporterId,reportedId,null,reportContent,reportType,reportDate);
 	}
 
 
