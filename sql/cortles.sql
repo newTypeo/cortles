@@ -109,6 +109,8 @@ CREATE TABLE quit_member (
 	quit_date	date	DEFAULT sysdate
 );
 
+
+
 CREATE TABLE report_comment (
 	comment_no	number		NOT NULL,
 	report_count	number	DEFAULT 0	NULL,
@@ -354,3 +356,7 @@ ALTER TABLE report_comment
 RENAME COLUMN report_id TO reporter_id;
 
 select * from report_comment r join member m on r.reported_id = m.member_id;
+
+select * from report_comment;
+
+insert into report_comment values (1,1,'sejong','어쩔',default,'joohye','기분나쁨',1);

@@ -433,7 +433,7 @@ public class BoardDao {
 		){
 			while(rset.next()) {
 				ReportComment reportComment = handleReportCommentResultSet(rset);
-				reportComment.setReportedName(rset.getString("reported_id"));
+				reportComment.setReportedName(rset.getString("member_name"));
 				reportComments.add(reportComment);
 			}
 		
