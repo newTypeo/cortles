@@ -24,6 +24,7 @@ public class MovieFindOneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String movie_code = request.getParameter("movie_code");
 		Movie movie = movieService.findOneMovies(movie_code);
+		System.out.println(" movie ==>> ! ! ! " + movie);
 		response.setContentType("application/json; charset=utf-8");
 		
 		new Gson().toJson(movie, response.getWriter());
