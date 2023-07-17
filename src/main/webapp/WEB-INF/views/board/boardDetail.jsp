@@ -12,6 +12,45 @@
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
 %>
+<style>
+	/* 모달 스타일링 */
+	.modal {
+	    display: none;
+	    position: fixed;
+	    z-index: 1;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    overflow: auto;
+	    background-color: rgba(0, 0, 0, 0.5);
+	}
+	
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 15% auto;
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 80%;
+	    max-width: 600px;
+	}
+	
+	.close {
+	    color: #aaa;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	    cursor: pointer;
+	}
+	
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+
+</style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<div id="board" style ="width: 605px;">
@@ -130,13 +169,20 @@
 			</table>
 		<% 	} %>
 	</div>    
+	<div id="myModal" class="modal">
+	    <div class="modal-content">
+	        <span class="close" onclick="closeModal()">&times;</span>
+	        <h2><% %></h2>
+	        <p>모달 내용...</p>
+	    </div>
+	</div>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
 		name="boardCommentReportFrm"
 		method="get">
 		<input type="hidden" name="no" />
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
-		<input type="hidden" name="reporterId"/>
+		<input type="hidden" name="reporterId" value="<%= loginMember.getMemberId() %>"/>
 	</form>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentDelete" 
@@ -153,14 +199,24 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
+	var modal = document.getElementById("myModal");
+	function openModal() {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // 스크롤 비활성화
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // 스크롤 활성화
+    }
+    
 	document.querySelectorAll(".btn-report").forEach((button) => {
 		button.onclick = (e) => {
-			const frm = document.boardCommentDelFrm;
-			frm.reporterId.value = <%= loginMember.getMemberId() %>;
+			const frm = document.boardCommentReportFrm;
 			const {value} = e.target;
 			console.log(value);
 			frm.no.value = value;
-			frm.submit();
+			openModal();
 		}
 	});
 	
