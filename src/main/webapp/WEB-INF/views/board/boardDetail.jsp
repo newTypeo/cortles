@@ -248,7 +248,7 @@
 			const frm = document.boardCommentReportFrm;
 			const {value} = e.target;
 			console.log(value);
-			frm.no.value = value;
+			/* frm.no.value = value; */
 			openModal();
 		}
 	});
