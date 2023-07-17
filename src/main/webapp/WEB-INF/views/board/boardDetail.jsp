@@ -196,8 +196,10 @@
 				<td colspan="3"><textarea style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
 				</tr>
 			</table>
-			<button>신고</button>
-			<button>취소</button>
+			<%
+			for(BoardComment bc : boardComments) {	
+				
+			%>
 			<form 
 				action="<%= request.getContextPath() %>/board/boardCommentReport" 
 				name="boardCommentReportFrm"
@@ -205,9 +207,13 @@
 				<input type="hidden" name="no" />
 				<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 				<input type="hidden" name="reporterId" value="<%= loginMember.getMemberId() %>"/>
-				<input type="hidden" name="reportedId" value=""/>
+				<input type="hidden" name="reportedId" value="<%= bc.getWriterId() %>"/>
 			</form>
+			<button class="btn-modal">신고</button>
+			<%} %>
+			<button>취소</button>
 	    </div>
+	    
 	</div>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
@@ -243,12 +249,22 @@
         document.body.style.overflow = "auto"; // 스크롤 활성화
     }
     
+    document.querySelectorAll(".btn-report").forEach((button) => {
+		button.onclick = (e) => {
+			const frm = document.boardCommentReportFrm;
+			const {value} = e.target;
+			console.log(value);
+			//frm.no.value = value;
+			openModal();
+		}
+	});
+    
 	document.querySelectorAll(".btn-report").forEach((button) => {
 		button.onclick = (e) => {
 			const frm = document.boardCommentReportFrm;
 			const {value} = e.target;
 			console.log(value);
-			frm.no.value = value;
+			//frm.no.value = value;
 			openModal();
 		}
 	});
