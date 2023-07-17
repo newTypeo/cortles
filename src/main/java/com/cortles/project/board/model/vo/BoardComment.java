@@ -37,7 +37,7 @@ public class BoardComment {
 
 	@Override
 	public String toString() {
-		return "BoardComent [commentNo=" + commentNo + ", boardNo=" + boardNo + ", writerId=" + writerId + ", content="
+		return "BoardComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", writerId=" + writerId + ", content="
 				+ content + ", regDate=" + regDate + "]";
 	}
 }

@@ -7,47 +7,45 @@
 <title>메인 페이지</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/index.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/modal.css" />
 <%
 	boolean memberIsLogin = loginMember != null;
-	System.out.print("memberIsLogin" + memberIsLogin);
 %>
 <script>
-document.querySelector("#myList").addEventListener('click', (e) => {
-	const frm = document.myList;
-	frm.submit();
-});
-window.addEventListener("load", () => {
+// 홈화면이 로딩되면 모든영화 가져올 method 실행
+window.addEventListener("load", () => { 
 	findAllMovies();
 });
- const findAllMovies = () => {
+
+const findAllMovies = () => {
+	 // 비동기로 모든 영화 가져올 ajax
 	 $.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
 		dataType : "json",
 		success(movies) {
-			console.log(movies);
+			console.log(movies); // DB에 있는 모든 영화들
 			<% if(memberIsLogin) { %>
 				const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
-				// favorite 장르 ','를 빈칸으로 replace하고, 아래에 영화의 genre의 '/', ',' 두개를 빈칸으로 replace한 후 includes해야함!!
+				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천을 위함
 				
-				
-				
-				let countMovies = 0;
-				// console.log("favoriteGenre=",favoriteGenre);
 			<% } %>
 			movies.forEach((movie) => {
 				const {posterUrl, genre, movieCode} = movie;
 				const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
-				// 로그인 상태일 시 영화 (로그인상태이면서 추천영화 갯수 15개가 모두 안 찼으며, 선호장르의 영화이면서 50%확률)
-				console.log("favoriteGenre",favoriteGenre);
-				console.log("genre",genre);
-				console.log("favoriteGenre.includes(genre)",favoriteGenre.includes(genre));
 				
-				if(<%= memberIsLogin %> && countMovies <= 15 && favoriteGenre.includes(genre) && Math.round(Math.random()) != 1) {
-					document.querySelector("#recommendedMovies").innerHTML += imgHTML;
-					countMovies = countMovies + 1;
-					console.log("favMovieAdded");
-				}
+				// 로그인 상태일 시 회원별 추천 영화
+				<% if(memberIsLogin) { %>
+						// 0부터 선호장르배열의 길이 사이의 정수	
+						const randomIndex = Math.floor(Math.random() * favoriteGenres.length); 
+							
+						// 랜덤의 영화를 추천하기 위해 회원의 선호장르 중 랜덤의 장르(1개)가 영화의 장르(n개)에 포함될 시 실행되는 조건문
+						if(genre.includes(favoriteGenres[randomIndex])) { 
+							document.querySelector("#recommendedMovies").innerHTML += imgHTML;
+						}
+				<% } %>
 				
+				// DB에서 가져온 영화별로 장르에 맞는 article에 포스터 삽입
 				if(genre != null && genre.includes("액션"))
 					document.querySelector("#action").innerHTML += imgHTML;
 				if(genre != null && genre.includes("SF"))
@@ -66,34 +64,32 @@ window.addEventListener("load", () => {
 					document.querySelector("#fantasy").innerHTML += imgHTML;
 				if (genre != null && genre.includes("미스터리"))
 					document.querySelector("#mystery").innerHTML += imgHTML;
-			})
-		},
+				
+			}) // 영화 포스터 삽입용 forEach
+		}, // success
 		complete() {
-			console.log(document.querySelectorAll("img"));
 			[...document.querySelectorAll("img")].forEach((imgTag) => {
 				imgTag.addEventListener('click', (e) =>{
-					console.log("e.target", e.target.name);
 					openModal(e.target.name);
-				})
-			});
-		}
-	});
-	
-};
+					
+				}) // eventListener
+			}); // 모든 포스터에 clickEvent 추가용 forEach
+		} // complete
+	}) // ajax
+}; // findAllMovies()
 </script>
 
-
-	<section>
+<section>
 <div id="myModal" class="modal" style="display: none;">
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
+      
       <% if(loginMember != null) { %>
       <form
       	name="myListFrm"
       	action="<%=request.getContextPath()%>/member/AddMyListServlet"
-      	method="post"
-      >
+      	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
       	  <button type="button" id="ggimButton">찜</button>
@@ -104,10 +100,10 @@ window.addEventListener("load", () => {
           
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
-              <form>
-                  <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </form>
-            </div>
+            <form>
+              <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </form>
+          </div>
             
             <!-- 별점 평점 구역 -->
             <div class="rating-container">
@@ -136,112 +132,84 @@ window.addEventListener("load", () => {
     </div>
         <!-- 댓글 목록 -->
         <div id="commentList">
-            <ul class="comment-list">
-            </ul>
+            <ul class="comment-list"></ul>
         </div>
     </div>
   </div>
 </div>
-		<% if(memberIsLogin) { %>
+</section>
+<% 		if(memberIsLogin) { 		%>
 				<div>
-				<span><%= loginMember.getMemberId() %> 님의 좋아할만한 콘텐츠</span>
+				<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
 					<article id="recommendedMovies"></article>
 				</div>
-				<hr/>
-		<% } %>
+				<br/>
+<%		 } 							%>
 			<div>
-				<span>action</span>
-				<article id="action"></article>
+				<span>romance</span><article id="romance"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>SF</span>
-				<article id="sf"></article>
+				<span>SF</span><article id="sf"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>horror</span>
-				<article id="horror"></article>
+				<span>horror</span><article id="horror"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>thriller</span>
-				<article id="thriller"></article>
+				<span>thriller</span><article id="thriller"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>romance</span>
-				<article id="romance"></article>
+				<span>action</span><article id="action"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>drama</span>
-				<article id="drama"></article>
+				<span>drama</span><article id="drama"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>comedy</span>
-				<article id="comedy"></article>
+				<span>comedy</span><article id="comedy"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>fantasy</span>
-				<article id="fantasy"></article>
+				<span>fantasy</span><article id="fantasy"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>mystery</span>
-				<article id="mystery"></article>
+				<span>mystery</span><article id="mystery"></article>
 			</div>
-			<hr/>
-			
-			<form
-		      	name="myList"
-		      	action="<%=request.getContextPath()%>/member/myList"
-		      	method="get"
-		      >
-		      <% if(loginMember != null) { %>
-		      	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>      	  
-		      <% } %>
-      		</form>
-			
-			
+		<br/>
 <script>
-//const mylist = () => {
-	
-//};
-
-
-
 const scroll = document.querySelector("body");
 
 //모달 열기
 function openModal(movie_code) {
-	console.log("(openModal)movie_code", movie_code);
+	// console.log("(openModal)movie_code", movie_code);
 	$.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
 		data : {movie_code},
 		success(movieInfo){
-			console.log("여기는 success= 	", movieInfo);
+			// console.log("여기는 success= 	", movieInfo);
 			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
 			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
 		},
 		complete (){
-				// const src = document.querySelector('.video-container iframe').src;
-				// console.log(src.getElementsByClassName('.play'));
-				// document.querySelector(".trailer .play").click();
-		  	  	// 버튼을 클릭했을 때 실행되는 코드
+			// const src = document.querySelector('.video-container iframe').src;
+			// console.log(src.getElementsByClassName('.play'));
+			// document.querySelector(".trailer .play").click();
+			
+	  	  	// 버튼을 클릭했을 때 실행되는 코드
+<%			 if(loginMember != null) { 			%>
 		  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
-		  		console.log(e.target);
-		  		console.log(document.myListFrm);
-		  		const frm = document.myListFrm;
-		  		frm.movieCode.value = movieCode;
-		  		document.myListFrm.submit();
-		  		
-		  		//e.preventDefault();
-		  	});
+			  		const frm = document.myListFrm;
+			  		frm.movieCode.value = movie_code;
+			  		document.myListFrm.submit();
+			  	});
+<%			 }									%>
 		}
 	}) // ajax
 };
