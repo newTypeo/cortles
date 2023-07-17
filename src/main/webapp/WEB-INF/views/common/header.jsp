@@ -5,8 +5,9 @@
 <%
 	String msg = (String) session.getAttribute("msg");
 	if(msg != null) session.removeAttribute("msg"); // 1회용
-	
 %>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,11 +59,11 @@
 			<!--  } %>  -->
 		</ul>
 		
-		<% if(loginMember == null) { %>
-		
 			<div class="search-bar">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search..." id="input-search">
 			</div>
+		
+		<% if(loginMember == null) { %>
 			<div class="login1">
 				<a href="<%= request.getContextPath()%>/member/memberLogin">
 					<span style="color:#fff;">Login</span>
@@ -106,6 +107,42 @@
 	     <% } %>
  	</form>
 <script>
+document.querySelector(".search-bar").oninput = (e) => {
+		// console.log("e.target = ", e.target.value);
+		const input_text = e.target.value;
+		if(input_text == "") {
+			document.querySelector("#searchMovies-article").innerHTML = "";
+			document.querySelector("#searchMovies-section").style.display = "block";
+		}
+		$.ajax({
+			url: "<%=request.getContextPath()%>/movie/json/searchMovies",
+			data : {input_text},
+			method : "get",
+			dataType : "json",
+			success(movies) {
+				console.log("movies = " , movies);
+				if(movies.length != 0) {
+					document.querySelector("#searchMovies-section").style.display = "none";
+					document.querySelector("#searchMovies-article").innerHTML = "";
+				} 
+				[...movies].forEach((movie) => {
+					const {posterUrl, genre, movieCode} = movie;
+					// console.log("posterUrl, genre, movieCode " , posterUrl, genre, movieCode);
+					console.log(document.querySelector("#searchMovies-article"));
+					document.querySelector("#searchMovies-article").innerHTML += `<img name=\${movieCode} src=\${posterUrl}>`;
+					
+				})
+				
+				
+			
+			},
+		
+		})
+
+};
+
+
+
 window.onload = () => {
 	<% if(msg != null) { %>
 		alert('<%= msg %>');
