@@ -316,7 +316,9 @@ select seq_board_no.currval from dual;
 select * from board;
 update member set favorite_movie_code = '123' where member_id = 'rudqls';
 update member set favorite_movie_code = favorite_movie_code || ',1' where member_id = 'rudqls';
-update member set favorite_movie_code = favorite_movie_code || ',2' where member_id = 'rudqls';
+update member set favorite_movie_code = favorite_movie_code || ',' || 1 where member_id = 'rudqls';
+DELETE FROM member
+WHERE member_id = 'sejong' AND movie_code = '1';
 
 
 select * from member;

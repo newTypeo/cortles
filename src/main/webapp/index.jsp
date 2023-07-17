@@ -67,6 +67,7 @@ window.addEventListener("load", () => {
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
+      
           <span class="close" onclick="closeModal();">&times;</span>
           
           <!-- 동영상 재생 구역 -->
