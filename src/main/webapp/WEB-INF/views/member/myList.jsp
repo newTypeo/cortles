@@ -45,6 +45,7 @@
       
   <% 	
 	  }} %>
+ 
   
 //모달 열기 (찜목록)
 const scroll = document.querySelector("body");

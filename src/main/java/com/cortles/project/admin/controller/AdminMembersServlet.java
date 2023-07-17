@@ -31,9 +31,8 @@ public class AdminMembersServlet extends HttpServlet {
 		//System.out.println("members = " + members);
 		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
 		
-		request.getSession().setAttribute("quitMembers", quitMembers);
-		
 		request.setAttribute("members", members);
+		request.getSession().setAttribute("quitMembers", quitMembers);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/members.jsp")
 			.forward(request, response);

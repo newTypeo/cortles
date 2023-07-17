@@ -16,6 +16,8 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.board.model.vo.ReportComment;
+import com.cortles.project.member.model.exception.MemberException;
 import com.cortles.project.member.model.vo.Member;
 
 public class BoardDao {
@@ -23,6 +25,7 @@ public class BoardDao {
 	public BoardDao() {
 		String filename = 
 				BoardDao.class.getResource("/sql/board/board-query.properties").getPath();
+				//BoardDao.class.getResource("/sql/member/member-query.properties").getPath();
 			try {
 				prop.load(new FileReader(filename));
 			} catch (IOException e) {
@@ -177,6 +180,8 @@ public class BoardDao {
 	public int insertAttachment(Connection conn, Attachment attach) {
 		int result = 0;
 		String sql = prop.getProperty("insertAttachment");
+		// insert into attachment(attachment_no, board_no, original_filename, renamed_filename) 
+		// values(seq_attachment_no.nextval, ?, ?, ?)
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, attach.getBoardNo());
 			pstmt.setString(2, attach.getOriginalFilename());
@@ -413,6 +418,126 @@ public class BoardDao {
 		}
 		
 		return result;
+	}
+
+	/*
+	 * 신고 댓글 조회 - 주혜 
+	 */
+	public List<ReportComment> reportCommentFindAll(Connection conn) {
+		List<ReportComment> reportComments = new ArrayList<>();
+		String sql = prop.getProperty("reportCommentFindAll");
+		//String sql2 = prop.getProperty("searchMember");
+		//searchMemberId = select * from member where member_id = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);  
+				
+			ResultSet rset = pstmt.executeQuery();
+				
+		){
+			while(rset.next()) {
+				ReportComment reportComment = handleReportCommentResultSet(rset);
+				reportComment.setReportedName(rset.getString("member_name"));
+				reportComments.add(reportComment);
+			}
+		
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return reportComments;
+	}
+
+	/*
+	 * 신고 댓글 조회 메소드 - 주혜 
+	 */
+	private ReportComment handleReportCommentResultSet(ResultSet rset) throws SQLException {
+		int commentNo = rset.getInt("comment_no");
+		int boardNo = rset.getInt("board_no");
+		int reportCount = rset.getInt("report_count");
+		String reporterId = rset.getString("reporter_id"); // 신고자
+		String reportedId = rset.getString("reported_id"); // 범죄자
+		String reportContent = rset.getString("report_content");
+		String reportType = rset.getString("report_type");
+		Date reportDate = rset.getDate("report_date");
+		
+		return new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, reportCount, reportDate);
+	}
+
+
+	public int insertReportBoardComment(Connection conn, ReportComment reportComment) {
+		int result = 0;
+		String sql = prop.getProperty("insertReportBoardComment");
+		//insert into report_comment values(seq_report_comment_no.nextval, ?, ?, ?, ?, ?, ?, 0, default)
+		// comment_no, board_no, reporter_id, reported_id, report_type, report_content
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, reportComment.getCommentNo());
+			pstmt.setInt(2, reportComment.getBoardNo());
+			pstmt.setString(3, reportComment.getReporterId());
+			pstmt.setString(4, reportComment.getReportedId());
+			pstmt.setString(5, reportComment.getReportType());
+			pstmt.setString(6, reportComment.getReportContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		
+		return result;
+		
+	}
+	public int updateBoard(Connection conn, Board board) {
+		int result = 0;
+		String sql = prop.getProperty("updateBoard");
+		// update board set title = ?, content = ?  where board_no = ?
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
+
+	public int deleteAttachment(Connection conn, int attachNo) {
+		int result = 0;
+		String sql = prop.getProperty("deleteAttachment");
+		// delete from attachment where attachment_no = ?
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, attachNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return result;
+	}
+
+
+	public Attachment findAttachmentById(Connection conn, int attachNo) {
+		Attachment attach = new Attachment();
+		String sql = prop.getProperty("findAttachmentById");
+		// findAttachmentById = select * from attachment where no = ?
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, attachNo);
+			try(ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					attach.setNo(rset.getInt("attachment_no"));
+					attach.setBoardNo(rset.getInt("board_no"));
+					attach.setOriginalFilename(rset.getString("original_filename"));
+					attach.setRenamedFilename(rset.getString("renamed_filename"));
+					attach.setRegDate(rset.getDate("reg_date"));
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return attach;
 	}
 
 

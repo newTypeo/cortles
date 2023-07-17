@@ -7,37 +7,73 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
 	Board board = (Board) request.getAttribute("board");
-	Attachment attachment = (Attachment) request.getAttribute("attachment");
+	Attachment attachment = (Attachment) session.getAttribute("attachment");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<div id="board" style ="width: 605px;">
-	    <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br><br><br>
+	    
+
+	<form 
+		action="<%= request.getContextPath() %>/board/boardUpdate"
+		name="boardUpdateFrm"
+		method="POST"
+		enctype="multipart/form-data">
+		
+		<div id="board_header">
+			<input type="text" id="board_title" name="title" style="font-size: 30px; text-align: center" value="<%= board.getTitle() %>" /><br><br><br>
 	      <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
 	      <%-- <span id="option">
 	        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 <%= boardCommentCnt %></span>
 	      </span> --%>
 	    </div>
 
-    <hr>
-
-    <div id="board_content">
-					<input type="file" name="file" />
-    	<label for="delFile"><%= attachment.getOriginalFilename() %></label>
-      <textarea id="textarea" style="min-height: 400;border: ridge; background-color: #141414; color: white; resize: none;width: 100%; height: auto;"><%= board.getContent() %></textarea>
-    </div>
+    	<hr>
+			<input id="no" type="hidden" name="no" value="<%= board.getBoardNo() %>"/>
+			<input id="writer" type="hidden" name="writer" value="<%= loginMember.getMemberId() %>"/>
+			<input style="display: none;" id="delFile" type="checkbox" name="delFile" value="<%= attachment.getNo() %>" />
+		    <div id="board_content" style="text-align: left;">
+		    	<span style="padding: 0; margin: 20px 10px 10px 40px; clear: both;">첨부파일:</span>
+		    	<% if(attachment.getOriginalFilename() != null) { %>
+		    	<div id="fileName_wrapper" style="display: inline-block;">
+		    		<span id="fileName"><%= attachment.getOriginalFilename() %></span>
+		    		<input type="button" onclick="remove_div()" value="삭제">
+		    	</div>
+		    	<% } else { %>
+		    	<input id="file" type="file" name="upFile" style="margin: 10px; margin-left: 30px;" />
+		    	<% } %>
+		      <textarea id="textarea" name="content" style="min-height: 400;border: ridge; background-color: #141414; color: white; resize: none;width: 100%; height: auto;"><%= board.getContent() %></textarea>
+	    	</div>
+	    
+	    <button type="submit">수정하기</button>
+	    <button onclick="history.go(-1);">취소</button>
+	</form>
     
     <br>
     <br><br>
-    <button onclick="update()">수정하기</button>
   </div>
   	<script>
+	/**
+	 * 삭제 버튼 누르면 display: none 처리됨.
+	 */
+  	const remove_div = () => {
+  		const remove = document.querySelector("#fileName_wrapper");
+  		//remove.style.display = 'none';
+  		remove.innerHTML += `
+  			<input id="file" type="file" name="upFile" />
+  		`;
+  		remove.children[0].style.display= 'none';
+  		remove.children[1].style.display= 'none';
+  		
+  		// 폼 안에 있는 display: none처리된 checkbox를 checked로 변경. (전송하기 위해서)
+  		document.querySelector("#delFile").checked = 'checked';
+  	};
+  	
   	const update = () => {
   		const frm = document.boardUpdateFrm;
-  		console.dir(frm);
   		
-  		
-  		document.querySelector('#content').value = document.querySelector('#textarea').value;
+  		frm.title.value = document.querySelector('#textarea').value;
+  		frm.content.value = document.querySelector().value;
   		
   		frm.submit();
   	};
@@ -59,12 +95,13 @@
 		method="POST"
 		enctype="multipart/form-data">
 		<%-- <input type="hidden" name="no" /> --%>
-		<input type="hidden" name="no" value="<%= board.getBoardNo() %>"/>
-		<input type="hidden" name="title" value="<%= board.getTitle() %>"/>
-		<input id="content" type="hidden" name="content" value="<%= board.getContent() %>"/>
-		<input type="hidden" name="writer" value="<%= board.getWriterId() %>"/>
+		<input id="no" type="hidden" name="no" value="<%= board.getBoardNo() %>"/>
+		<input id="title" type="hidden" name="title" value=""/>
+		<input id="content" type="hidden" name="content" value=""/>
+		<input id="writer" type="hidden" name="writer" value=""/>
 	</form>
 	
+	<%-- textarea 안에 있는 글의 길이가 넘어가면 자동 높낮이 조정 --%>
 	<script>
 	$(document).ready(function() {
 	      $('#board_content').on( 'keyup', 'textarea', function (e){

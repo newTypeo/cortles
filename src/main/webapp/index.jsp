@@ -3,7 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
+<style>
+html {width: 10000px;}
+</style>
 <title>메인 페이지</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/index.css" />
@@ -138,6 +140,7 @@ const findAllMovies = () => {
   </div>
 </div>
 </section>
+<section id="searchMovies-section">
 <% 		if(memberIsLogin) { 		%>
 				<div>
 				<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
@@ -181,6 +184,10 @@ const findAllMovies = () => {
 				<span>mystery</span><article id="mystery"></article>
 			</div>
 		<br/>
+</section>		
+			<div> 
+				<article id="searchMovies-article"></article>
+			</div>
 <script>
 const scroll = document.querySelector("body");
 

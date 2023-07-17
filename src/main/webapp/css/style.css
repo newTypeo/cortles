@@ -46,6 +46,24 @@ section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJ
 /********** footer **********/
 footer { padding-top:30px; background-color:#141414; text-align:center; height:100px; color:#fff;}
 
+.bell {
+  transform-origin: top;
+  animation: bell 2s infinite linear;
+}
+
+@keyframes bell{
+  0%, 50%{
+    transform: rotate(0deg);
+    }
+  5%, 15%, 25%, 35%, 45% {
+    transform: rotate(13deg);
+  }
+  10%, 20%, 30%, 40% {
+    transform: rotate(-13deg);
+  }
+}
+
+
 /* 버튼  */
 .btn-wrapper {
 	display: flex;

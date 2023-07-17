@@ -4,28 +4,30 @@ import java.sql.Date;
 
 public class ReportComment {
 	private int commentNo;
-	private int boardCommentNo;
-	private int reportCount;
-	private String reporterId;
-	private String reportedId;
-	private String reportContent;
+	private int boardNo;
+	private String reporterId; // 신고자
+	private String reportedId; // 범죄자 
+	private String reportedName; // 범죄자 이름 
 	private String reportType;
+	private String reportContent;
+	private int reportCount;
 	private Date reportDate;
 	
 	public ReportComment() {
 		
 	}
-
-	public ReportComment(int commentNo, int boardCommentNo, int reportCount, String reporterId, String reportedId,
-			String reportContent, String reportType, Date reportDate) {
+	
+	public ReportComment(int commentNo, int boardNo, String reporterId, String reportedId, String reportedName,
+			String reportType, String reportContent, int reportCount, Date reportDate) {
 		super();
 		this.commentNo = commentNo;
-		this.boardCommentNo = boardCommentNo;
-		this.reportCount = reportCount;
+		this.boardNo = boardNo;
 		this.reporterId = reporterId;
 		this.reportedId = reportedId;
-		this.reportContent = reportContent;
+		this.reportedName = reportedName;
 		this.reportType = reportType;
+		this.reportContent = reportContent;
+		this.reportCount = reportCount;
 		this.reportDate = reportDate;
 	}
 
@@ -37,20 +39,12 @@ public class ReportComment {
 		this.commentNo = commentNo;
 	}
 
-	public int getBoardCommentNo() {
-		return boardCommentNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setBoardCommentNo(int boardCommentNo) {
-		this.boardCommentNo = boardCommentNo;
-	}
-
-	public int getReportCount() {
-		return reportCount;
-	}
-
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public String getReporterId() {
@@ -69,12 +63,12 @@ public class ReportComment {
 		this.reportedId = reportedId;
 	}
 
-	public String getReportContent() {
-		return reportContent;
+	public String getReportedName() {
+		return reportedName;
 	}
 
-	public void setReportContent(String reportContent) {
-		this.reportContent = reportContent;
+	public void setReportedName(String reportedName) {
+		this.reportedName = reportedName;
 	}
 
 	public String getReportType() {
@@ -83,6 +77,22 @@ public class ReportComment {
 
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
+	}
+
+	public String getReportContent() {
+		return reportContent;
+	}
+
+	public void setReportContent(String reportContent) {
+		this.reportContent = reportContent;
+	}
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 
 	public Date getReportDate() {
@@ -95,9 +105,10 @@ public class ReportComment {
 
 	@Override
 	public String toString() {
-		return "ReportComment [commentNo=" + commentNo + ", boardCommentNo=" + boardCommentNo + ", reportCount="
-				+ reportCount + ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportContent="
-				+ reportContent + ", reportType=" + reportType + ", reportDate=" + reportDate + "]";
+		return "ReportComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", reporterId=" + reporterId
+				+ ", reportedId=" + reportedId + ", reportedName=" + reportedName + ", reportType=" + reportType
+				+ ", reportContent=" + reportContent + ", reportCount=" + reportCount + ", reportDate=" + reportDate
+				+ "]";
 	}
 	
 	
