@@ -33,7 +33,7 @@
 	        complete(){
 	        	[...document.querySelectorAll("img")].forEach((imgTag) => {
 					imgTag.addEventListener('click', (e) =>{
-						// console.log("e.target", e.target.name);
+						// console.log("e.target", e.target.name);                                                                                                                                                                                                                                                                                              
 						openModal(e.target.name);
 					})
 				});

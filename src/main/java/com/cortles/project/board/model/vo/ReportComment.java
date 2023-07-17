@@ -5,28 +5,29 @@ import java.sql.Date;
 public class ReportComment {
 	private int commentNo;
 	private int boardNo;
-	private int reportCount;
 	private String reporterId; // 신고자
 	private String reportedId; // 범죄자 
 	private String reportedName; // 범죄자 이름 
-	private String reportContent;
 	private String reportType;
+	private String reportContent;
+	private int reportCount;
 	private Date reportDate;
 	
-	public ReportComment() {}
-
-	public ReportComment(int commentNo, int boardNo, int reportCount, String reporterId, String reportedId,
-			String reportedName,
-			String reportContent, String reportType, Date reportDate) {
+	public ReportComment() {
+		
+	}
+	
+	public ReportComment(int commentNo, int boardNo, String reporterId, String reportedId, String reportedName,
+			String reportType, String reportContent, int reportCount, Date reportDate) {
 		super();
 		this.commentNo = commentNo;
 		this.boardNo = boardNo;
-		this.reportCount = reportCount;
 		this.reporterId = reporterId;
 		this.reportedId = reportedId;
 		this.reportedName = reportedName;
-		this.reportContent = reportContent;
 		this.reportType = reportType;
+		this.reportContent = reportContent;
+		this.reportCount = reportCount;
 		this.reportDate = reportDate;
 	}
 
@@ -46,14 +47,6 @@ public class ReportComment {
 		this.boardNo = boardNo;
 	}
 
-	public int getReportCount() {
-		return reportCount;
-	}
-
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
-	}
-
 	public String getReporterId() {
 		return reporterId;
 	}
@@ -69,13 +62,21 @@ public class ReportComment {
 	public void setReportedId(String reportedId) {
 		this.reportedId = reportedId;
 	}
-	
+
 	public String getReportedName() {
 		return reportedName;
 	}
 
 	public void setReportedName(String reportedName) {
 		this.reportedName = reportedName;
+	}
+
+	public String getReportType() {
+		return reportType;
+	}
+
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
 	}
 
 	public String getReportContent() {
@@ -86,12 +87,12 @@ public class ReportComment {
 		this.reportContent = reportContent;
 	}
 
-	public String getReportType() {
-		return reportType;
+	public int getReportCount() {
+		return reportCount;
 	}
 
-	public void setReportType(String reportType) {
-		this.reportType = reportType;
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 
 	public Date getReportDate() {
@@ -104,12 +105,13 @@ public class ReportComment {
 
 	@Override
 	public String toString() {
-		return "ReportComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", reportCount="
-				+ reportCount + ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportedName="
-				+ reportedName + ", reportContent=" + reportContent + ", reportType=" + reportType + ", reportDate="
-				+ reportDate + "]";
+		return "ReportComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", reporterId=" + reporterId
+				+ ", reportedId=" + reportedId + ", reportedName=" + reportedName + ", reportType=" + reportType
+				+ ", reportContent=" + reportContent + ", reportCount=" + reportCount + ", reportDate=" + reportDate
+				+ "]";
 	}
-
+	
+	
 	
 	
 	
