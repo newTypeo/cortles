@@ -12,14 +12,11 @@
 	System.out.print("memberIsLogin" + memberIsLogin);
 %>
 <script>
-document.querySelector("#myList").addEventListener('click', (e) => {
-	const frm = document.myList;
-	frm.submit();
-});
 window.addEventListener("load", () => {
 	findAllMovies();
 });
  const findAllMovies = () => {
+	 
 	 $.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
 		dataType : "json",
@@ -207,9 +204,10 @@ window.addEventListener("load", () => {
 			
 			
 <script>
-//const mylist = () => {
-	
-//};
+const mylist = () => {
+	const frm = document.myList;
+	frm.submit();
+};
 
 
 
