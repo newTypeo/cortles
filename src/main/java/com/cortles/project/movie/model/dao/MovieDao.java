@@ -87,7 +87,7 @@ private Properties prop = new Properties();
 		List<Movie> movies = new ArrayList<>();
 		String sql = prop.getProperty("searchMovie");
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, inputText);
+			pstmt.setString(1, "%" + inputText + "%");
 			try(ResultSet rset = pstmt.executeQuery()){
 				while(rset.next()) {
 					Movie movie = handleMovieResultSet(rset);				
@@ -95,8 +95,7 @@ private Properties prop = new Properties();
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new MovieException();
+			throw new MovieException(e);
 		}
 		
 		

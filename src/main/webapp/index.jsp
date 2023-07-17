@@ -140,6 +140,7 @@ const findAllMovies = () => {
   </div>
 </div>
 </section>
+<section id="searchMovies-section">
 <% 		if(memberIsLogin) { 		%>
 				<div>
 				<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
@@ -183,6 +184,10 @@ const findAllMovies = () => {
 				<span>mystery</span><article id="mystery"></article>
 			</div>
 		<br/>
+</section>		
+			<div> 
+				<article id="searchMovies-article"></article>
+			</div>
 <script>
 const scroll = document.querySelector("body");
 
