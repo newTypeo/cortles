@@ -459,22 +459,22 @@ public class BoardDao {
 		String reportType = rset.getString("report_type");
 		Date reportDate = rset.getDate("report_date");
 		
-		return new ReportComment(commentNo,boardNo,reportCount,reporterId,reportedId,null,reportContent,reportType,reportDate);
+		return new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, reportCount, reportDate);
 	}
 
 
 	public int insertReportBoardComment(Connection conn, ReportComment reportComment) {
 		int result = 0;
 		String sql = prop.getProperty("insertReportBoardComment");
-		//insert into report_comment values(?,1,?,?,sysdate,?,?,?)
-		// comment_no, reporter_id, report_content,reported_id, report_type, board_no
+		//insert into report_comment values(seq_report_comment_no.nextval, ?, ?, ?, ?, ?, ?, 0, default)
+		// comment_no, board_no, reporter_id, reported_id, report_type, report_content
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, reportComment.getCommentNo());
-			pstmt.setString(2, reportComment.getReporterId());
-			pstmt.setString(3, reportComment.getReportContent());
+			pstmt.setInt(2, reportComment.getBoardNo());
+			pstmt.setString(3, reportComment.getReporterId());
 			pstmt.setString(4, reportComment.getReportedId());
 			pstmt.setString(5, reportComment.getReportType());
-			pstmt.setInt(6, reportComment.getBoardNo());
+			pstmt.setString(6, reportComment.getReportContent());
 			
 			result = pstmt.executeUpdate();
 			

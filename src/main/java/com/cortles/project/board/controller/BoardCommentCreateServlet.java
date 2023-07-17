@@ -19,6 +19,7 @@ import com.cortles.project.board.model.vo.BoardComment;
 public class BoardCommentCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
+	private final com.cortles.project.notification.NotificationService notificationService = new com.cortles.project.notification.NotificationService();
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,8 +42,8 @@ public class BoardCommentCreateServlet extends HttpServlet {
 				int result = boardService.insertBoardComment(boardComment);
 				
 				// 댓글 등록 실시간 알림
-//				Board board = boardService.findById(boardNo);
-//				result = notificationService.notifyNewBoardComment(board);
+				Board board = boardService.findById(boardNo);
+				result = notificationService.notifyNewBoardComment(board);
 				
 				// 3. 응답처리 - redirect
 				response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + boardNo);

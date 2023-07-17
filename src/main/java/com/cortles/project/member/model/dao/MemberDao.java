@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.cortles.project.member.model.exception.MemberException;
+import com.cortles.project.member.model.vo.Favorite;
 import com.cortles.project.member.model.vo.Gender;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
@@ -312,6 +313,28 @@ private Properties prop = new Properties();
 			throw new MemberException(e);
 		}
 		return quitMembers;
+	}
+
+	public List<Favorite> MovieCodefindById(Connection conn, String memberId) {
+		List<Favorite> favorites = new ArrayList<>();
+		
+		String sql = prop.getProperty("MovieCodefindById");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					Favorite favorite = new Favorite();
+					favorite.setMemberId(rset.getString("member_id"));
+					favorite.setMovieCode(rset.getString("movie_code"));
+					
+					favorites.add(favorite);
+				}
+				
+			}
+		} catch (Exception e) {
+			throw new MemberException(e);
+		}
+		return favorites;
 	}
 
 
