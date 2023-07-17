@@ -184,11 +184,7 @@
 	<div id="myModal" class="modal">
 	    <div class="modal-content">
 	        <span class="close" onclick="closeModal()">&times;</span>
-			<table id="report_table" style="width: 100%;">
-			<tr>
-				<td>제목</td>
-				<td colspan="3"><textarea name="reportTitle" style="background-color: white;  resize: none;width: 100%; height: auto;"></textarea></td>
-			</tr>
+			<table id="report_table" style="width: 100%; color: black;">
 			<tr>
 				<td>신고자</td>
 				<td><textarea name="reporterId" readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea></td>
@@ -203,8 +199,12 @@
 				</td>
 			</tr>
 			<tr>
+				<td>신고댓글</td>
+				<td colspan="3"><textarea name="reportCommentContent" readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= bc.getContent() %></textarea></td>
+			</tr>
+			<tr>
 				<td>내용</td>
-				<td colspan="3"><textarea name = "reportContent" style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
+				<td colspan="3"><textarea name = "reportContent"  style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
 				</tr>
 			</table>
 			
@@ -267,7 +267,6 @@
 			const frm = document.boardCommentReportFrm;
 			const {value} = e.target;
 			console.log(value);
-			//frm.no.value = value;
 			openModal();
 		}
 	});

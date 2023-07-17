@@ -1,3 +1,5 @@
+<%@page import="com.cortles.project.member.model.vo.Favorite"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -6,6 +8,9 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/modal.css" />
 <section>
+<%
+	List<Favorite> favorites = (List<Favorite>)request.getAttribute("favorite"); 
+%>
 	<h1>My List</h1>
 	
 	<div>
@@ -14,33 +19,33 @@
 	
 	<!-- 사진부분 회원 테이블의 찜 영화코드 조회 후 script로 넣기 -->
 	<script>
-  <% if (loginMember != null && loginMember.getFavoriteMovieCode() != null) { %>
-	    const favorite = '<%= loginMember.getFavoriteMovieCode() %>'.split(",");
-	    // 찜한 영화코드를 배열로 만들어서 forEach
-	    favorite.forEach((movieCode) => {
-	      $.ajax({
-	        url: "<%=request.getContextPath()%>/movie/json/findOneMovies",
-	        data: { movie_code : movieCode },
-	        dataType: "json",
-	        success(movie) {
-	          // 영화 1개 씩 뿌리기
-	          // console.log("영화 날라 왔니? " , movie);
-	        	const {posterUrl, genre, movieCode} = movie;
-				const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
-	          	console.log("posterUrl, genre, movieCode",posterUrl, genre, movieCode);
-	          	document.querySelector("#zzim").innerHTML += imgHTML;
-	        }, // success 
-	        complete(){
-	        	[...document.querySelectorAll("img")].forEach((imgTag) => {
-					imgTag.addEventListener('click', (e) =>{
-						// console.log("e.target", e.target.name);
-						openModal(e.target.name);
-					})
-				});
-	        }
-	      }) // ajax
-	    });
-  <% } %>
+	  <% if (loginMember != null && favorites != null) { 
+	  	for(Favorite favorite : favorites){
+	  
+	  %>
+      
+          $.ajax({
+              url: "<%=request.getContextPath()%>/movie/json/findOneMovies",
+              data: { movie_code: "<%= favorite.getMovieCode() %>" },
+              dataType: "json",
+              success(movie) {
+                  const { posterUrl, genre, movieCode } = movie;
+                  const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
+                  console.log("posterUrl, genre, movieCode", posterUrl, genre, movieCode);
+                  document.querySelector("#zzim").innerHTML += imgHTML;
+              },
+              complete() {
+                  [...document.querySelectorAll("img")].forEach((imgTag) => {
+                      imgTag.addEventListener('click', (e) => {
+                          openModal(e.target.name);
+                      })
+                  });
+              }
+          });
+      
+  <% 	
+	  }} %>
+ 
   
 //모달 열기 (찜목록)
 const scroll = document.querySelector("body");
@@ -57,7 +62,7 @@ function openModal(movie_code) {
  		complete (){
 	  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
 		  		const frm = document.myListFrm;
-		  		frm.movieCode.value = movieCode;
+		  		frm.movieCode.value = movie_code;
 		  		document.myListFrm.submit();
 	  		}) // EventListener
  		} // complete
@@ -84,14 +89,13 @@ function closeModal() {
       <% if(loginMember != null) { %>
       <form
       	name="myListFrm"
-      	action="<%=request.getContextPath()%>/member/AddMyListServlet"
-      	method="post"
-      >
+      	action="<%=request.getContextPath()%>/member/deleteMyListServlet"
+      	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
-      	  <button type="button" id="ggimButton">찜</button>
+      	  <button type="button" id="ggimButton">찜 없애기</button>
       </form>
-      <% } %>	  
+      <% }%>	  
           <span class="close" onclick="closeModal();">&times;</span>
           
           <!-- 동영상 재생 구역 -->

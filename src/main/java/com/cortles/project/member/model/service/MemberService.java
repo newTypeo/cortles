@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cortles.project.member.model.dao.MemberDao;
+import com.cortles.project.member.model.vo.Favorite;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
 import com.cortles.project.member.model.vo.QuitMember;
@@ -87,8 +88,9 @@ public class MemberService {
 		} catch (Exception e) {
 			rollback(conn);
 			throw e;
+		}finally {
+			close(conn);
 		}
-		close(conn);
 		return result;
 	}
 
@@ -164,6 +166,15 @@ public class MemberService {
 		List<QuitMember> quitMembers = memberDao.quitMemberFindAll(conn);
 		close(conn);
 		return quitMembers;
+	}
+
+	public List<Favorite> MovieCodefindById(String memberId) {
+		List<Favorite> favorites = new ArrayList<>();
+		Connection conn = getConnection();
+		favorites = memberDao.MovieCodefindById(conn, memberId);
+		close(conn);
+		
+		return favorites;
 	}
 
 	

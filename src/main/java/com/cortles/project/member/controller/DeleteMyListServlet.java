@@ -23,10 +23,12 @@ public class DeleteMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String memberId = request.getParameter("member_id");
-//		String movieCode = request.getParameter("movie_code");
-		String memberId = "sejong";
-		String movieCode = "F1000";
+		String memberId = request.getParameter("memberId");
+		String movieCode = request.getParameter("movieCode");
+		System.out.println("memberId ==>> ! ! ! " + memberId);
+		System.out.println("movieCode ==>> ! ! ! " + movieCode);
+//		String memberId = "sejong";
+//		String movieCode = "F1000";
 		int result = memberService.deleteMyList(memberId, movieCode);
 		
 		if(result > 1 ) {
