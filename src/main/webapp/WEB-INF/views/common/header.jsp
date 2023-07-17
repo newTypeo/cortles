@@ -6,7 +6,6 @@
 	String msg = (String) session.getAttribute("msg");
 	if(msg != null) session.removeAttribute("msg"); // 1회용
 %>
-<script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +15,8 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css"/>
 <%
-	// System.out.println("msg = " + msg);
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
-	// System.out.println("loginMember = " + loginMember);
 	
 	Cookie[] cookies = request.getCookies();
 	String saveId = null;
@@ -27,23 +24,17 @@
 		for(Cookie cookie : cookies) {
 			String name = cookie.getName();
 			String value = cookie.getValue();
-			// System.out.println("[Cookie] " + name + " = " + value);
 			if ("saveId".equals(name))
 				saveId = value;
 		}
 	}
 %>
-<style>
-#login-member{
-color: white;
-}
-</style>
 <script>
-window.onload = () => {
-<% 	if(msg != null) { %>
-	alert('<%= msg %>');
-<% 	} %>	
-};
+	window.onload = () => {
+	<% 	if(msg != null) { %>
+		alert('<%= msg %>');
+	<% 	} %>	
+	};
 </script>
 </head>
 <body>
@@ -91,16 +82,15 @@ window.onload = () => {
 	                    	type="button" 
 	                    	value="내정보보기"
 	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';"
-	                    	class='btn' style="width: 10px;">
+	                    	style="width: 10px;">
 	                    <input 
 	                    	type="button" 
 	                    	value="로그아웃" 
-	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';" class='btn'>
+	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">
 	                </td>
 	            </tr>
 	        </table>
 		<% } %>
-		
 		
 	</header>
 <script>
@@ -110,5 +100,3 @@ window.onload = () => {
 	<% } %>
 };
 </script>
-	
-	
