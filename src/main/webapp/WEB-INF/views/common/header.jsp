@@ -13,9 +13,11 @@
 <head>
 <meta charset="UTF-8">
 <title>movie cortles</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css"/>
+
 <%
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
@@ -31,6 +33,9 @@
 		}
 	}
 %>
+<% if(loginMember != null) { %>
+	<script src="<%= request.getContextPath() %>/js/ws.js"></script>
+<% } %>
 <script>
 	window.onload = () => {
 	<% 	if(msg != null) { %>
@@ -84,7 +89,7 @@
 	                    	type="button" 
 	                    	value="내정보보기"
 	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';"
-	                    	style="width: 10px;">
+	                    	>
 	                    <input 
 	                    	type="button" 
 	                    	value="로그아웃" 

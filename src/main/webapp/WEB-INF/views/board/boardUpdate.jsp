@@ -31,7 +31,7 @@
     	<hr>
 			<input id="no" type="hidden" name="no" value="<%= board.getBoardNo() %>"/>
 			<input id="writer" type="hidden" name="writer" value="<%= loginMember.getMemberId() %>"/>
-			<input style="display: none;" id="delFile" type="hidden" name="delFile" value="<%= attachment.getNo() %>" />
+			<input style="display: none;" id="delFile" type="checkbox" name="delFile" value="<%= attachment.getNo() %>" />
 		    <div id="board_content" style="text-align: left;">
 		    	<span style="padding: 0; margin: 20px 10px 10px 40px; clear: both;">첨부파일:</span>
 		    	<% if(attachment.getOriginalFilename() != null) { %>
@@ -46,6 +46,7 @@
 	    	</div>
 	    
 	    <button type="submit">수정하기</button>
+	    <button onclick="history.go(-1);">취소</button>
 	</form>
     
     <br>
@@ -53,7 +54,7 @@
   </div>
   	<script>
 	/**
-	 * 삭제 버튼 누르면 안보이게 처리됨.
+	 * 삭제 버튼 누르면 display: none 처리됨.
 	 */
   	const remove_div = () => {
   		const remove = document.querySelector("#fileName_wrapper");
@@ -64,6 +65,7 @@
   		remove.children[0].style.display= 'none';
   		remove.children[1].style.display= 'none';
   		
+  		// 폼 안에 있는 display: none처리된 checkbox를 checked로 변경. (전송하기 위해서)
   		document.querySelector("#delFile").checked = 'checked';
   	};
   	
@@ -99,6 +101,7 @@
 		<input id="writer" type="hidden" name="writer" value=""/>
 	</form>
 	
+	<%-- textarea 안에 있는 글의 길이가 넘어가면 자동 높낮이 조정 --%>
 	<script>
 	$(document).ready(function() {
 	      $('#board_content').on( 'keyup', 'textarea', function (e){
