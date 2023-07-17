@@ -1,10 +1,11 @@
+<%@page import="com.cortles.project.board.model.vo.ReportComment"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <title>신고 목록</title>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%
-
+	List<ReportComment> reportComments = (List<ReportComment>) request.getAttribute("reportComments");
 %>
 
 <link rel="stylesheet"
@@ -26,21 +27,34 @@
 				</tr>
 			</thead>
 			<tbody>
+				<% if(reportComments == null || reportComments.isEmpty()) { %>
+			<tr>
+				<td colspan="10">조회 결과가 없습니다.</td>
+			</tr>
+<%	
+			} 
+			else { 
+				for(ReportComment reportComment : reportComments) {
+					%>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>
-					 
-					</td>
+					<td><%= reportComment.getReportedId() %></td>
+					<td><%= reportComment.getReportedName() %></td>
+					<td><%= reportComment.getBoardNo() %></td>
+					<td><%= reportComment.getCommentNo() %></td>
+					<td><%= reportComment.getReportContent() %></td>
+					<td><%= reportComment.getReportType() %></td>
+					<td><%= reportComment.getReportCount() %></td>
+					<td><%= reportComment.getReporterId() %></td>
+					<td><%= reportComment.getReportDate() %></td>
+					<td><%= reportComment.getReportCount() == 3	? "O" : "X"	%></td>
 				</tr>
 			</tbody>
+			<%
+					
+			
+			}
+		}
+%>
 		</table>
 <script>
 

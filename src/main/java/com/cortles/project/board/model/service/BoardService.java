@@ -11,6 +11,7 @@ import com.cortles.project.board.model.vo.Attachment;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.BoardEntity;
+import com.cortles.project.board.model.vo.ReportComment;
 
 public class BoardService {
 	private final BoardDao boardDao = new BoardDao();
@@ -209,6 +210,17 @@ public class BoardService {
 		}
 		
 		return result;
+	}
+
+	/*
+	 * 신고댓글 조회 - 주혜 
+	 */
+	public List<ReportComment> reportCommentFindAll() {
+		Connection conn = getConnection();
+		List<ReportComment> reportComments = boardDao.reportCommentFindAll(conn);
+		
+		close(conn);
+		return reportComments;
 	}
 
 }

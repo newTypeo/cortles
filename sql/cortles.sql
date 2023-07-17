@@ -56,13 +56,7 @@ create sequence seq_board_comment_no;
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -340,21 +334,23 @@ create sequence seq_attachment_no;
 --drop sequence seq_attachment_no;
 
 --select seq_board_no.currval from dual;
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 
 
 
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
+ALTER TABLE report_comment
+ADD (reported_id varchar2(50) NOT NULL);
 
+ALTER TABLE report_comment
+ADD (report_type varchar2(50) NOT NULL);
 
+ALTER TABLE report_comment
+ADD (board_no number NOT NULL);
 
+ALTER TABLE report_comment
+RENAME COLUMN report_id TO reporter_id;
 
-
-=======
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+select * from report_comment r join member m on r.reported_id = m.member_id;
