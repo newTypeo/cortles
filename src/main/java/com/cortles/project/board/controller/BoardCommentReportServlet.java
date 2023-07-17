@@ -39,6 +39,8 @@ public class BoardCommentReportServlet extends HttpServlet {
 		 
 		 
 		 
+		 
+		 
 		 response.sendRedirect(request.getContextPath());
 	}
 
