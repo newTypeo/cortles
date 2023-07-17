@@ -362,6 +362,60 @@ public class BoardDao {
 	}
 
 
+	public List<Board> searchboard(Connection conn, String keyword) {
+		List<Board> boards = new ArrayList<>();
+		String sql = prop.getProperty("searchBoard");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, "%" + keyword + "%");
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					int boardNo = rset.getInt("board_no");
+	                String writerId = rset.getString("writer_id");
+	                String title = rset.getString("title");
+	                String content = rset.getString("content");
+	                int likeCount = rset.getInt("like_count");
+	                int readCount = rset.getInt("read_count");
+	                Date regDate = rset.getDate("reg_date");
+	                
+	                Board board = new Board();
+	                board.setBoardNo(boardNo);
+	                board.setWriterId(writerId);
+	                board.setTitle(title);
+	                board.setContent(content);
+	                board.setLikeCount(likeCount);
+	                board.setReadCount(readCount);
+	                board.setRegDate(regDate);
+	                
+	                boards.add(board);
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return boards;
+	}
+
+
+	public int updateBoardComment(Connection conn, int no, String content) {
+		int result = 0;
+		String sql = prop.getProperty("updateBoardComment");
+		// update board_comment set content = ? where comment_no = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, content);
+			pstmt.setInt(2, no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return result;
+	}
+
+
 
 
 

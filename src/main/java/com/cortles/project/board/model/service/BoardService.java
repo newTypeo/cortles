@@ -3,6 +3,7 @@ package com.cortles.project.board.model.service;
 import static com.cortles.project.common.JdbcTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cortles.project.board.model.dao.BoardDao;
@@ -65,7 +66,7 @@ public class BoardService {
 			// 발급된 board.no를 조회	->  (attachment 테이블 추가)
 			int boardNo = boardDao.getLastBoardNo(conn);
 			board.setBoardNo(boardNo); // servlet에서 redirect시 사용
-			System.out.println("boardNo = " + boardNo);
+			// System.out.println("boardNo = " + boardNo);
 			
 			// attachment 테이블 추가
 			List<Attachment> attachments = board.getAttachments();
@@ -183,6 +184,31 @@ public class BoardService {
 		updateBoardComment = boardDao.boardCommentfindById(conn, no);
 		commit(conn);
 		return updateBoardComment;
+	}
+
+	public List<Board> searchboard(String keyword) {
+		Connection conn = getConnection();
+		List<Board> boards = new ArrayList<>();
+		boards = boardDao.searchboard(conn,keyword);
+		close(conn);
+		
+		return boards;
+	}
+
+	public int updateBoardComment(int no, String content) {
+		int result = 0;
+		Connection conn = getConnection();
+		try{
+			result = boardDao.updateBoardComment(conn, no, content);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
 	}
 
 }

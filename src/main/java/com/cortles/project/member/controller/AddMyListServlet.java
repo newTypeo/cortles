@@ -13,7 +13,7 @@ import com.cortles.project.member.model.service.MemberService;
 /**
  * Servlet implementation class AddMyListServlet
  */
-@WebServlet("/AddMyListServlet") // 영화 폼 제출 만들고 매핑하기
+@WebServlet("/member/AddMyListServlet") // 영화 폼 제출 만들고 매핑하기
 public class AddMyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberService memberService = new MemberService();
@@ -23,11 +23,13 @@ public class AddMyListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memberId = request.getParameter("member_id");
-		String movieCode = request.getParameter("movie_code");
-		
+		String memberId = request.getParameter("memberId");
+		String movieCode = request.getParameter("movieCode");
+	
 		
 		int result = memberService.addMyList(memberId, movieCode);
+		
+		System.out.println("이거 확인 한번 해볼게 = " + result);
 		
 		
 		if(result > 1 ) {

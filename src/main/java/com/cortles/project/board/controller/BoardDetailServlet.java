@@ -16,17 +16,11 @@ import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.common.util.CortlesUtils;
 
-/**
- * Servlet implementation class BoardDetailServlet
- */
 @WebServlet("/board/boardDetail")
 public class BoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
 	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리 ?no=12
 		int boardNo = Integer.parseInt(request.getParameter("no"));
@@ -43,9 +37,8 @@ public class BoardDetailServlet extends HttpServlet {
 				String value = cookie.getValue();
 				if("boardCookie".equals(name)) {
 					boardCookieVal = value; // 기존값 대입
-					if(value.contains("[" + boardNo + "]")) {
+					if(value.contains("[" + boardNo + "]"))
 						hasRead = true;
-					}
 				}
 			}
 		}
@@ -78,7 +71,6 @@ public class BoardDetailServlet extends HttpServlet {
 		request.setAttribute("boardComments", boardComments);
 		request.setAttribute("attachment", attachment);
 		request.setAttribute("boardCommentCnt", boardCommentCnt);
-		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
 	}
