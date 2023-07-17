@@ -203,11 +203,13 @@ function openModal(movie_code) {
 			// document.querySelector(".trailer .play").click();
 			
 	  	  	// 버튼을 클릭했을 때 실행되는 코드
-	  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
-		  		const frm = document.myListFrm;
-		  		frm.movieCode.value = movie_code;
-		  		document.myListFrm.submit();
-		  	});
+<%			 if(loginMember != null) { 			%>
+		  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
+			  		const frm = document.myListFrm;
+			  		frm.movieCode.value = movie_code;
+			  		document.myListFrm.submit();
+			  	});
+<%			 }									%>
 		}
 	}) // ajax
 };
