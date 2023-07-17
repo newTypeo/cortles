@@ -4,26 +4,27 @@ import java.sql.Date;
 
 public class ReportComment {
 	private int commentNo;
-	private int boardCommentNo;
+	private int boardNo;
 	private int reportCount;
-	private String reporterId;
-	private String reportedId;
+	private String reporterId; // 신고자
+	private String reportedId; // 범죄자 
+	private String reportedName; // 범죄자 이름 
 	private String reportContent;
 	private String reportType;
 	private Date reportDate;
 	
-	public ReportComment() {
-		
-	}
+	public ReportComment() {}
 
-	public ReportComment(int commentNo, int boardCommentNo, int reportCount, String reporterId, String reportedId,
+	public ReportComment(int commentNo, int boardNo, int reportCount, String reporterId, String reportedId,
+			String reportedName,
 			String reportContent, String reportType, Date reportDate) {
 		super();
 		this.commentNo = commentNo;
-		this.boardCommentNo = boardCommentNo;
+		this.boardNo = boardNo;
 		this.reportCount = reportCount;
 		this.reporterId = reporterId;
 		this.reportedId = reportedId;
+		this.reportedName = reportedName;
 		this.reportContent = reportContent;
 		this.reportType = reportType;
 		this.reportDate = reportDate;
@@ -37,12 +38,12 @@ public class ReportComment {
 		this.commentNo = commentNo;
 	}
 
-	public int getBoardCommentNo() {
-		return boardCommentNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setBoardCommentNo(int boardCommentNo) {
-		this.boardCommentNo = boardCommentNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public int getReportCount() {
@@ -67,6 +68,14 @@ public class ReportComment {
 
 	public void setReportedId(String reportedId) {
 		this.reportedId = reportedId;
+	}
+	
+	public String getReportedName() {
+		return reportedName;
+	}
+
+	public void setReportedName(String reportedName) {
+		this.reportedName = reportedName;
 	}
 
 	public String getReportContent() {
@@ -95,10 +104,15 @@ public class ReportComment {
 
 	@Override
 	public String toString() {
-		return "ReportComment [commentNo=" + commentNo + ", boardCommentNo=" + boardCommentNo + ", reportCount="
-				+ reportCount + ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportContent="
-				+ reportContent + ", reportType=" + reportType + ", reportDate=" + reportDate + "]";
+		return "ReportComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", reportCount="
+				+ reportCount + ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportedName="
+				+ reportedName + ", reportContent=" + reportContent + ", reportType=" + reportType + ", reportDate="
+				+ reportDate + "]";
 	}
+
+	
+	
+	
 	
 	
 	
