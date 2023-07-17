@@ -69,7 +69,7 @@ public class BoardDetailServlet extends HttpServlet {
 		// 3. 응답처리 jsp
 		request.setAttribute("board", board);
 		request.setAttribute("boardComments", boardComments);
-		request.setAttribute("attachment", attachment);
+		request.getSession().setAttribute("attachment", attachment);
 		request.setAttribute("boardCommentCnt", boardCommentCnt);
 		request.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp")
 			.forward(request, response);
