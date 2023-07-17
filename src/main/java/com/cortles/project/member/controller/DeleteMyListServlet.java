@@ -6,32 +6,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cortles.project.member.model.service.MemberService;
 
 /**
  * Servlet implementation class DeleteMyListServlet
  */
-@WebServlet("/DeleteMyListServlet")
+@WebServlet("/member/deleteMyListServlet")
 public class DeleteMyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberService memberService = new MemberService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("member_id");
-		String movieCode = request.getParameter("movie_code");
-		
+//		String memberId = request.getParameter("member_id");
+//		String movieCode = request.getParameter("movie_code");
+		String memberId = "sejong";
+		String movieCode = "F1000";
 		int result = memberService.deleteMyList(memberId, movieCode);
+		
+		if(result > 1 ) {
+			System.out.println("삭제완료");
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("msg", "mylist삭제 완료 ! ! !");
+		
+		response.sendRedirect(request.getContextPath());
 	}
 
 }

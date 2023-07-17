@@ -280,7 +280,7 @@ end;
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --);
-<<<<<<< HEAD
+
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 );
@@ -335,9 +335,13 @@ WHERE member_id = 'sejong' AND movie_code = '1';
 
 
 select * from member;
+select * from member;
+update member set favorite_movie_code = favorite_movie_code || ',' || + 'F1000' where member_id = 'test';
+ UPDATE member SET favorite_movie_code = REPLACE(REPLACE(favorite_movie_code, 'F89000', ''), '') WHERE member_id = 'sejong';
+UPDATE member
+SET favorite_movie_code = TRIM(REPLACE(REPLACE(REPLACE(CONCAT(',', REPLACE(favorite_movie_code, ',', ', ')), CONCAT(',', 'F990', ','), ','), ', ', ','), ',', ''))
+WHERE member_id = 'test'
 
-
-=======
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --);
@@ -382,4 +386,7 @@ select * from member;
 --    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 --);
 --select seq_board_no.currval from dual;
->>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
+INSERT INTO favorite (movie_code, member_id)
+SELECT 'ff99', member_id
+FROM member
+where member_id = 'sejong';

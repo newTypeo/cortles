@@ -28,7 +28,8 @@ public class MovieFindOneServlet extends HttpServlet {
 		Movie movie = movieService.findOneMovies(movie_code);
 		System.out.println(movie);
 		response.setContentType("application/json; charset=utf-8");
-				
+		request.setAttribute("movie_code", movie_code);
+		
 		new Gson().toJson(movie, response.getWriter());
 	}
 

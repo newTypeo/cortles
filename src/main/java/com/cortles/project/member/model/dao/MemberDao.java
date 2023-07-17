@@ -87,16 +87,33 @@ private Properties prop = new Properties();
 		int result = 0;
 		// addMyList = update member set favorite_movie_code = favorite_movie_code || ',' || ? where member_id = ?
 		String sql = prop.getProperty("addMyList");
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setString(1, movieCode);
-			pstmt.setString(2, memberId);
-			result = pstmt.executeUpdate();		
+		 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		        // Check if the movie code exists in the movie table
+		        String checkSql = "SELECT COUNT(*) FROM movie WHERE movie_code = ?";
+		        PreparedStatement checkStatement = conn.prepareStatement(checkSql);
+		        checkStatement.setString(1, movieCode);
+		        if (!checkStatement.executeQuery().next()) {
+		            // Movie code does not exist in the movie table, insert it first
+		            String insertSql = "INSERT INTO movie (movie_code) VALUES (?)";
+		            PreparedStatement insertStatement = conn.prepareStatement(insertSql);
+		            insertStatement.setString(1, movieCode);
+		            insertStatement.executeUpdate();
+		            System.out.println("Movie added successfully.");
+		        }
+
+		        // Insert favorite
+		        String favoriteSql = "INSERT INTO favorite (movie_code, member_id) VALUES (?, ?)";
+		        PreparedStatement favoriteStatement = conn.prepareStatement(favoriteSql);
+		        favoriteStatement.setString(1, movieCode);
+		        favoriteStatement.setString(2, memberId);
+		        favoriteStatement.executeUpdate();
+
+		        System.out.println("Favorite added successfully.");
+		    } catch (SQLException e) {
+		        System.err.println("Error adding favorite: " + e.getMessage());
+		    }
+		    return result;
 		}
-		catch (Exception e) {
-			throw new MemberException(e);
-		}
-		return result;
-	}
 	public Member findById(Connection conn, String memberId) {
 		String sql = prop.getProperty("findById");
 		Member member = null;
@@ -189,12 +206,10 @@ private Properties prop = new Properties();
 			pstmt.setString(1, memberId);
 			pstmt.setString(2, movieCode);
 			
-			try(ResultSet rset = pstmt.executeQuery()){
-				
-			}
-			
+			result = pstmt.executeUpdate();
+
 		} catch (Exception e) {
-			throw new MemberException();
+			throw new MemberException(e);
 		}
 		return result;
 	}
