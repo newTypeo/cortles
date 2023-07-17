@@ -26,15 +26,7 @@ public class MovieFindAllServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Movie> movies = movieService.findAllMovies();
-		
 		response.setContentType("application/json; charset=utf-8");
-				
 		new Gson().toJson(movies, response.getWriter());
-		
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 }

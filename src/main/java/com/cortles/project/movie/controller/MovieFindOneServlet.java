@@ -23,18 +23,9 @@ public class MovieFindOneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String movie_code = request.getParameter("movie_code");
-		// System.out.println("모달용 movie_code (servlet) = " + movie_code);
-		
 		Movie movie = movieService.findOneMovies(movie_code);
-		System.out.println(movie);
 		response.setContentType("application/json; charset=utf-8");
-		request.setAttribute("movie_code", movie_code);
 		
 		new Gson().toJson(movie, response.getWriter());
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 }

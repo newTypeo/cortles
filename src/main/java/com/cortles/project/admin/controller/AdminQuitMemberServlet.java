@@ -26,7 +26,7 @@ public class AdminQuitMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
 		
-		request.setAttribute("quitMembers", quitMembers);
+		request.getSession().setAttribute("quitMembers", quitMembers);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/members.jsp")
 			.forward(request, response);
