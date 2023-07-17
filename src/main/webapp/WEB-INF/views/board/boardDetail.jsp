@@ -9,9 +9,52 @@
 	Board board = (Board) request.getAttribute("board");
 	List<Attachment> attachments = board.getAttachments();
 	List<BoardComment> boardComments = (List<BoardComment>) request.getAttribute("boardComments");
-	Attachment attachment = (Attachment) request.getAttribute("attachment");
+	
+	Attachment attachment = (Attachment) session.getAttribute("attachment");
+	if(attachment != null) session.removeAttribute("attachment");
+	
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
+	
 %>
+<style>
+	/* 모달 스타일링 */
+	.modal {
+	    display: none;
+	    position: fixed;
+	    z-index: 1;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    overflow: auto;
+	    background-color: rgba(0, 0, 0, 0.5);
+	}
+	
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 15% auto;
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 80%;
+	    max-width: 600px;
+	}
+	
+	.close {
+	    color: #aaa;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	    cursor: pointer;
+	}
+	
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+
+</style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<div id="board" style ="width: 605px;">
@@ -129,14 +172,59 @@
 				%>
 			</table>
 		<% 	} %>
-	</div>    
+	</div>
+	<%
+	for(BoardComment bc : boardComments) {	
+		
+	%>
+	<form 
+		action="<%= request.getContextPath() %>/board/boardCommentReport" 
+		name="boardCommentReportFrm"
+		method="post">    
+	<div id="myModal" class="modal">
+	    <div class="modal-content">
+	        <span class="close" onclick="closeModal()">&times;</span>
+			<table id="report_table" style="width: 100%;">
+			<tr>
+				<td>제목</td>
+				<td colspan="3"><textarea name="reportTitle" style="background-color: white;  resize: none;width: 100%; height: auto;"></textarea></td>
+			</tr>
+			<tr>
+				<td>신고자</td>
+				<td><textarea name="reporterId" readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea></td>
+				<td>신고유형</td>
+				<td>
+					<select name="reportType">
+						<option value="욕설">욕설</option>
+						<option value="성적수치심">성적수치심</option>
+						<option value="폭력성">폭력성</option>
+						<option value="기타">기타</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td colspan="3"><textarea name = "reportContent" style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
+				</tr>
+			</table>
+			
+			<input type="hidden" name="reportedId" value="<%= bc.getWriterId() %>"/>
+			<input type="hidden" name="commentNo" value="<%= bc.getCommentNo() %>"/>
+			<input type="hidden" name="boardNo" value="<%= bc.getBoardNo() %>"/>
+			</form>
+			<button class="btn-modal">신고</button>
+			<button>취소</button>
+			<%} %>
+	    </div>
+	    
+	</div>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
 		name="boardCommentReportFrm"
 		method="get">
 		<input type="hidden" name="no" />
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
-		<input type="hidden" name="reporterId"/>
+		<input type="hidden" name="reporterId" value="<%= loginMember.getMemberId() %>"/>
 	</form>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentDelete" 
@@ -153,14 +241,34 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
-	document.querySelectorAll(".btn-report").forEach((button) => {
+	var modal = document.getElementById("myModal");
+	function openModal() {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // 스크롤 비활성화
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // 스크롤 활성화
+    }
+    
+    document.querySelectorAll(".btn-report").forEach((button) => {
 		button.onclick = (e) => {
-			const frm = document.boardCommentDelFrm;
-			frm.reporterId.value = <%= loginMember.getMemberId() %>;
+			const frm = document.boardCommentReportFrm;
 			const {value} = e.target;
 			console.log(value);
-			frm.no.value = value;
-			frm.submit();
+			//frm.no.value = value;
+			openModal();
+		}
+	});
+    
+	document.querySelectorAll(".btn-report").forEach((button) => {
+		button.onclick = (e) => {
+			const frm = document.boardCommentReportFrm;
+			const {value} = e.target;
+			console.log(value);
+			//frm.no.value = value;
+			openModal();
 		}
 	});
 	

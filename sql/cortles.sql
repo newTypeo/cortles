@@ -56,13 +56,7 @@ create sequence seq_board_comment_no;
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 CREATE TABLE member (
 	member_id	varchar2(50)		NOT NULL,
 	favorite_genre_name	varchar2(30),
@@ -114,6 +108,8 @@ CREATE TABLE quit_member (
 	enroll_date	date		NOT NULL,
 	quit_date	date	DEFAULT sysdate
 );
+
+
 
 CREATE TABLE report_comment (
 	comment_no	number		NOT NULL,
@@ -226,14 +222,14 @@ REFERENCES movie (
 	movie_code
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_report_1 FOREIGN KEY (
 	comment_no
 )
 REFERENCES report_comment (
 	comment_no
 );
 
-ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_member_report_1 FOREIGN KEY (
+ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_report_1 FOREIGN KEY (
 	member_id
 )
 REFERENCES member (
@@ -284,6 +280,68 @@ REFERENCES member (
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --);
+
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+);
+insert into board values (
+    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+);
+select seq_board_no.currval from dual;
+
+select * from board;
+update member set favorite_movie_code = '123' where member_id = 'rudqls';
+update member set favorite_movie_code = favorite_movie_code || ',1' where member_id = 'rudqls';
+update member set favorite_movie_code = favorite_movie_code || ',' || 1 where member_id = 'rudqls';
+DELETE FROM member
+WHERE member_id = 'sejong' AND movie_code = '1';
+
+
+select * from member;
+select * from member;
+update member set favorite_movie_code = favorite_movie_code || ',' || + 'F1000' where member_id = 'test';
+ UPDATE member SET favorite_movie_code = REPLACE(REPLACE(favorite_movie_code, 'F89000', ''), '') WHERE member_id = 'sejong';
+UPDATE member
+SET favorite_movie_code = TRIM(REPLACE(REPLACE(REPLACE(CONCAT(',', REPLACE(favorite_movie_code, ',', ', ')), CONCAT(',', 'F990', ','), ','), ', ', ','), ',', ''))
+WHERE member_id = 'test'
+
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --);
@@ -341,20 +399,43 @@ create sequence seq_attachment_no;
 
 --select seq_board_no.currval from dual;
 <<<<<<< HEAD
-
 =======
 <<<<<<< HEAD
+INSERT INTO favorite (movie_code, member_id)
+SELECT 'ff99', member_id
+FROM member
+where member_id = 'sejong';
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+
 
 
 
 --insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
 --insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
 
+ALTER TABLE report_comment
+ADD (reported_id varchar2(50) NOT NULL);
 
+ALTER TABLE report_comment
+ADD (report_type varchar2(50) NOT NULL);
 
+ALTER TABLE report_comment
+ADD (board_no number NOT NULL);
 
+ALTER TABLE report_comment
+RENAME COLUMN report_id TO reporter_id;
 
+select * from report_comment r join member m on r.reported_id = m.member_id;
 
+<<<<<<< HEAD
+select * from report_comment;
+
+insert into report_comment values (1,1,'sejong','어쩔',default,'joohye','기분나쁨',1);
+=======
 =======
 >>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+>>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
 >>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git

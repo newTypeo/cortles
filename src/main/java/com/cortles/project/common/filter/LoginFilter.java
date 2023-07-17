@@ -23,7 +23,8 @@ import com.cortles.project.member.model.vo.Member;
 	"/board/boardUpdate",
 	"/board/boardDelete",
 	"/board/boardLikeGood",
-	"/board/boardCommentCreate"
+	"/board/boardCommentCreate",
+	"/board/boardDetail"
 })
 public class LoginFilter extends HttpFilter implements Filter {
        

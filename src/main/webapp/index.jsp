@@ -13,44 +13,41 @@ html {width: 10000px;}
 	href="<%=request.getContextPath()%>/css/modal.css" />
 <%
 	boolean memberIsLogin = loginMember != null;
-	// System.out.print("memberIsLogin" + memberIsLogin);
 %>
 <script>
-window.addEventListener("load", () => {
+// 홈화면이 로딩되면 모든영화 가져올 method 실행
+window.addEventListener("load", () => { 
 	findAllMovies();
 });
- const findAllMovies = () => {
-	 
+
+const findAllMovies = () => {
+	 // 비동기로 모든 영화 가져올 ajax
 	 $.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
 		dataType : "json",
 		success(movies) {
-			console.log(movies);
+			console.log(movies); // DB에 있는 모든 영화들
 			<% if(memberIsLogin) { %>
 				const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
-				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천
+				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천을 위함
 				
-				// 추천영화갯수용 변수
-				let countMovies = 0;
 			<% } %>
 			movies.forEach((movie) => {
 				const {posterUrl, genre, movieCode} = movie;
 				const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
 				
-				// 로그인 상태일 시 영화 (로그인상태이면서 추천영화 갯수 15개가 모두 안 찼으며, 선호장르의 영화이면서 50%확률)
+				// 로그인 상태일 시 회원별 추천 영화
 				<% if(memberIsLogin) { %>
-						const randomIndex = Math.floor(Math.random() * favoriteGenres.length); // 0부터 선호장르배열의 길이 사이의 정수
-						const fiftyFifty = Math.round(Math.random()) != 1; // 50%확률로 추천 영화 삽입할 신호
+						// 0부터 선호장르배열의 길이 사이의 정수	
+						const randomIndex = Math.floor(Math.random() * favoriteGenres.length); 
 							
-						if(countMovies <= 15 && genre.includes(favoriteGenres[randomIndex])) {
+						// 랜덤의 영화를 추천하기 위해 회원의 선호장르 중 랜덤의 장르(1개)가 영화의 장르(n개)에 포함될 시 실행되는 조건문
+						if(genre.includes(favoriteGenres[randomIndex])) { 
 							document.querySelector("#recommendedMovies").innerHTML += imgHTML;
-							countMovies = countMovies + 1;
-							
-							// console.log("favoriteGenres[randomIndex]",favoriteGenres[randomIndex]);
 						}
 				<% } %>
 				
-				// 이번 영화의 장르에 맞게 hTML에 이미지 삽입
+				// DB에서 가져온 영화별로 장르에 맞는 article에 포스터 삽입
 				if(genre != null && genre.includes("액션"))
 					document.querySelector("#action").innerHTML += imgHTML;
 				if(genre != null && genre.includes("SF"))
@@ -69,34 +66,32 @@ window.addEventListener("load", () => {
 					document.querySelector("#fantasy").innerHTML += imgHTML;
 				if (genre != null && genre.includes("미스터리"))
 					document.querySelector("#mystery").innerHTML += imgHTML;
-			})
-		},
+				
+			}) // 영화 포스터 삽입용 forEach
+		}, // success
 		complete() {
-			// console.log(document.querySelectorAll("img"));
 			[...document.querySelectorAll("img")].forEach((imgTag) => {
 				imgTag.addEventListener('click', (e) =>{
-					// console.log("e.target", e.target.name);
 					openModal(e.target.name);
-				})
-			});
-		}
-	});
-	
-};
+					
+				}) // eventListener
+			}); // 모든 포스터에 clickEvent 추가용 forEach
+		} // complete
+	}) // ajax
+}; // findAllMovies()
 </script>
-
 
 <section>
 <div id="myModal" class="modal" style="display: none;">
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
+      
       <% if(loginMember != null) { %>
       <form
       	name="myListFrm"
       	action="<%=request.getContextPath()%>/member/AddMyListServlet"
-      	method="post"
-      >
+      	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
       	  <button type="button" id="ggimButton">찜</button>
@@ -107,10 +102,10 @@ window.addEventListener("load", () => {
           
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
-              <form>
-                  <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </form>
-            </div>
+            <form>
+              <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </form>
+          </div>
             
             <!-- 별점 평점 구역 -->
             <div class="rating-container">
@@ -139,67 +134,56 @@ window.addEventListener("load", () => {
     </div>
         <!-- 댓글 목록 -->
         <div id="commentList">
-            <ul class="comment-list">
-            </ul>
+            <ul class="comment-list"></ul>
         </div>
     </div>
   </div>
 </div>
 </section>
-		<% if(memberIsLogin) { %>
+<% 		if(memberIsLogin) { 		%>
 				<div>
-				<span><%= loginMember.getMemberId() %> 님의 좋아할만한 콘텐츠</span>
+				<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
 					<article id="recommendedMovies"></article>
 				</div>
-				<hr/>
-		<% } %>
+				<br/>
+<%		 } 							%>
 			<div>
-				<span>romance</span>
-				<article id="romance"></article>
+				<span>romance</span><article id="romance"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>SF</span>
-				<article id="sf"></article>
+				<span>SF</span><article id="sf"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>horror</span>
-				<article id="horror"></article>
+				<span>horror</span><article id="horror"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>thriller</span>
-				<article id="thriller"></article>
+				<span>thriller</span><article id="thriller"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>action</span>
-				<article id="action"></article>
+				<span>action</span><article id="action"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>drama</span>
-				<article id="drama"></article>
+				<span>drama</span><article id="drama"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>comedy</span>
-				<article id="comedy"></article>
+				<span>comedy</span><article id="comedy"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>fantasy</span>
-				<article id="fantasy"></article>
+				<span>fantasy</span><article id="fantasy"></article>
 			</div>
-			<hr/>
+		<br/>
 			<div>
-				<span>mystery</span>
-				<article id="mystery"></article>
+				<span>mystery</span><article id="mystery"></article>
 			</div>
-			<hr/>
+		<br/>
 <script>
-
 const scroll = document.querySelector("body");
 
 //모달 열기
@@ -216,19 +200,18 @@ function openModal(movie_code) {
 		  	document.getElementById("myModal").style.display = "block";
 		},
 		complete (){
-				// const src = document.querySelector('.video-container iframe').src;
-				// console.log(src.getElementsByClassName('.play'));
-				// document.querySelector(".trailer .play").click();
-		  	  	// 버튼을 클릭했을 때 실행되는 코드
+			// const src = document.querySelector('.video-container iframe').src;
+			// console.log(src.getElementsByClassName('.play'));
+			// document.querySelector(".trailer .play").click();
+			
+	  	  	// 버튼을 클릭했을 때 실행되는 코드
+<%			 if(loginMember != null) { 			%>
 		  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
-		  		// console.log(e.target);
-		  		// console.log(document.myListFrm);
-		  		const frm = document.myListFrm;
-		  		frm.movieCode.value = movie_code;
-		  		document.myListFrm.submit();
-		  		
-		  		//e.preventDefault();
-		  	});
+			  		const frm = document.myListFrm;
+			  		frm.movieCode.value = movie_code;
+			  		document.myListFrm.submit();
+			  	});
+<%			 }									%>
 		}
 	}) // ajax
 };
