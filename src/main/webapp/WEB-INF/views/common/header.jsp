@@ -20,7 +20,6 @@
 	// System.out.println("msg = " + msg);
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
-	System.out.println("loginMember = " + loginMember);
 	
 	Cookie[] cookies = request.getCookies();
 	String saveId = null;
@@ -104,11 +103,22 @@ window.onload = () => {
 		
 		
 	</header>
+	
+	<form name="myList" action="<%=request.getContextPath()%>/member/myList">
+	     <% if(loginMember != null) { %>
+	     	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>      	  
+	     <% } %>
+ 	</form>
 <script>
 window.onload = () => {
 	<% if(msg != null) { %>
-	alert('<%= msg %>');
+		alert('<%= msg %>');
 	<% } %>
+};
+
+const mylist = () => {
+	const frm = document.myList;
+	frm.submit();
 };
 </script>
 	
