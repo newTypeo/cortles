@@ -172,45 +172,51 @@
 				%>
 			</table>
 		<% 	} %>
-	</div>    
+	</div>
+	<%
+	for(BoardComment bc : boardComments) {	
+		
+	%>
+	<form 
+		action="<%= request.getContextPath() %>/board/boardCommentReport" 
+		name="boardCommentReportFrm"
+		method="post">    
 	<div id="myModal" class="modal">
 	    <div class="modal-content">
 	        <span class="close" onclick="closeModal()">&times;</span>
 			<table id="report_table" style="width: 100%;">
 			<tr>
 				<td>제목</td>
-				<td colspan="3"><textarea style="background-color: white;  resize: none;width: 100%; height: auto;"></textarea></td>
+				<td colspan="3"><textarea name="reportTitle" style="background-color: white;  resize: none;width: 100%; height: auto;"></textarea></td>
 			</tr>
 			<tr>
 				<td>신고자</td>
-				<td><textarea readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea></td>
+				<td><textarea name="reporterId" readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea></td>
 				<td>신고유형</td>
 				<td>
-					<select>
-						<option value="">욕설</option>
-						<option value="">성적수치심</option>
-						<option value="">폭력성</option>
-						<option value="">기타</option>
+					<select name="reportType">
+						<option value="욕설">욕설</option>
+						<option value="성적수치심">성적수치심</option>
+						<option value="폭력성">폭력성</option>
+						<option value="기타">기타</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td colspan="3"><textarea style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
+				<td colspan="3"><textarea name = "reportContent" style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
 				</tr>
 			</table>
-			<button>신고</button>
-			<button>취소</button>
-			<form 
-				action="<%= request.getContextPath() %>/board/boardCommentReport" 
-				name="boardCommentReportFrm"
-				method="post">
-				<input type="hidden" name="no" />
-				<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
-				<input type="hidden" name="reporterId" value="<%= loginMember.getMemberId() %>"/>
-				<input type="hidden" name="reportedId" value=""/>
+			
+			<input type="hidden" name="reportedId" value="<%= bc.getWriterId() %>"/>
+			<input type="hidden" name="commentNo" value="<%= bc.getCommentNo() %>"/>
+			<input type="hidden" name="boardNo" value="<%= bc.getBoardNo() %>"/>
 			</form>
+			<button class="btn-modal">신고</button>
+			<button>취소</button>
+			<%} %>
 	    </div>
+	    
 	</div>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
@@ -246,12 +252,22 @@
         document.body.style.overflow = "auto"; // 스크롤 활성화
     }
     
+    document.querySelectorAll(".btn-report").forEach((button) => {
+		button.onclick = (e) => {
+			const frm = document.boardCommentReportFrm;
+			const {value} = e.target;
+			console.log(value);
+			//frm.no.value = value;
+			openModal();
+		}
+	});
+    
 	document.querySelectorAll(".btn-report").forEach((button) => {
 		button.onclick = (e) => {
 			const frm = document.boardCommentReportFrm;
 			const {value} = e.target;
 			console.log(value);
-			frm.no.value = value;
+			//frm.no.value = value;
 			openModal();
 		}
 	});
