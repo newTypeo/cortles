@@ -136,6 +136,7 @@
 		method="get">
 		<input type="hidden" name="no" />
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
+		<input type="hidden" name="reporterId"/>
 	</form>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentDelete" 
@@ -152,6 +153,17 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<script>
+	document.querySelectorAll(".btn-report").forEach((button) => {
+		button.onclick = (e) => {
+			const frm = document.boardCommentDelFrm;
+			frm.reporterId.value = <%= loginMember.getMemberId() %>;
+			const {value} = e.target;
+			console.log(value);
+			frm.no.value = value;
+			frm.submit();
+		}
+	});
+	
 	document.querySelectorAll(".btn-update").forEach((button) => {
 		button.onclick = (e) => {
 			const frm = document.boardCommentUpdateFrm;
@@ -161,7 +173,6 @@
 			frm.submit();
 		}
 	});
-	
 	
 
 	document.querySelectorAll(".btn-delete").forEach((button) => {
