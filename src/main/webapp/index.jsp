@@ -7,19 +7,18 @@
 <title>메인 페이지</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/index.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/modal.css" />
 <%
 	boolean memberIsLogin = loginMember != null;
 	// System.out.print("memberIsLogin" + memberIsLogin);
 %>
 <script>
-document.querySelector("#myList").addEventListener('click', (e) => {
-	const frm = document.myList;
-	frm.submit();
-});
 window.addEventListener("load", () => {
 	findAllMovies();
 });
  const findAllMovies = () => {
+	 
 	 $.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
 		dataType : "json",
@@ -85,7 +84,7 @@ window.addEventListener("load", () => {
 </script>
 
 
-	<section>
+<section>
 <div id="myModal" class="modal" style="display: none;">
   <div class="modal-content">
       <!-- 컨테이너 -->
@@ -144,6 +143,7 @@ window.addEventListener("load", () => {
     </div>
   </div>
 </div>
+</section>
 		<% if(memberIsLogin) { %>
 				<div>
 				<span><%= loginMember.getMemberId() %> 님의 좋아할만한 콘텐츠</span>
@@ -196,24 +196,7 @@ window.addEventListener("load", () => {
 				<article id="mystery"></article>
 			</div>
 			<hr/>
-			
-			<form
-		      	name="myList"
-		      	action="<%=request.getContextPath()%>/member/myList"
-		      	method="get"
-		      >
-		      <% if(loginMember != null) { %>
-		      	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>      	  
-		      <% } %>
-      		</form>
-			
-			
 <script>
-//const mylist = () => {
-	
-//};
-
-
 
 const scroll = document.querySelector("body");
 
@@ -239,7 +222,7 @@ function openModal(movie_code) {
 		  		// console.log(e.target);
 		  		// console.log(document.myListFrm);
 		  		const frm = document.myListFrm;
-		  		frm.movieCode.value = movieCode;
+		  		frm.movieCode.value = movie_code;
 		  		document.myListFrm.submit();
 		  		
 		  		//e.preventDefault();
