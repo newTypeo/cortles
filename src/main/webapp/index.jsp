@@ -89,12 +89,12 @@ window.addEventListener("load", () => {
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
+      
       <% if(loginMember != null) { %>
       <form
       	name="myListFrm"
       	action="<%=request.getContextPath()%>/member/AddMyListServlet"
-      	method="post"
-      >
+      	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
       	  <button type="button" id="ggimButton">찜</button>
