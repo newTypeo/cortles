@@ -3,7 +3,7 @@ img:hover {
 	transform:scale(1.6);
 	transition: transform .3s;  
 }
-
+img {margin: 7px;}
 /* 스타일링을 적용할 부모 컨테이너 */
 .container {
   max-width: 600px;

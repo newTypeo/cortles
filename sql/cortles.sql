@@ -1,3 +1,14 @@
+--alter session set "_oracle_script" = true;
+--
+--create user cortles
+--identified by cortles
+--default tablespace users;
+--
+--grant connect, resource to cortles;
+--
+--alter user cortles quota unlimited on users;
+
+ 
 ------------- 삭제할 테이블 조회 -------------
 -- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
@@ -17,7 +28,8 @@ select * from movie;
 select * from member;
 select * from attachment;
 select * from quit_member;
-
+update member set favorite_movie_code = favorite_movie_code || ',' || + '1' where member_id = 'sejong';
+update member set favorite_movie_code = favorite_movie_code || '1' where member_id = 'sejong';
 ------------- 테이블 행 삭제 ----------------
 -- delete from member where member_id = 'sejong';
 
@@ -268,6 +280,7 @@ end;
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --);
+<<<<<<< HEAD
 insert into board values (
     seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 );
@@ -324,3 +337,49 @@ WHERE member_id = 'sejong' AND movie_code = '1';
 select * from member;
 
 
+=======
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);insert into board values (
+--   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--   seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
+--);
+--insert into board values (
+--    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
+--);
+--select seq_board_no.currval from dual;
+>>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git

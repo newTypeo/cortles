@@ -11,6 +11,7 @@ import java.util.List;
 import com.cortles.project.member.model.dao.MemberDao;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
+import com.cortles.project.member.model.vo.QuitMember;
 
 public class MemberService {
 	private final MemberDao memberDao = new MemberDao();
@@ -63,7 +64,13 @@ public class MemberService {
 	public int addMyList(String memberId, String movieCode) {
 		Connection conn = getConnection();
 		int result = 0;
-		result = memberDao.addMyList(conn, memberId, movieCode);
+		try {
+			result = memberDao.addMyList(conn, memberId, movieCode);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
 		close(conn);
 		return result;
 	}
@@ -138,6 +145,16 @@ public class MemberService {
 			close(conn);
 		}
 		return result;
+	}
+
+	/*
+	 * 탈퇴한 회원 조회 - 주혜 
+	 */
+	public List<QuitMember> quitMemberFindAll() {
+		Connection conn = getConnection();
+		List<QuitMember> quitMembers = memberDao.quitMemberFindAll(conn);
+		close(conn);
+		return quitMembers;
 	}
 
 	
