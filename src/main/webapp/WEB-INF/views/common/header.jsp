@@ -5,6 +5,7 @@
 <%
 	String msg = (String) session.getAttribute("msg");
 	if(msg != null) session.removeAttribute("msg"); // 1회용
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -45,7 +46,7 @@
 		<ul>
 			<li><a href="<%= request.getContextPath() %>">Home</a></li>
 			<li><a href="<%= request.getContextPath() %>/board/boardList">Community</a></li>
-			<li><a href="<%= request.getContextPath() %>/member/myList" id="myList">MyList</a></li> <!-- 로그인 했을시에만 보이게 -->
+			<li><a href="#" onclick="mylist()">MyList</a></li> <!-- 로그인 했을시에만 보이게 -->
 			<!-- if(loginMember != null && loginMember.getMemberRole() == MemberRole.A){ %>  -->
 			<li><a href="<%= request.getContextPath() %>/members">Members</a></li> <!-- 관리자  -->
 			<li><a href="<%= request.getContextPath() %>/report">Report</a></li> <!-- 관리자  -->
@@ -93,10 +94,21 @@
 		<% } %>
 		
 	</header>
+	
+	<form name="myList" action="<%=request.getContextPath()%>/member/myList">
+	     <% if(loginMember != null) { %>
+	     	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>      	  
+	     <% } %>
+ 	</form>
 <script>
 window.onload = () => {
 	<% if(msg != null) { %>
-	alert('<%= msg %>');
+		alert('<%= msg %>');
 	<% } %>
+};
+
+const mylist = () => {
+	const frm = document.myList;
+	frm.submit();
 };
 </script>
