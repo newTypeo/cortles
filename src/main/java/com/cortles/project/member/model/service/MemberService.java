@@ -75,10 +75,19 @@ public class MemberService {
 		return result;
 	}
 
+	/**
+	 * 찜목록 삭제 - 경빈
+	 */
 	public int deleteMyList(String memberId, String movieCode) {
 		Connection conn = getConnection();
 		int result = 0;
-		result = memberDao.deleteMyList(conn, memberId, movieCode);
+		try {
+			result = memberDao.deleteMyList(conn, memberId, movieCode);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
 		close(conn);
 		return result;
 	}

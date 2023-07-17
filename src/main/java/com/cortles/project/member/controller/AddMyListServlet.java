@@ -24,6 +24,8 @@ public class AddMyListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId = request.getParameter("memberId");
 		String movieCode = request.getParameter("movieCode");
+		System.out.println(memberId);
+		System.out.println(movieCode);
 		
 		int result = memberService.addMyList(memberId, movieCode);
 		
