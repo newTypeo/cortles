@@ -4,24 +4,28 @@ import java.sql.Date;
 
 public class ReportComment {
 	private int commentNo;
+	private int boardCommentNo;
 	private int reportCount;
 	private String reporterId;
 	private String reportedId;
 	private String reportContent;
+	private String reportType;
 	private Date reportDate;
 	
 	public ReportComment() {
 		
 	}
 
-	public ReportComment(int commentNo, int reportCount, String reporterId, String reportedId, String reportContent,
-			Date reportDate) {
+	public ReportComment(int commentNo, int boardCommentNo, int reportCount, String reporterId, String reportedId,
+			String reportContent, String reportType, Date reportDate) {
 		super();
 		this.commentNo = commentNo;
+		this.boardCommentNo = boardCommentNo;
 		this.reportCount = reportCount;
 		this.reporterId = reporterId;
 		this.reportedId = reportedId;
 		this.reportContent = reportContent;
+		this.reportType = reportType;
 		this.reportDate = reportDate;
 	}
 
@@ -31,6 +35,14 @@ public class ReportComment {
 
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
+	}
+
+	public int getBoardCommentNo() {
+		return boardCommentNo;
+	}
+
+	public void setBoardCommentNo(int boardCommentNo) {
+		this.boardCommentNo = boardCommentNo;
 	}
 
 	public int getReportCount() {
@@ -65,6 +77,14 @@ public class ReportComment {
 		this.reportContent = reportContent;
 	}
 
+	public String getReportType() {
+		return reportType;
+	}
+
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
+	}
+
 	public Date getReportDate() {
 		return reportDate;
 	}
@@ -75,10 +95,12 @@ public class ReportComment {
 
 	@Override
 	public String toString() {
-		return "ReportComment [commentNo=" + commentNo + ", reportCount=" + reportCount + ", reporterId=" + reporterId
-				+ ", reportedId=" + reportedId + ", reportContent=" + reportContent + ", reportDate=" + reportDate
-				+ "]";
+		return "ReportComment [commentNo=" + commentNo + ", boardCommentNo=" + boardCommentNo + ", reportCount="
+				+ reportCount + ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportContent="
+				+ reportContent + ", reportType=" + reportType + ", reportDate=" + reportDate + "]";
 	}
+	
+	
 	
 	
 	
