@@ -286,11 +286,11 @@ private Properties prop = new Properties();
 		try(PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rset = pstmt.executeQuery();
 				){
-			System.out.println("하이 ");
+			//System.out.println("하이 ");
 			while(rset.next()) {
-				System.out.println("하이 in while");
+				//System.out.println("하이 in while");
 				QuitMember quitMember = handleQuitMemberListResultSet(rset);
-				System.out.println("하이 after resultSet");
+			//	System.out.println("하이 after resultSet");
 				quitMembers.add(quitMember);
 			}
 		} catch (SQLException e) {
