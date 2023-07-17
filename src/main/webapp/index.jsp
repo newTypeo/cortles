@@ -9,7 +9,7 @@
 	href="<%=request.getContextPath()%>/css/index.css" />
 <%
 	boolean memberIsLogin = loginMember != null;
-	System.out.print("memberIsLogin" + memberIsLogin);
+	// System.out.print("memberIsLogin" + memberIsLogin);
 %>
 <script>
 window.addEventListener("load", () => {
@@ -24,27 +24,29 @@ window.addEventListener("load", () => {
 			console.log(movies);
 			<% if(memberIsLogin) { %>
 				const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
-				// favorite 장르 ','를 빈칸으로 replace하고, 아래에 영화의 genre의 '/', ',' 두개를 빈칸으로 replace한 후 includes해야함!!
+				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천
 				
-				
-				
+				// 추천영화갯수용 변수
 				let countMovies = 0;
-				// console.log("favoriteGenre=",favoriteGenre);
 			<% } %>
 			movies.forEach((movie) => {
 				const {posterUrl, genre, movieCode} = movie;
 				const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
+				
 				// 로그인 상태일 시 영화 (로그인상태이면서 추천영화 갯수 15개가 모두 안 찼으며, 선호장르의 영화이면서 50%확률)
-				console.log("favoriteGenre",favoriteGenre);
-				console.log("genre",genre);
-				console.log("favoriteGenre.includes(genre)",favoriteGenre.includes(genre));
+				<% if(memberIsLogin) { %>
+						const randomIndex = Math.floor(Math.random() * favoriteGenres.length); // 0부터 선호장르배열의 길이 사이의 정수
+						const fiftyFifty = Math.round(Math.random()) != 1; // 50%확률로 추천 영화 삽입할 신호
+							
+						if(countMovies <= 15 && genre.includes(favoriteGenres[randomIndex])) {
+							document.querySelector("#recommendedMovies").innerHTML += imgHTML;
+							countMovies = countMovies + 1;
+							
+							// console.log("favoriteGenres[randomIndex]",favoriteGenres[randomIndex]);
+						}
+				<% } %>
 				
-				if(<%= memberIsLogin %> && countMovies <= 15 && favoriteGenre.includes(genre) && Math.round(Math.random()) != 1) {
-					document.querySelector("#recommendedMovies").innerHTML += imgHTML;
-					countMovies = countMovies + 1;
-					console.log("favMovieAdded");
-				}
-				
+				// 이번 영화의 장르에 맞게 hTML에 이미지 삽입
 				if(genre != null && genre.includes("액션"))
 					document.querySelector("#action").innerHTML += imgHTML;
 				if(genre != null && genre.includes("SF"))
@@ -66,10 +68,10 @@ window.addEventListener("load", () => {
 			})
 		},
 		complete() {
-			console.log(document.querySelectorAll("img"));
+			// console.log(document.querySelectorAll("img"));
 			[...document.querySelectorAll("img")].forEach((imgTag) => {
 				imgTag.addEventListener('click', (e) =>{
-					console.log("e.target", e.target.name);
+					// console.log("e.target", e.target.name);
 					openModal(e.target.name);
 				})
 			});
@@ -147,8 +149,8 @@ window.addEventListener("load", () => {
 				<hr/>
 		<% } %>
 			<div>
-				<span>action</span>
-				<article id="action"></article>
+				<span>romance</span>
+				<article id="romance"></article>
 			</div>
 			<hr/>
 			<div>
@@ -167,8 +169,8 @@ window.addEventListener("load", () => {
 			</div>
 			<hr/>
 			<div>
-				<span>romance</span>
-				<article id="romance"></article>
+				<span>action</span>
+				<article id="action"></article>
 			</div>
 			<hr/>
 			<div>
@@ -215,12 +217,12 @@ const scroll = document.querySelector("body");
 
 //모달 열기
 function openModal(movie_code) {
-	console.log("(openModal)movie_code", movie_code);
+	// console.log("(openModal)movie_code", movie_code);
 	$.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
 		data : {movie_code},
 		success(movieInfo){
-			console.log("여기는 success= 	", movieInfo);
+			// console.log("여기는 success= 	", movieInfo);
 			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
 			document.querySelector(".trailer").src = vod;
 			scroll.style.overflow = "hidden";	
@@ -232,8 +234,8 @@ function openModal(movie_code) {
 				// document.querySelector(".trailer .play").click();
 		  	  	// 버튼을 클릭했을 때 실행되는 코드
 		  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
-		  		console.log(e.target);
-		  		console.log(document.myListFrm);
+		  		// console.log(e.target);
+		  		// console.log(document.myListFrm);
 		  		const frm = document.myListFrm;
 		  		frm.movieCode.value = movieCode;
 		  		document.myListFrm.submit();
