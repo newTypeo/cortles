@@ -14,7 +14,7 @@
 	<br>
     <div class="search-container" id="search-name">
    	 <form action="<%= request.getContextPath()%>/board/searchTitle" name="searchTitleFrm">
-    	<input type="hidden" name="searchType" value="name"/>
+    	<input type="hidden" name="searchType" value="title"/>
    		 <input type="text" name="searchKeyword" class="search-input" placeholder="제목으로 검색">
    			<span class="btn-wrapper">
     			<button class="btn" type="submit">Button</button>

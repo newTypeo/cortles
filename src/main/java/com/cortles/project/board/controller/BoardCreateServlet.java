@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.Attachment;
@@ -18,33 +19,23 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
-/**
- * Servlet implementation class BoardCreateServlet
- */
 @WebServlet("/board/boardCreate")
 public class BoardCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final BoardService boardService = new BoardService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardCreate.jsp")
 			.forward(request, response);
-		
 	}
 	
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// 업로드파일 저장경로 C:\\Workspaces\\web_server_workspace\\hello-mvc\\src\\main\\webapp\\upload\\board
 			ServletContext application = getServletContext();
 			String saveDirectory = application.getRealPath("/upload/board");
-			System.out.println("saveDirectory = " + saveDirectory);
+			// System.out.println("saveDirectory = " + saveDirectory);
+			
 			// 파일하나당 최대크기 10MB
 			int maxPostSize = 1024 * 1024 * 10;
 			// 인코딩
@@ -53,6 +44,7 @@ public class BoardCreateServlet extends HttpServlet {
 			// 파일명 재지정 정책객체
 			// 한글.txt --> 20230629_160430123_999.txt
 			FileRenamePolicy policy = new DefaultFileRenamePolicy();
+			  
 			
 			MultipartRequest multiReq = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
 			
@@ -65,7 +57,7 @@ public class BoardCreateServlet extends HttpServlet {
 			board.setTitle(title);
 			board.setWriterId(writer);
 			board.setContent(content);
-			System.out.println("확인용 = " + board); 
+			// System.out.println("확인용 = " + board); 
 			
 			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2
 			while(filenames.hasMoreElements()) {
@@ -83,8 +75,9 @@ public class BoardCreateServlet extends HttpServlet {
 			int result = boardService.insertBoard(board);
 			
 			// 3. 응답처리 (목록페이지로 redirect) - POST방식 DML처리후 url변경을 위해 redirect처리
-			request.getSession().setAttribute("msg", "게시글 등록 완료!");
-			
+			HttpSession session = request.getSession();
+			session.setAttribute("msg", "게시글 등록 완료!");
+			// session.setAttribute("boar", session)
 			response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + board.getBoardNo());
 	}
 

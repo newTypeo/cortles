@@ -20,6 +20,13 @@ public class MovieService {
 		close(conn);
 		return movies;
 	}
+
+	public Movie findOneMovies(String movie_code) {
+		Connection conn = getConnection();
+		Movie movie = movieDao.findOneMovies(conn, movie_code);
+		close(conn);
+		return movie;
+	}
 	
 	
 	

@@ -43,6 +43,4 @@ public class Board extends BoardEntity {
 		return "Board [attachCnt=" + attachCnt + ", attachments=" + attachments + ", commentCnt=" + commentCnt
 				+ ", toString()=" + super.toString() + "]";
 	}
-	
-	
 }
