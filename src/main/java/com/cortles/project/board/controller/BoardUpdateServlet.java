@@ -2,6 +2,7 @@ package com.cortles.project.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -34,7 +35,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		Attachment attachment = boardService.findAttachmentByBoardNo(no);
 		
 		request.setAttribute("board", board);
-		request.setAttribute("attachment", attachment);
+		request.getSession().setAttribute("attachment", attachment);
 		
 		// 3. 응답처리
 		request.getRequestDispatcher("/WEB-INF/views/board/boardUpdate.jsp")
@@ -42,6 +43,7 @@ public class BoardUpdateServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ServletContext application = getServletContext();
 		String saveDirectory = application.getRealPath("/upload/board");
 		// System.out.println("saveDirectory = " + saveDirectory);
@@ -61,6 +63,12 @@ public class BoardUpdateServlet extends HttpServlet {
 		// db attachment 행삭제, 저장된 파일삭제
 		String[] delFiles = multiReq.getParameterValues("delFile");
 		
+		System.out.println("no = " + no);
+		System.out.println("title = " + title);
+		System.out.println("content = " + content);
+		System.out.println("writer = " + writer);
+		System.out.println("delFiles = " + Arrays.toString(delFiles));
+		
 		// update board set ? = ? where no = ?
 		Board board = new Board();
 		board.setBoardNo(no);
@@ -68,6 +76,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		board.setWriterId(writer);
 		board.setContent(content);
 		// System.out.println(board);
+		
 		
 		// Attachment객체 생성 (Board 추가)
 		Enumeration<String> filenames = multiReq.getFileNames();
@@ -80,31 +89,37 @@ public class BoardUpdateServlet extends HttpServlet {
 				attach.setRenamedFilename(multiReq.getFilesystemName(name)); // renamedFilename
 				attach.setBoardNo(no); // fk컬럼 boardNo 바로 설정 가능
 				board.addAttachment(attach);
+				request.getSession().setAttribute("attachment", attach);
 			}
 		}
 		
 		// 2. 업무로직
-//		int result = boardService.updateBoard(board);
+		int result = boardService.updateBoard(board);
 		
 		// 첨부파일 삭제
-//		if(delFiles != null) {
-//			for(String _attachNo : delFiles) {
-//				int attachNo = Integer.parseInt(_attachNo);
-//				// a. 파일삭제
-//				Attachment attach = boardService.findAttachmentById(attachNo); // db 조회
-//				// java.io.File : 실제파일을 가리키는 자바객체
-//				File delFile = new File(saveDirectory, attach.getRenamedFilename());
-//				if(delFile.exists()) // delFile이 존재 할 경우에만
-//					delFile.delete();	// delFile 삭제
-//				System.out.println(attach.getRenamedFilename() + " : " + delFile.exists());
-//				
-//				// b. db attachment 행 삭제
-//				result = boardService.deleteAttachment(attachNo);
-//			}
-//		}
+		if(delFiles != null && !delFiles[0].equals("0")) {
+			for(String _attachNo : delFiles) {
+				int attachNo = Integer.parseInt(_attachNo);
+				// a. 파일삭제
+				Attachment attach = boardService.findAttachmentById(attachNo); // db 조회
+				// java.io.File : 실제파일을 가리키는 자바객체
+				File delFile = new File(saveDirectory, attach.getRenamedFilename());
+				if(delFile.exists()) // delFile이 존재 할 경우에만
+					delFile.delete();	// delFile 삭제
+				System.out.println(attach.getRenamedFilename() + " : " + delFile.exists());
+				
+				// b. db attachment 행 삭제
+				result = boardService.deleteAttachment(attachNo);
+			}
+		}
+		
+		//Attachment attachment = new Attachment();
+		
+		//System.out.println("attachment@UpdateServlet = " + attachment);
+		//request.getSession().setAttribute("attachment", attachment);
 		
 		// 3. 응답처리 (목록페이지로 redirect) - POST방식 DML처리후 url변경을 위해 redirect처리
-//		response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + board.getBoardNo());
+		response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + board.getBoardNo());
 		
 	}
 
