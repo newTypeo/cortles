@@ -541,6 +541,44 @@ public class BoardDao {
 	}
 
 
+	public int countReport(Connection conn, int commentNo) {
+		int reportCnt = 0;
+		String sql = prop.getProperty("countReport");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, commentNo);
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next()) {
+					reportCnt = rset.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		return reportCnt;
+	}
+
+
+	public int updateCountReport(Connection conn, int commentNo, int reportCnt) {
+		int result = 0;
+		String sql = prop.getProperty("updateCountReport");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, reportCnt);
+			pstmt.setInt(2, commentNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		
+		
+		return result;
+	}
+
+
+
+
 
 
 
