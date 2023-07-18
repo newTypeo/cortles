@@ -1,21 +1,5 @@
---alter session set "_oracle_script" = true;
---
---create user cortles
---identified by cortles
---default tablespace users;
---
---grant connect, resource to cortles;
---
---alter user cortles quota unlimited on users;
-
- 
 ------------- 삭제할 테이블 조회 -------------
-
 -- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
-
-
-
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --DROP TABLE "MEMBER" CASCADE CONSTRAINTS;
 --DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
 --DROP TABLE "BOARD" CASCADE CONSTRAINTS;
@@ -26,132 +10,134 @@
 --DROP TABLE "BOARD_COMMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "ATTACHMENT" CASCADE CONSTRAINTS;
 --DROP TABLE "FAVORITE" CASCADE CONSTRAINTS;
- 
- 
 
 --------------- 테이블 조회 -----------------
-select * from board;
-select * from movie;
-select * from member;
-select * from attachment;
-select * from quit_member;
-update member set favorite_movie_code = favorite_movie_code || ',' || + '1' where member_id = 'sejong';
-update member set favorite_movie_code = favorite_movie_code || '1' where member_id = 'sejong';
+--select * from board;
+--select * from movie;
+--select * from member;
+--select * from attachment;
+--select * from quit_member;
+--select * from favorite;
 ------------- 테이블 행 삭제 ----------------
--- delete from member where member_id = 'sejong';
-
----------------- 시퀀스 생성 -----------------
-create sequence seq_board_no;
-create sequence seq_attachment_no;
-create sequence seq_quit_member_no;
-create sequence seq_board_comment_no;
+--delete from member where member_id = 'sejong';
 
 ---------------시퀀스 삭제 ------------------
 --drop sequence seq_board_no;
 --drop sequence seq_attachment_no;
 --drop sequence seq_quit_member_no;
 --drop sequence seq_board_comment_no;
+--drop sequence seq_report_comment_no;
 
----------------쿼리문 확인용 ------------------
---insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
---insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
+
+---------------- 시퀀스 생성 -----------------
+create sequence seq_board_no;
+create sequence seq_attachment_no;
+create sequence seq_quit_member_no;
+create sequence seq_board_comment_no;
+create sequence seq_report_comment_no;
+
 
 
 CREATE TABLE member (
-	member_id	varchar2(50)		NOT NULL,
+	member_id	varchar2(50)	NOT NULL,
 	favorite_genre_name	varchar2(30),
 	favorite_movie_code	varchar2(200),
-	member_pw	varchar2(300)		NOT NULL,
-	member_name	varchar2(30)		NOT NULL,
+	member_pw	varchar2(300)	NOT NULL,
+	member_name	varchar2(30)	NOT NULL,
 	email	varchar2(50),
-	phone	varchar2(20)		NOT NULL,
-	gender	char(1)		NOT NULL,
+	phone	varchar2(20)	NOT NULL,
+	gender	char(1)	NOT NULL,
 	member_role	char(1)	DEFAULT 'U',
-	birthday	date		NOT NULL,
+	birthday	date	NOT NULL,
 	enroll_date	date	DEFAULT sysdate
 );
 
 CREATE TABLE movie (
-	movie_code	varchar2(200)		NOT NULL,
-	title	varchar2(200)		NOT NULL,
-	title_eng	varchar2(200),
-	movie_grade	number		NOT NULL,
-	genre	varchar2(100)		NOT NULL,
-	story	varchar2(3000)		NOT NULL,
-	open_date	date		NOT NULL,
-	runtime	varchar2(100)		NOT NULL,
-	poster_url	varchar2(500)		NOT NULL,
-	director 	varchar2(200)		NOT NULL,
-	actors	varchar2(500)		NOT NULL,
-	vod	varchar2(500)		NOT NULL
+	movie_code	varchar2(200)	NOT NULL,
+	title	varchar2(200)	NOT NULL,
+	title_eng	varchar2(200)	NOT NULL,
+	movie_grade	number	DEFAULT 0,
+	genre	varchar2(100)	NOT NULL,
+	story	varchar2(3000)	NOT NULL,
+	open_date	date	NOT NULL,
+	runtime	varchar2(100)	NOT NULL,
+	poster_url	 varchar2(500)	NOT NULL,
+	director	varchar2(500)	NOT NULL,
+	actors	varchar2(500)	NOT NULL,
+	vod	varchar2(500)	NOT NULL
 );
 
 CREATE TABLE board (
-	board_no	number		NOT NULL,
-	writer_id	varchar2(50)		NOT NULL,
-	title	varchar2(50)		NOT NULL,
-	content	varchar2(3000)		NOT NULL,
+	board_no	number	NOT NULL,
+	writer_id	varchar2(50)	NOT NULL,
+	title	varchar2(50)	NOT NULL,
+	content	varchar2(3000)	NOT NULL,
 	like_count	number,
 	read_count	number,
-	reg_date	date	DEFAULT sysdate
+	reg_date	date DEFAULT sysdate
 );
 
 CREATE TABLE quit_member (
-	member_id	varchar2(50)		NOT NULL,
-	member_pw	varchar2(300)		NOT NULL,
-	name	varchar2(30)		NOT NULL,
-	email	varchar2(50)		NOT NULL,
-	phone	varchar2(20)		NOT NULL,
-	gender	char(1)		NOT NULL,
-	member_role	char(1)		NOT NULL,
-	birthday	date		NOT NULL,
-	enroll_date	date		NOT NULL,
-	quit_date	date	DEFAULT sysdate
+	no	number	NOT NULL,
+	member_id	varchar2(50)	NOT NULL,
+	member_pw	varchar2(300)	NOT NULL,
+	member_name	varchar2(30)	NOT NULL,
+	email	varchar2(50)	NOT NULL,
+	phone	varchar2(20)	NOT NULL,
+	gender	char(1)	NOT NULL,
+	member_role	char(1)	NOT NULL,
+	birthday	date	NOT NULL,
+	enroll_date	date	NOT NULL,
+	quit_date	date DEFAULT sysdate
 );
-
-
 
 CREATE TABLE report_comment (
-	comment_no	number		NOT NULL,
-	report_count	number	DEFAULT 0	NULL,
-	report_id	varchar2(50)		NOT NULL,
-	report_content	varchar2(1000)		NOT NULL,
-	report_date	date	DEFAULT sysdate
+    report_comment_no number NOT NULL,
+	comment_no	number	NOT NULL,
+    board_no number NOT NULL,
+    reporter_id	varchar2(50)	NOT NULL,
+    reported_id varchar2(50)	NOT NULL,
+	report_type varchar2(50),
+	report_content	varchar2(1000)	NOT NULL,
+    report_count	number DEFAULT 0,
+	report_date	date DEFAULT sysdate
 );
 
+select * from report_comment;
+
 CREATE TABLE movie_comment (
-	comment_no	number		NOT NULL,
-	writer_id	varchar2(50)		NOT NULL,
-	movie_code	varchar2(200)		NOT NULL,
-	movie_content	varchar2(3000)		NOT NULL,
-	reg_date	date	DEFAULT sysdate	NULL,
-	star_grade	number		NOT NULL
+	comment_no	number	NOT NULL,
+	writer_id	varchar2(50)	NOT NULL,
+	movie_code	varchar2(200)	NOT NULL,
+	movie_content	varchar2(3000)	NOT NULL,
+	reg_date	date DEFAULT sysdate,
+	star_grade	number	NOT NULL
 );
 
 CREATE TABLE member_report (
-	comment_no	number		NOT NULL,
-	member_id	varchar2(50)		NOT NULL
+	comment_no	number	NOT NULL,
+	member_id	varchar2(50)	NOT NULL
 );
 
 CREATE TABLE board_comment (
-	comment_no	number		NOT NULL,
-	board_no	number		NOT NULL,
-	writer_id	varchar2(50)		NOT NULL,
-	content	varchar2(3000)		NOT NULL,
-	reg_date	date	DEFAULT sysdate	
+	comment_no	number	NOT NULL,
+	board_no	number	NOT NULL,
+	writer_id	varchar2(50)	NOT NULL,
+	content	varchar2(3000)	NOT NULL,
+	reg_date	date DEFAULT sysdate
 );
 
 CREATE TABLE attachment (
-	attachment_no	number		NOT NULL,
-	board_no	number		NOT NULL,
-	original_filename	varchar2(100)		NOT NULL,
-	renamed_filename	varchar2(100)		NOT NULL,
-	reg_date	date	DEFAULT sysdate	NOT NULL
+	attachment_no	number	NOT NULL,
+	board_no	number	NOT NULL,
+	original_filename	varchar2(100)	NOT NULL,
+	renamed_filename	varchar2(100)	NOT NULL,
+	reg_date	date DEFAULT sysdate
 );
 
 CREATE TABLE favorite (
-	movie_code	varchar2(200)		NOT NULL,
-	member_id	varchar2(50)		NOT NULL
+	movie_code	varchar2(200)	NOT NULL,
+	member_id	varchar2(50)	NOT NULL
 );
 
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
@@ -167,12 +153,13 @@ ALTER TABLE board ADD CONSTRAINT PK_BOARD PRIMARY KEY (
 );
 
 ALTER TABLE quit_member ADD CONSTRAINT PK_QUIT_MEMBER PRIMARY KEY (
-	member_id
+	no
 );
 
 ALTER TABLE report_comment ADD CONSTRAINT PK_REPORT_COMMENT PRIMARY KEY (
-	comment_no
+	report_comment_no
 );
+
 
 ALTER TABLE movie_comment ADD CONSTRAINT PK_MOVIE_COMMENT PRIMARY KEY (
 	comment_no,
@@ -198,13 +185,6 @@ ALTER TABLE attachment ADD CONSTRAINT PK_ATTACHMENT PRIMARY KEY (
 
 ALTER TABLE favorite ADD CONSTRAINT PK_FAVORITE PRIMARY KEY (
 	movie_code,
-	member_id
-);
-
-ALTER TABLE quit_member ADD CONSTRAINT FK_member_TO_quit_member_1 FOREIGN KEY (
-	member_id
-)
-REFERENCES member (
 	member_id
 );
 
@@ -257,6 +237,7 @@ REFERENCES board (
 	board_no
 );
 
+
 ALTER TABLE favorite ADD CONSTRAINT FK_member_TO_favorite_1 FOREIGN KEY (
 	member_id
 )
@@ -264,15 +245,40 @@ REFERENCES member (
 	member_id
 );
 
------------ 시퀀스 생성 ------------
---create sequence seq_board_no;
---create sequence seq_attachment_no;
---create sequence seq_board_comment_no;
----------시퀀스 삭제 ----------------
---drop sequence seq_board_no;
---drop sequence seq_attachment_no;
---drop sequence seq_board_comment_no;
+ALTER TABLE favorite ADD CONSTRAINT FK_movie_TO_favorite_1 FOREIGN KEY (
+	movie_code
+)
+REFERENCES movie (
+	movie_code
+);
 
+
+----------- 트리거 생성 ------------
+create or replace trigger trig_user_quit
+    before
+    delete on member
+    for each row 
+begin
+    insert into 
+        quit_member
+    values(
+        seq_quit_member_no.nextval,
+        :old.member_id, 
+        :old.member_pw,
+        :old.member_name,
+        :old.email,
+        :old.phone,
+        :old.gender,
+        :old.member_role,
+        :old.birthday,
+        :old.enroll_date,
+        default
+    );
+end;
+/
+---------------------------------
+select * from movie;
+------------------------- 데이터 예시 -------------------------
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
 --
@@ -326,21 +332,6 @@ insert into board values (
 );
 select seq_board_no.currval from dual;
 
-select * from board;
-update member set favorite_movie_code = '123' where member_id = 'rudqls';
-update member set favorite_movie_code = favorite_movie_code || ',1' where member_id = 'rudqls';
-update member set favorite_movie_code = favorite_movie_code || ',' || 1 where member_id = 'rudqls';
-DELETE FROM member
-WHERE member_id = 'sejong' AND movie_code = '1';
-
-
-select * from member;
-select * from member;
-update member set favorite_movie_code = favorite_movie_code || ',' || + 'F1000' where member_id = 'test';
- UPDATE member SET favorite_movie_code = REPLACE(REPLACE(favorite_movie_code, 'F89000', ''), '') WHERE member_id = 'sejong';
-UPDATE member
-SET favorite_movie_code = TRIM(REPLACE(REPLACE(REPLACE(CONCAT(',', REPLACE(favorite_movie_code, ',', ', ')), CONCAT(',', 'F990', ','), ','), ', ', ','), ',', ''))
-WHERE member_id = 'test'
 
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdf1','sadfsadfwef',default,default,sysdate
@@ -385,57 +376,4 @@ WHERE member_id = 'test'
 --insert into board values (
 --    seq_board_no.nextval, 'asdf1', 'asdasdfsadfadsfsdf1','sadfsadfwef',default,default,sysdate
 --);
-select * from board;
-select * from attachment;
------------ 시퀀스 생성 ------------
-create sequence seq_board_no;
-create sequence seq_attachment_no;
----------------------------------
-
-
-
---drop sequence seq_board_no;
---drop sequence seq_attachment_no;
-
 --select seq_board_no.currval from dual;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-INSERT INTO favorite (movie_code, member_id)
-SELECT 'ff99', member_id
-FROM member
-where member_id = 'sejong';
-=======
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
-
-
-
-
---insert into movie values ('qwe123', 'qwe', 'qwe', default, '호러, 로멘스', '이것은 내용입니다', '1999-09-09', '123', 'www.naver.com', '홍길동', '세종대왕', 'ㅁㄶㅍㄻ널머ㅏㄴㄹ만ㄹ휴ㅣ며ㅗㄴㄹ');
---insert into movie values (?, ?, ?, default, ?, ?, ?, ?, ?, ?, ?, ?)
-
-ALTER TABLE report_comment
-ADD (reported_id varchar2(50) NOT NULL);
-
-ALTER TABLE report_comment
-ADD (report_type varchar2(50) NOT NULL);
-
-ALTER TABLE report_comment
-ADD (board_no number NOT NULL);
-
-ALTER TABLE report_comment
-RENAME COLUMN report_id TO reporter_id;
-
-select * from report_comment r join member m on r.reported_id = m.member_id;
-
-<<<<<<< HEAD
-select * from report_comment;
-
-insert into report_comment values (1,1,'sejong','어쩔',default,'joohye','기분나쁨',1);
-=======
-=======
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
->>>>>>> branch 'master' of https://github.com/newTypeo/cortles.git
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git

@@ -55,4 +55,19 @@ public class AdminDao {
 		return result;
 	}
 
+	/*
+	 * 신고 댓글 삭제 - 주혜 
+	 */
+	public int deleteReportComment(Connection conn,int commentNo) {
+		int result = 0;
+		String sql = prop.getProperty("deleteReportComment");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new AdminException(e);
+		}
+		return result;
+	}
+
 }

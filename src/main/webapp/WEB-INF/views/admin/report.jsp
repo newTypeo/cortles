@@ -65,7 +65,7 @@
 		</table>
 <form id="delReportCommentFrm"
 	name="delReportCommentFrm"
-	action="<%= request.getContextPath() %>/board/boardCommentDelete"
+	action="<%= request.getContextPath() %>/admin/reportCommentDelete"
 	method="POST">
 	<input type="hidden" name="no" id="no" value="">
 	<input type="hidden" name="delOnReportComment" id="delOnReportComment" value="delOnReportComment">
