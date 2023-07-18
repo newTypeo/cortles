@@ -21,8 +21,10 @@ header {
 }
 /* 헤더 기능들 */
 header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 300px;}
-header ul li {margin-right: 50px;}
+header ul li {margin-right: 50px; display: block; transition: .5s;}
 header ul li a {color: #fff; text-decoration: none;}
+ul:hover li {filter: blur(5px);}
+ul li:hover {filter: blur(0px);}
 .logo img {width: 140px;}
 
 /* 검색창 */
