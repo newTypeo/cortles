@@ -18,6 +18,8 @@ import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.MemberRole;
 import com.cortles.project.member.model.vo.QuitMember;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class MemberDao {
 
 private Properties prop = new Properties();
@@ -335,6 +337,21 @@ private Properties prop = new Properties();
 			throw new MemberException(e);
 		}
 		return favorites;
+	}
+
+	/*
+	 * 자동 탈퇴 - 주혜 
+	 */
+	public int reportMemberDelete(Connection conn, String reportedId) {
+		int reportMemberDelete = 0;
+		String sql = prop.getProperty("reportMemberDelete");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
+		return reportMemberDelete;
 	}
 
 

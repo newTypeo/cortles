@@ -315,6 +315,23 @@ public class BoardService {
 		return result;
 	}
 
+	/*
+	 * 신고 회수 조회 - 주혜 
+	 */
+	public int memberCountReport(String reportedId) {
+		int memberCountReport = 0;
+		Connection conn = getConnection();
+		try {
+			memberCountReport = boardDao.memberCountReport(conn,reportedId);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return memberCountReport;
+	}
+
 }
 
 

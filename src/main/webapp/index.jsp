@@ -94,12 +94,12 @@ const findAllMovies = () => {
       	  <button type="button" id="ggimButton">찜</button>
       </form>
       <% } %>	  
-          <span class="close" onclick="closeModal();">&times;</span>
+         
           
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
             <form>
-              <iframe class="trailer" name="modal" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe class="trailer" name="modal" width="800" height="470" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
           </div>
         <!-- 댓글 작성 폼 -->
@@ -328,10 +328,3 @@ function getFormattedDate() {
 </script>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-
-
-
-
-
-
