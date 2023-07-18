@@ -140,11 +140,8 @@ const findAllMovies = () => {
   </div>
 </div>
 </section>
-<<<<<<< HEAD
 <section>
-=======
 <section id="searchMovies-section">
->>>>>>> branch 'master' of https://github.com/newTypeo/Cortles.git
 <% 		if(memberIsLogin) { 		%>
 			<div>
 			<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
