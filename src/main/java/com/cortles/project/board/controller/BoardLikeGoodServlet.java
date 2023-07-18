@@ -2,9 +2,11 @@ package com.cortles.project.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,43 +27,55 @@ public class BoardLikeGoodServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String boardNoString = request.getParameter("boardNo");
-	    int boardNo = 0; // 기본값 설정
 
-	    if (boardNoString != null) {
-	        boardNo = Integer.parseInt(boardNoString);
-	    }
+	
 
-	    // Session 생성
-	    HttpSession session = request.getSession();
 
-	    Set<Integer> likedBoards = (Set<Integer>) session.getAttribute("likedBoards");
-	    if (likedBoards == null) {
-	        likedBoards = new HashSet<>();
-	        session.setAttribute("likedBoards", likedBoards);
-	    }
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			response.setContentType("text/html; charset=UTF-8");
 
-	    // 추천 이미 했을 시
-	    if (likedBoards.contains(boardNo)) {
-		   
+		    String boardNoStr = request.getParameter("boardNo");
+		    int boardNo = 0; 
 
-    	// 추천 안 했을 시
-	    } else {
-	    	
-	        likedBoards.add(boardNo); // 추천한 게시글 번호를 세션에 추가
+		    if (boardNoStr != null) {
+		        boardNo = Integer.parseInt(boardNoStr);
+		    }
 
-	        int likeCount = Integer.parseInt(request.getParameter("likeCount"));
-	        System.out.println("boardNo = " + boardNo);
-	        System.out.println("likeCount = " + likeCount);
-		   
+		    HttpSession session = request.getSession();
 
-	        // 2. 업무로직
-	        int result = boardService.updateLike(boardNo, likeCount);
-	    }
+		    Set<Integer> likedBoards = (Set<Integer>) session.getAttribute("likedBoards");
+		    if (likedBoards == null) {
+		        likedBoards = new HashSet<>();
+		        session.setAttribute("likedBoards", likedBoards);
+		    }
 
-	    // 3. 응답처리
-	    response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + boardNo);
+		    if (likedBoards.contains(boardNo)) {
+		    	PrintWriter script = response.getWriter();
+
+				script.println("<script>");
+
+				script.println("alert('이미 추천을 누른 글입니다.');");
+
+				script.println("history.back();");
+
+				script.println("</script>");
+
+				script.close();
+				
+		    } else {
+		        likedBoards.add(boardNo); 
+
+		        int likeCount = Integer.parseInt(request.getParameter("likeCount"));
+		        System.out.println("boardNo = " + boardNo);
+		        System.out.println("likeCount = " + likeCount);
+
+		        int result = boardService.updateLike(boardNo, likeCount);
+
+		        response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + boardNo);
+		    }
+		}
+
 	}
-}
+
+

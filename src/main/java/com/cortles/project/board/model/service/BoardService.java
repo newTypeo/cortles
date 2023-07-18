@@ -217,7 +217,9 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		try {
+			
 			result = boardDao.insertReportBoardComment(conn, reportComment);
+			
 			commit(conn);
 		}catch (Exception e) {
 			rollback(conn);
@@ -288,6 +290,29 @@ public class BoardService {
 		Attachment attach = boardDao.findAttachmentById(conn, attachNo);
 		close(conn);
 		return attach;
+	}
+
+	public int countReport(int commentNo) {
+		Connection conn = getConnection();
+		int reportCnt = boardDao.countReport(conn, commentNo);
+		close(conn);
+		
+		return reportCnt;
+	}
+
+	public int updateCountReport(int commentNo,int reportCnt) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = boardDao.updateCountReport(conn,commentNo, reportCnt);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		return result;
 	}
 
 }

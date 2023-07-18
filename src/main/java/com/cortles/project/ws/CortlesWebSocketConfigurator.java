@@ -26,7 +26,10 @@ public class CortlesWebSocketConfigurator extends Configurator {
 		
 		// memberId 관리
 		Member loginMember = (Member) httpSession.getAttribute("loginMember");
-		String memberId = loginMember.getMemberId();
+		String memberId = "";
+		
+		if(loginMember != null)
+			memberId = loginMember.getMemberId();
 		
 		Map<String, Object> configProperties = sec.getUserProperties();
 		configProperties.put("memberId", memberId);
