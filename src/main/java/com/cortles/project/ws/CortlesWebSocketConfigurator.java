@@ -21,7 +21,7 @@ public class CortlesWebSocketConfigurator extends Configurator {
 	 */
 	@Override
 	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
-		System.out.println("HelloWebSocketConfigurator#modifyHandshake 실행");
+//		System.out.println("HelloWebSocketConfigurator#modifyHandshake 실행");
 		HttpSession httpSession = (HttpSession) request.getHttpSession();
 		
 		// memberId 관리
