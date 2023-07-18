@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 public class MovieCreateCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final MovieService movieService = new MovieService();   
-	
+	 
 	/**
 	 * 영화 한줄평 등록 - 종환
 	 */
