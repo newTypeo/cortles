@@ -73,9 +73,8 @@ footer { padding-top:30px; background-color:#141414; text-align:center; height:1
     align-items: center;
 }
 
-.btn {
+#buttonCss {
     font-size: 15px;
-    padding: 10px 15px;
     border: 3px solid #e50914 ;
     background-color: transparent;
     color: #e50914 ;
@@ -87,11 +86,11 @@ footer { padding-top:30px; background-color:#141414; text-align:center; height:1
     overflow: hidden;
 }
 
-.btn:focus {
+#buttonCss:focus {
     outline: none;
 }
 
-.btn::before {
+#buttonCss::before {
     content: "";
     position: absolute;
     height: 100%;
@@ -103,11 +102,11 @@ footer { padding-top:30px; background-color:#141414; text-align:center; height:1
     z-index: -1;
 }
 
-.btn:hover::before {
+#buttonCss:hover::before {
     transform: translateY(-100%);
 }
 
-.btn:hover {
+#buttonCss:hover {
     color: white;
     cursor: pointer;
 }

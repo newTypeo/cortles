@@ -89,11 +89,13 @@
 	            <tr>
 	                <td>
 	                    <input 
+	                   		id="buttonCss"
 	                    	type="button" 
 	                    	value="내정보보기"
 	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';"
 	                    	>
 	                    <input 
+	                   	    id="buttonCss"
 	                    	type="button" 
 	                    	value="로그아웃" 
 	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">

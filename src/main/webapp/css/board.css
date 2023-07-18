@@ -92,7 +92,7 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
 
 /* 테이블 테두리 */
 table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
-th, td {border: 1px solid #000; padding: 5px;}
+#boarderz {border: 1px solid #000; padding: 5px;}
 
 /*검색창*/
     .search-container {
@@ -116,15 +116,57 @@ th, td {border: 1px solid #000; padding: 5px;}
     .search-input:focus {
       border-color: #e50914;
     }
-    
 /* 버튼  */
-.btn-wrapper {
+#boardCreateId {
 	display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.btn {
+#boardCreateId {
+	float:right; 
+	margin: 0 0 15px;
+    font-size: 15px;
+    border: 3px solid #e50914 ;
+    background-color: transparent;
+    color: #e50914 ;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+#boardCreateId:focus {
+    outline: none;
+}
+
+#boardCreateId::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #e50914;
+    top: 100%;
+    left: 0;
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+#boardCreateId:hover::before {
+    transform: translateY(-100%);
+}
+
+#boardCreateId:hover {
+    color: white;
+    cursor: pointer;
+}
+
+/* select 버튼 css */
+#boardSelect {
+	float:right; 
+	margin: 0 0 15px;
     font-size: 15px;
     padding: 10px 15px;
     border: 3px solid #e50914 ;
@@ -138,11 +180,11 @@ th, td {border: 1px solid #000; padding: 5px;}
     overflow: hidden;
 }
 
-.btn:focus {
+#boardSelect:focus {
     outline: none;
 }
 
-.btn::before {
+#boardSelect::before {
     content: "";
     position: absolute;
     height: 100%;
@@ -154,11 +196,11 @@ th, td {border: 1px solid #000; padding: 5px;}
     z-index: -1;
 }
 
-.btn:hover::before {
+#boardSelect:hover::before {
     transform: translateY(-100%);
 }
 
-.btn:hover {
+#boardSelect:hover {
     color: white;
     cursor: pointer;
 }
