@@ -15,8 +15,11 @@
 <title>movie cortles</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css"/>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/header.css"/>
 
 <%
 	
@@ -131,14 +134,17 @@ document.querySelector(".search-bar").oninput = (e) => {
 					console.log(document.querySelector("#searchMovies-article"));
 					document.querySelector("#searchMovies-article").innerHTML += `<img name=\${movieCode} src=\${posterUrl}>`;
 					
-				})
-				
-				
-			
-			},
-		
-		})
-
+				}) // forEach
+			}, // success
+			complete() {
+				[...document.querySelectorAll("img")].forEach((imgTag) => {
+					imgTag.addEventListener('click', (e) =>{
+						openModal(e.target.name);
+						
+					}) // eventListener
+				}); // 모든 포스터에 clickEvent 추가용 forEach
+			} // complete
+		}) // ajax
 };
 
 
