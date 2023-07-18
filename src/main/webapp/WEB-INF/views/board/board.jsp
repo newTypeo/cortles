@@ -4,14 +4,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
+    List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
 
 <section id="board-container">
-	<h2>게시판 </h2>
-	<br>
+    <h2>게시판 </h2>
+    <br>
     <div class="search-container" id="search-name">
    	 <form id="search" action="<%= request.getContextPath()%>/board/searchTitle" name="searchTitleFrm">
     	<input type="hidden" name="searchType" value="title"/>
@@ -71,7 +71,7 @@
 </table>
 </section>
 <div id='pagebar'>
-		<%= request.getAttribute("pagebar") %>
+    <%= request.getAttribute("pagebar") %>
 </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
