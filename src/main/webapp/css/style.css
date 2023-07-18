@@ -23,12 +23,12 @@ header {
 header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 300px;}
 header ul li {margin-right: 50px; display: block; transition: .5s;}
 header ul li a {color: #fff; text-decoration: none;}
-ul:hover li {filter: blur(5px);}
-ul li:hover {filter: blur(0px);}
+header ul:hover li {filter: blur(5px);}
+header ul li:hover {filter: blur(0px);}
 .logo img {width: 140px;}
 
 /* 검색창 */
-.search-bar input[type="text"] {margin-left: 60px; padding: 10px; border: none; border-radius: 3px;}
+.search-bar input[type="text"] {margin-left: 60px; padding: 10px; border: none; border-radius: 3px; margin : 15px;}
 /*header div.login-container{margin-left:350px;}*/
 
 /*#saveId+label{font-size:12px;font-family:'고딕'}*/
@@ -42,7 +42,7 @@ body {margin: 0; background-color:#141414; color: white;}
 section {margin-top:10px;}
 section article {display:flex; padding:20px; height:300px;}
 /* section img {width:500px; padding-right:10px; padding-top:0px;} */
-section span {margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold';}
+section span {margin-left:30px; font-family: 'TheJamsil5Bold';}
 section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold'; font-size: 20px;}
 
 /********** footer **********/
@@ -111,3 +111,21 @@ footer { padding-top:30px; background-color:#141414; text-align:center; height:1
     color: white;
     cursor: pointer;
 }
+
+.login-after a {
+	font-size: 16px; /* 글자 크기 설정 */
+  	color: #ffffff; /* 글자 색상 설정 */
+  	margin : 3px;
+}
+
+#ggimButton {
+	border : none;
+	background-color : transparent;
+}
+
+#ggimButton img{
+	width : 30px;
+	
+}
+
+

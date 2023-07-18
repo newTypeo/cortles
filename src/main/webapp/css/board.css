@@ -3,15 +3,18 @@
 
 
 /*게시판*/
-section {height:680px; padding:20px;}
-section#board-container{width:600px; margin:0 auto; text-align:center;}
+section {height:100%; padding:20px; margin-bottom:30px;}
+section#board-container{width:600px; margin:0 auto; margin-bottom: 150px; text-align:center;}
 section#board-container h2{margin:10px 0;}
 table#tbl-board{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
 table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;} 
 section {padding:20px;}
 
 /*글쓰기버튼*/
-input#btn-add{float:right; margin: 0 0 15px;}
+button#btn-add{
+	float:right; margin: 0 0 15px;
+
+}
 
 /*페이지바*/
 div#pagebar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3); }
