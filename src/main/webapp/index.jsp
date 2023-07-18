@@ -98,8 +98,9 @@ const findAllMovies = () => {
       	  <button type="button" id="ggimButton"><img src="<%= request.getContextPath() %>/images/찜2.png"/></button>
       	  <span class="close" onclick="closeModal();">&times;</span>
       </form>
-      <% } %>	  
-         
+      <% } else { %>  
+      	  <span class="close" onclick="closeModal();" style="margin-bottom: 25px;">&times;</span>
+   	  <% } %>
           
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
