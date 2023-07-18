@@ -139,7 +139,9 @@ const findAllMovies = () => {
 
 <!-- 검색한 영화리스트 영역  -->
 </section>
+
 <section id="searchMovies-section">
+
 <% 		if(memberIsLogin) { 		%>
 			<div>
 			<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
