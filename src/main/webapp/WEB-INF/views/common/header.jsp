@@ -135,7 +135,15 @@ document.querySelector(".search-bar").oninput = (e) => {
 					document.querySelector("#searchMovies-article").innerHTML += `<img name=\${movieCode} src=\${posterUrl}>`;
 					
 				}) // forEach
-			} // success
+			}, // success
+			complete() {
+				[...document.querySelectorAll("img")].forEach((imgTag) => {
+					imgTag.addEventListener('click', (e) =>{
+						openModal(e.target.name);
+						
+					}) // eventListener
+				}); // 모든 포스터에 clickEvent 추가용 forEach
+			} // complete
 		}) // ajax
 };
 
