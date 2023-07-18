@@ -296,11 +296,11 @@ const printMovieComments = () => {
 		dataType : "json",
 		method : "get",
 		success(movieComments) {
+				const body = document.querySelector("#movie-comment-body");
+				body.innerHTML = "";
 			// 가저온 comments 반복문			
 			[...movieComments].forEach((comment) => {
-				const body = document.querySelector("#movie-comment-body");
 				const {writerId, movieContent, regDate, starGrade} = comment;
-				body.innerHTML = "";
 				const commentHTML = `
 					<tr>
 						<td>\${writerId}</td>
