@@ -93,15 +93,23 @@ table#tbl-comment tr:hover button.btn-update{display:inline;}
 table#tbl-comment button.btn-report{background:red; color:white; display:none;}
 table#tbl-comment tr:hover button.btn-report{display:inline;}
 
-/* 테이블 테두리 */
-table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
-th, td {border: 1px solid #000; padding: 5px;}
+#board-detail-container {
+	width:600px; 
+	margin: 100px auto;
+	margin-bottom: 150px; 
+	text-align:center;
+	border-radius: 4px;
+	background-color: #222;
+}
+
 
 /*검색창*/
     .search-container {
       position: relative;
       width: 300px;
-      margin: 50px auto;
+
+      margin: 0 auto;
+
     }
 
     .search-input {
