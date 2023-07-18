@@ -21,12 +21,15 @@ public class CortlesWebSocketConfigurator extends Configurator {
 	 */
 	@Override
 	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
-		System.out.println("HelloWebSocketConfigurator#modifyHandshake 실행");
+//		System.out.println("HelloWebSocketConfigurator#modifyHandshake 실행");
 		HttpSession httpSession = (HttpSession) request.getHttpSession();
 		
 		// memberId 관리
 		Member loginMember = (Member) httpSession.getAttribute("loginMember");
-		String memberId = loginMember.getMemberId();
+		String memberId = "";
+		
+		if(loginMember != null)
+			memberId = loginMember.getMemberId();
 		
 		Map<String, Object> configProperties = sec.getUserProperties();
 		configProperties.put("memberId", memberId);
