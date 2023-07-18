@@ -35,6 +35,7 @@
 <%	
 			} 
 			else { 
+				int commentNo = 0;
 				for(ReportComment reportComment : reportComments) {
 					%>
 				<tr>
@@ -49,19 +50,19 @@
 					<td><%= reportComment.getReportDate() %></td>
 					<td><%= reportComment.getReportCount() == 3	? "O" : "X"	%></td>
 					<td>
-						<input class="yes" type="radio" name="yes" id="<%= reportComment.getReportedName() %>" value="<%= reportComment.getCommentNo() %>"/>
-						<label for="yes">Y</label>
-						<input type="radio" name="no" id="no" value="N" checked/>
+						<input class="yes" type="radio" name="<%= reportComment.getCommentNo() + commentNo %>" id="<%= reportComment.getReportedId() %>" value="<%= reportComment.getCommentNo() %>"/>
+						<label for="<%= reportComment.getReportedId() %>">Y</label>
+						<input type="radio" name="<%= reportComment.getCommentNo() + commentNo++ %>" class="<%= reportComment.getCommentNo() + commentNo %>" id="no" value="N" checked/>
 						<label for="no">N</label>
 					</td>
 				</tr>
-			</tbody>
 			<%
 					
 			
 			}
 		}
 %>
+			</tbody>
 		</table>
 <form id="delReportCommentFrm"
 	name="delReportCommentFrm"
@@ -72,18 +73,23 @@
 </form>
 <script>
 //댓글 강제 삭제 
-document.querySelector(".yes").onclick = (e) => {
-	console.log(e);
-	const memberName = e.target.id;
-	const commentNo = e.target.value;
-	console.log("commentNo", commentNo);
-	
-	if (confirm(`\${memberName}님의 댓글을 삭제하시겠습니까?`)){
-		document.querySelector("#delReportCommentFrm #no").value = commentNo;
-		document.delReportCommentFrm.submit();
-	} else {
-		document.querySelector("#no").checked = true;
+[...document.querySelectorAll(".yes")].forEach((yesRadio)=>{
+	console.log("yesRadio", yesRadio);
+	yesRadio.onclick = (e) => {
+		console.log("e", e);
+		const radioName = e.target.name;
+		const memberName = e.target.id;
+		const commentNo = e.target.value;
+		console.log("commentNo", commentNo);
+		console.log("e.target.nextSibling.nextElementSibling.nextElementSibling",e.target.nextSibling.nextElementSibling.nextElementSibling);
+		if (confirm(`\${memberName}님의 댓글을 삭제하시겠습니까?`)){
+			document.querySelector("#delReportCommentFrm #no").value = commentNo;
+			document.delReportCommentFrm.submit();
+		} else {
+			e.target.nextSibling.nextElementSibling.checked = true;
+			return false;
+		}
 	}
-};
+});
 </script>
 </html>
