@@ -103,10 +103,7 @@ const findAllMovies = () => {
             </form>
           </div>
         <!-- 댓글 작성 폼 -->
-	<form
-		name="movieCommentFrm"
-    	action="<%=request.getContextPath()%>/movie/createMovieComment"
-		method="POST">  
+	<form name="movieCommentFrm">  
 		
         <!-- 별점 평점 구역 -->
         <div class="rating-container">
@@ -128,7 +125,7 @@ const findAllMovies = () => {
             <textarea rows="4" cols="50" name="commentInput" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
             <input type="hidden" id="modal-movie-code" name = "modal-movie-code">
             <br>
-            <input type="submit" value="댓글 작성">
+            <input type="button" value="댓글 작성" onclick="createMovieComment();"/>
 	    </div>
 	</form>
         <!-- 댓글 목록 -->
@@ -236,10 +233,30 @@ function closeModal() {
 }
 
 // 댓글 작성
-// function createComment() {
-// 	const movieCode = document.querySelector("#modal-movie-code").value;
-// 	console.log("createComment().movieCode",movieCode);
-// }
+const createMovieComment = () => {
+	<% if(loginMember == null){
+		session.setAttribute("mag", "로그인 후 이용할 수 있습니다.");
+		return;
+	} %>
+	const movieCode = document.querySelector("#modal-movie-code").value;
+	const movieContent = document.querySelector("#commentInput").value;
+	console.log(document.querySelector('input[name="rating"]:checked').value);
+	const starGrade = document.querySelector('input[name="rating"]:checked').value;
+	
+	// ajax 비동기 상태로 한줄평 삽입
+	$.ajax({
+		url : "<%= request.getContextPath() %>/movie/createMovieComment",
+		data : {movieCode, movieContent, starGrade},
+		dataType : "json",
+		method : "post",
+		success(result){
+			console.log("success로 와따 한줄평ㄴ result=", result);
+		}
+	})	
+	
+}
+
+
 
 // 현재 날짜 시간 반환
 function getFormattedDate() {
