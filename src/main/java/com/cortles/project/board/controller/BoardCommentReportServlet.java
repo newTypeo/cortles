@@ -1,6 +1,7 @@
 package com.cortles.project.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.board.model.service.BoardService;
-import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.ReportComment;
+import com.cortles.project.member.model.service.MemberService;
 
 /**
  * Servlet implementation class BoardCommentReportServlet
@@ -18,7 +19,7 @@ import com.cortles.project.board.model.vo.ReportComment;
 public class BoardCommentReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
-	
+	private final MemberService memberService = new MemberService();
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,10 +46,17 @@ public class BoardCommentReportServlet extends HttpServlet {
 		 
 		 int result = boardService.insertReportBoardComment(reportComment);
 		 int reportCnt = boardService.countReport(commentNo);
-		 System.out.println("reportCnt = " + reportCnt);
+		// System.out.println("reportCnt = " + reportCnt);
 		 result = boardService.updateCountReport(commentNo, reportCnt);
 		 
-		 
+		 /*
+		  * 자동 탈퇴 - 주혜 
+		  */
+		 if(memberCountReport >= 3) {
+			 System.out.println("reportedId="+reportedId);
+			 int reportMemberDelete = memberService.deleteMemberById(reportedId);
+			 System.out.println("reportMemberDelete = "+reportMemberDelete);
+		 };
 		 
 		 
 		 

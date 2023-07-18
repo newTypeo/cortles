@@ -37,6 +37,7 @@ create sequence seq_attachment_no;
 create sequence seq_quit_member_no;
 create sequence seq_board_comment_no;
 create sequence seq_report_comment_no;
+create sequence seq_movie_comment_no;
 
 
 
