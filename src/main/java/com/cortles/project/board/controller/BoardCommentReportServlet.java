@@ -78,7 +78,7 @@ public class BoardCommentReportServlet extends HttpServlet {
 		 
 		 
 		 
-		 response.sendRedirect(request.getContextPath());
+		 //response.sendRedirect(request.getContextPath());
 
 		 
 		response.sendRedirect(request.getContextPath()+"/board/boardDetail?no=" + boardNo);

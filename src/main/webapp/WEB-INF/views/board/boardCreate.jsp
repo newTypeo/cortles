@@ -5,30 +5,30 @@
 
 <div id="board-wrapper">
   <section id="board-container">
-    <h2>게시판 작성</h2>
+    <h2>Create Bulletin Board</h2>
     <form name="boardCreateFrm" action="<%=request.getContextPath() %>/board/boardCreate" method="post" enctype="multipart/form-data">
         <table id="tbl-board-view">
             <tr>
-                <th>제목</th>
+                <th>title</th>
                 <td><input type="text" name="title" required></td>
             </tr>
             <tr>
-                <th>작성자</th>
+                <th>writer</th>
                 <td><input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly></td>
             </tr>
             <tr>
-                <th>첨부파일</th>
+                <th>upload</th>
                 <td>
                     <input type="file" name="upFile1">
                 </td>
             </tr>
             <tr>
-                <th>내용</th>
+                <th>content</th>
                 <td><textarea rows="5" cols="40" name="content"></textarea></td>
             </tr>
             <tr>
                 <th colspan="2">
-                    <input type="submit" value="등록하기">
+                    <input type="submit" value="writing">
                 </th>
             </tr>
         </table>

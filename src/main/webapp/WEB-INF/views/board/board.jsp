@@ -4,20 +4,20 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
+    List<BoardEntity> boards = (List<BoardEntity>) request.getAttribute("boards");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <title>Insert title here</title>
 
 <section id="board-container">
-	<h2>게시판 </h2>
-	<br>
+    <h2>게시판 </h2>
+    <br>
     <div class="search-container" id="search-name">
    	 <form id="search" action="<%= request.getContextPath()%>/board/searchTitle" name="searchTitleFrm">
     	<input type="hidden" name="searchType" value="title"/>
    		 <input type="text" name="searchKeyword" class="search-input" placeholder="제목으로 검색">
    			<span class="btn-wrapper">
-    			<button class="btn" type="submit">SELECT</button>
+    			<button class="btn" type="submit" style="margin: 5px;">SELECT</button>
 			</span>
    	 </form>
 	</div>
@@ -25,7 +25,7 @@
 	<% if(loginMember != null) { %>
 		<button type="button" id="btn-add" class="btn"
 			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';"
-			style="height: 30px; text-align: center;">글쓰기
+			style="height: 30px; margin-top: 30px; display: flex; justify-content: center; align-items: center;">글쓰기
 		</button> 
 	<% } %>
 	<br>
@@ -71,7 +71,7 @@
 </table>
 </section>
 <div id='pagebar'>
-		<%= request.getAttribute("pagebar") %>
+    <%= request.getAttribute("pagebar") %>
 </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
