@@ -228,13 +228,6 @@ function closeModal() {
   	document.getElementById("myModal").style.display = "none";
 }
 
-// 동영상 재생
-function playVideo() {
-	var videoUrl = document.getElementById("videoUrl").value;
-	var videoContainer = document.querySelector(".video-container");
-	videoContainer.innerHTML = '<iframe width="100%" height="100%" src="' + videoUrl + '" frameborder="0" allowfullscreen></iframe>';
-}
-
 // 댓글 작성
 function addComment(event) {
   event.preventDefault();
