@@ -75,7 +75,7 @@
     </div>
     
     <!-- 추천 폼 시작 경빈 -->
-	 <form action="<%= request.getContextPath()%>/board/boardLikeGood" method="post" name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
+	 <form action="<%= request.getContextPath()%>/board/boardLikeGood"  name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
    <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
    <input type="hidden" name="likeCount" value="<%= board.getLikeCount() %>" />
    <button type="submit" class="like_good" onclick="alertLikeResult();">추천 <%= board.getLikeCount() %></button>
