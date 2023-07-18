@@ -50,7 +50,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<img src="<%=request.getContextPath()%>/images/cortles.PNG">
+			<img src="<%=request.getContextPath()%>/images/LOGO.png">
 		</div>
 		<ul>
 			<li><a href="<%= request.getContextPath() %>">Home</a></li>
