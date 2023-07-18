@@ -32,10 +32,13 @@ public class BoardCommentReportServlet extends HttpServlet {
 		 String reportContent = request.getParameter("reportContent");
 		 String reportedId = request.getParameter("reportedId");
 		 
-		 ReportComment reportComment = new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, boardNo, null);
+		 
+		 ReportComment reportComment = new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, 0, null);
 		 
 		 int result = boardService.insertReportBoardComment(reportComment);
-		 
+		 int reportCnt = boardService.countReport(commentNo);
+		 System.out.println("reportCnt = " + reportCnt);
+		 result = boardService.updateCountReport(commentNo, reportCnt);
 		 
 		 
 		 

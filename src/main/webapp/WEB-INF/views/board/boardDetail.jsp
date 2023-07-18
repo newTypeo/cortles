@@ -179,6 +179,7 @@
 	%>
 	<form 
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
+		id="modalFrm"
 		name="boardCommentReportFrm"
 		method="post">    
 	<div id="myModal" class="modal">
@@ -251,6 +252,10 @@
         modal.style.display = "none";
         document.body.style.overflow = "auto"; // 스크롤 활성화
     }
+    
+    document.querySelector("#modalFrm").addEventListener("submit",(e) => {
+    	alert("신고가 완료되었습니다.")
+    });
     
     document.querySelectorAll(".btn-report").forEach((button) => {
 		button.onclick = (e) => {
