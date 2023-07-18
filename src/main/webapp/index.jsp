@@ -137,7 +137,7 @@ const findAllMovies = () => {
         <div id="commentList">
             <ul class="comment-list"></ul>
         </div>
-    </div>
+    </div>	
   </div>
 </div>
 </section>
