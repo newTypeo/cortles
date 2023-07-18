@@ -14,6 +14,7 @@ html {width: 10000px;}
 <%
 	boolean memberIsLogin = loginMember != null;
 %>
+
 <script>
 // 홈화면이 로딩되면 모든영화 가져올 method 실행
 window.addEventListener("load", () => { 
@@ -103,7 +104,7 @@ const findAllMovies = () => {
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
             <form>
-              <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe class="trailer" name="modal" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
           </div>
             
@@ -140,7 +141,6 @@ const findAllMovies = () => {
   </div>
 </div>
 </section>
-<section>
 
 <section id="searchMovies-section">
 <% 		if(memberIsLogin) { 		%>
