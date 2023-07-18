@@ -576,6 +576,29 @@ public class BoardDao {
 		return result;
 	}
 
+	/*
+	 * 신고 회수 조회 - 주혜
+	 */
+	public int memberCountReport(Connection conn, String reportedId) {
+		int memberCountReport = 0;
+		//System.out.println("dao");
+		String sql = prop.getProperty("memberCountReport");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, reportedId);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next()) {
+					memberCountReport = rset.getInt(1);
+					memberCountReport++;
+				}
+				
+			}
+		} catch (SQLException e) {
+			throw new BoardException(e);
+		}
+		return memberCountReport;
+	}
+
 
 
 
