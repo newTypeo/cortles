@@ -102,4 +102,45 @@ private Properties prop = new Properties();
 		return movies;
 	}
 
+	/**
+	 * 회원이 한줄평을 이미 등록했는지 확인용 - 종환
+	 * @param movieCode 
+	 */
+	public int findMovieCommentById(Connection conn, String memberId, String movieCode) {
+		int commentIsExist = 0;
+		String sql = prop.getProperty("findMovieCommentById");
+		// select count(*) from movie_comment where writer_id = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, movieCode);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next())
+					commentIsExist = rset.getInt(1);
+			}
+				
+		} catch (SQLException e) {
+			throw new MovieException(e);
+		}
+		return commentIsExist;
+	}
+
+	public int createMovieComment(Connection conn, String memberId, String movieCode, String commentInput, int starGrade) {
+		int result = 0;
+		String sql = prop.getProperty("createMovieComment");
+		// insert into movie_comment values(seq_movie_comment_no.nextval, ?, ?, ?, default, ?)
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, movieCode);
+			pstmt.setString(3, commentInput);
+			pstmt.setInt(4, starGrade);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MovieException(e);
+		}
+		return result;
+	}
+
 }
