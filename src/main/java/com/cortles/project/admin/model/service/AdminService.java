@@ -1,5 +1,8 @@
 package com.cortles.project.admin.model.service;
-import static com.cortles.project.common.JdbcTemplate.*;
+import static com.cortles.project.common.JdbcTemplate.close;
+import static com.cortles.project.common.JdbcTemplate.commit;
+import static com.cortles.project.common.JdbcTemplate.getConnection;
+import static com.cortles.project.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -21,6 +24,24 @@ public class AdminService {
 			throw e;
 		} finally {
 			close(conn);
+		}
+		return result;
+	}
+
+	/*
+	 * 신고 댓글 삭제 - 주혜 
+	 */
+	public int deleteReportComment(int commentNo) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = adminDao.deleteReportComment(conn,commentNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+			
 		}
 		return result;
 	}
