@@ -7,27 +7,23 @@
 html {width: 10000px;}
 </style>
 <title>메인 페이지</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/index.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/modal.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/modal.css" />
 <%
 	boolean memberIsLogin = loginMember != null;
 %>
 
 <script>
 // 홈화면이 로딩되면 모든영화 가져올 method 실행
-window.addEventListener("load", () => { 
-	findAllMovies();
-});
+window.addEventListener("load", () => { findAllMovies(); });
 
 const findAllMovies = () => {
-	 // 비동기로 모든 영화 가져올 ajax
+	 // 비동기로 모든 영화 조회하는 ajax
 	 $.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
 		dataType : "json",
 		success(movies) {
-			console.log(movies); // DB에 있는 모든 영화들
+			// console.log(movies); // DB에 있는 모든 영화들
 			<% if(memberIsLogin) { %>
 				const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
 				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천을 위함
@@ -71,12 +67,12 @@ const findAllMovies = () => {
 			}) // 영화 포스터 삽입용 forEach
 		}, // success
 		complete() {
-			[...document.querySelectorAll("img")].forEach((imgTag) => {
+			[...document.querySelectorAll("img")].forEach((imgTag) => { // 모든 포스터에 clickEvent 추가(모달오픈)
 				imgTag.addEventListener('click', (e) =>{
 					openModal(e.target.name);
 					
 				}) // eventListener
-			}); // 모든 포스터에 clickEvent 추가용 forEach
+			}); // forEach
 		} // complete
 	}) // ajax
 }; // findAllMovies()
@@ -95,8 +91,7 @@ const findAllMovies = () => {
       	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
-      	  <button type="button" id="ggimButton"><img src="<%= request.getContextPath() %>/images/찜2.png"/></button>
-      	  <span class="close" onclick="closeModal();">&times;</span>
+      	  <button type="button" id="ggimButton">찜</button>
       </form>
       <% } %>	  
          
@@ -107,39 +102,51 @@ const findAllMovies = () => {
               <iframe class="trailer" name="modal" width="800" height="470" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
           </div>
-            
-            <!-- 별점 평점 구역 -->
-            <div class="rating-container">
-                <form>
-                    <div class="star-rating">
-                        <input type="radio" id="star5" name="rating" value="5">
-                        <label for="star5" title="5점"></label>
-                        <input type="radio" id="star4" name="rating" value="4">
-                        <label for="star4" title="4점"></label>
-                        <input type="radio" id="star3" name="rating" value="3">
-                        <label for="star3" title="3점"></label>
-                        <input type="radio" id="star2" name="rating" value="2">
-                        <label for="star2" title="2점"></label>
-                    <input type="radio" id="star1" name="rating" value="1">
-                  <label for="star1" title="1점"></label>
-                </div>
-            </form>
-        </div>
         <!-- 댓글 작성 폼 -->
+	<form name="movieCommentFrm">  
+		
+        <!-- 별점 평점 구역 -->
+        <div class="rating-container">
+            <div class="star-rating">
+                   <input type="radio" id="star5" name="rating" value="5">
+                   <label for="star5" title="5점"></label>
+                   <input type="radio" id="star4" name="rating" value="4">
+                   <label for="star4" title="4점"></label>
+                   <input type="radio" id="star3" name="rating" value="3">
+                   <label for="star3" title="3점"></label>
+                   <input type="radio" id="star2" name="rating" value="2">
+                   <label for="star2" title="2점"></label>
+               <input type="radio" id="star1" name="rating" value="1">
+             <label for="star1" title="1점"></label>
+           </div>
+      	</div>
+        
         <div class="comment-form">
-        <form>
-            <textarea style="width:765px; height:100px" rows="4" cols="50" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
+            <textarea rows="4" cols="50" name="commentInput" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
+            <input type="hidden" id="modal-movie-code" name = "modal-movie-code">
             <br>
-            <input type="submit" value="댓글 작성" onclick="addComment(event);" style="margin: 10px; height: 30px;">
-        </form>
-    </div>
+            <input type="button" value="댓글 작성" onclick="createMovieComment();"/>
+	    </div>
+	</form>
         <!-- 댓글 목록 -->
-        <div id="commentList">
-            <ul class="comment-list"></ul>
-        </div>
+        <table id="commentList">
+	        <thead>
+	  			<tr>
+	  				<th>writer</th>
+	  				<th>content</th>
+	  				<th>date</th>
+	  				<th>starGrade</th>
+	  			</tr>      
+	        </thead>
+	        <tbody id="movie-comment-body">
+	        	
+	        </tbody>
+        </table>
     </div>	
   </div>
 </div>
+
+<!-- 검색한 영화리스트 영역  -->
 </section>
 
 <section id="searchMovies-section">
@@ -196,17 +203,19 @@ const scroll = document.querySelector("body");
 
 //모달 열기
 function openModal(movie_code) {
-	// console.log("(openModal)movie_code", movie_code);
 	$.ajax({
 		url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
 		data : {movie_code},
 		success(movieInfo){
-			// console.log("여기는 success= 	", movieInfo);
 			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
 			document.querySelector(".trailer").src = vod;
+			// console.log("movieCode", movieCode);
+			document.querySelector("#modal-movie-code").value = movieCode; // 한줄평 등록시 필요한 영호코드 셋팅
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
-		},
+		  	
+		  	
+	},
 		complete (){
 			// const src = document.querySelector('.video-container iframe').src;
 			// console.log(src.getElementsByClassName('.play'));
@@ -220,6 +229,9 @@ function openModal(movie_code) {
 			  		document.myListFrm.submit();
 			  	}); // eventListener
 <%			}										%>
+			document.movieCommentFrm.reset();
+			// 영화 한줄평
+		  	printMovieComments();
 		} // complete
 	}) // ajax
 }; // openModal()
@@ -230,32 +242,76 @@ function closeModal() {
   	document.getElementById("myModal").style.display = "none";
 }
 
-// 동영상 재생
-function playVideo() {
-	var videoUrl = document.getElementById("videoUrl").value;
-	var videoContainer = document.querySelector(".video-container");
-	videoContainer.innerHTML = '<iframe width="100%" height="100%" src="' + videoUrl + '" frameborder="0" allowfullscreen></iframe>';
-}
-
 // 댓글 작성
-function addComment(event) {
-  event.preventDefault();
-  
-  var commentInput = document.getElementById("commentInput");
-  var comment = commentInput.value;
-  
-  if (comment.trim() === "") {
-    alert("댓글을 작성해주세요.");
-    return;
-  }
-  
-  var commentList = document.querySelector(".comment-list");
-  var commentItem = document.createElement("li");
-  commentItem.innerHTML = '<div class="comment-text">' + comment + '</div><div class="comment-date">' + getFormattedDate() + '</div>';
-  commentList.appendChild(commentItem);
-  
-  commentInput.value = "";
-}
+const createMovieComment = () => {
+	<% if(loginMember == null){
+		session.setAttribute("mag", "로그인 후 이용할 수 있습니다.");
+	} %>
+	const movieCode = document.querySelector("#modal-movie-code").value; // 영화코드
+	const movieContent = document.querySelector("#commentInput").value; // 한줄평 내용
+	// 별점입력 안했을 경우
+	if(document.querySelector('input[name="rating"]:checked') == null){
+		alert("별점은 필수입니다.");
+	} 
+	// 내용이 빈칸일 경우
+	else if(movieContent == "") {
+		alert("내용을 입력해주세요.");
+		document.querySelector("#commentInput").focus();
+	}
+	// 위의 조건들이 만족하면 한줄평 등록 가능
+	else {
+		const starGrade = document.querySelector('input[name="rating"]:checked').value; // 별점
+		// 한줄평 등록
+		$.ajax({
+			url : "<%= request.getContextPath() %>/movie/createMovieComment",
+			data : {movieCode, movieContent, starGrade},
+			dataType : "json",
+			method : "post",
+			success(duplitedMsg){
+				
+				if(duplitedMsg != null && duplitedMsg != ""){
+					alert(`\${duplitedMsg}`);
+				};
+				
+			}, // success
+			complete(){
+				document.movieCommentFrm.reset();
+				printMovieComments();
+			} // complete
+		}) // ajax
+	}; // else
+}; // createMovieComment()
+
+
+
+// 모달에 댓글 출력
+const printMovieComments = () => {
+	const movieCode = document.querySelector("#modal-movie-code").value;
+	$.ajax({
+		url : "<%= request.getContextPath() %>/movie/findMovieComments",
+		data : {movieCode},
+		dataType : "json",
+		method : "get",
+		success(movieComments) {
+			// 가저온 comments 반복문			
+			[...movieComments].forEach((comment) => {
+				const body = document.querySelector("#movie-comment-body");
+				const {writerId, movieContent, regDate, starGrade} = comment;
+				body.innerHTML = "";
+				const commentHTML = `
+					<tr>
+						<td>\${writerId}</td>
+						<td>\${movieContent}</td>
+						<td>\${regDate}</td>
+						<td>\${starGrade}</td>
+					</tr>
+				`;
+				body.innerHTML += commentHTML;
+				
+			});
+		}
+	})
+};
 
 // 현재 날짜 시간 반환
 function getFormattedDate() {
@@ -268,14 +324,7 @@ function getFormattedDate() {
   var seconds = ("0" + now.getSeconds()).slice(-2);
   
   return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-}
+};
 </script>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-
-
-
-
-
-
