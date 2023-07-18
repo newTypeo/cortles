@@ -35,6 +35,14 @@ public class BoardCommentReportServlet extends HttpServlet {
 		 
 		 ReportComment reportComment = new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, 0, null);
 		 
+		 /*
+		  * 신고 횟수 조회 - 주혜 
+		  */
+		 int memberCountReport = boardService.memberCountReport(reportedId);
+		 System.out.println("memberCountReport="+memberCountReport);
+		 
+		 
+		 
 		 int result = boardService.insertReportBoardComment(reportComment);
 		 int reportCnt = boardService.countReport(commentNo);
 		 System.out.println("reportCnt = " + reportCnt);
