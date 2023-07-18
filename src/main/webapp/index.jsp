@@ -129,9 +129,19 @@ const findAllMovies = () => {
 	    </div>
 	</form>
         <!-- 댓글 목록 -->
-        <div id="commentList">
-            <ul class="comment-list"></ul>
-        </div>
+        <table id="commentList">
+	        <thead>
+	  			<tr>
+	  				<th>writer</th>
+	  				<th>content</th>
+	  				<th>date</th>
+	  				<th>starGrade</th>
+	  			</tr>      
+	        </thead>
+	        <tbody id="movie-comment-body">
+	        	
+	        </tbody>
+        </table>
     </div>	
   </div>
 </div>
@@ -237,31 +247,42 @@ const createMovieComment = () => {
 	<% if(loginMember == null){
 		session.setAttribute("mag", "로그인 후 이용할 수 있습니다.");
 	} %>
-	const movieCode = document.querySelector("#modal-movie-code").value;
-	const movieContent = document.querySelector("#commentInput").value;
-	console.log(document.querySelector('input[name="rating"]:checked').value);
-	const starGrade = document.querySelector('input[name="rating"]:checked').value;
-	
-	// ajax 비동기 상태로 한줄평 삽입
-	$.ajax({
-		url : "<%= request.getContextPath() %>/movie/createMovieComment",
-		data : {movieCode, movieContent, starGrade},
-		dataType : "json",
-		method : "post",
-		success(duplitedMsg){
-			// console.log("success로 와따 한줄평ㄴ result=", result);
-			
-			if(duplitedMsg != null && duplitedMsg != ""){
-				alert(`\${duplitedMsg}`);
-			}			
-			
-		}, // success
-		complete(){
-			document.movieCommentFrm.reset();
-			printMovieComments();
-		} // complete
-	}) // ajax
+	const movieCode = document.querySelector("#modal-movie-code").value; // 영화코드
+	const movieContent = document.querySelector("#commentInput").value; // 한줄평 내용
+	// 별점입력 안했을 경우
+	if(document.querySelector('input[name="rating"]:checked') == null){
+		alert("별점은 필수입니다.");
+	} 
+	// 내용이 빈칸일 경우
+	else if(movieContent == "") {
+		alert("내용을 입력해주세요.");
+		document.querySelector("#commentInput").focus();
+	}
+	// 위의 조건들이 만족하면 한줄평 등록 가능
+	else {
+		const starGrade = document.querySelector('input[name="rating"]:checked').value; // 별점
+		// 한줄평 등록
+		$.ajax({
+			url : "<%= request.getContextPath() %>/movie/createMovieComment",
+			data : {movieCode, movieContent, starGrade},
+			dataType : "json",
+			method : "post",
+			success(duplitedMsg){
+				
+				if(duplitedMsg != null && duplitedMsg != ""){
+					alert(`\${duplitedMsg}`);
+				};
+				
+			}, // success
+			complete(){
+				document.movieCommentFrm.reset();
+				printMovieComments();
+			} // complete
+		}) // ajax
+	}; // else
 }; // createMovieComment()
+
+
 
 // 모달에 댓글 출력
 const printMovieComments = () => {
@@ -272,12 +293,22 @@ const printMovieComments = () => {
 		dataType : "json",
 		method : "get",
 		success(movieComments) {
-			// console.log("movieComments",movieComments);
-			const comment = `
+			// 가저온 comments 반복문			
+			[...movieComments].forEach((comment) => {
+				const body = document.querySelector("#movie-comment-body");
+				const {writerId, movieContent, regDate, starGrade} = comment;
+				body.innerHTML = "";
+				const commentHTML = `
+					<tr>
+						<td>\${writerId}</td>
+						<td>\${movieContent}</td>
+						<td>\${regDate}</td>
+						<td>\${starGrade}</td>
+					</tr>
+				`;
+				body.innerHTML += commentHTML;
 				
-			
-			
-			`;
+			});
 		}
 	})
 };

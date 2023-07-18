@@ -19,10 +19,6 @@ public class MovieCreateCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final MovieService movieService = new MovieService();   
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	/**
 	 * 영화 한줄평 등록 - 종환
 	 */
@@ -30,31 +26,31 @@ public class MovieCreateCommentServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
-			session.setAttribute("msg", "로그인 후 이용해주세요.");
-			response.sendRedirect(request.getContextPath());
-			return;
+			response.setContentType("application/json; charset=utf-8");
+			new Gson().toJson("로그인 후 이용해주세요", response.getWriter());
 		}
-		
-		int starGrade = Integer.valueOf(request.getParameter("starGrade"));
-		String movieCode = request.getParameter("movieCode");
-		String commentInput= request.getParameter("movieContent");
-		
-		// 이미 한줄평을 작성했는지 먼저 확인
-		String memberId = member.getMemberId();
-		int commentIsExist = movieService.findMovieCommentById(memberId, movieCode);
-		
-		int result = 0;
-		String duplitedMsg = "";
-		// 첫 작성일 시 한줄평 등록
-		if(commentIsExist == 0) {
-			result = movieService.createMovieComment(memberId, movieCode, commentInput, starGrade);
-		} else { // 이미 한줄평을 등록했을 시
-			duplitedMsg = "이미 한줄평을 등록하셨습니다.";
+		else {
+			int starGrade = Integer.valueOf(request.getParameter("starGrade"));
+			String movieCode = request.getParameter("movieCode");
+			String commentInput= request.getParameter("movieContent");
+			
+			// 이미 한줄평을 작성했는지 먼저 확인
+			String memberId = member.getMemberId();
+			int commentIsExist = movieService.findMovieCommentById(memberId, movieCode);
+			
+			int result = 0;
+			String duplitedMsg = "";
+			// 첫 작성일 시 한줄평 등록
+			if(commentIsExist == 0) {
+				result = movieService.createMovieComment(memberId, movieCode, commentInput, starGrade);
+			} else { // 이미 한줄평을 등록했을 시
+				duplitedMsg = "이미 한줄평을 등록하셨습니다.";
+			}
+			
+			// 응답
+			response.setContentType("application/json; charset=utf-8");
+			new Gson().toJson(duplitedMsg, response.getWriter());
 		}
-		
-		// 응답
-		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(duplitedMsg, response.getWriter());
 	}
 
 }

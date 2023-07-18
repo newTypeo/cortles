@@ -18,6 +18,9 @@ public class MovieFindMovieCommentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final MovieService movieService = new MovieService();
 	
+	/**
+	 * 영화별로 한줄평 모두 조회 (모달창) - 종환
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String movieCode = request.getParameter("movieCode");
 		
