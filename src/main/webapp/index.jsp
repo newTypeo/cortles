@@ -23,7 +23,7 @@ const findAllMovies = () => {
 		url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
 		dataType : "json",
 		success(movies) {
-			console.log(movies); // DB에 있는 모든 영화들
+			// console.log(movies); // DB에 있는 모든 영화들
 			<% if(memberIsLogin) { %>
 				const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
 				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천을 위함
@@ -251,12 +251,19 @@ const createMovieComment = () => {
 		data : {movieCode, movieContent, starGrade},
 		dataType : "json",
 		method : "post",
-		success(result){
-			console.log("success로 와따 한줄평ㄴ result=", result);
-		}
-	})	
-	
-}
+		success(duplitedMsg){
+			// console.log("success로 와따 한줄평ㄴ result=", result);
+			
+			if(duplitedMsg != null && duplitedMsg != ""){
+				alert(`\${duplitedMsg}`);
+			}			
+			
+		}, // success
+		complete(){
+			document.movieCommentFrm.reset();
+		} // complete
+	}) // ajax
+} // createMovieComment()
 
 
 

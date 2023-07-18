@@ -27,7 +27,6 @@ public class MovieCreateCommentServlet extends HttpServlet {
 	 * 영화 한줄평 등록 - 종환
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("한줄평 서블릿 넘어왔니?");
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
@@ -43,21 +42,19 @@ public class MovieCreateCommentServlet extends HttpServlet {
 		// 이미 한줄평을 작성했는지 먼저 확인
 		String memberId = member.getMemberId();
 		int commentIsExist = movieService.findMovieCommentById(memberId, movieCode);
-		System.out.println("commentIsExist = " + commentIsExist);
 		
 		int result = 0;
-		
+		String duplitedMsg = "";
 		// 첫 작성일 시 한줄평 등록
-		if(commentIsExist == 0) 
+		if(commentIsExist == 0) {
 			result = movieService.createMovieComment(memberId, movieCode, commentInput, starGrade);
-		
-		// 이미 한줄평을 등록했을 시
-		else
-			session.setAttribute("msg", "이미 한줄평을 등록하셨습니다.");
+		} else { // 이미 한줄평을 등록했을 시
+			duplitedMsg = "이미 한줄평을 등록하셨습니다.";
+		}
 		
 		// 응답
 		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(result, response.getWriter());
+		new Gson().toJson(duplitedMsg, response.getWriter());
 	}
 
 }
