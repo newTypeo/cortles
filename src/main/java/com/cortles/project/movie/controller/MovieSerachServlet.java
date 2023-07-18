@@ -13,20 +13,23 @@ import com.cortles.project.movie.model.service.MovieService;
 import com.cortles.project.movie.model.vo.Movie;
 import com.google.gson.Gson;
 
-@WebServlet("/movie/json/findOneMovies")
-public class MovieFindOneServlet extends HttpServlet {
+
+@WebServlet("/movie/json/searchMovies")
+public class MovieSerachServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final MovieService movieService = new MovieService(); 
-       
-	/**
-	 * 모달용 영화 하나 가져오기 - 종환
-	 */
+	private final MovieService movieService = new MovieService();
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String movie_code = request.getParameter("movie_code");
-		Movie movie = movieService.findOneMovies(movie_code);
-		System.out.println(" movie ==>> ! ! ! " + movie);
-		response.setContentType("application/json; charset=utf-8");
+		String inputText = request.getParameter("input_text");
 		
-		new Gson().toJson(movie, response.getWriter());
+//		System.out.println("inputText = " + inputText);
+		List<Movie> movies = movieService.searchMovie(inputText);
+//		System.out.println("movies = " + movies);
+		
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(movies, response.getWriter());
+		
 	}
+
 }

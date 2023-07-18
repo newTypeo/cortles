@@ -3,7 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
+<style>
+html {width: 10000px;}
+</style>
 <title>메인 페이지</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/index.css" />
@@ -12,6 +14,7 @@
 <%
 	boolean memberIsLogin = loginMember != null;
 %>
+
 <script>
 // 홈화면이 로딩되면 모든영화 가져올 method 실행
 window.addEventListener("load", () => { 
@@ -79,7 +82,7 @@ const findAllMovies = () => {
 }; // findAllMovies()
 </script>
 
-<section>
+<section id="modal-section">
 <div id="myModal" class="modal" style="display: none;">
   <div class="modal-content">
       <!-- 컨테이너 -->
@@ -101,7 +104,7 @@ const findAllMovies = () => {
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
             <form>
-              <iframe class="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe class="trailer" name="modal" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
           </div>
             
@@ -138,13 +141,14 @@ const findAllMovies = () => {
   </div>
 </div>
 </section>
+<section id="searchMovies-section">
 <% 		if(memberIsLogin) { 		%>
-				<div>
-				<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
-					<article id="recommendedMovies"></article>
-				</div>
-				<br/>
-<%		 } 							%>
+			<div>
+			<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
+				<article id="recommendedMovies"></article>
+			</div>
+			<br/>
+<%		} 							%>
 			<div>
 				<span>romance</span><article id="romance"></article>
 			</div>
@@ -181,6 +185,10 @@ const findAllMovies = () => {
 				<span>mystery</span><article id="mystery"></article>
 			</div>
 		<br/>
+</section>		
+			<div> 
+				<article id="searchMovies-article"></article>
+			</div>
 <script>
 const scroll = document.querySelector("body");
 
@@ -203,16 +211,16 @@ function openModal(movie_code) {
 			// document.querySelector(".trailer .play").click();
 			
 	  	  	// 버튼을 클릭했을 때 실행되는 코드
-<%			 if(loginMember != null) { 			%>
+<%			if(memberIsLogin) { 					%>
 		  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
 			  		const frm = document.myListFrm;
 			  		frm.movieCode.value = movie_code;
 			  		document.myListFrm.submit();
-			  	});
-<%			 }									%>
-		}
+			  	}); // eventListener
+<%			}										%>
+		} // complete
 	}) // ajax
-};
+}; // openModal()
 
 // 모달 닫기
 function closeModal() {
@@ -259,10 +267,7 @@ function getFormattedDate() {
   
   return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 }
-
 </script>
-	</section>
-	
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
