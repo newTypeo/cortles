@@ -23,6 +23,9 @@ public class AdminReportCommentDeleteServlet extends HttpServlet {
 		int commentNo = Integer.parseInt(request.getParameter("no"));
 		String delOnReportComment = request.getParameter("delOnReportComment");
 	
+		
+		
+		
 		//2. 비지니스로직 호출
 		int result = adminService.deleteReportComment(commentNo);
 	

@@ -18,8 +18,10 @@
 --select * from attachment;
 --select * from quit_member;
 --select * from favorite;
+-- select * from report_comment;
+
 ------------- 테이블 행 삭제 ----------------
---delete from member where member_id = 'sejong';
+-- delete from report_comment where comment_no = 1;
 
 ---------------시퀀스 삭제 ------------------
 --drop sequence seq_board_no;
@@ -40,7 +42,7 @@ create sequence seq_report_comment_no;
 
 CREATE TABLE member (
 	member_id	varchar2(50)	NOT NULL,
-	favorite_genre_name	varchar2(30),
+	favorite_genre_name	varchar2(1000),
 	favorite_movie_code	varchar2(200),
 	member_pw	varchar2(300)	NOT NULL,
 	member_name	varchar2(30)	NOT NULL,
@@ -73,7 +75,7 @@ CREATE TABLE board (
 	title	varchar2(50)	NOT NULL,
 	content	varchar2(3000)	NOT NULL,
 	like_count	number,
-	read_count	number,
+	read_count	number default 0,
 	reg_date	date DEFAULT sysdate
 );
 
@@ -103,7 +105,11 @@ CREATE TABLE report_comment (
 	report_date	date DEFAULT sysdate
 );
 
-select * from report_comment;
+CREATE TABLE member_report (
+	 report_comment_no	number	NOT NULL,
+	member_id	varchar2(50)	NOT NULL
+);
+
 
 CREATE TABLE movie_comment (
 	comment_no	number	NOT NULL,
@@ -114,10 +120,7 @@ CREATE TABLE movie_comment (
 	star_grade	number	NOT NULL
 );
 
-CREATE TABLE member_report (
-	comment_no	number	NOT NULL,
-	member_id	varchar2(50)	NOT NULL
-);
+
 
 CREATE TABLE board_comment (
 	comment_no	number	NOT NULL,
@@ -168,7 +171,7 @@ ALTER TABLE movie_comment ADD CONSTRAINT PK_MOVIE_COMMENT PRIMARY KEY (
 );
 
 ALTER TABLE member_report ADD CONSTRAINT PK_MEMBER_REPORT PRIMARY KEY (
-	comment_no,
+	 report_comment_no,
 	member_id
 );
 
@@ -203,10 +206,10 @@ REFERENCES movie (
 );
 
 ALTER TABLE member_report ADD CONSTRAINT FK_report_comment_TO_report_1 FOREIGN KEY (
-	comment_no
+	 report_comment_no
 )
 REFERENCES report_comment (
-	comment_no
+	 report_comment_no
 );
 
 ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_report_1 FOREIGN KEY (
