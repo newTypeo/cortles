@@ -1,12 +1,12 @@
 package com.cortles.project.movie.model.service;
-import static com.cortles.project.common.JdbcTemplate.close;
-import static com.cortles.project.common.JdbcTemplate.getConnection;
+import static com.cortles.project.common.JdbcTemplate.*;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.cortles.project.movie.model.dao.MovieDao;
 import com.cortles.project.movie.model.vo.Movie;
+import com.cortles.project.movie.model.vo.MovieComment;
 
 public class MovieService {
 	private final MovieDao movieDao = new MovieDao();
@@ -35,6 +35,35 @@ public class MovieService {
 		close(conn);
 		
 		return movies;
+	}
+
+	public int findMovieCommentById(String memberId, String movieCode) {
+		Connection conn = getConnection();
+		int commentIsExist = movieDao.findMovieCommentById(conn, memberId, movieCode);
+		close(conn);
+		return commentIsExist;
+	}
+
+	public int createMovieComment(String memberId, String movieCode, String commentInput, int starGrade) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = movieDao.createMovieComment(conn, memberId, movieCode, commentInput, starGrade);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public List<MovieComment> findMovieCommentsByMovieCode(String movieCode) {
+		Connection conn = getConnection();
+		List<MovieComment> movieComments = movieDao.findMovieCommentsByMovieCode(conn, movieCode);
+		close(conn);
+		return movieComments;
 	}
 	
 	

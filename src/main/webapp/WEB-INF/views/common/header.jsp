@@ -18,9 +18,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css"/>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/header.css"/>
-
 <%
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
@@ -128,7 +125,7 @@ document.querySelector(".search-bar").oninput = (e) => {
 			method : "get",
 			dataType : "json",
 			success(movies) {
-				console.log("movies = " , movies);
+				// console.log("movies = " , movies);
 				if(movies.length != 0) {
 					document.querySelector("#searchMovies-section").style.display = "none";
 					document.querySelector("#searchMovies-article").innerHTML = "";
@@ -136,7 +133,6 @@ document.querySelector(".search-bar").oninput = (e) => {
 				[...movies].forEach((movie) => {
 					const {posterUrl, genre, movieCode} = movie;
 					// console.log("posterUrl, genre, movieCode " , posterUrl, genre, movieCode);
-					console.log(document.querySelector("#searchMovies-article"));
 					document.querySelector("#searchMovies-article").innerHTML += `<img name=\${movieCode} src=\${posterUrl}>`;
 					
 				}) // forEach
