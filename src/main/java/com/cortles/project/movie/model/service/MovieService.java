@@ -58,7 +58,7 @@ public class MovieService {
 		}
 		return result;
 	}
-
+ 
 	public List<MovieComment> findMovieCommentsByMovieCode(String movieCode) {
 		Connection conn = getConnection();
 		List<MovieComment> movieComments = movieDao.findMovieCommentsByMovieCode(conn, movieCode);
