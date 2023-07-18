@@ -282,7 +282,7 @@ const createMovieComment = () => {
 	}; // else
 }; // createMovieComment()
 
-
+ 
 
 // 모달에 댓글 출력
 const printMovieComments = () => {
