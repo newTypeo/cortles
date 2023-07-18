@@ -19,9 +19,11 @@
 --select * from quit_member;
 --select * from favorite;
 -- select * from report_comment;
+--select * from board_comment;
+
 
 ------------- 테이블 행 삭제 ----------------
--- delete from report_comment where comment_no = 1;
+-- delete from report_comment where comment_no = 5;
 
 ---------------시퀀스 삭제 ------------------
 --drop sequence seq_board_no;
@@ -29,6 +31,7 @@
 --drop sequence seq_quit_member_no;
 --drop sequence seq_board_comment_no;
 --drop sequence seq_report_comment_no;
+--drop sequence seq_movie_comment_no;
 
 
 ---------------- 시퀀스 생성 -----------------
@@ -38,6 +41,7 @@ create sequence seq_quit_member_no;
 create sequence seq_board_comment_no;
 create sequence seq_report_comment_no;
 create sequence seq_movie_comment_no;
+
 
 
 
@@ -182,6 +186,7 @@ ALTER TABLE board_comment ADD CONSTRAINT PK_BOARD_COMMENT PRIMARY KEY (
 	writer_id
 );
 
+
 ALTER TABLE attachment ADD CONSTRAINT PK_ATTACHMENT PRIMARY KEY (
 	attachment_no,
 	board_no
@@ -197,7 +202,7 @@ ALTER TABLE movie_comment ADD CONSTRAINT FK_member_TO_movie_comment_1 FOREIGN KE
 )
 REFERENCES member (
 	member_id
-);
+) ON DELETE CASCADE;
 
 ALTER TABLE movie_comment ADD CONSTRAINT FK_movie_TO_movie_comment_1 FOREIGN KEY (
 	movie_code
@@ -218,7 +223,7 @@ ALTER TABLE member_report ADD CONSTRAINT FK_member_TO_report_1 FOREIGN KEY (
 )
 REFERENCES member (
 	member_id
-);
+) ON DELETE CASCADE;
 
 ALTER TABLE board_comment ADD CONSTRAINT FK_board_TO_board_comment_1 FOREIGN KEY (
 	board_no
@@ -227,19 +232,21 @@ REFERENCES board (
 	board_no
 );
 
+
 ALTER TABLE board_comment ADD CONSTRAINT FK_member_TO_board_comment_1 FOREIGN KEY (
 	writer_id
 )
 REFERENCES member (
 	member_id
-);
+)ON DELETE CASCADE;
+
 
 ALTER TABLE attachment ADD CONSTRAINT FK_board_TO_attachment_1 FOREIGN KEY (
 	board_no
 )
 REFERENCES board (
 	board_no
-);
+)ON DELETE CASCADE;
 
 
 ALTER TABLE favorite ADD CONSTRAINT FK_member_TO_favorite_1 FOREIGN KEY (
@@ -247,7 +254,7 @@ ALTER TABLE favorite ADD CONSTRAINT FK_member_TO_favorite_1 FOREIGN KEY (
 )
 REFERENCES member (
 	member_id
-);
+) ON DELETE CASCADE;
 
 ALTER TABLE favorite ADD CONSTRAINT FK_movie_TO_favorite_1 FOREIGN KEY (
 	movie_code
