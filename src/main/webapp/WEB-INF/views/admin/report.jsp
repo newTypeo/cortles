@@ -50,10 +50,10 @@
 					<td><%= reportComment.getReportDate() %></td>
 					<td><%= reportComment.getReportCount() == 3	? "O" : "X"	%></td>
 					<td>
-						<input class="yes" type="radio" name="<%= reportComment.getCommentNo() + commentNo %>" id="<%= reportComment.getReportedId() %>" value="<%= reportComment.getCommentNo() %>"/>
+						<input class="yes" type="radio" name="<%= reportComment.getReportedId() %>" id="<%= reportComment.getCommentNo() + "" + commentNo %>" value="<%= reportComment.getCommentNo() %>"/>
 						<label for="<%= reportComment.getReportedId() %>">Y</label>
-						<input type="radio" name="<%= reportComment.getCommentNo() + commentNo++ %>" class="<%= reportComment.getCommentNo() + commentNo %>" id="no" value="N" checked/>
-						<label for="no">N</label>
+						<input type="radio" name="<%= reportComment.getCommentNo() + commentNo %>" id="<%= reportComment.getCommentNo() + "" +  commentNo++ %>" value="N" checked/>
+						<label for="<%= reportComment.getCommentNo() + "" +  commentNo++ %>">N</label>
 					</td>
 				</tr>
 			<%
@@ -77,8 +77,8 @@
 	console.log("yesRadio", yesRadio);
 	yesRadio.onclick = (e) => {
 		console.log("e", e);
-		const radioName = e.target.name;
-		const memberName = e.target.id;
+		const radioName = e.target.id;
+		const memberName = e.target.name;
 		const commentNo = e.target.value;
 		console.log("commentNo", commentNo);
 		console.log("e.target.nextSibling.nextElementSibling.nextElementSibling",e.target.nextSibling.nextElementSibling.nextElementSibling);

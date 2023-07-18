@@ -1,20 +1,19 @@
 package com.cortles.project.board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.Set;
+
+//github.com/newTypeo/Cortles.git
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.BoardComment;
 import com.cortles.project.board.model.vo.ReportComment;
+import com.cortles.project.member.model.service.MemberService;
 
 /**
  * Servlet implementation class BoardCommentReportServlet
@@ -23,6 +22,9 @@ import com.cortles.project.board.model.vo.ReportComment;
 public class BoardCommentReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
+	private final MemberService memberService = new MemberService();
+
+
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,6 +37,7 @@ public class BoardCommentReportServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/views/board/boardCommentReport.jsp").forward(request, response);
 	}
 	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -50,13 +53,36 @@ public class BoardCommentReportServlet extends HttpServlet {
 		 
 		ReportComment reportComment = new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, 0, null);
 		 
-		int result = boardService.insertReportBoardComment(reportComment);
-		int reportCnt = boardService.countReport(commentNo);
-		
-		result = boardService.updateCountReport(commentNo, reportCnt);
+		 /*
+		  * 신고 횟수 조회 - 주혜 
+		  */
+		 int memberCountReport = boardService.memberCountReport(reportedId);
+		 System.out.println("memberCountReport="+memberCountReport);
 		 
+		 
+		 
+		 int result = boardService.insertReportBoardComment(reportComment);
+		 int reportCnt = boardService.countReport(commentNo);
+		// System.out.println("reportCnt = " + reportCnt);
+		 result = boardService.updateCountReport(commentNo, reportCnt);
+
+	
+		 /*
+		  * 자동 탈퇴 - 주혜 
+		  */
+		 if(memberCountReport >= 3) {
+			 System.out.println("reportedId="+reportedId);
+			 int reportMemberDelete = memberService.deleteMemberById(reportedId);
+			 System.out.println("reportMemberDelete = "+reportMemberDelete);
+		 };
+		 
+		 
+		 
+		 response.sendRedirect(request.getContextPath());
+
 		 
 		response.sendRedirect(request.getContextPath()+"/board/boardDetail?no=" + boardNo);
+
 	}
 
 }
