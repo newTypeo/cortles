@@ -6,22 +6,22 @@ img:hover {transform:scale(1.6); transition: transform .3s;}
 img {margin: 7px;}
 
 /* 스타일링을 적용할 부모 컨테이너 */
-.container {max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;}
+.container {max-width: 800px; min-height: 800px; margin: 0 auto; padding: 20px; background-color: #f8f8f8; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;}
 
 /* 동영상 재생 구역 스타일 */
 .video-container {margin-bottom: 20px;}
 
 /* 댓글 작성 폼 스타일 */
-.comment-form {margin-bottom: 20px;}
+.comment-form {margin-bottom: 20px; text-align: center;}
 
 /* 별점 평점 구역 스타일 */
-.rating-container {margin-bottom: 20px;}
+.rating-container {margin: 50px 0 20px 50px; text-align: left;}
 
 /* 댓글 목록 스타일 */
 .comment-list {list-style-type: none; padding: 0;}
 .comment-list li .comment-date {font-size: 12px; color: #888;}
 .comment-list li .comment-text {margin-bottom: 5px; font-weight: bold;}
-.comment-list li {margin-bottom: 10px; padding: 10px; background-color: #f0f0f0; border-radius: 5px;}
+.comment-list li {margin-bottom: 10px; padding: 10px; background-color: #f0f0f0; color: #000; border-radius: 5px;}
 
 /* 별점 스타일 */
 .star-rating input {display: none;}

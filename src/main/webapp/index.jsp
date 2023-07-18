@@ -95,16 +95,16 @@ const findAllMovies = () => {
       	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
-      	  <button type="button" id="ggimButton">찜</button>
-      	  
+      	  <button type="button" id="ggimButton"><img src="<%= request.getContextPath() %>/images/찜2.png"/></button>
+      	  <span class="close" onclick="closeModal();">&times;</span>
       </form>
       <% } %>	  
-          <span class="close" onclick="closeModal();">&times;</span>
+         
           
           <!-- 동영상 재생 구역 -->
           <div class="video-container">
             <form>
-              <iframe class="trailer" name="modal" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe class="trailer" name="modal" width="800" height="470" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
           </div>
             
@@ -128,9 +128,9 @@ const findAllMovies = () => {
         <!-- 댓글 작성 폼 -->
         <div class="comment-form">
         <form>
-            <textarea rows="4" cols="50" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
+            <textarea style="width:765px; height:100px" rows="4" cols="50" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
             <br>
-            <input type="submit" value="댓글 작성" onclick="addComment(event);">
+            <input type="submit" value="댓글 작성" onclick="addComment(event);" style="margin: 10px; height: 30px;">
         </form>
     </div>
         <!-- 댓글 목록 -->

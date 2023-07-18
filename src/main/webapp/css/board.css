@@ -11,7 +11,10 @@ table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-a
 section {padding:20px;}
 
 /*글쓰기버튼*/
-input#btn-add{float:right; margin: 0 0 15px;}
+button#btn-add{
+	float:right; margin: 0 0 15px;
+
+}
 
 /*페이지바*/
 div#pagebar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3); }
