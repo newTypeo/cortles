@@ -3,8 +3,8 @@
 
 
 /*게시판*/
-section {height:100%; padding:20px; margin-bottom:30px;}
-section#board-container{width:600px; margin:0 auto; margin-bottom: 150px; text-align:center;}
+section {height:680px; padding:20px;}
+section#board-container{width:600px; margin:0 auto; text-align:center;}
 section#board-container h2{margin:10px 0;}
 table#tbl-board{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
 table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;} 
@@ -92,13 +92,13 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
 
 /* 테이블 테두리 */
 table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
-#boarderz {border: 1px solid #000; padding: 5px;}
+th, td {border: 1px solid #000; padding: 5px;}
 
 /*검색창*/
     .search-container {
       position: relative;
       width: 300px;
-      margin: 10px auto;
+      margin: 50px auto;
     }
 
     .search-input {
@@ -116,57 +116,15 @@ table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
     .search-input:focus {
       border-color: #e50914;
     }
+    
 /* 버튼  */
-#boardCreateId {
+.btn-wrapper {
 	display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#boardCreateId {
-	float:right; 
-	margin: 0 0 15px;
-    font-size: 15px;
-    border: 3px solid #e50914 ;
-    background-color: transparent;
-    color: #e50914 ;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-weight: bold;
-    position: relative;
-    transition: all 0.4s;
-    overflow: hidden;
-}
-
-#boardCreateId:focus {
-    outline: none;
-}
-
-#boardCreateId::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: #e50914;
-    top: 100%;
-    left: 0;
-    transition: all 0.4s;
-    z-index: -1;
-}
-
-#boardCreateId:hover::before {
-    transform: translateY(-100%);
-}
-
-#boardCreateId:hover {
-    color: white;
-    cursor: pointer;
-}
-
-/* select 버튼 css */
-#boardSelect {
-	float:right; 
-	margin: 0 0 15px;
+.btn {
     font-size: 15px;
     padding: 10px 15px;
     border: 3px solid #e50914 ;
@@ -180,11 +138,11 @@ table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
     overflow: hidden;
 }
 
-#boardSelect:focus {
+.btn:focus {
     outline: none;
 }
 
-#boardSelect::before {
+.btn::before {
     content: "";
     position: absolute;
     height: 100%;
@@ -196,11 +154,11 @@ table {margin: 20px 0; border: 1px solid #000; border-collapse: collapse;}
     z-index: -1;
 }
 
-#boardSelect:hover::before {
+.btn:hover::before {
     transform: translateY(-100%);
 }
 
-#boardSelect:hover {
+.btn:hover {
     color: white;
     cursor: pointer;
 }
