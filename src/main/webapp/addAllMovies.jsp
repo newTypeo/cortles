@@ -26,8 +26,8 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 		data : {
 			ServiceKey : "8N7WULS3PZ7ER312R70R",
 			listCount : 100,
-			releaseDts : "20150201",
-			// genre : "·Î¸Ç½º"
+			releaseDts : "19950201",
+			genre : "SF"
 		},
 		dataType : 'json',
 		success(responseData){

@@ -65,7 +65,8 @@
 			<div class="search-bar">
 				<input type="text" placeholder="Search..." id="input-search">
 			</div>
-		
+			
+				
 		<% if(loginMember == null) { %>
 			<div class="login1">
 				<a href="<%= request.getContextPath()%>/member/memberLogin">
@@ -82,21 +83,24 @@
 			<table id="login">
 	            <tr>
 	                <td id="login-member">
-	                	<%= loginMember.getMemberName() %>님, 안녕하세요.
+	                	<%= loginMember.getMemberName() %>님
 	                	<span id="notification"></span>
 	                </td>
 	            </tr>
 	            <tr>
 	                <td>
-	                    <input 
-	                    	type="button" 
-	                    	value="내정보보기"
-	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';"
-	                    	>
-	                    <input 
-	                    	type="button" 
-	                    	value="로그아웃" 
-	                    	onclick="location.href='<%= request.getContextPath() %>/member/logout';">
+	                	<!--  
+	                	<button type="button" class="btn1"
+	                    	onclick="location.href = '<%= request.getContextPath() %>/member/memberUpdate';">내정보보기
+	                    </button>	
+	                    <button type="button" class="btn1"
+	                    	onclick="location.href = '<%= request.getContextPath() %>/member/logout';">로그아웃
+	                    </button>
+	                    -->	
+	                    <div class="login-after">
+	                   	 	<a href="<%= request.getContextPath() %>/member/memberUpdate" id="a">Info</a>
+	                    	<a href="<%= request.getContextPath() %>/member/logout" id="b">logout</a>
+	                    </div>
 	                </td>
 	            </tr>
 	        </table>
@@ -116,6 +120,7 @@ document.querySelector(".search-bar").oninput = (e) => {
 		if(input_text == "") {
 			document.querySelector("#searchMovies-article").innerHTML = "";
 			document.querySelector("#searchMovies-section").style.display = "block";
+			return;
 		}
 		$.ajax({
 			url: "<%=request.getContextPath()%>/movie/json/searchMovies",

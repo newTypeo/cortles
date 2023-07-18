@@ -23,9 +23,10 @@
 	</div>
 	<br>
 	<% if(loginMember != null) { %>
-	<input 
-			type="button" id="btn-add" value="글쓰기" 
-			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';" />
+		<button type="button" id="btn-add" class="btn"
+			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';"
+			style="height: 30px; text-align: center;">글쓰기
+		</button> 
 	<% } %>
 	<br>
 <table id="tbl-board">
