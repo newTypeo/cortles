@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.cortles.project.movie.model.dao.MovieDao;
 import com.cortles.project.movie.model.vo.Movie;
+import com.cortles.project.movie.model.vo.MovieComment;
 
 public class MovieService {
 	private final MovieDao movieDao = new MovieDao();
@@ -56,6 +57,13 @@ public class MovieService {
 			close(conn);
 		}
 		return result;
+	}
+
+	public List<MovieComment> findMovieCommentsByMovieCode(String movieCode) {
+		Connection conn = getConnection();
+		List<MovieComment> movieComments = movieDao.findMovieCommentsByMovieCode(conn, movieCode);
+		close(conn);
+		return movieComments;
 	}
 	
 	

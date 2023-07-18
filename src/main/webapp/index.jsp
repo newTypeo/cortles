@@ -136,7 +136,6 @@ const findAllMovies = () => {
   </div>
 </div>
 
-
 <!-- 검색한 영화리스트 영역  -->
 </section>
 
@@ -205,10 +204,7 @@ function openModal(movie_code) {
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
 		  	
-		  	// 영화 한줄평
-		  	// $.jax({
-		  		// 한줄평가져와서 뿌리기
-		  	// })
+		  	
 	},
 		complete (){
 			// const src = document.querySelector('.video-container iframe').src;
@@ -224,6 +220,8 @@ function openModal(movie_code) {
 			  	}); // eventListener
 <%			}										%>
 			document.movieCommentFrm.reset();
+			// 영화 한줄평
+		  	printMovieComments();
 		} // complete
 	}) // ajax
 }; // openModal()
@@ -238,7 +236,6 @@ function closeModal() {
 const createMovieComment = () => {
 	<% if(loginMember == null){
 		session.setAttribute("mag", "로그인 후 이용할 수 있습니다.");
-		return;
 	} %>
 	const movieCode = document.querySelector("#modal-movie-code").value;
 	const movieContent = document.querySelector("#commentInput").value;
@@ -261,11 +258,29 @@ const createMovieComment = () => {
 		}, // success
 		complete(){
 			document.movieCommentFrm.reset();
+			printMovieComments();
 		} // complete
 	}) // ajax
-} // createMovieComment()
+}; // createMovieComment()
 
-
+// 모달에 댓글 출력
+const printMovieComments = () => {
+	const movieCode = document.querySelector("#modal-movie-code").value;
+	$.ajax({
+		url : "<%= request.getContextPath() %>/movie/findMovieComments",
+		data : {movieCode},
+		dataType : "json",
+		method : "get",
+		success(movieComments) {
+			// console.log("movieComments",movieComments);
+			const comment = `
+				
+			
+			
+			`;
+		}
+	})
+};
 
 // 현재 날짜 시간 반환
 function getFormattedDate() {
@@ -278,7 +293,7 @@ function getFormattedDate() {
   var seconds = ("0" + now.getSeconds()).slice(-2);
   
   return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-}
+};
 </script>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
