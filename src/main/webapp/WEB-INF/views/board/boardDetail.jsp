@@ -158,12 +158,15 @@
 							<td>
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
+								
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
 								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
 								<%  } %>
-								<% if(loginMember != null || MemberRole.A == loginMember.getMemberRole()){ %>
-								<button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
-								<%} %>
+								
+							<% if (loginMember != null && !loginMember.getMemberId().equals(bc.getWriterId()) && MemberRole.A != loginMember.getMemberRole()) { %>
+							    <button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
+							<% } %>
+
 							</td>
 						</tr>
 				<%
