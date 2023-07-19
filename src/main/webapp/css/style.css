@@ -20,7 +20,7 @@ header {
   position: relative;
 }
 /* 헤더 기능들 */
-header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 300px;}
+header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 240px;}
 header ul li {margin-right: 50px; display: block; transition: .5s;}
 header ul li a {color: #fff; text-decoration: none;}
 header ul:hover li {filter: blur(5px);}
@@ -28,11 +28,12 @@ header ul li:hover {filter: blur(0px);}
 .logo img {width: 140px;}
 
 /* 검색창 */
-.search-bar input[type="text"] {margin-left: 60px; padding: 10px; border: none; border-radius: 3px; margin : 15px;}
+.search-bar input[type="text"] {margin-left: 30px; padding: 10px; border: none; border-radius: 3px; margin : 15px;}
 /*header div.login-container{margin-left:350px;}*/
 
 /*#saveId+label{font-size:12px;font-family:'고딕'}*/
 
+#login {margin-left: 80px;}
 a {text-decoration: none;}
 header .login1 {margin-left:50px;}
 header .login1 span {margin-right:20px; padding-left:30px;}

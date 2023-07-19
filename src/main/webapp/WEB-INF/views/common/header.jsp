@@ -59,6 +59,7 @@
 			<!--  } %>  -->
 		</ul>
 		
+			<i class="fa-solid fa-magnifying-glass"></i>
 			<div class="search-bar">
 				<input type="text" placeholder="Search..." id="input-search">
 			</div>
