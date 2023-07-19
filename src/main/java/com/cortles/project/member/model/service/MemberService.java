@@ -186,6 +186,16 @@ public class MemberService {
 		return favorites;
 	}
 
+
+	/**
+	 * 탈퇴한 회원 조회 (아이디 중복검사) - 종환
+	 */
+	public int findQuitMemberById(String memberId) {
+		Connection conn = getConnection();
+		int CheckOnQuitMembers = memberDao.findQuitMemberById(conn, memberId);
+		return CheckOnQuitMembers;
+	}
+
 }
 
 

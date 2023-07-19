@@ -370,6 +370,27 @@ private Properties prop = new Properties();
 		
 		return new Member(memberId,favoriteGenre,null,null,memberName,email,phone,gender,memberRole,birthday,enrollDate);
 	}
+
+	/**
+	 * 탈퇴한 회원 조회 (아이디 중복검사) - 종환
+	 */
+	public int findQuitMemberById(Connection conn, String memberId) {
+		int CheckOnQuitMembers = 0;
+		String sql = prop.getProperty("findQuitMemberById");
+		// select count(*) from quit_member where member_id = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next())
+					CheckOnQuitMembers = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException(e);
+		}
+		return CheckOnQuitMembers;
+	}
 	
 	
 }

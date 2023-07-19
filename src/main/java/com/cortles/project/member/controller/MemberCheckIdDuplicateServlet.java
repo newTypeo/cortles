@@ -29,8 +29,15 @@ public class MemberCheckIdDuplicateServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		
 		// 2. 업무로직 - 아이디중복검사 (미완성)
-		Member member = memberService.findById(memberId);
-		boolean available = member == null; 
+		Member CheckOnMembers = memberService.findById(memberId);
+		int CheckOnQuitMembers = memberService.findQuitMemberById(memberId);
+		
+		boolean available = CheckOnMembers == null;
+		
+		// 탈퇴한 회원에서도 중복검사 - 종환
+		if(CheckOnQuitMembers != 0)
+			available = false;
+		
 		request.setAttribute("available", available);
 		
 		// 3. 응답 html
