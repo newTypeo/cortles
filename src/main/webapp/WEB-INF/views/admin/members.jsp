@@ -24,7 +24,7 @@
             </span>
         </form>
     </div>
-    <table>
+    <table id="member_management">
     	<!-- 조회할 회원 정보 - 주혜 -->
         <thead>
             <tr>
