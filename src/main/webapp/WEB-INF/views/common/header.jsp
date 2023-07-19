@@ -85,7 +85,7 @@
 		document.querySelector("#input-search").addEventListener('blur', function() {
 			const searchInput = document.querySelector(".search-bar");
 			searchInput.classList.remove("open");
-			searchInput.style.opacity = "0"; // 검색창이 닫힐 때 opacity 값을 0으로 설정
+			searchInput.style.opacity = "0"; // 검색창이 닫힐 때 opacity 값을 0으로 설정 #login .login1
 		});
 		</script>
 				
