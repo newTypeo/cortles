@@ -51,7 +51,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 		}
 		
 		int result = adminService.addAllMovies(movies);
-		System.out.println("result addMovies = " + result);
+		System.out.println("삽입된 영화 수 = " + result);
 		resp.sendRedirect(req.getContextPath() + "/");
 	}
 	
