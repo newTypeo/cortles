@@ -15,14 +15,14 @@
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
-					<th>TextNum</th>
-					<th>CommentNum</th>
+					<th>TextNo</th>
+					<th>CommentNo</th>
 					<th>CommentContent</th>
-					<th>ReportReason</th>
-					<th>ReportNum</th>
+					<th>Reason</th>
+					<th>ReportedCnt</th>
 					<th>Reporter</th>
-					<th>ReporterDate</th>
-					<th>Withdrawal</th>
+					<th>Date</th>
+					<th>Quit</th>
 					<th>Delete</th>
 				</tr>
 			</thead>

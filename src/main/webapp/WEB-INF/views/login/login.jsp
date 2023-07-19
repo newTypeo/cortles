@@ -17,7 +17,7 @@
         <div class="login">
             <h2>login</h2>
             <div class="inputBx">
-                <input type="text"  id="memberId" name="memberId" placeholder="Username">
+                <input type="text" id="memberId" name="memberId" placeholder="Username">
             </div>
             <div class="inputBx">
                 <input type="password" id="password" name="password" placeholder="Password">
