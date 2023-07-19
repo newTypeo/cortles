@@ -1,7 +1,9 @@
 package com.cortles.project.movie.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +28,19 @@ public class MovieFindMovieCommentsServlet extends HttpServlet {
 		
 		List<MovieComment> movieComments = movieService.findMovieCommentsByMovieCode(movieCode);
 		
+		double avgMovieGrade = movieService.findMovieAvgGrade(movieCode);
+
+		// 소숫점 첫번 째에서 버림
+		avgMovieGrade = Math.floor(avgMovieGrade * 10) / 10;
+		
 		// 응답
 		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(movieComments, response.getWriter());
+		Map<String, Object> map = new HashMap<>();
+		map.put("movieComments", movieComments);
+		map.put("avgMovieGrade", avgMovieGrade);
+		
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(map, response.getWriter());
 	}
 
 

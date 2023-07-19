@@ -21,9 +21,6 @@ public class DeleteMyListServlet extends HttpServlet {
 		
 		int result = memberService.deleteMyList(memberId, movieCode);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("msg", "찜취소 완료!");
-		
 		response.sendRedirect(request.getContextPath() + "/member/myList?memberId=" + memberId);
 	}
 

@@ -13,6 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>movie cortles</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
@@ -54,7 +55,7 @@
 			<li><a href="<%= request.getContextPath() %>/board/boardList">Community</a></li>
 			<li><a href="#" onclick="mylist()">MyList</a></li> <!-- 로그인 했을시에만 보이게 -->
 			<!-- if(loginMember != null && loginMember.getMemberRole() == MemberRole.A){ %>  -->
-			<li><a href="<%= request.getContextPath() %>/members">Members</a></li> <!-- 관리자  -->
+			<li><a href="<%= request.getContextPath() %>/admin/findAllMembers">Members</a></li> <!-- 관리자  -->
 			<li><a href="<%= request.getContextPath() %>/report">Report</a></li> <!-- 관리자  -->
 			<!--  } %>  -->
 		</ul>
@@ -149,12 +150,13 @@ document.querySelector(".search-bar").oninput = (e) => {
 };
 
 
-
+// session에 저장한 alert 알림
 window.onload = () => {
 	<% if(msg != null) { %>
 		alert('<%= msg %>');
 	<% } %>
 };
+
 
 const mylist = () => {
 	const frm = document.myList;

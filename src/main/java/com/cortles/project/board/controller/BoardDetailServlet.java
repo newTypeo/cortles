@@ -42,6 +42,8 @@ public class BoardDetailServlet extends HttpServlet {
 				}
 			}
 		}
+		
+		
 //		System.out.println("hasRead = " + hasRead);
 		if(!hasRead) {
 			int result = boardService.updateReadCount(boardNo);
@@ -60,11 +62,11 @@ public class BoardDetailServlet extends HttpServlet {
 
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
 		int boardCommentCnt = boardService.totalBoardCommentCnt(boardNo);
-		
 		// secure coding처리
 		String unsecureTitle = board.getTitle();
 		String secureTitle = CortlesUtils.escapeHtml(unsecureTitle);
 		board.setTitle(secureTitle);
+		
 		
 		// 3. 응답처리 jsp
 		request.setAttribute("board", board);
