@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<script src="https://kit.fontawesome.com/4fb767ea3e.js" crossorigin="anonymous"></script>
 <style>
 html {width: 10000px;}
 </style>
@@ -152,46 +153,75 @@ const findAllMovies = () => {
 <section id="searchMovies-section">
 
 <% 		if(loginMember != null) { 		%>
-			<div>
+			<div class="favorite-slider slider">
 			<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
-				<article id="recommendedMovies"></article>
+				<button id="favorite-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+			<article id="recommendedMovies" class="favorite-slider-container slider-container"></article>
+				<button id="favorite-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 			<br/>
 <%		} 							%>
-			<div>
-				<span>romance</span><article id="romance"></article>
+			<div class="romance-slider slider">
+				<span>romance</span>
+					<button id="romance-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="romance" class="romance-slider-container slider-container" ></article>
+					<button id="romance-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>SF</span><article id="sf"></article>
+			<div class="sf-slider slider">
+				<span>SF</span>
+					<button id="sf-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="sf" class="sf-slider-container slider-container"></article>
+					<button id="sf-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>horror</span><article id="horror"></article>
+			<div class="horror-slider slider">
+				<span>horror</span>
+					<button id="horror-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="horror" class="horror-slider-container slider-container"></article>
+					<button id="horror-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>thriller</span><article id="thriller"></article>
+			<div class="thriller-slider slider">
+				<span>thriller</span>
+					<button id="thriller-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="thriller" class="thriller-slider-container"></article>
+					<button id="thriller-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>action</span><article id="action"></article>
+			<div class="action-slider slider">
+				<span>action</span>
+					<button id="action-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="action" class="action-slider"></article>
+					<button id="action-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>drama</span><article id="drama"></article>
+			<div class="drama-slider slider">
+				<span>drama</span>
+					<button id="drama-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="drama" class="drama-slider-container"></article>
+					<button id="drama-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>comedy</span><article id="comedy"></article>
+			<div class="comedy-slider slider">
+				<span>comedy</span>
+					<button id="comedy-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="comedy" class="comedy-slider-container"></article>
+					<button id="comedy-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>fantasy</span><article id="fantasy"></article>
+			<div class="fantasy-slider slider">
+				<span>fantasy</span>
+					<button id="fantasy-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="fantasy" class="fantasy-slider-container"></article>
+					<button id="fantasy-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>mystery</span><article id="mystery"></article>
+			<div class="mystery-slider slider">
+				<span>mystery</span>
+					<button id="mystery-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article id="mystery" class="mystery-slider-container"></article>
+					<button id="mystery-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
 </section>		
