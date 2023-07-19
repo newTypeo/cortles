@@ -43,6 +43,7 @@
 	<% 	} %>	
 	};
 </script>
+
 </head>
 <body>
 	<header>
@@ -57,13 +58,37 @@
 			<li><a href="<%= request.getContextPath() %>/admin/findAllMembers">Members</a></li> <!-- 관리자  -->
 			<li><a href="<%= request.getContextPath() %>/report">Report</a></li> <!-- 관리자  -->
 			<!--  } %>  -->
+			<li id="search" style="margin-left: 70px;"><i class="fa-solid fa-magnifying-glass"></i></li>
 		</ul>
 		
-			<i class="fa-solid fa-magnifying-glass"></i>
-			<div class="search-bar">
-				<input type="text" placeholder="Search..." id="input-search">
-			</div>
 			
+			<div class="search-bar" style="opacity:0">
+				<input type="text" placeholder="Search..." id="input-search" style="width: 300px;">
+			</div>
+		<script>
+		document.querySelector("#search").addEventListener('click', function() {
+			const searchInput = document.querySelector(".search-bar");
+			if (searchInput.classList.contains("open")) {
+			  // 검색창이 열려있는 상태이면 닫기
+			  searchInput.classList.remove("open");
+			  searchInput.style.opacity = "0"; // 검색창을 닫을 때 opacity 값을 0으로 설정
+			} else {
+			  // 검색창이 닫혀있는 상태이면 열기
+			  searchInput.classList.add("open");
+			  searchInput.style.opacity = "1"; // 검색창을 열 때 opacity 값을 1로 설정
+			  document.querySelector("#input-search").focus(); // 검색창에 포커스
+			}
+		});
+
+		// 검색창에 focus를 잃으면 자동으로 닫힘
+		document.querySelector("#input-search").addEventListener('blur', function() {
+			const searchInput = document.querySelector(".search-bar");
+			searchInput.classList.remove("open");
+			searchInput.style.opacity = "0"; // 검색창이 닫힐 때 opacity 값을 0으로 설정
+		});
+		</script>
+
+
 				
 		<% if(loginMember == null) { %>
 			<div class="login1">
