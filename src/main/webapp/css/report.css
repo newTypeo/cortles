@@ -1,5 +1,59 @@
 @charset "UTF-8";
 
+/*
 table {border-collapse: collapse; width: 100%;}
 #boarderz {border: 1px solid #dddddd; text-align: left; padding: 8px;}
 th {background-color: #333333;}
+*/
+
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+table {
+	width: 1500px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	margin: 100px auto;
+	border-radius: 8px;
+}
+
+th, td {
+	padding: 15px;
+	
+	
+}
+
+th {
+	background-color:#e50914;
+	color:#000;
+}
+
+
+tbody tr:hover {
+	
+	background-color: #222;
+}
+
+tbody td {
+	position: relative;
+}
+
+tbody td:hover:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+
+	background-color: #222;
+	z-index: -1;
+}
+

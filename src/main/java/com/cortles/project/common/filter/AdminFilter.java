@@ -14,8 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.cortles.project.member.model.vo.Member;
+import com.cortles.project.member.model.vo.MemberRole;
 
-@WebFilter("/admin/*")
+
+@WebFilter({
+		"/admin/*",
+		"/report/*"
+})
 public class AdminFilter extends HttpFilter implements Filter {
        
     public AdminFilter() {super();}
@@ -24,19 +30,19 @@ public class AdminFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-//		HttpServletRequest httpReq = (HttpServletRequest) request; 
-//		HttpServletResponse httpRes = (HttpServletResponse) response; 
-//		
-//		HttpSession session= httpReq.getSession();
-//		Member loginMember = (Member) session.getAttribute("loginMember");
-//		
-//		if (loginMember == null || loginMember.getMemberRole() != MemberRole.A) {
-//			session.setAttribute("msg", "관리자만 사용할 수 있습니다.");
-//			httpRes.sendRedirect(httpReq.getContextPath() + "/");
-//			return;
-//		}
-//		
-//		// pass the request along the filter chain
+		HttpServletRequest httpReq = (HttpServletRequest) request; 
+		HttpServletResponse httpRes = (HttpServletResponse) response; 
+		
+		HttpSession session= httpReq.getSession();
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		
+		if (loginMember == null || loginMember.getMemberRole() != MemberRole.A) {
+			session.setAttribute("msg", "관리자만 사용할 수 있습니다.");
+			httpRes.sendRedirect(httpReq.getContextPath() + "/");
+			return;
+		}
+		
+		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
 

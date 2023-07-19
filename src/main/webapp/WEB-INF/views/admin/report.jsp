@@ -10,21 +10,20 @@
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/report.css" />
-	<h1>report list</h1>
 		<table>
 			<thead>
 				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>글번호</th>
-					<th>댓글번호</th>
-					<th>댓글내용</th>
-					<th>신고사유</th>
-					<th>신고회수</th>
-					<th>신고자</th>
-					<th>신고일</th>
-					<th>탈퇴처리여부</th>
-					<th>삭제</th>
+					<th>ID</th>
+					<th>Name</th>
+					<th>TextNum</th>
+					<th>CommentNum</th>
+					<th>CommentContent</th>
+					<th>ReportReason</th>
+					<th>ReportNum</th>
+					<th>Reporter</th>
+					<th>ReporterDate</th>
+					<th>Withdrawal</th>
+					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
