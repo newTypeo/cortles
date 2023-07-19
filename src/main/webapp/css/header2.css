@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/******** header ********/
+header {
+  background-color: #141414;
+  height: 50px;
+  padding: 20px;
+  padding-left: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: sticky;
+  position: relative;
+}
+/* 헤더 기능들 */
+header ul {list-style: none; padding-left: 110px; display: flex; margin-left: 160px; margin-right: 160px;}
+header ul li {margin-right: 50px; display: block; transition: .5s;}
+header ul li a {color: #fff; text-decoration: none;}
+header ul:hover li {filter: blur(5px);}
+header ul li:hover {filter: blur(0px);}
+.logo img {width: 140px;}
+
+/* 검색창 */
+.search-bar input[type="text"] {margin-left: 30px; padding: 10px; border: none; border-radius: 3px; margin : 15px;}
+/*header div.login-container{margin-left:350px;}*/
+
+/*#saveId+label{font-size:12px;font-family:'고딕'}*/
+
+#login {margin-left: 150px;}
+a {text-decoration: none;}
+header .login1 {margin-left:150px;}
+header .login1 span {margin-right:20px; padding-left:30px;}
+
+/********** body ************/
+body {margin: 0; background-color:#141414; color: white;}
+section {margin-top:10px;}
+section article {display:flex; padding:20px; height:300px;}
+/* section img {width:500px; padding-right:10px; padding-top:0px;} */
+section span {margin-left:30px; font-family: 'TheJamsil5Bold';}
+section span #board_title{margin-left:30px; padding-top:20px; font-family: 'TheJamsil5Bold'; font-size: 20px;}
+
+/********** footer **********/
+footer { padding-top:30px; background-color:#141414; text-align:center; height:100px; color:#fff;}
+
+.bell {
+  transform-origin: top;
+  animation: bell 2s infinite linear;
+}
+
+@keyframes bell{
+  0%, 50%{
+    transform: rotate(0deg);
+    }
+  5%, 15%, 25%, 35%, 45% {
+    transform: rotate(13deg);
+  }
+  10%, 20%, 30%, 40% {
+    transform: rotate(-13deg);
+  }
+}
+
+
+/* 버튼  */
+.btn-wrapper {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    font-size: 15px;
+    padding: 10px 15px;
+    border: 3px solid #e50914 ;
+    background-color: transparent;
+    color: #e50914 ;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #e50914;
+    top: 100%;
+    left: 0;
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateY(-100%);
+}
+
+.btn:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.login-after a {
+	font-size: 16px; /* 글자 크기 설정 */
+  	color: #ffffff; /* 글자 색상 설정 */
+  	margin : 3px;
+}
+
+#ggimButton {
+	border : none;
+	background-color : transparent;
+}
+
+#ggimButton img{
+	width : 30px;
+	
+}
+
+

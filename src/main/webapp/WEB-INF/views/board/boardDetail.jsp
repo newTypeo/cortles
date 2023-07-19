@@ -4,7 +4,7 @@
 <%@page import="com.cortles.project.board.model.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/header2.jsp" %>
 <%
 	Board board = (Board) request.getAttribute("board");
 	List<Attachment> attachments = board.getAttachments();
@@ -16,45 +16,7 @@
 	int boardCommentCnt = (int)request.getAttribute("boardCommentCnt");
 	
 %>
-<style>
-	/* 모달 스타일링 */
-	.modal {
-	    display: none;
-	    position: fixed;
-	    z-index: 1;
-	    left: 0;
-	    top: 0;
-	    width: 100%;
-	    height: 100%;
-	    overflow: auto;
-	    background-color: rgba(0, 0, 0, 0.5);
-	}
-	
-	.modal-content {
-	    background-color: #fefefe;
-	    margin: 15% auto;
-	    padding: 20px;
-	    border: 1px solid #888;
-	    width: 80%;
-	    max-width: 600px;
-	}
-	
-	.close {
-	    color: #aaa;
-	    float: right;
-	    font-size: 28px;
-	    font-weight: bold;
-	    cursor: pointer;
-	}
-	
-	.close:hover,
-	.close:focus {
-	    color: black;
-	    text-decoration: none;
-	    cursor: pointer;
-	}
 
-</style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-detail-container">
 	<div id="board" style ="width: 605px;">
@@ -73,31 +35,31 @@
    		<% } %>
       <textarea readonly="" style="background-color: #141414; color: white; border: none; border-radius: 4px; resize: none;width: 100%; height: auto; min-height: 400px; "><%= board.getContent() %></textarea>
     </div>
-    
+    <br>
     <!-- 추천 폼 시작 경빈 -->
 	 <form action="<%= request.getContextPath()%>/board/boardLikeGood"  name="boardLikeGoodFrm" onsubmit="return checkLoginForm();">
    <input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>" />
    <input type="hidden" name="likeCount" value="<%= board.getLikeCount() %>" />
-   <button type="submit" class="like_good" onclick="alertLikeResult();">추천 <%= board.getLikeCount() %></button>
+   <button type="submit" id="btn" class="likegood" onclick="alertLikeResult();">❤&nbsp;<%= board.getLikeCount() %></button>
 </form>
    <!-- 추천 폼 끝 -->
-    <br>
     <br><br>
-   	<%-- 글삭제-주혜 --%>
+   
    	<%
    		boolean showButton = loginMember != null
    			&& (loginMember.getMemberId().equals(board.getWriterId())
    					|| loginMember.getMemberRole() == MemberRole.A);
    		if(showButton){
    	%>
-   	<input type="button" value="수정" onclick="updateBoard()" />
-   	<input type="button" value="삭제" onclick="boardDelete()"/>
+   	<input type="button" id="btn" class="subbtn" value="modify" onclick="updateBoard()" />
+   	<input type="button" id="btn" class="subbtn" value="delete" onclick="boardDelete()"/>
   	<% } %>
   </div>
   	<script>
   	const updateBoard = () => {
   		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
   	};
+	<%-- 글삭제-주혜 --%>
 	const boardDelete = () =>{
 		if(confirm("글을 삭제하시겠습니까?")){
 			document.boardDeleteFrm.submit();
@@ -134,7 +96,7 @@
                 <input type="hidden" name="writerId" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
                 <input type="hidden" name="boardCnt" value="<%= board.getCommentCnt() %>" />
 				<textarea name="content" cols="60" rows="3"></textarea>
-                <button type="submit" id="btn-comment-enroll1">등록</button>
+                <button type="submit" id="btn-comment-enroll1"></button>
             </form>
         </div>
 		<!--table#tbl-comment-->
@@ -158,12 +120,15 @@
 							<td>
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
+								
 								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
 								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
 								<%  } %>
-								<% if(loginMember != null || MemberRole.A == loginMember.getMemberRole()){ %>
-								<button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
-								<%} %>
+								
+							<% if (loginMember != null && !loginMember.getMemberId().equals(bc.getWriterId()) && MemberRole.A != loginMember.getMemberRole()) { %>
+							    <button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
+							<% } %>
+
 							</td>
 						</tr>
 				<%

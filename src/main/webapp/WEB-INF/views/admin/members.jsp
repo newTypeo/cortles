@@ -4,7 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/header2.jsp"%>
 <%
 	List<Member> members = (List<Member>) session.getAttribute("members");
 	List<QuitMember> quitMembers = (List<QuitMember>) session.getAttribute("quitMembers");
@@ -14,34 +14,37 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/members.css" />
 <section>
+	<!-- 조회 버튼 - 주혜 -->
     <div class="search-container" id="search-name">
         <form action="<%= request.getContextPath()%>/admin/searchMembers" name="searchMemberFrm">
             <input type="hidden" name="searchType" value="name"/>
-            <input type="text" name="searchKeyword" class="search-input" placeholder="이름으로 검색">
+            <input type="text" name="searchKeyword" class="search-input" placeholder="Search by name">
             <span class="btn-wrapper">
                 <button class="btn" type="submit" style="margin:5px;">select</button>
             </span>
         </form>
     </div>
     <table>
+    	<!-- 조회할 회원 정보 - 주혜 -->
         <thead>
             <tr>
-                <th id="boarderz">아이디</th>
-                <th id="boarderz">이름</th>
-                <th id="boarderz">생년월일</th>
-                <th id="boarderz">이메일</th>
-                <th id="boarderz">휴대폰</th>
-                <th id="boarderz">성별</th>
-                <th id="boarderz">선호장르</th>
-                <th id="boarderz">가입일</th>
-                <th id="boarderz">권한</th>
-                <th id="boarderz">탈퇴처리</th>
+                <th id="boarderz">ID</th>
+                <th id="boarderz">Name</th>
+                <th id="boarderz">Birthday</th>
+                <th id="boarderz">Email</th>
+                <th id="boarderz">Phone</th>
+                <th id="boarderz">Gender</th>
+                <th id="boarderz">PreferGenre</th>
+                <th id="boarderz">RegDate</th>
+                <th id="boarderz">Role</th>
+                <th id="boarderz">Quit</th>
             </tr>
         </thead>
        <tbody>
+       <!-- 조회할 회원이 없을 경우 -->
        <% if(members == null || members.isEmpty()) { %>
            <tr>
-               <td id="boarderz" colspan="10">조회 결과가 없습니다.</td>
+               <td id="boarderz" colspan="10">No lookup results.</td>
            </tr>
        <%	
            } 
@@ -59,8 +62,8 @@
 	                <td id="boarderz"><%= member.getEnrollDate() %></td>
 	                <td id="boarderz">
 	                    <select class="member-role" data-member-id="<%= member.getMemberId()%>">
-	                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
-	                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
+	                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>User</option>
+	                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>Admin</option>
 	                    </select>
 	                </td>
 	                <td id="boarderz">
@@ -76,6 +79,7 @@
        %>
        </tbody>
     </table>
+    <!-- 탈퇴한 회원 정보 버튼 -->
     <div class="search-container" id="search-name">
         <form name="quitMemberFrm">
             <span class="btn-wrapper">
@@ -87,15 +91,15 @@
     <table id="quitTable" style="display: none;">
         <thead>
             <tr>
-                <th id="boarderz">아이디</th>
-                <th id="boarderz">이름</th>
-                <th id="boarderz">생년월일</th>
-                <th id="boarderz">이메일</th>
-                <th id="boarderz">휴대폰</th>
-                <th id="boarderz">성별</th>
-                <th id="boarderz">권한</th>
-                <th id="boarderz">가입일</th>
-                <th id="boarderz">탈퇴일</th>
+                <th id="boarderz">ID</th>
+                <th id="boarderz">Name</th>
+                <th id="boarderz">BirthDate</th>
+                <th id="boarderz">Email</th>
+                <th id="boarderz">phone</th>
+                <th id="boarderz">Gender</th>
+                <th id="boarderz">Authority</th>
+                <th id="boarderz">RegDate</th>
+                <th id="boarderz">WithdrawalDate</th>
             </tr>
         </thead>
         <tbody>
@@ -142,6 +146,7 @@ quitButton.addEventListener('click', (e) => {
 });
 
 </script>
+<%-- 권한 수정 폼 주혜 --%>
 <form
     name="memberRoleUpdateFrm"
     action="<%= request.getContextPath() %>/admin/memberRoleUpdate"
@@ -149,6 +154,7 @@ quitButton.addEventListener('click', (e) => {
     <input type="hidden" name="memberRole"/>
     <input type="hidden" name="memberId"/>
 </form>
+<%-- 탈퇴폼 주혜 --%>
 <form
     name="delMemberIdFrm"
     action="<%= request.getContextPath() %>/member/memberDelete"
@@ -159,16 +165,15 @@ quitButton.addEventListener('click', (e) => {
 <script>
 
 <% if(members != null) { %>
-	// 관리자가 회원 강제 탈퇴 
+	// 관리자가 회원 강제 탈퇴 메소드 - 주혜 
 	[...document.querySelectorAll(".yes")].forEach((yesRadio) => {
 		yesRadio.onclick = (e) => {
 		    const memberId = e.target.value;
-		    const memberName = e.target.name;
-		    // console.log(memberId);
+		    const memberName = e.target.name; // 라디오의 네임 값 
 		    if (confirm(`\${memberName}님을 탈퇴처리 하시겠습니까?`)){
-		        document.querySelector("#delMemberId").value = memberId;
+		        document.querySelector("#delMemberId").value = memberId; // value 값에 넣어줌 
 		        document.delMemberIdFrm.submit();
-		    } else {
+		    } else { // 취소를 누를 경우 
 		    	e.target.nextSibling.nextElementSibling.nextElementSibling.checked = true;
 		    };
 		};
@@ -177,37 +182,27 @@ quitButton.addEventListener('click', (e) => {
 	
 <% } %>
 
-// 검색 
-document.querySelector(".search-container").onsubmit = (e) => {
-    const frm = e.target;
-    const name = frm.searchKeyword.value;
-    // 한글 검사
-    //if (!/^[가-힣]+$/.test(name)) {
-    //     alert("한글만 입력해주세요.");
-    //     return false;
-    // }
-}
-
-// 권한 수정 
+// 권한 수정 - 주혜  
 document.querySelectorAll(".member-role").forEach((elem)=>{
     elem.addEventListener("change",(e)=>{
         
         if(confirm("회원 권한을 수정하겠습니까?")){
             const memberRoleVal = e.target.value;
             const memberIdVal = e.target.dataset.memberId;
-            console.log("memberRoleVal",memberRoleVal);
-            console.log("memberIdVal",memberIdVal);
+            //console.log("memberRoleVal",memberRoleVal);
+            //console.log("memberIdVal",memberIdVal);
             
             const frm = document.memberRoleUpdateFrm;
-            console.log("frm",frm);
+            //console.log("frm",frm);
             frm.memberRole.value = memberRoleVal;
             frm.memberId.value = memberIdVal;
             frm.submit();
-        }else{
+        }else{ // 취소할 경우 냅두기 
             e.target.querySelector("option[selected]").selected = true;
         }
     });
 });
 </script>
-
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

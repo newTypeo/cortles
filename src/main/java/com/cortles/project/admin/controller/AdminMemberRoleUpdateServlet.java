@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.MemberRole;
-
+// 권한 수정 - 주혜 
 @WebServlet("/admin/memberRoleUpdate")
 public class AdminMemberRoleUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
