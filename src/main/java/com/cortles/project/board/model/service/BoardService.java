@@ -217,9 +217,7 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		try {
-			
 			result = boardDao.insertReportBoardComment(conn, reportComment);
-			
 			commit(conn);
 		}catch (Exception e) {
 			rollback(conn);
@@ -227,7 +225,6 @@ public class BoardService {
 		}finally {
 			close(conn);
 		}
-		
 		return result;
 	}
 	

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.QuitMember;
-
+// 멤버 전체 조회 - 주혜 
 @WebServlet("/admin/findAllMembers")
 public class AdminFindAllMembersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,10 +21,12 @@ public class AdminFindAllMembersServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 일반 회원 리스트 
 		List<Member> members = memberService.findAll();
+		// 탈퇴한 회원 리스트 
 		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
-		request.setAttribute("members", members);
 		
+		request.setAttribute("members", members);
 		request.getSession().setAttribute("quitMembers", quitMembers);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/members.jsp")
