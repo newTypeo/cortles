@@ -9,9 +9,6 @@ html {width: 10000px;}
 <title>메인 페이지</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/modal.css" />
-<%
-	boolean memberIsLogin = loginMember != null;
-%>
 
 <script>
 // 홈화면이 로딩되면 모든영화 가져올 method 실행
@@ -24,7 +21,7 @@ const findAllMovies = () => {
 		dataType : "json",
 		success(movies) {
 			// console.log(movies); // DB에 있는 모든 영화들
-			<% if(memberIsLogin) { %>
+			<% if(loginMember != null) { %>
 				const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
 				const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천을 위함
 				
@@ -34,7 +31,7 @@ const findAllMovies = () => {
 				const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
 				
 				// 로그인 상태일 시 회원별 추천 영화
-				<% if(memberIsLogin) { %>
+				<% if(loginMember != null) { %>
 						// 0부터 선호장르배열의 길이 사이의 정수	
 						const randomIndex = Math.floor(Math.random() * favoriteGenres.length); 
 							
@@ -154,7 +151,7 @@ const findAllMovies = () => {
 
 <section id="searchMovies-section">
 
-<% 		if(memberIsLogin) { 		%>
+<% 		if(loginMember != null) { 		%>
 			<div>
 			<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
 				<article id="recommendedMovies"></article>
@@ -216,16 +213,10 @@ function openModal(movie_code) {
 			document.querySelector("#modal-movie-code").value = movieCode; // 한줄평 등록시 필요한 영호코드 셋팅
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
-		  	
-		  	
-	},
+		},
 		complete (){
-			// const src = document.querySelector('.video-container iframe').src;
-			// console.log(src.getElementsByClassName('.play'));
-			// document.querySelector(".trailer .play").click();
-			
 	  	  	// 버튼을 클릭했을 때 실행되는 코드
-<%			if(memberIsLogin) { 					%>
+<%			if(loginMember != null) { 				%>
 		  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
 			  		const frm = document.myListFrm;
 			  		frm.movieCode.value = movie_code;
@@ -239,11 +230,15 @@ function openModal(movie_code) {
 	}) // ajax
 }; // openModal()
 
+
+
 // 모달 닫기
 function closeModal() {
 	scroll.style.overflow = "auto";
   	document.getElementById("myModal").style.display = "none";
 }
+
+
 
 // 댓글 작성
 const createMovieComment = () => {
@@ -283,8 +278,8 @@ const createMovieComment = () => {
 			} // complete
 		}) // ajax
 	}; // else
-}; // createMovieComment()
-
+}; // method end
+ 
  
 
 // 모달에 댓글 출력
@@ -310,24 +305,25 @@ const printMovieComments = () => {
 					</tr>
 				`;
 				body.innerHTML += commentHTML;
-				
-			});
-		}
-	})
-};
+			}); // forEach
+		} // success
+	}); // ajax
+}; // printMovieComments()
+
+
 
 // 현재 날짜 시간 반환
 function getFormattedDate() {
-  var now = new Date();
-  var year = now.getFullYear();
-  var month = ("0" + (now.getMonth() + 1)).slice(-2);
-  var day = ("0" + now.getDate()).slice(-2);
-  var hours = ("0" + now.getHours()).slice(-2);
-  var minutes = ("0" + now.getMinutes()).slice(-2);
-  var seconds = ("0" + now.getSeconds()).slice(-2);
-  
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = ("0" + (now.getMonth() + 1)).slice(-2);
+  const day = ("0" + now.getDate()).slice(-2);
+  const hours = ("0" + now.getHours()).slice(-2);
+  const minutes = ("0" + now.getMinutes()).slice(-2);
+  const seconds = ("0" + now.getSeconds()).slice(-2);
   return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 };
+
 </script>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
