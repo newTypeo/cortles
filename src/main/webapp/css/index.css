@@ -5,6 +5,9 @@
   overflow: hidden;
   position: relative; /* 부모 요소를 기준으로 자식 요소를 위치시키기 위해 position을 설정합니다 */
 }
+.slider span {
+	color: white;
+}
 
 .slider-container {
   display: flex;
@@ -27,6 +30,37 @@
   width: 50px;
   height: 285px;
   background-color: transparent;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 왼쪽 끝에 배치 */
+#favorite-prev,
+#romance-prev,
+#sf-prev,
+#horror-prev,
+#thriller-prev,
+#action-prev,
+#drama-prev,
+#comedy-prev,
+#fantasy-prev,
+#mystery-prev {
+  left: 0;
+}
+
+/* 오른쪽 끝에 배치 */
+#favorite-next,
+#romance-next,
+#sf-next,
+#horror-next,
+#thriller-next,
+#action-next,
+#drama-next,
+#comedy-next,
+#fantasy-next,
+#mystery-next {
+  right: 0;
 }
 
 /* 슬라이드 컨트롤 버튼 스타일 */
@@ -51,7 +85,7 @@
 #mystery-prev,
 #mystery-next {
   position: absolute;
-  top: 50%;
+  top: 53%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.3);
   border: none;
