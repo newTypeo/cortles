@@ -17,10 +17,8 @@ import com.cortles.project.member.model.vo.QuitMember;
 public class MemberService {
 	private final MemberDao memberDao = new MemberDao();
 	
-	
 	/**
-	 * 아이디로 회원 조회
-	 * 로그인 - 현우
+	 * 아이디로 회원 조회 - 현우
 	 */
 	public Member findById(String memberId) {
 		Connection conn = getConnection();
@@ -30,6 +28,7 @@ public class MemberService {
 		return member;
 	}
 
+	
 	/**
 	 * 회원가입 -종환
 	 */
@@ -48,6 +47,7 @@ public class MemberService {
 		return result;
 	}
 
+	
 	/*
 	 * 회원 조회 - 주혜
 	 */
@@ -58,9 +58,9 @@ public class MemberService {
 		return members;
 	}
 
+	
 	/**
 	 * 찜 목록추가 - 경빈
-	 * @param movieCode 
 	 */
 	public int addMyList(String memberId, String movieCode) {
 		Connection conn = getConnection();
@@ -76,6 +76,7 @@ public class MemberService {
 		return result;
 	}
 
+	
 	/**
 	 * 찜목록 삭제 - 경빈
 	 */
@@ -94,6 +95,7 @@ public class MemberService {
 		return result;
 	}
 
+	
 	/*
 	 * 권한 수정 - 주혜 
 	 */
@@ -111,6 +113,7 @@ public class MemberService {
 		return result;
 	}
 
+	
 	/**
 	 * - 회원정보 수정 - 종환
 	 */
@@ -129,6 +132,7 @@ public class MemberService {
 		return result;
 	}
 
+	
 	/*
 	 * 회원 검색 - 주혜 
 	 */
@@ -140,6 +144,7 @@ public class MemberService {
 		return members;
 	}
 
+	
 	/**
 	 * 회원 탈퇴 - 종환
 	 */
@@ -158,6 +163,7 @@ public class MemberService {
 		return result;
 	}
 
+	
 	/*
 	 * 탈퇴한 회원 조회 - 주혜 
 	 */
@@ -168,17 +174,27 @@ public class MemberService {
 		return quitMembers;
 	}
 
+	
+	/**
+	 * 회원아이디로 찜목록 조회 - 종환
+	 */
 	public List<Favorite> MovieCodefindById(String memberId) {
 		List<Favorite> favorites = new ArrayList<>();
 		Connection conn = getConnection();
 		favorites = memberDao.MovieCodefindById(conn, memberId);
 		close(conn);
-		
 		return favorites;
 	}
-	
-
-
-	
 
 }
+
+
+
+
+
+
+
+
+
+
+
