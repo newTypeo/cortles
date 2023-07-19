@@ -44,7 +44,7 @@
 </form>
    <!-- 추천 폼 끝 -->
     <br><br>
-   	<%-- 글삭제-주혜 --%>
+   
    	<%
    		boolean showButton = loginMember != null
    			&& (loginMember.getMemberId().equals(board.getWriterId())
@@ -59,6 +59,7 @@
   	const updateBoard = () => {
   		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
   	};
+	<%-- 글삭제-주혜 --%>
 	const boardDelete = () =>{
 		if(confirm("글을 삭제하시겠습니까?")){
 			document.boardDeleteFrm.submit();

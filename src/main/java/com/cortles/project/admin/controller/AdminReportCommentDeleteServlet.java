@@ -9,10 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.admin.model.service.AdminService;
-
-/**
- * Servlet implementation class AdminReportCommentDeleteServlet
- */
+// 신고 댓글 삭제 - 주혜 
 @WebServlet("/admin/reportCommentDelete")
 public class AdminReportCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,9 +19,6 @@ public class AdminReportCommentDeleteServlet extends HttpServlet {
 		// 관리자 신고 댓글 삭제 
 		int commentNo = Integer.parseInt(request.getParameter("no"));
 		String delOnReportComment = request.getParameter("delOnReportComment");
-	
-		
-		
 		
 		//2. 비지니스로직 호출
 		int result = adminService.deleteReportComment(commentNo);

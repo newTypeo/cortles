@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
-
+// 회원 검색 - 주혜 
 @WebServlet("/admin/searchMembers")
 public class AdminSearchMembersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
