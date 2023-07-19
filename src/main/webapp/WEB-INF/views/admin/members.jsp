@@ -17,7 +17,7 @@
     <div class="search-container" id="search-name">
         <form action="<%= request.getContextPath()%>/admin/searchMembers" name="searchMemberFrm">
             <input type="hidden" name="searchType" value="name"/>
-            <input type="text" name="searchKeyword" class="search-input" placeholder="이름으로 검색">
+            <input type="text" name="searchKeyword" class="search-input" placeholder="Search by name">
             <span class="btn-wrapper">
                 <button class="btn" type="submit" style="margin:5px;">select</button>
             </span>
@@ -26,22 +26,22 @@
     <table>
         <thead>
             <tr>
-                <th id="boarderz">아이디</th>
-                <th id="boarderz">이름</th>
-                <th id="boarderz">생년월일</th>
-                <th id="boarderz">이메일</th>
-                <th id="boarderz">휴대폰</th>
-                <th id="boarderz">성별</th>
-                <th id="boarderz">선호장르</th>
-                <th id="boarderz">가입일</th>
-                <th id="boarderz">권한</th>
-                <th id="boarderz">탈퇴처리</th>
+                <th id="boarderz">ID</th>
+                <th id="boarderz">Name</th>
+                <th id="boarderz">BirthDate</th>
+                <th id="boarderz">Email</th>
+                <th id="boarderz">phone</th>
+                <th id="boarderz">Gender</th>
+                <th id="boarderz">preferredGenre</th>
+                <th id="boarderz">RegDate</th>
+                <th id="boarderz">authority</th>
+                <th id="boarderz">Withdrawal</th>
             </tr>
         </thead>
        <tbody>
        <% if(members == null || members.isEmpty()) { %>
            <tr>
-               <td id="boarderz" colspan="10">조회 결과가 없습니다.</td>
+               <td id="boarderz" colspan="10">No lookup results.</td>
            </tr>
        <%	
            } 
@@ -59,8 +59,8 @@
 	                <td id="boarderz"><%= member.getEnrollDate() %></td>
 	                <td id="boarderz">
 	                    <select class="member-role" data-member-id="<%= member.getMemberId()%>">
-	                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
-	                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
+	                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>User</option>
+	                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>Admin</option>
 	                    </select>
 	                </td>
 	                <td id="boarderz">
@@ -87,15 +87,15 @@
     <table id="quitTable" style="display: none;">
         <thead>
             <tr>
-                <th id="boarderz">아이디</th>
-                <th id="boarderz">이름</th>
-                <th id="boarderz">생년월일</th>
-                <th id="boarderz">이메일</th>
-                <th id="boarderz">휴대폰</th>
-                <th id="boarderz">성별</th>
-                <th id="boarderz">권한</th>
-                <th id="boarderz">가입일</th>
-                <th id="boarderz">탈퇴일</th>
+                <th id="boarderz">ID</th>
+                <th id="boarderz">Name</th>
+                <th id="boarderz">BirthDate</th>
+                <th id="boarderz">Email</th>
+                <th id="boarderz">phone</th>
+                <th id="boarderz">Gender</th>
+                <th id="boarderz">Authority</th>
+                <th id="boarderz">RegDate</th>
+                <th id="boarderz">WithdrawalDate</th>
             </tr>
         </thead>
         <tbody>

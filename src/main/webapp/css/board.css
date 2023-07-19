@@ -40,14 +40,20 @@ table {
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 	text-align: center;
-	margin:auto;
+	margin: auto;
 	border-radius: 8px;
+	margin-top: 50px;
+}
+
+table td a {
+	color:#fff;
+	margin: left;
 }
 
 th, td {
 	padding: 15px;
 	
-	
+
 }
 
 th {
