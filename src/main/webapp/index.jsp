@@ -91,9 +91,12 @@ const findAllMovies = () => {
       	method="post">
       	  <input id="memberId" type="hidden" name="memberId" value="<%= loginMember.getMemberId()%>"/>
       	  <input id="movieCode" type="hidden" name="movieCode" value=""/>
-      	  <button type="button" id="ggimButton">찜</button>
+      	  <button type="button" id="ggimButton"><img src="<%= request.getContextPath() %>/images/찜2.png"/></button>
+      	  <span class="close" onclick="closeModal();">&times;</span>
       </form>
-      <% } %>	  
+      <% }  else { %>  
+	  	  <span class="close" onclick="closeModal();" style="margin-bottom: 25px;">&times;</span>
+  	  <% } %>
          
           
           <!-- 동영상 재생 구역 -->
@@ -120,12 +123,12 @@ const findAllMovies = () => {
              <label for="star1" title="1점"></label>
            </div>
       	</div>
-        
+         <!-- 댓글 작성 폼 -->
         <div class="comment-form">
-            <textarea rows="4" cols="50" name="commentInput" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
+            <textarea style="width:765px; height:100px" rows="4" cols="50" id="commentInput" placeholder="댓글을 작성해주세요"></textarea>
             <input type="hidden" id="modal-movie-code" name = "modal-movie-code">
             <br>
-            <input type="button" value="댓글 작성" onclick="createMovieComment();"/>
+            <input type="button" value="댓글 작성" onclick="createMovieComment();" style="margin: 10px; height: 30px;"/>
 	    </div>
 	</form>
         <!-- 댓글 목록 -->
@@ -282,7 +285,7 @@ const createMovieComment = () => {
 	}; // else
 }; // createMovieComment()
 
-
+ 
 
 // 모달에 댓글 출력
 const printMovieComments = () => {
@@ -293,11 +296,11 @@ const printMovieComments = () => {
 		dataType : "json",
 		method : "get",
 		success(movieComments) {
+				const body = document.querySelector("#movie-comment-body");
+				body.innerHTML = "";
 			// 가저온 comments 반복문			
 			[...movieComments].forEach((comment) => {
-				const body = document.querySelector("#movie-comment-body");
 				const {writerId, movieContent, regDate, starGrade} = comment;
-				body.innerHTML = "";
 				const commentHTML = `
 					<tr>
 						<td>\${writerId}</td>

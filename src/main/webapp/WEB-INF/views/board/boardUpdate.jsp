@@ -10,7 +10,7 @@
 	Attachment attachment = (Attachment) session.getAttribute("attachment");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
-<section id="board-container">
+<section id="board-detail-container">
 	<div id="board" style ="width: 605px;">
 	    
 
@@ -42,7 +42,7 @@
 		    	<% } else { %>
 		    	<input id="file" type="file" name="upFile" style="margin: 10px; margin-left: 30px;" />
 		    	<% } %>
-		      <textarea id="textarea" name="content" style="min-height: 400;border: ridge; background-color: #141414; color: white; resize: none;width: 100%; height: auto;"><%= board.getContent() %></textarea>
+		      <textarea id="textarea" name="content" style="#141414; background-color: #fff; color: #000; border: none; border-radius: 4px; resize: none;width: 100%; height: auto; min-height: 400px;"><%= board.getContent() %></textarea>
 	    	</div>
 	    
 	    <button type="submit">수정하기</button>
