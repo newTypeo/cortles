@@ -23,7 +23,6 @@ public class AdminFindAllMembersServlet extends HttpServlet {
 		
 		List<Member> members = memberService.findAll();
 		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
-		System.out.println("members" + members);
 		request.setAttribute("members", members);
 		
 		request.getSession().setAttribute("quitMembers", quitMembers);
