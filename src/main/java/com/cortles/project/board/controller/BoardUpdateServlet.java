@@ -63,7 +63,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		// db attachment 행삭제, 저장된 파일삭제
 		String[] delFiles = multiReq.getParameterValues("delFile");
 		
-		System.out.println("no = " + no);
+//		System.out.println("no = " + no);
 		System.out.println("title = " + title);
 		System.out.println("content = " + content);
 		System.out.println("writer = " + writer);

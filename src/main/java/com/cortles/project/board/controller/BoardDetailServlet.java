@@ -24,7 +24,7 @@ public class BoardDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리 ?no=12
 		int boardNo = Integer.parseInt(request.getParameter("no"));
-		System.out.println("no = " + boardNo);
+//		System.out.println("no = " + boardNo);
 		
 		// 2. 업무로직
 		// 게시글 읽음 여부 검사
