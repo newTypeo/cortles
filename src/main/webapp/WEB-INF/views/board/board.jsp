@@ -34,7 +34,6 @@
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th>조회</th>
 			<th>추천</th>
 			<th>글쓴이</th>
 			<th>작성일</th>
@@ -45,16 +44,14 @@
 			if(boards != null && !boards.isEmpty()){ 
 						for(BoardEntity board : boards){
 			%>
-						<tr>
+						<tr  id="title">
 							<td><%= board.getBoardNo() %></td>
+							
 							<td>
 								<a href="<%= request.getContextPath() %>/board/boardDetail?no=<%= board.getBoardNo() %>"><%= board.getTitle() %></a>
-								<%--<%	if(board.getCommentCnt() > 0) { --%>
-								<%-- [<%= board.getCommentCnt() %>] --%>
-								<%-- ✉	--%>	
-								<%--<% 	} --%>
+								<a href="<%= request.getContextPath() %>/board/boardDetail?no=<%= board.getBoardNo() %>">[<%= board.getReadCount() %>]</a>
+								
 							</td>
-							<td><%= board.getReadCount() %></td>
 							<td><%= board.getLikeCount() %></td>
 							<td><%= board.getWriterId() %></td>
 							<td><%= board.getRegDate() %></td>

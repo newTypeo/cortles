@@ -42,7 +42,7 @@ public class BoardDetailServlet extends HttpServlet {
 				}
 			}
 		}
-		System.out.println("hasRead = " + hasRead);
+//		System.out.println("hasRead = " + hasRead);
 		if(!hasRead) {
 			int result = boardService.updateReadCount(boardNo);
 			System.out.println("result = " + result);
@@ -60,7 +60,6 @@ public class BoardDetailServlet extends HttpServlet {
 
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
 		int boardCommentCnt = boardService.totalBoardCommentCnt(boardNo);
-		
 		// secure coding처리
 		String unsecureTitle = board.getTitle();
 		String secureTitle = CortlesUtils.escapeHtml(unsecureTitle);
