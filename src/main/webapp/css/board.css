@@ -177,6 +177,58 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
 	border-radius: 4px;
 	background-color: #222;
 }
+/* 글 추천 버튼 */
+#btn{
+  margin: 0;
+  background: dodgerblue;
+  justify-content: center;
+  align-items: center;}
+#btn.likegood{
+  background-color: white;
+  border: 0;
+  outline: border;
+  padding: 9px 15px;
+  font:bold;
+  box-shadow: 0px 5px 10px rgba(darken(dodgerblue, 40%));
+  transition: all .3s;
+  cursor: pointer;
+  border-radius: 5px;
+  border-bottom: 4px solid lighten(gray, 70%);
+}
+#btn.likegood:hover{
+    box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
+    transform: scale(1.03);
+}
+#btn.likegood:active{
+    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
+}
+
+
+
+/* 글 수정 삭제 버튼 */
+#btn.subbtn{
+  background-color: white;
+  border: 0;
+  outline: border;
+  padding: 7px 13px;
+  font:bold;
+  box-shadow: 0px 5px 10px rgba(darken(dodgerblue, 40%));
+  transition: all .3s;
+  cursor: pointer;
+  border-radius: 5px;
+  border-bottom: 4px solid lighten(gray, 70%);
+}
+#btn.subbtn:hover{
+    box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
+    transform: scale(1.03);
+}
+#btn.subbtn:active{
+    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
+}
+
+
 
 
 /*검색창*/
@@ -205,13 +257,13 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
     }
     
 /* 버튼  */
-.btn-wrapper {
+.btn-wrapper{
 	display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.btn {
+.btn{
     font-size: 15px;
     padding: 10px 15px;
     border: 3px solid #e50914 ;
