@@ -13,6 +13,7 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/members.css" />
 <section>
+	<!--  검색 버튼  -->
     <div class="search-container" id="search-name">
         <form action="<%= request.getContextPath()%>/admin/searchMember" name="searchMemberFrm">
             <input type="hidden" name="searchType" value="name"/>
@@ -22,6 +23,8 @@
             </span>
         </form>
     </div>
+    
+    
     <table>
         <thead>
             <tr>
@@ -38,41 +41,41 @@
             </tr>
         </thead>
         <tbody>
-        <% if(members == null || members.isEmpty()) { %>
-            <tr>
-                <td id="boarderz" colspan="10">조회 결과가 없습니다.</td>
-            </tr>
-        <%	
-            } 
-            else { 
-                for(Member member : members) {
-        %>
-            <tr>
-                <td id="boarderz"><%= member.getMemberId()%></td>
-                <td id="boarderz"><%= member.getMemberName() %></td>
-                <td id="boarderz"><%= member.getBirthday() %></td>
-                <td id="boarderz"><%= member.getEmail() != null ? member.getEmail() : "" %></td>
-                <td id="boarderz"><%= member.getPhone() %></td>
-                <td id="boarderz"><%= member.getGender() != null ? member.getGender():"" %></td>
-                <td id="boarderz"><%= member.getFavoriteGenre() != null ? member.getFavoriteGenre() : ""%></td>
-                <td id="boarderz"><%= member.getEnrollDate() %></td>
-                <td id="boarderz">
-                    <select class="member-role" data-member-id="<%= member.getMemberId()%>">
-                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
-                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
-                    </select>
-                </td>
-                <td id="boarderz">
-                    <input type="radio" name="<%= member.getMemberId() %>" id="yes<%= member.getMemberId() %>" value="<%= member.getMemberId() %>"/>
-                    <label for="yes<%= member.getMemberId() %>">Y</label>
-                    <input type="radio" name="<%= member.getMemberId() %>" id="no<%= member.getMemberId() %>" value="N" checked/>
-                    <label for="no<%= member.getMemberId() %>">N</label>
-                </td>
-            </tr>
-        <%	
-                }
-            }
-        %>
+	        <% if(members == null || members.isEmpty()) { %>
+	            <tr>
+	                <td id="boarderz" colspan="10">조회 결과가 없습니다.</td>
+	            </tr>
+	        <%	
+	            } 
+	            else { 
+	                for(Member member : members) {
+	        %>
+	            <tr>
+	                <td id="boarderz"><%= member.getMemberId()%></td>
+	                <td id="boarderz"><%= member.getMemberName() %></td>
+	                <td id="boarderz"><%= member.getBirthday() %></td>
+	                <td id="boarderz"><%= member.getEmail() != null ? member.getEmail() : "" %></td>
+	                <td id="boarderz"><%= member.getPhone() %></td>
+	                <td id="boarderz"><%= member.getGender() != null ? member.getGender():"" %></td>
+	                <td id="boarderz"><%= member.getFavoriteGenre() != null ? member.getFavoriteGenre() : ""%></td>
+	                <td id="boarderz"><%= member.getEnrollDate() %></td>
+	                <td id="boarderz">
+	                    <select class="member-role" data-member-id="<%= member.getMemberId()%>">
+	                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
+	                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
+	                    </select>
+	                </td>
+	                <td id="boarderz">
+	                    <input type="radio" name="<%= member.getMemberId() %>" id="yes<%= member.getMemberId() %>" value="<%= member.getMemberId() %>"/>
+	                    <label for="yes<%= member.getMemberId() %>">Y</label>
+	                    <input type="radio" name="<%= member.getMemberId() %>" id="no<%= member.getMemberId() %>" value="N" checked/>
+	                    <label for="no<%= member.getMemberId() %>">N</label>
+	                </td>
+	            </tr>
+	        <%	
+	                }
+	            }
+	        %>
         </tbody>
     </table>
     <div class="search-container" id="search-name">
