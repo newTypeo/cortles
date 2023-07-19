@@ -17,9 +17,9 @@ button#btn-add{
 }
 
 /*페이지바*/
-div#pagebar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3); }
-div#pagebar span.cPage{color: #0066ff; margin-right: 5px;}
-div#pagebar a{margin-right: 5px;}
+div#pagebar{display: inline-block; margin-left: 40%; min-width: 20%; color: white;margin-top:0; text-align:center; background-color:#141414;}
+div#pagebar span.cPage{color: #0066ff; margin-right: 5px; color: white; margin-right: 5px;}
+div#pagebar a{margin-right: 5px; color: white;}
 
 /*게시글 작성/상세보기 테이블*/
 table#tbl-board-view {
