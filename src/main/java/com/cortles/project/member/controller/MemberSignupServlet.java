@@ -50,18 +50,12 @@ public class MemberSignupServlet extends HttpServlet {
 		member.setPhone(phone);
 		member.setFavoriteGenre(favoriteGenre);
 		
-		System.out.println(member);
-		
 		int result = memberService.signup(member);
-		if(result == 1)
-			System.out.println("회원가입 성공!");
-		
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("msg", "회원가입 성공!");
+		session.setAttribute("msg", "cortles에 오신 것을 환영합니다.");
 		
 		response.sendRedirect(request.getContextPath());
-		
 		
 	}
 

@@ -11,17 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.MemberRole;
 
-/**
- * Servlet implementation class AdminMemberRoleUpdateServlet
- */
 @WebServlet("/admin/memberRoleUpdate")
 public class AdminMemberRoleUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberService memberService = new MemberService();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId = request.getParameter("memberId");
 		String _memberRole = request.getParameter("memberRole");
@@ -29,7 +23,7 @@ public class AdminMemberRoleUpdateServlet extends HttpServlet {
 		
 		int result = memberService.memberRoleUpdate(memberId,memberRole);
 		
-		response.sendRedirect(request.getContextPath()+"/members");
+		response.sendRedirect(request.getContextPath()+"/admin/searchMembers");
 	}
 
 }
