@@ -55,7 +55,7 @@
 			<li><a href="<%= request.getContextPath() %>/board/boardList">Community</a></li>
 			<li><a href="#" onclick="mylist()">MyList</a></li> <!-- 로그인 했을시에만 보이게 -->
 			<!-- if(loginMember != null && loginMember.getMemberRole() == MemberRole.A){ %>  -->
-			<li><a href="<%= request.getContextPath() %>/members">Members</a></li> <!-- 관리자  -->
+			<li><a href="<%= request.getContextPath() %>/admin/findAllMembers">Members</a></li> <!-- 관리자  -->
 			<li><a href="<%= request.getContextPath() %>/report">Report</a></li> <!-- 관리자  -->
 			<!--  } %>  -->
 		</ul>
@@ -150,12 +150,13 @@ document.querySelector(".search-bar").oninput = (e) => {
 };
 
 
-
+// session에 저장한 alert 알림
 window.onload = () => {
 	<% if(msg != null) { %>
 		alert('<%= msg %>');
 	<% } %>
 };
+
 
 const mylist = () => {
 	const frm = document.myList;
