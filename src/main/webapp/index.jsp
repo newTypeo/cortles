@@ -105,7 +105,7 @@ const findAllMovies = () => {
           </div>
         <!-- 댓글 작성 폼 -->
 	<form name="movieCommentFrm">  
-		
+		<div class="avgMovieGrade"></div>
         <!-- 별점 평점 구역 -->
         <div class="rating-container">
             <div class="star-rating">
@@ -239,8 +239,7 @@ function openModal(movie_code) {
 		success(movieInfo){
 			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
 			document.querySelector(".trailer").src = vod;
-			// console.log("movieCode", movieCode);
-			document.querySelector("#modal-movie-code").value = movieCode; // 한줄평 등록시 필요한 영호코드 셋팅
+			document.querySelector("#modal-movie-code").value = movieCode; // 한줄평 등록시 필요한 영화코드 셋팅
 			scroll.style.overflow = "hidden";	
 		  	document.getElementById("myModal").style.display = "block";
 		},
@@ -320,9 +319,18 @@ const printMovieComments = () => {
 		data : {movieCode},
 		dataType : "json",
 		method : "get",
-		success(movieComments) {
+		success(mapData) {
+				const {movieComments, avgMovieGrade} = mapData;
+				
+				// 한줄평이 하나라도 있을 때만 평점 출력
+				if(avgMovieGrade != 0){
+					document.querySelector(".avgMovieGrade").innerHTML = avgMovieGrade;
+				}
 				const body = document.querySelector("#movie-comment-body");
 				body.innerHTML = "";
+				
+				// 영화 평점 입력하기 
+				
 			// 가저온 comments 반복문			
 			[...movieComments].forEach((comment) => {
 				const {writerId, movieContent, regDate, starGrade} = comment;
