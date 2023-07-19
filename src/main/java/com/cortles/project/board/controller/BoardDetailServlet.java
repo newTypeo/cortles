@@ -60,7 +60,6 @@ public class BoardDetailServlet extends HttpServlet {
 
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);
 		int boardCommentCnt = boardService.totalBoardCommentCnt(boardNo);
-		
 		// secure coding처리
 		String unsecureTitle = board.getTitle();
 		String secureTitle = CortlesUtils.escapeHtml(unsecureTitle);
