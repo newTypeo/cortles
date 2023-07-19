@@ -6,17 +6,26 @@
 <%
 	BoardComment reportComment = (BoardComment)request.getAttribute("reportComment");
 %>
-<section id="board-container">
+<section id="board-container" 
+	style="width:570px; 
+	margin: 100px auto;
+	margin-bottom: 150px; 
+	text-align:center;
+	border-radius: 4px;
+	background-color: #222;">
+	<h1><span style="color: red;">신고하기</span></h1>
 	<form
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
 		name="boardCommentReportFrm"
 		method="post"
+		style="margin-top: 60px; margin-right: 100px;"
 	>
+		<textarea name="reporterId" readonly="" style="display:none; background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea>
 		<table id="report_table" style="width: 100%; color: black;">
 		<tr>
-			<td>신고자</td>
-			<td><textarea name="reporterId" readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea></td>
-			<td>신고유형</td>
+			<td><span>신고자</span></td>
+			<td><%= loginMember.getMemberId() %></td>
+			<td><span>신고유형</span></td>
 			<td>
 				<select name="reportType">
 					<option value="욕설">욕설</option>
@@ -26,13 +35,30 @@
 				</select>
 			</td>
 		</tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
 		<tr>
-			<td>신고댓글</td>
-			<td colspan="3"><textarea name="reportCommentContent" readonly="" style="background-color: white;  resize: none;width: 100%; height: auto;"><%= reportComment.getContent() %></textarea></td>
+		<tr>
+			<td><span>신고댓글</span></td>
+			<td colspan="3"><textarea name="reportCommentContent" readonly style="background-color: #fff; border:none; resize: none;width: 100%; height: auto;"><%= reportComment.getContent() %></textarea></td>
 		</tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
+		<tr><td> </td><td> </td><td> </td><td> </td></tr>
 		<tr>
-			<td>내용</td>
-			<td colspan="3"><textarea name = "reportContent"  style="background-color: white;   resize: none;width: 100%; height: 300px;"></textarea></td>
+			<td><span>내용</span></td>
+			<td colspan="3"><textarea id="reportContent" name = "reportContent" style="background-color: white; resize: none; width: 100%; height: 300px;" required></textarea></td>
 			</tr>
 		</table>
 		<input type="hidden" name="reportedId" value="<%= reportComment.getWriterId() %>"/>
@@ -45,8 +71,15 @@
 <script>
 document.querySelector(".btn-report").onclick = (e) => {
 	const frm = document.boardCommentReportFrm;
-	alert("신고가 접수되었습니다!!!");
-	frm.submit();
+	const content = frm.reportContent.value.length;
+	if(content == 0 || content == null) {
+		alert("내용을 작성해주세요");
+		return;
+	} else {
+		alert("신고가 접수되었습니다!!!");
+	}
+		frm.submit();
+	
 }
 </script>
     
