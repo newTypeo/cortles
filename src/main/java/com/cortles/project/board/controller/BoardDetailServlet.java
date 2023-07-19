@@ -42,7 +42,7 @@ public class BoardDetailServlet extends HttpServlet {
 				}
 			}
 		}
-		System.out.println("hasRead = " + hasRead);
+//		System.out.println("hasRead = " + hasRead);
 		if(!hasRead) {
 			int result = boardService.updateReadCount(boardNo);
 			System.out.println("result = " + result);

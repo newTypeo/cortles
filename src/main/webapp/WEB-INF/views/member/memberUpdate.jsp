@@ -63,35 +63,35 @@
 				<th>prepergenre</th>
 				<td>
 					<input type="checkbox" name="genre" id="genre0" value="호러" <%= genres != null && genres.contains("공포") ? "checked" : "" %>>
-					<label for="genre0">공포</label>
+					<label for="genre0">Horror</label>
 					<input type="checkbox" name="genre" id="genre1" value="로맨스" <%= genres != null && genres.contains("로맨스") ? "checked" : "" %>>
-					<label for="genre1">로맨스</label>
+					<label for="genre1">Romance</label>
 					<input type="checkbox" name="genre" id="genre2" value="코미디" <%= genres != null && genres.contains("미스터리") ? "checked" : "" %>>
-					<label for="genre2">미스터리</label>
+					<label for="genre2">Mystery</label>
 					<input type="checkbox" name="genre" id="genre3" value="액션" <%= genres != null && genres.contains("액션") ? "checked" : "" %>>
-					<label for="genre3">액션</label>
+					<label for="genre3">Action</label>
 					<br/>
 					<input type="checkbox" name="genre" id="genre4" value="스릴러" <%= genres != null && genres.contains("스릴러") ? "checked" : "" %>>
-					<label for="genre4">스릴러</label>
+					<label for="genre4">Thriller</label>
 					<input type="checkbox" name="genre" id="genre6" value="코메디" <%= genres != null && genres.contains("코메디") ? "checked" : "" %>>
-					<label for="genre4">코메디</label>
+					<label for="genre4">Comedy</label>
 					<input type="checkbox" name="genre" id="genre5" value="SF" <%= genres != null && genres.contains("SF") ? "checked" : "" %>>
 					<label for="genre4">SF</label>
 					<input type="checkbox" name="genre" id="genre7" value="드라마" <%= genres != null && genres.contains("드라마") ? "checked" : "" %>>
-					<label for="genre4">드라마</label>
+					<label for="genre4">Drama</label>
 					<br/>
 					<input type="checkbox" name="genre" id="genre8" value="판타지" <%= genres != null && genres.contains("판타지") ? "checked" : "" %>>
-					<label for="genre4">판타지</label>
+					<label for="genre4">Fantasy</label>
 					<input type="checkbox" name="genre" id="genre9" value="가족" <%= genres != null && genres.contains("가족") ? "checked" : "" %>>
-					<label for="genre4">가족</label>
+					<label for="genre4">Family</label>
 					<input type="checkbox" name="genre" id="genre10" value="범죄" <%= genres != null && genres.contains("범죄") ? "checked" : "" %>>
-					<label for="genre4">범죄</label>
+					<label for="genre4">Crime</label>
 				</td>
 			</tr>
 		</table>
 		<input type= "button" value="quit" onclick="deleteMember()">
-		<input type="submit" value="update" >
-		<input type="reset" value="cacel" onclick="location.href='<%= request.getContextPath() %>';">
+		<input type="submit" value="update" style="border: 1px solid #df0b0b;">
+		<input type="reset" value="cacel" onclick="location.href='<%= request.getContextPath() %>';" style="border: 1px solid #df0b0b;">
 	</form>
 </section>
 <form

@@ -3,8 +3,9 @@
 
 
 /*게시판*/
-section {height:680px; padding:20px;}
 section#board-container{width:1000px; margin:0 auto; text-align:center;}
+section {min-height:680px; padding:20px;}
+section#board-container{width:600px; margin:0 auto; text-align:center;}
 section#board-container h2{margin:10px 0;}
 table#tbl-board{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
 table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;}
@@ -19,6 +20,7 @@ table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-a
 section {padding:20px;}
 
 
+ 
 
 /*글쓰기버튼*/
 button#btn-add{
@@ -197,3 +199,7 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
   color: #fff;
   padding: 3px 0;
 }
+
+
+/* 댓글 신고 */
+#report_table tr td {color: #fff;}
