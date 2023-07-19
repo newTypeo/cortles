@@ -25,7 +25,6 @@ public class AdminFindAllMembersServlet extends HttpServlet {
 		List<Member> members = memberService.findAll();
 		// 탈퇴한 회원 리스트 
 		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
-		//System.out.println("members" + members);
 		
 		request.setAttribute("members", members);
 		request.getSession().setAttribute("quitMembers", quitMembers);
