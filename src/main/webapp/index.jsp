@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<script src="https://kit.fontawesome.com/4fb767ea3e.js" crossorigin="anonymous"></script>
 <style>
 html {width: 10000px;}
 </style>
@@ -152,46 +153,60 @@ const findAllMovies = () => {
 <section id="searchMovies-section">
 
 <% 		if(loginMember != null) { 		%>
-			<div>
+			<div class="favorite-slider">
 			<span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
-				<article id="recommendedMovies"></article>
+				<button id="favorite-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+			<article id="recommendedMovies" class="favorite-slider-container">
+			</article>
+				<button id="favorite-romance-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 			<br/>
 <%		} 							%>
-			<div>
-				<span>romance</span><article id="romance"></article>
+			<div class="romance-slider">
+				<span>romance</span>
+					<button id="romance-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+				<article class="romance-slider-container" id="romance"></article>
+					<button id="romance-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
-			<div>
-				<span>SF</span><article id="sf"></article>
+			<div class="sf-slider">
+				<span>SF</span>
+				<article id="sf" class="sf-slider-container"></article>
 			</div>
 		<br/>
-			<div>
-				<span>horror</span><article id="horror"></article>
+			<div class="horror-slider">
+				<span>horror</span>
+				<article id="horror" class="horror-slider-container"></article>
 			</div>
 		<br/>
-			<div>
-				<span>thriller</span><article id="thriller"></article>
+			<div class="thriller-slider">
+				<span>thriller</span>
+				<article id="thriller" class="thriller-slider-container"></article>
 			</div>
 		<br/>
-			<div>
-				<span>action</span><article id="action"></article>
+			<div class="action-slider">
+				<span>action</span>
+				<article id="action" class="action-slider"></article>
 			</div>
 		<br/>
-			<div>
-				<span>drama</span><article id="drama"></article>
+			<div class="drama-slider">
+				<span>drama</span>
+				<article id="drama" class="drama-slider-container"></article>
 			</div>
 		<br/>
-			<div>
-				<span>comedy</span><article id="comedy"></article>
+			<div class="comedy-slider">
+				<span>comedy</span>
+				<article id="comedy" class="comedy-slider-container"></article>
 			</div>
 		<br/>
-			<div>
-				<span>fantasy</span><article id="fantasy"></article>
+			<div class="fantasy-slider">
+				<span>fantasy</span>
+				<article id="fantasy" class="fantasy-slider-container"></article>
 			</div>
 		<br/>
-			<div>
-				<span>mystery</span><article id="mystery"></article>
+			<div class="mystery-slider">
+				<span>mystery</span>
+				<article id="mystery" class="mystery-slider-container"></article>
 			</div>
 		<br/>
 </section>		

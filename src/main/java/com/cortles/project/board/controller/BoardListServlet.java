@@ -40,10 +40,6 @@ public class BoardListServlet extends HttpServlet {
 		
 		// 2. 업무로직
 		List<BoardEntity> boards = boardService.findAll(start, end);
-		for(BoardEntity board : boards) {
-			Map<Integer, Integer> commentCntMap;
-			
-		}
 		
 		// xss공격대비처리
 		for(BoardEntity board : boards) {

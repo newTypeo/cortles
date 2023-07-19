@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+.favorite-slider {
+  width: 100%; /* 슬라이더 영역의 너비를 조정합니다 */
+  overflow: hidden;
+  position: absolute; /* 부모 요소를 기준으로 자식 요소를 위치시키기 위해 position을 설정합니다 */
+}
+
+.favorite-slider-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+  width: fit-content; /* 슬라이더 컨테이너의 너비를 이미지와 간격에 맞게 조정합니다 */
+}
+
+
+/* 이전, 다음 버튼 스타일 */
+#favorite-prev, #favorite-next {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 5px 10px;
+  cursor: pointer;
+  opacity: 0; /* 초기에는 숨김 */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.favorite-slider #favorite-prev {
+  left: 5px;
+}
+
+.favorite-slider #favorite-next {
+  right: 5px;
+}
+
+.slider-button {
+  width: 50px;
+  height: 200px;
+  background-color: transparent;
+}
+
+.favorite-slider:hover #favorite-prev:hover,
+.favorite-slider:hover #favorite-next:hover {
+  opacity: 1; /* hover 시 해당 버튼만 나타남 */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
