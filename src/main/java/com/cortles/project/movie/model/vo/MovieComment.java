@@ -8,13 +8,11 @@ public class MovieComment {
 	private String movieCode;
 	private String movieContent;
 	private Date regDate;
-	private int starGrade;
+	private double starGrade;
 	
 	public MovieComment() {}
 
-	public MovieComment(int commentNo, String writerId, String movieCode, String movieContent, Date regDate,
-			int starGrade) {
-		super();
+	public MovieComment(int commentNo, String writerId, String movieCode, String movieContent, Date regDate,double starGrade) {
 		this.commentNo = commentNo;
 		this.writerId = writerId;
 		this.movieCode = movieCode;
@@ -23,23 +21,53 @@ public class MovieComment {
 		this.starGrade = starGrade;
 	}
 
-	public int getCommentNo() {return commentNo;}
-	public void setCommentNo(int commentNo) {this.commentNo = commentNo;}
+	public int getCommentNo() {
+		return commentNo;
+	}
 
-	public String getWriterId() {return writerId;}
-	public void setWriterId(String writerId) {this.writerId = writerId;}
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
 
-	public String getMovieCode() {return movieCode;}
-	public void setMovieCode(String movieCode) {this.movieCode = movieCode;}
+	public String getWriterId() {
+		return writerId;
+	}
 
-	public String getMovieContent() {return movieContent;}
-	public void setMovieContent(String movieContent) {this.movieContent = movieContent;}
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
 
-	public Date getRegDate() {return regDate;}
-	public void setRegDate(Date regDate) {this.regDate = regDate;}
+	public String getMovieCode() {
+		return movieCode;
+	}
 
-	public int getStarGrade() {return starGrade;}
-	public void setStarGrade(int starGrade) {this.starGrade = starGrade;}
+	public void setMovieCode(String movieCode) {
+		this.movieCode = movieCode;
+	}
+
+	public String getMovieContent() {
+		return movieContent;
+	}
+
+	public void setMovieContent(String movieContent) {
+		this.movieContent = movieContent;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public double getStarGrade() {
+		return starGrade;
+	}
+
+	public void setStarGrade(double starGrade) {
+		this.starGrade = starGrade;
+	}
 
 	@Override
 	public String toString() {
