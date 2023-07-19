@@ -95,7 +95,7 @@
                 <input type="hidden" name="writerId" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
                 <input type="hidden" name="boardCnt" value="<%= board.getCommentCnt() %>" />
 				<textarea name="content" cols="60" rows="3"></textarea>
-                <button type="submit" id="btn-comment-enroll1">등록</button>
+                <button type="submit" id="btn-comment-enroll1"></button>
             </form>
         </div>
 		<!--table#tbl-comment-->
