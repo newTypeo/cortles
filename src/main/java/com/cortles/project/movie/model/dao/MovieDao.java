@@ -163,15 +163,38 @@ private Properties prop = new Properties();
 		return movieComments;
 	}
 
+	/**
+	 * 영화코드로 영화 평점 조회 - 종환
+	 */
+	public double findMovieAvgGrade(Connection conn, String movieCode) {
+		double avgMovieGrade = 0;
+		String sql = prop.getProperty("findMovieAvgGrade");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, movieCode);
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next())
+					avgMovieGrade = rset.getDouble(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new MovieException(e);
+		}
+		return avgMovieGrade;
+	}
+	
+	
 	private MovieComment handleMovieCommentResultSet(ResultSet rset) throws SQLException {
 		int commentNo = rset.getInt("comment_no");
 		String writerId = rset.getString("writer_id");
 		String movieCode = rset.getString("movie_code");
 		String movieContent = rset.getString("movie_content");
 		Date regDate = rset.getDate("reg_date");
-		int starGrade = rset.getInt("star_grade");
+		double starGrade = rset.getInt("star_grade");
 		
 		return new MovieComment(commentNo, writerId, movieCode, movieContent, regDate, starGrade);
 	}
+
+	
 
 }
