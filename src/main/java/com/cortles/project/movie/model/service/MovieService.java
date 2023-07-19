@@ -65,6 +65,16 @@ public class MovieService {
 		close(conn);
 		return movieComments;
 	}
+
+	/**
+	 * 영화 평점 조회 - 종환
+	 */
+	public double findMovieAvgGrade(String movieCode) {
+		Connection conn = getConnection();
+		double avgMovieGrade = movieDao.findMovieAvgGrade(conn, movieCode);
+		close(conn);
+		return avgMovieGrade;
+	}
 	
 	
 	
