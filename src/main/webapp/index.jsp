@@ -5,7 +5,6 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <script src="https://kit.fontawesome.com/4fb767ea3e.js" crossorigin="anonymous"></script>
 <style>
-html {width: 10000px;}
 </style>
 <title>메인 페이지</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" />
