@@ -34,7 +34,7 @@ public class MemberCheckIdDuplicateServlet extends HttpServlet {
 		
 		boolean available = CheckOnMembers == null;
 		
-		// 탈퇴한 회원에서도 중복검사
+		// 탈퇴한 회원에서도 중복검사 - 종환
 		if(CheckOnQuitMembers != 0)
 			available = false;
 		

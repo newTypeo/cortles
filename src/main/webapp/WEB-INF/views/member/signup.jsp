@@ -37,7 +37,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>CheckPW<sup>*</sup></th>
+				<th>CheckPw<sup>*</sup></th>
 				<td>	
 					<input type="password" id="passwordConfirmation" value="1234" required><br>
 				</td>
@@ -70,27 +70,27 @@
 				<th>Gender<sup>*</sup></th>
 				<td>
 					<input type="radio" name="gender" id="gender0" value="M">
-					<label for="gender0">남</label>
+					<label for="gender0">Male</label>
 					<input type="radio" name="gender" id="gender1" value="F" checked>
-					<label for="gender1">여</label>
+					<label for="gender1">Female</label>
 				</td>
 			</tr>
 			<tr>
 				<th>PreferGenre</th>
 				<td>
 					<input type="checkbox" name="genre" id="genre0" value="공포" checked><label for="genre0">Horror</label>
-					<input type="checkbox" name="genre" id="genre1" value="로맨스" checked><label for="genre1">Romance</label>
+					<input type="checkbox" name="genre" id="genre6" value="가족"><label for="genre4">Family</label>
 					<input type="checkbox" name="genre" id="genre9" value="미스터리"><label for="genre4">Mystery</label>
-					<input type="checkbox" name="genre" id="genre3" value="액션"><label for="genre3">Action</label>
+					<input type="checkbox" name="genre" id="genre1" value="로맨스" checked><label for="genre1">Romance</label>
 					<br/>
 					<input type="checkbox" name="genre" id="genre4" value="스릴러"><label for="genre4">Thriller</label>
+					<input type="checkbox" name="genre" id="genre7" value="드라마"><label for="genre4">Drama</label>
 					<input type="checkbox" name="genre" id="genre2" value="코메디"><label for="genre2">Comedy</label>
 					<input type="checkbox" name="genre" id="genre5" value="SF"><label for="genre4">SF</label>
-					<input type="checkbox" name="genre" id="genre7" value="드라마"><label for="genre4">Drama</label>
 					<br/>
 					<input type="checkbox" name="genre" id="genre8" value="판타지"><label for="genre4">Fantasy</label>
-					<input type="checkbox" name="genre" id="genre6" value="가족"><label for="genre4">Family</label>
-					<input type="checkbox" name="genre" id="genre10" value="범죄"><label for="genre4">Crime</label>
+					<input type="checkbox" name="genre" id="genre10" value="범죄"><label for="genre4">Crime&nbsp;</label>
+					<input type="checkbox" name="genre" id="genre3" value="액션"><label for="genre3">Action</label>
 					<br/>
 				</td>
 			</tr>
