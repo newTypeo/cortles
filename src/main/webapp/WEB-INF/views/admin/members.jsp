@@ -8,13 +8,14 @@
 <%
 	List<Member> members = (List<Member>) session.getAttribute("members");
 	List<QuitMember> quitMembers = (List<QuitMember>) session.getAttribute("quitMembers");
-
 	String keyword = request.getParameter("keyword");
+			
 %>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/members.css" />
 <section>
     <div class="search-container" id="search-name">
-        <form action="<%= request.getContextPath()%>/admin/searchMember" name="searchMemberFrm">
+        <form action="<%= request.getContextPath()%>/admin/searchMembers" name="searchMemberFrm">
             <input type="hidden" name="searchType" value="name"/>
             <input type="text" name="searchKeyword" class="search-input" placeholder="이름으로 검색">
             <span class="btn-wrapper">
@@ -37,43 +38,43 @@
                 <th id="boarderz">탈퇴처리</th>
             </tr>
         </thead>
-        <tbody>
-        <% if(members == null || members.isEmpty()) { %>
-            <tr>
-                <td id="boarderz" colspan="10">조회 결과가 없습니다.</td>
-            </tr>
-        <%	
-            } 
-            else { 
-                for(Member member : members) {
-        %>
-            <tr>
-                <td id="boarderz"><%= member.getMemberId()%></td>
-                <td id="boarderz"><%= member.getMemberName() %></td>
-                <td id="boarderz"><%= member.getBirthday() %></td>
-                <td id="boarderz"><%= member.getEmail() != null ? member.getEmail() : "" %></td>
-                <td id="boarderz"><%= member.getPhone() %></td>
-                <td id="boarderz"><%= member.getGender() != null ? member.getGender():"" %></td>
-                <td id="boarderz"><%= member.getFavoriteGenre() != null ? member.getFavoriteGenre() : ""%></td>
-                <td id="boarderz"><%= member.getEnrollDate() %></td>
-                <td id="boarderz">
-                    <select class="member-role" data-member-id="<%= member.getMemberId()%>">
-                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
-                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
-                    </select>
-                </td>
-                <td id="boarderz">
-                    <input type="radio" name="<%= member.getMemberId() %>" id="yes<%= member.getMemberId() %>" value="<%= member.getMemberId() %>"/>
-                    <label for="yes<%= member.getMemberId() %>">Y</label>
-                    <input type="radio" name="<%= member.getMemberId() %>" id="no<%= member.getMemberId() %>" value="N" checked/>
-                    <label for="no<%= member.getMemberId() %>">N</label>
-                </td>
-            </tr>
-        <%	
-                }
-            }
-        %>
-        </tbody>
+       <tbody>
+       <% if(members == null || members.isEmpty()) { %>
+           <tr>
+               <td id="boarderz" colspan="10">조회 결과가 없습니다.</td>
+           </tr>
+       <%	
+           } 
+           else { 
+               for(Member member : members) {
+       %>
+	            <tr>
+	                <td id="boarderz"><%= member.getMemberId()%></td>
+	                <td id="boarderz"><%= member.getMemberName() %></td>
+	                <td id="boarderz"><%= member.getBirthday() %></td>
+	                <td id="boarderz"><%= member.getEmail() != null ? member.getEmail() : "" %></td>
+	                <td id="boarderz"><%= member.getPhone() %></td>
+	                <td id="boarderz"><%= member.getGender() != null ? member.getGender():"" %></td>
+	                <td id="boarderz"><%= member.getFavoriteGenre() != null ? member.getFavoriteGenre() : ""%></td>
+	                <td id="boarderz"><%= member.getEnrollDate() %></td>
+	                <td id="boarderz">
+	                    <select class="member-role" data-member-id="<%= member.getMemberId()%>">
+	                        <option value="U" <%= member.getMemberRole() == MemberRole.U ? "selected" : "" %>>일반</option>
+	                        <option value="A" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
+	                    </select>
+	                </td>
+	                <td id="boarderz">
+	                    <input type="radio" name="<%= member.getMemberId() %>" id="yes<%= member.getMemberId() %>" value="<%= member.getMemberId() %>" class="yes"/>
+	                    <label for="yes<%= member.getMemberId() %>">Y</label>
+	                    <input type="radio" name="<%= member.getMemberId() %>" id="no<%= member.getMemberId() %>" value="N" checked/>
+	                    <label for="no<%= member.getMemberId() %>">N</label>
+	                </td>
+	            </tr>
+       <%	
+               } // for
+           } // else
+       %>
+       </tbody>
     </table>
     <div class="search-container" id="search-name">
         <form name="quitMemberFrm">
@@ -156,28 +157,35 @@ quitButton.addEventListener('click', (e) => {
     <input type="hidden" name="delOnMembers" id="delOnMembers" value="delOnMembers">
 </form>
 <script>
-//강제 탈퇴 
-document.querySelector("#yes").onclick = (e) => {
-    const memberId = e.target.value;
-    const memberName = e.target.name;
-    console.log(memberId);
-    if (confirm(`\${memberName}님을 탈퇴처리 하시겠습니까?`)){
-        document.querySelector("#delMemberId").value = memberId;
-        document.delMemberIdFrm.submit();
-    } else {
-        document.querySelector("#no").checked = true;
-    }
-};
+
+<% if(members != null) { %>
+	// 관리자가 회원 강제 탈퇴 
+	[...document.querySelectorAll(".yes")].forEach((yesRadio) => {
+		yesRadio.onclick = (e) => {
+		    const memberId = e.target.value;
+		    const memberName = e.target.name;
+		    // console.log(memberId);
+		    if (confirm(`\${memberName}님을 탈퇴처리 하시겠습니까?`)){
+		        document.querySelector("#delMemberId").value = memberId;
+		        document.delMemberIdFrm.submit();
+		    } else {
+		    	e.target.nextSibling.nextElementSibling.nextElementSibling.checked = true;
+		    };
+		};
+	});
+	
+	
+<% } %>
 
 // 검색 
 document.querySelector(".search-container").onsubmit = (e) => {
     const frm = e.target;
     const name = frm.searchKeyword.value;
     // 한글 검사
-    if (!/^[가-힣]+$/.test(name)) {
-        alert("한글만 입력해주세요.");
-        return false;
-    }
+    //if (!/^[가-힣]+$/.test(name)) {
+    //     alert("한글만 입력해주세요.");
+    //     return false;
+    // }
 }
 
 // 권한 수정 

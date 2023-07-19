@@ -13,25 +13,19 @@ import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.QuitMember;
 
-/**
- * Servlet implementation class AdminMembersServlet
- */
-@WebServlet("/members")
-public class AdminMembersServlet extends HttpServlet {
+@WebServlet("/admin/findAllMembers")
+public class AdminFindAllMembersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private final MemberService memberService = new MemberService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Member> members = memberService.findAll();
-		//System.out.println("members = " + members);
 		List<QuitMember> quitMembers = memberService.quitMemberFindAll();
-		
+		System.out.println("members" + members);
 		request.setAttribute("members", members);
+		
 		request.getSession().setAttribute("quitMembers", quitMembers);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/members.jsp")
