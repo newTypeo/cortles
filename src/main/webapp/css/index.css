@@ -1,23 +1,56 @@
 @CHARSET "UTF-8";
 
-.favorite-slider {
-  width: 100%; /* 슬라이더 영역의 너비를 조정합니다 */
+.slider {
+  width: 97.5vw; /* 슬라이더 영역의 너비를 조정합니다 */
   overflow: hidden;
-  position: absolute; /* 부모 요소를 기준으로 자식 요소를 위치시키기 위해 position을 설정합니다 */
+  position: relative; /* 부모 요소를 기준으로 자식 요소를 위치시키기 위해 position을 설정합니다 */
 }
 
-.favorite-slider-container {
+.slider-container {
   display: flex;
   transition: transform 0.5s ease-in-out;
   overflow: hidden;
   width: fit-content; /* 슬라이더 컨테이너의 너비를 이미지와 간격에 맞게 조정합니다 */
 }
 
+/* 이미지의 너비를 조정합니다 */
+/* 이미지의 높이를 자동으로 조정합니다 */
+/* 이미지 간격을 조정합니다 */
+/*.slider-container img {
+  width: 150px; 
+  height: 200px; 
+  margin: 5px; 
+}*/
 
 /* 이전, 다음 버튼 스타일 */
-#favorite-prev, #favorite-next {
+.slider-button {
+  width: 50px;
+  height: 285px;
+  background-color: transparent;
+}
+
+/* 슬라이드 컨트롤 버튼 스타일 */
+#favorite-prev,
+#favorite-next,
+#romance-prev,
+#romance-next,
+#sf-prev,
+#sf-next,
+#horror-prev,
+#horror-next,
+#thriller-prev,
+#thriller-next,
+#action-prev,
+#action-next,
+#drama-prev,
+#drama-next,
+#comedy-prev,
+#comedy-next,
+#fantasy-prev,
+#fantasy-next,
+#mystery-prev,
+#mystery-next {
   position: absolute;
-  z-index: 1;
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.3);
@@ -26,64 +59,30 @@
   font-size: 60px;
   padding: 5px 10px;
   cursor: pointer;
-  opacity: 0; /* 초기에는 숨김 */
+  opacity: 0; /* 수정: 초기에 보이도록 변경 */
   transition: opacity 0.3s ease-in-out;
-}
-
-.favorite-slider #favorite-prev {
-  left: 5px;
-}
-
-.favorite-slider #favorite-next {
-  right: 5px;
-}
-
-.slider-button {
-  width: 50px;
-  height: 200px;
-  background-color: transparent;
+  z-index: 1;
 }
 
 .favorite-slider:hover #favorite-prev:hover,
-.favorite-slider:hover #favorite-next:hover {
+.favorite-slider:hover #favorite-next:hover,
+.romance-slider:hover #romance-prev:hover,
+.romance-slider:hover #romance-next:hover,
+.sf-slider:hover #sf-prev:hover,
+.sf-slider:hover #sf-next:hover,
+.thriller-slider:hover #thriller-prev:hover,
+.thriller-slider:hover #thriller-next:hover,
+.action-slider:hover #action-prev:hover,
+.action-slider:hover #action-next:hover,
+.drama-slider:hover #drama-prev:hover,
+.drama-slider:hover #drama-next:hover,
+.horror-slider:hover #horror-prev:hover,
+.horror-slider:hover #horror-next:hover,
+.comedy-slider:hover #comedy-prev:hover,
+.comedy-slider:hover #comedy-next:hover,
+.fantasy-slider:hover #fantasy-prev:hover,
+.fantasy-slider:hover #fantasy-next:hover,
+.mystery-slider:hover #mystery-prev:hover,
+.mystery-slider:hover #mystery-next:hover {
   opacity: 1; /* hover 시 해당 버튼만 나타남 */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
