@@ -14,7 +14,8 @@
             </tr>
             <tr>
                 <th>writer</th>
-                <td><input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly></td>
+                <td><input type="text" name="writer" value="<%= loginMember.getMemberId() %>" style="background-color: #222; color: #fff; border: none;"
+                readonly></td>
             </tr>
             <tr>
                 <th>upload</th>
