@@ -31,43 +31,43 @@
 				</td>
 			</tr>
 			<tr>
-				<th>password<sup>*</sup></th>
+				<th>Password<sup>*</sup></th>
 				<td>
 					<input type="password" name="password" id="_password" value="1234" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>passwordCF<sup>*</sup></th>
+				<th>CheckPW<sup>*</sup></th>
 				<td>	
 					<input type="password" id="passwordConfirmation" value="1234" required><br>
 				</td>
 			</tr>  
 			<tr>
-				<th>name<sup>*</sup></th>
+				<th>Name<sup>*</sup></th>
 				<td>	
 				<input type="text"  name="name" id="name" value="세종대왕" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>birthdate</th>
+				<th>Birthday</th>
 				<td>	
 				<input type="date" name="birthday" id="birthday" value="1999-09-09"><br />
 				</td>
 			</tr> 
 			<tr>
-				<th>email</th>
+				<th>E-mail</th>
 				<td>	
 					<input type="email" placeholder="abc@xyz.com" name="email" id="email" value="sejong@naver.com"><br>
 				</td>
 			</tr>
 			<tr>
-				<th>phone<sup>*</sup></th>
+				<th>Phone<sup>*</sup></th>
 				<td>	
 					<input type="tel" placeholder="(-없이)01012345678" name="phone" id="phone" maxlength="11" value="01012341234" required><br>
 				</td>
 			</tr>
 			<tr>
-				<th>gender<sup>*</sup></th>
+				<th>Gender<sup>*</sup></th>
 				<td>
 					<input type="radio" name="gender" id="gender0" value="M">
 					<label for="gender0">남</label>
@@ -76,7 +76,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>prepergenre</th>
+				<th>PreferGenre</th>
 				<td>
 					<input type="checkbox" name="genre" id="genre0" value="공포" checked><label for="genre0">Horror</label>
 					<input type="checkbox" name="genre" id="genre1" value="로맨스" checked><label for="genre1">Romance</label>
