@@ -192,20 +192,10 @@ ALTER TABLE attachment ADD CONSTRAINT PK_ATTACHMENT PRIMARY KEY (
 	board_no
 );
 
-ALTER TABLE favorite ADD CONSTRAINT FK_member_TO_favorite_1 FOREIGN KEY (
-	member_id
-)
-REFERENCES member (
+ALTER TABLE favorite ADD CONSTRAINT PK_FAVORITE PRIMARY KEY (
+	movie_code,
 	member_id
 );
-
-ALTER TABLE favorite ADD CONSTRAINT FK_movie_TO_favorite_1 FOREIGN KEY (
-	movie_code
-)
-REFERENCES movie (
-	movie_code
-);
-
 
 ALTER TABLE movie_comment ADD CONSTRAINT FK_member_TO_movie_comment_1 FOREIGN KEY (
 	writer_id
