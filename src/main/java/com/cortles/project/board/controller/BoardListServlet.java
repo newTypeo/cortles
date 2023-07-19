@@ -2,6 +2,8 @@ package com.cortles.project.board.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +40,10 @@ public class BoardListServlet extends HttpServlet {
 		
 		// 2. 업무로직
 		List<BoardEntity> boards = boardService.findAll(start, end);
+		for(BoardEntity board : boards) {
+			Map<Integer, Integer> commentCntMap;
+			
+		}
 		
 		// xss공격대비처리
 		for(BoardEntity board : boards) {
