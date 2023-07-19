@@ -185,28 +185,28 @@ const findAllMovies = () => {
 			<div class="thriller-slider slider">
 				<span>thriller</span>
 					<button id="thriller-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-				<article id="thriller" class="thriller-slider-container"></article>
+				<article id="thriller" class="thriller-slider-container slider-container"></article>
 					<button id="thriller-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
 			<div class="action-slider slider">
 				<span>action</span>
 					<button id="action-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-				<article id="action" class="action-slider"></article>
+				<article id="action" class="action-slider slider-container"></article>
 					<button id="action-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
 			<div class="drama-slider slider">
 				<span>drama</span>
 					<button id="drama-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-				<article id="drama" class="drama-slider-container"></article>
+				<article id="drama" class="drama-slider-container slider-container"></article>
 					<button id="drama-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
 			<div class="comedy-slider slider">
 				<span>comedy</span>
 					<button id="comedy-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-				<article id="comedy" class="comedy-slider-container"></article>
+				<article id="comedy" class="comedy-slider-container slider-container"></article>
 					<button id="comedy-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
@@ -220,7 +220,7 @@ const findAllMovies = () => {
 			<div class="mystery-slider slider">
 				<span>mystery</span>
 					<button id="mystery-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-				<article id="mystery" class="mystery-slider-container"></article>
+				<article id="mystery" class="mystery-slider-container slider-container"></article>
 					<button id="mystery-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
 			</div>
 		<br/>
@@ -229,6 +229,95 @@ const findAllMovies = () => {
 				<article id="searchMovies-article"></article>
 			</div>
 <script>
+      <%if(loginMember!=null){%>
+      const sliderContainers = document.querySelectorAll('.slider-container');
+      const slideWidth = 160; // 이미지의 너비와 간격을 기준으로 계산된 값입니다.
+      let currentPositions = [0,0,0,0,0,0,0,0,0,0];
+  
+      function slideNext(index) {
+        currentPositions[index] -= 160 * 5; // 한 번에 5개씩 이동하도록 수정합니다.
+        if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
+            currentPositions[index] = 0;
+          }
+        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+        
+      }
+      
+  
+      function slidePrev(index) {
+        currentPositions[index] += slideWidth * 5; // 한 번에 5개씩 이동하도록 수정합니다.
+        if (currentPositions[index] > 0) {
+            currentPositions[index] = -(slideWidth * (sliderContainers[index].children.length - 5));
+          }
+        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+      }
+      document.querySelector('#favorite-next').addEventListener('click', (e) => slideNext(0));
+      document.querySelector('#favorite-prev').addEventListener('click', () => slidePrev(0));
+      document.querySelector('#romance-next').addEventListener('click', () => slideNext(1));
+      document.querySelector('#romance-prev').addEventListener('click', () => slidePrev(1));
+      document.querySelector('#sf-next').addEventListener('click', () => slideNext(2));
+      document.querySelector('#sf-prev').addEventListener('click', () => slidePrev(2));
+      document.querySelector('#horror-next').addEventListener('click', () => slideNext(3));
+      document.querySelector('#horror-prev').addEventListener('click', () => slidePrev(3));
+      document.querySelector('#thriller-prev').addEventListener('click', () => slidePrev(4));
+      document.querySelector('#thriller-next').addEventListener('click', () => slideNext(4));
+      document.querySelector('#action-prev').addEventListener('click', () => slidePrev(5));
+      document.querySelector('#action-next').addEventListener('click', () => slideNext(5));
+      document.querySelector('#drama-prev').addEventListener('click', () => slidePrev(6));
+      document.querySelector('#drama-next').addEventListener('click', () => slideNext(6));
+      document.querySelector('#comedy-prev').addEventListener('click', () => slidePrev(7));
+      document.querySelector('#comedy-next').addEventListener('click', () => slideNext(7));
+      document.querySelector('#fantasy-prev').addEventListener('click', () => slidePrev(8));
+      document.querySelector('#fantasy-next').addEventListener('click', () => slideNext(8));
+      document.querySelector('#mystery-prev').addEventListener('click', () => slidePrev(9));
+      document.querySelector('#mystery-next').addEventListener('click', () => slideNext(9));
+      <%} else { %>
+      const sliderContainers = document.querySelectorAll('.slider-container');
+      const slideWidth = 160; // 이미지의 너비와 간격을 기준으로 계산된 값입니다.
+      let currentPositions = [0,0,0,0,0,0,0,0,0];
+  
+      function slideNext(index) {
+        currentPositions[index] -= 160 * 5; // 한 번에 5개씩 이동하도록 수정합니다.
+        if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
+            currentPositions[index] = 0;
+          }
+        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+        
+      }
+      
+  
+      function slidePrev(index) {
+        currentPositions[index] += slideWidth * 5; // 한 번에 5개씩 이동하도록 수정합니다.
+        if (currentPositions[index] > 0) {
+            currentPositions[index] = -(slideWidth * (sliderContainers[index].children.length - 5));
+          }
+        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+      }
+      
+      document.querySelector('#romance-next').addEventListener('click', () => slideNext(0));
+      document.querySelector('#romance-prev').addEventListener('click', () => slidePrev(0));
+      document.querySelector('#sf-next').addEventListener('click', () => slideNext(1));
+      document.querySelector('#sf-prev').addEventListener('click', () => slidePrev(1));
+      document.querySelector('#horror-next').addEventListener('click', () => slideNext(2));
+      document.querySelector('#horror-prev').addEventListener('click', () => slidePrev(2));
+      document.querySelector('#thriller-prev').addEventListener('click', () => slidePrev(3));
+      document.querySelector('#thriller-next').addEventListener('click', () => slideNext(3));
+      document.querySelector('#action-prev').addEventListener('click', () => slidePrev(4));
+      document.querySelector('#action-next').addEventListener('click', () => slideNext(4));
+      document.querySelector('#drama-prev').addEventListener('click', () => slidePrev(5));
+      document.querySelector('#drama-next').addEventListener('click', () => slideNext(5));
+      document.querySelector('#comedy-prev').addEventListener('click', () => slidePrev(6));
+      document.querySelector('#comedy-next').addEventListener('click', () => slideNext(6));
+      document.querySelector('#fantasy-prev').addEventListener('click', () => slidePrev(7));
+      document.querySelector('#fantasy-next').addEventListener('click', () => slideNext(7));
+      document.querySelector('#mystery-prev').addEventListener('click', () => slidePrev(8));
+      document.querySelector('#mystery-next').addEventListener('click', () => slideNext(8));
+     <%}%> 
+      
+    </script>			
+
+<script>
+
 const scroll = document.querySelector("body");
 
 //모달 열기
