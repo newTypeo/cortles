@@ -28,14 +28,14 @@
             <tr>
                 <th id="boarderz">ID</th>
                 <th id="boarderz">Name</th>
-                <th id="boarderz">BirthDate</th>
+                <th id="boarderz">Birthday</th>
                 <th id="boarderz">Email</th>
-                <th id="boarderz">phone</th>
+                <th id="boarderz">Phone</th>
                 <th id="boarderz">Gender</th>
-                <th id="boarderz">preferredGenre</th>
+                <th id="boarderz">PreferGenre</th>
                 <th id="boarderz">RegDate</th>
-                <th id="boarderz">authority</th>
-                <th id="boarderz">Withdrawal</th>
+                <th id="boarderz">Role</th>
+                <th id="boarderz">Quit</th>
             </tr>
         </thead>
        <tbody>
@@ -209,5 +209,6 @@ document.querySelectorAll(".member-role").forEach((elem)=>{
     });
 });
 </script>
-
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
