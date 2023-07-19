@@ -104,7 +104,7 @@
 			<!-- 로그인사용자정보 시작 -->
 			<table id="login">
 	            <tr>
-	                <td id="login-member">
+	                <td id="login-member" style="color: white;">
 	                	<%= loginMember.getMemberName() %>님
 	                	<span id="notification"></span>
 	                </td>
