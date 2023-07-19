@@ -18,7 +18,7 @@
             <input type="hidden" name="searchType" value="name"/>
             <input type="text" name="searchKeyword" class="search-input" placeholder="이름으로 검색">
             <span class="btn-wrapper">
-                <button class="btn" type="submit">select</button>
+                <button class="btn" type="submit" style="margin:5px;">select</button>
             </span>
         </form>
     </div>
