@@ -135,9 +135,9 @@ span#fname{
 
 /*댓글등록버튼*/
 div.comment-container button#btn-comment-enroll1 {
-	width:60px; height:50px; color:black;  position:relative; top:-10px;}
+	width:60px; height:50px; color:black;  position:relative; top:-21px;}
 div.comment-container button#btn-comment-enroll1{
-  background-color: white;
+  background-color:#e50914;
   border: 0;
   outline: border;
   padding: 9px 15px;
@@ -147,15 +147,13 @@ div.comment-container button#btn-comment-enroll1{
   cursor: pointer;
   border-radius: 5px;
   border-bottom: 4px solid lighten(gray, 70%);
+  color:#fff;
 }
 div.comment-container button#btn-comment-enroll1:hover{
-    box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
-    transform: scale(1.03);
+    background: #ff6064;
+    transition: 0s;
 }
-div.comment-container button#btn-comment-enroll1:active{
-    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
-    transform: scale(.98);
-}
+
 
 /*댓글테이블*/
 table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse;} 
@@ -165,7 +163,7 @@ table#tbl-comment tr td:last-of-type {text-align:left; width: 100px;}
 table#tbl-comment button.btn-reply{display:none;}
 table#tbl-comment tr:hover {background:#333333;}
 table#tbl-comment tr:hover button.btn-reply{display:inline;}
-table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
+table#tbl-comment sub.comment-writer {color: #fff; font-size:14px}
 table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
 
 table#tbl-comment tr.level2 {color:gray; font-size: 14px;}
@@ -178,15 +176,18 @@ table#tbl-comment textarea{margin: 4px 0 0 0;}
 table#tbl-comment button.btn-comment-enroll2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
 
 /* 삭제버튼관련 */
-table#tbl-comment button.btn-delete{background: #e50914; color:#000; display:none; border-radius: 5px; border: 3px solid #e50914;}
+table#tbl-comment button.btn-delete{
+	background: #e50914; color:#fff; display:none; border-radius: 5px; border: 1px solid #e50914; margin-left: 50px; cursor: pointer;}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
 
 /* 수정버튼관련 */
-table#tbl-comment button.btn-update{background: #e50914; color:#000; display:none; border-radius: 5px; border: 3px solid #e50914;}
+table#tbl-comment button.btn-update{
+	background: #e50914; color:#fff; display:none; border-radius: 5px; border: 1px solid #e50914; margin-left: 50px; cursor: pointer;}
 table#tbl-comment tr:hover button.btn-update{display:inline;}
 
 /* 신고버튼관련 */
-table#tbl-comment button.btn-report{background: #e50914; color:#000; display:none; border-radius: 5px; border: 3px solid #e50914;}
+table#tbl-comment button.btn-report{
+	background: #e50914; color:#fff; display:none; border-radius: 5px; border: 1px solid #e50914; margin-left: 50px; cursor: pointer;}
 table#tbl-comment tr:hover button.btn-report{display:inline;}
 
 #board-detail-container {
@@ -229,7 +230,7 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
 
 /* 글 수정 삭제 버튼 */
 #btn.subbtn{
-  background-color: white;
+  background-color: #e50914;
   border: 0;
   outline: border;
   margin: 10px;
@@ -240,17 +241,13 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
   cursor: pointer;
   border-radius: 5px;
   border-bottom: 4px solid lighten(gray, 70%);
+  color:#fff;
 }
 #btn.subbtn:hover{
-    box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
-    transform: scale(1.03);
+	background: #ff6064;
+    transition: 0s;
+   
 }
-#btn.subbtn:active{
-    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
-    transform: scale(.98);
-}
-
-
 
 
 /*검색창*/
