@@ -21,6 +21,10 @@ public class BoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
 	
+	/**
+	 * board.jsp 에서 넘어옴.
+	 * @author 창환
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리 ?no=12
 		int boardNo = Integer.parseInt(request.getParameter("no"));
@@ -45,7 +49,6 @@ public class BoardDetailServlet extends HttpServlet {
 		
 		if(!hasRead) {
 			int result = boardService.updateReadCount(boardNo);
-			System.out.println("result = " + result);
 			// 쿠키생성
 			Cookie cookie = new Cookie("boardCookie", boardCookieVal + "[" + boardNo + "]");
 			cookie.setPath(request.getContextPath() + "/board/boardDetail");

@@ -15,7 +15,7 @@
 	게시글 수정을 위한 jsp 
 	@author 창환
 --%>
-<section id="board-detail-container">
+<section id="board-detail-container" style="width: 615px;">
 	<div id="board" style ="width: 605px;">
 	    
 	<%-- 게시글을 수정한 내용을 boardUpdate 서블릿으로 전달하기 위한 form --%>
@@ -27,7 +27,7 @@
 		
 		<div id="board_header">
 			<input type="text" id="board_title" name="title" style="font-size: 30px; text-align: center" value="<%= board.getTitle() %>" /><br><br><br>
-	      <span style="margin: 0;">작성자 | <%= board.getWriterId() %></span> <span>작성일 | <%= board.getRegDate() %></span>
+	      <span style="margin: 0;">Writer | <%= board.getWriterId() %></span> <span>regDate | <%= board.getRegDate() %></span>
 	      <%-- <span id="option">
 	        <span>조회 <%= board.getReadCount() %></span> <span>추천 <%= board.getLikeCount() %></span> <span>댓글수 <%= boardCommentCnt %></span>
 	      </span> --%>
@@ -43,11 +43,12 @@
 			<input style="display: none;" id="delFile" type="checkbox" name="delFile" value="<%= attachment.getNo() %>" />
 			
 		    <div id="board_content" style="text-align: left;">
-		    	<span style="padding: 0; margin: 20px 10px 10px 40px; clear: both;">첨부파일:</span>
+		    	
 		    	
 		    	<%-- 기존 작성했던 첨부파일이 있는 경우 --%>
 		    	<% if(attachment.getOriginalFilename() != null) { %>
-		    	<div id="fileName_wrapper" style="display: inline-block;">
+		    	<div id="fileName_wrapper" style="margin: 20px;">
+		    		<span style="padding: 0; margin: 20px 10px 10px 40px; clear: both;">upload:</span>
 		    		<span id="fileName"><%= attachment.getOriginalFilename() %></span>
 		    		
 		    		<%-- 삭제버튼 누를 시 remove_div() 실행 --%>
@@ -60,9 +61,12 @@
 		    	<% } %>
 		      <textarea id="textarea" name="content" style="#141414; background-color: #fff; color: #000; border: none; border-radius: 4px; resize: none;width: 100%; height: auto; min-height: 400px;" required><%= board.getContent() %></textarea>
 	    	</div>
+	    	
+	    	<div id="subbtn-wrapper" style="margin-top: 50px; display: flex; justify-content: center;">
+			    <button type="submit" id="btn" class="subbtn">modify</button>
+			    <button onclick="history.go(-1);" id="btn" class="subbtn">cancel</button>
+		   	</div>
 	    
-	    <button type="submit">수정하기</button>
-	    <button onclick="history.go(-1);">취소</button>
 	</form>
     
     <br>
