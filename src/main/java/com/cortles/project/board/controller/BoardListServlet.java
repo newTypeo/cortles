@@ -24,7 +24,8 @@ public class BoardListServlet extends HttpServlet {
 	private final int LIMIT = 10; // 한페이지당 게시물수
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 게시판 목록 조회 - [창환, 장준];
+	 * 페이징 처리 - [창환, 장준];
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
