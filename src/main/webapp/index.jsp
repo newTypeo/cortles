@@ -239,7 +239,7 @@ const findAllMovies = () => {
 	        if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
 	            currentPositions[index] = 0;
 	          }
-	        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+	        sliderContainers[index].style.transform = "translateX(+currentPositions[index]+"px)";
 	        
 	      }
 	      
