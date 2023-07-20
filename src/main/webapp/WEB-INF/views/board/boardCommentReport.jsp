@@ -12,8 +12,9 @@
 	margin-bottom: 150px; 
 	text-align:center;
 	border-radius: 4px;
-	background-color: #222;">
-	<h1><span style="color: red;">신고하기</span></h1>
+	background-color: #222;
+	padding:20px;">
+	<h1><span style="color: red;">Report</span></h1>
 	<form
 		action="<%= request.getContextPath() %>/board/boardCommentReport" 
 		name="boardCommentReportFrm"
@@ -23,15 +24,15 @@
 		<textarea name="reporterId" readonly="" style="display:none; background-color: white;  resize: none;width: 100%; height: auto;"><%= loginMember.getMemberId() %></textarea>
 		<table id="report_table" style="width: 100%; color: black;">
 		<tr>
-			<td><span>신고자</span></td>
+			<td><span>Reporter</span></td>
 			<td><%= loginMember.getMemberId() %></td>
-			<td><span>신고유형</span></td>
+			<td><span>Type</span></td>
 			<td>
 				<select name="reportType">
-					<option value="욕설">욕설</option>
-					<option value="성적수치심">성적수치심</option>
-					<option value="폭력성">폭력성</option>
-					<option value="기타">기타</option>
+					<option value="욕설">Curse</option>
+					<option value="성적수치심">Sexual harassment</option>
+					<option value="폭력성">violence</option>
+					<option value="기타">etc</option>
 				</select>
 			</td>
 		</tr>
@@ -45,7 +46,7 @@
 		<tr><td> </td><td> </td><td> </td><td> </td></tr>
 		<tr>
 		<tr>
-			<td><span>신고댓글</span></td>
+			<td><span>ReportComment</span></td>
 			<td colspan="3"><textarea name="reportCommentContent" readonly style="background-color: #fff; border:none; resize: none;width: 100%; height: auto;"><%= reportComment.getContent() %></textarea></td>
 		</tr>
 		<tr><td> </td><td> </td><td> </td><td> </td></tr>
@@ -57,7 +58,7 @@
 		<tr><td> </td><td> </td><td> </td><td> </td></tr>
 		<tr><td> </td><td> </td><td> </td><td> </td></tr>
 		<tr>
-			<td><span>내용</span></td>
+			<td><span>Content</span></td>
 			<td colspan="3"><textarea id="reportContent" name = "reportContent" style="background-color: white; resize: none; width: 100%; height: 300px;" required></textarea></td>
 			</tr>
 		</table>
@@ -65,8 +66,8 @@
 		<input type="hidden" name="commentNo" value="<%= reportComment.getCommentNo() %>"/>
 		<input type="hidden" name="boardNo" value="<%= reportComment.getBoardNo() %>"/>
 	</form>
-<button class="btn-report" value="<%= reportComment.getCommentNo() %>">신고</button>
-<button type="button" class="btn_cancel">취소</button>
+<button class="btn-report" value="<%= reportComment.getCommentNo() %>">report</button>
+<button type="button" class="btn_cancel">cancel</button>
 </section>
 <script>
 document.querySelector(".btn-report").onclick = (e) => {
