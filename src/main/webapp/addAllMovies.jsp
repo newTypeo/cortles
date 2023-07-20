@@ -15,7 +15,7 @@
       url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
       data : {
          ServiceKey : "8N7WULS3PZ7ER312R70R",
-         listCount : 10,
+         listCount : 100,
          releaseDts : "20151201",
          genre : "SF"
       },
@@ -23,12 +23,10 @@
       success(responseData){
          const infoOfMovies = [];
          const {Data} = responseData;
-         // console.log("Data", Data);
          const {Result} = Data[0];
          console.log("Result", Result);
          
          Result.forEach((movie) => {
-            // const {plots.plot[0].plotText} = movie;   
             const vod = movie.vods.vod[0].vodUrl; // 티저
             const story = movie.plots.plot[0].plotText; // 줄거리
             const director = movie.directors.director[0].directorNm; // 감독
@@ -56,9 +54,7 @@
                   if(i == 5) break;
                }
                
-               // console.log("DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl", DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl);
-               
-               //                   영화코드   제목     영화제목      장르    줄거리       개봉일       상영시간     포스터       감독         배우     티저
+               // 영화코드   제목     영화제목      장르    줄거리       개봉일       상영시간     포스터       감독         배우     티저
                infoOfMovies.push(DOCID + "#" +  title + "#" + titleEng + "#" + genre + "#" + story + "#" + repRlsDate + 
                                     "#" + runtime + "#" + posters + "#" + director + "#" + actors + "#" + vod);
             }
