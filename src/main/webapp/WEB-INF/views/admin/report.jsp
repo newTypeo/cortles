@@ -30,7 +30,7 @@
 			<tbody>
 				<% if(reportComments == null || reportComments.isEmpty()) { %>
 			<tr>
-				<td colspan="10">조회 결과가 없습니다.</td>
+				<td colspan="10">No lookup results.</td>
 			</tr>
 <%	
 			} 

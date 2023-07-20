@@ -16,6 +16,9 @@ import com.cortles.project.board.model.vo.ReportComment;
 public class BoardService {
 	private final BoardDao boardDao = new BoardDao();
 
+	/**
+	 * 게시판 목록 전체 조회 - 장준 
+	 */
 	public List<BoardEntity> findAll(int start, int end) {
 		Connection conn = getConnection();
 		List<BoardEntity> boards = boardDao.findAll(conn, start, end);
@@ -184,7 +187,9 @@ public class BoardService {
 		commit(conn);
 		return boardCommentCnt;
 	}
-
+	/**
+	 * 댓글하나 가져오기 - 장준 
+	 */
 	public BoardComment boardCommentfindById(int no) {
 		BoardComment updateBoardComment = null;
 		Connection conn = getConnection();
@@ -201,7 +206,9 @@ public class BoardService {
 		
 		return boards;
 	}
-
+	/**
+	 * 댓글 수정 - 장준 
+	 */
 	public int updateBoardComment(int no, String content) {
 		int result = 0;
 		Connection conn = getConnection();
@@ -217,7 +224,9 @@ public class BoardService {
 		
 		return result;
 	}
-
+	/**
+	 * 신고댓글 추가 - 장준
+	 */
 	public int insertReportBoardComment(ReportComment reportComment) {
 		int result = 0;
 		Connection conn = getConnection();
@@ -298,7 +307,9 @@ public class BoardService {
 		close(conn);
 		return attach;
 	}
-
+	/**
+	 * 신고 수 조회 - 장준
+	 */
 	public int countReport(int commentNo) {
 		Connection conn = getConnection();
 		int reportCnt = boardDao.countReport(conn, commentNo);
@@ -306,7 +317,9 @@ public class BoardService {
 		
 		return reportCnt;
 	}
-
+	/**
+	 * 신고 수 DB에 넣기 - 장준
+	 */
 	public int updateCountReport(int commentNo,int reportCnt) {
 		Connection conn = getConnection();
 		int result = 0;
