@@ -18,6 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/header2.css"/>
+	<link rel="icon" href="<%= request.getContextPath()%>/images/icons8-turtle-64.png"/>
 <%
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
