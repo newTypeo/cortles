@@ -290,7 +290,7 @@ const findAllMovies = () => {
         if (currentPositions[index] > 0) {
             currentPositions[index] = -(slideWidth * (sliderContainers[index].children.length - 5));
           }
-        sliderContainers[index].style.transform = "translateX($currentPositions[index]px)";
+        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
       }
       
       document.querySelector('#romance-next').addEventListener('click', () => slideNext(0));
