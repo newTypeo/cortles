@@ -25,7 +25,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// ajax를 통해 넘어온 배열 데이터 선언
 		String[] infoOfMovies = req.getParameterValues("infoOfMovies");
-
+		System.out.println("asdasdsad");
 		// 영화 담을 리스트
 		List<Movie> movies = new ArrayList<>();
 		

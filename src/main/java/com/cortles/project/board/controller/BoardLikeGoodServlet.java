@@ -32,25 +32,27 @@ public class BoardLikeGoodServlet extends HttpServlet {
 
 
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+			// 인코딩처리
 			response.setContentType("text/html; charset=UTF-8");
-
+			// 사용자 처리값
 		    String boardNoStr = request.getParameter("boardNo");
 		    int boardNo = 0; 
-
+		   // 제대로 받아오면 int로 형변환해주기
 		    if (boardNoStr != null) {
 		        boardNo = Integer.parseInt(boardNoStr);
 		    }
-
+		    // 세션 생성 또는 이미 생성된 세션 가져오기
+		    
 		    HttpSession session = request.getSession();
-
+		    // 사용자가 추천한 게시물 번호를 저장하는 Set 선언
 		    Set<Integer> likedBoards = (Set<Integer>) session.getAttribute("likedBoards");
+		    // 세션에 처음으로 추천한 게시물이면 Set 객체 생성하고 세션에 저장
 		    if (likedBoards == null) {
 		        likedBoards = new HashSet<>();
 		        session.setAttribute("likedBoards", likedBoards);
 		    }
-
-		    if (likedBoards.contains(boardNo)) {
+	    	// 이미 해당 게시물에 추천을 누른 경우, 경고창을 띄우고 이전 페이지로 이동		 
+	    	if (likedBoards.contains(boardNo)) {
 		    	PrintWriter script = response.getWriter();
 
 				script.println("<script>");
@@ -63,15 +65,19 @@ public class BoardLikeGoodServlet extends HttpServlet {
 
 				script.close();
 				
-		    } else {
-		        likedBoards.add(boardNo); 
 
+	    	} else { // 추천을 아직 누르지 않은 경우
+		        likedBoards.add(boardNo); // 해당 게시물 번호를 Set에 추가하여 추천 누른 상태로 처리
+
+		        // 현재 추천 수를 받아와서 업데이트할 준비
 		        int likeCount = Integer.parseInt(request.getParameter("likeCount"));
 		        System.out.println("boardNo = " + boardNo);
 		        System.out.println("likeCount = " + likeCount);
 
+		        // 게시물 추천 수 업데이트를 위해 서비스 클래스의 메서드 호출
 		        int result = boardService.updateLike(boardNo, likeCount);
 
+		        // 업데이트가 완료되면 해당 게시물 상세 페이지로 리다이렉트
 		        response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + boardNo);
 		    }
 		}
