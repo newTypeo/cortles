@@ -83,8 +83,8 @@ section {padding:20px;}
 	z-index: -1;
 }
 
+/* board detail */
 
- 
 
 /*글쓰기버튼*/
 #btn-add{
@@ -135,7 +135,7 @@ span#fname{
 
 /*댓글등록버튼*/
 div.comment-container button#btn-comment-enroll1 {
-	width:60px; height:50px; color:black;  position:relative; top:-20px;}
+	width:60px; height:50px; color:black;  position:relative; top:-10px;}
 div.comment-container button#btn-comment-enroll1{
   background-color: white;
   border: 0;
@@ -163,7 +163,7 @@ table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5
 table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
 table#tbl-comment tr td:last-of-type {text-align:left; width: 100px;}
 table#tbl-comment button.btn-reply{display:none;}
-table#tbl-comment tr:hover {background:lightgray;}
+table#tbl-comment tr:hover {background:#333333;}
 table#tbl-comment tr:hover button.btn-reply{display:inline;}
 table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
 table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
@@ -178,19 +178,20 @@ table#tbl-comment textarea{margin: 4px 0 0 0;}
 table#tbl-comment button.btn-comment-enroll2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
 
 /* 삭제버튼관련 */
-table#tbl-comment button.btn-delete{background:red; color:white; display:none;}
+table#tbl-comment button.btn-delete{background: #e50914; color:#000; display:none; border-radius: 5px; border: 3px solid #e50914;}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
 
 /* 수정버튼관련 */
-table#tbl-comment button.btn-update{background:red; color:white; display:none;}
+table#tbl-comment button.btn-update{background: #e50914; color:#000; display:none; border-radius: 5px; border: 3px solid #e50914;}
 table#tbl-comment tr:hover button.btn-update{display:inline;}
 
 /* 신고버튼관련 */
-table#tbl-comment button.btn-report{background:red; color:white; display:none;}
+table#tbl-comment button.btn-report{background: #e50914; color:#000; display:none; border-radius: 5px; border: 3px solid #e50914;}
 table#tbl-comment tr:hover button.btn-report{display:inline;}
 
 #board-detail-container {
-	width:600px; 
+	width:750px;
+	padding: 40px; 
 	margin: 100px auto;
 	margin-bottom: 150px; 
 	text-align:center;
@@ -231,6 +232,7 @@ table#tbl-comment tr:hover button.btn-report{display:inline;}
   background-color: white;
   border: 0;
   outline: border;
+  margin: 10px;
   padding: 7px 13px;
   font:bold;
   box-shadow: 0px 5px 10px rgba(darken(dodgerblue, 40%));

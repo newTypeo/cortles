@@ -19,7 +19,6 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-detail-container">
-	<div id="board" style ="width: 605px;">
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br><br><br>
       <span style="margin: 0;">Writer / <%= board.getWriterId() %></span> <span>regDate | <%= board.getRegDate() %></span>
       <span id="option">
@@ -51,10 +50,11 @@
    					|| loginMember.getMemberRole() == MemberRole.A);
    		if(showButton){
    	%>
+   	<div id="subbtn-wrapper" style="display: flex; justify-content: center;">
    	<input type="button" id="btn" class="subbtn" value="modify" onclick="updateBoard()" />
    	<input type="button" id="btn" class="subbtn" value="delete" onclick="boardDelete()"/>
+   	</div>
   	<% } %>
-  </div>
   	<script>
   	const updateBoard = () => {
   		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
@@ -121,12 +121,12 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								
-								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
-								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>">update</button>
+								<button class="btn-delete" value="<%= bc.getCommentNo() %>">delete&nbsp;</button>
 								<%  } %>
 								
 							<% if (loginMember != null && !loginMember.getMemberId().equals(bc.getWriterId()) && MemberRole.A != loginMember.getMemberRole()) { %>
-							    <button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
+							    <button class="btn-report" value="<%= bc.getCommentNo() %>">report</button>
 							<% } %>
 
 							</td>
