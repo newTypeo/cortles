@@ -1,25 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-<%-- <filedset>
-<form 
-id="addAllMoviesFrm" 
-name="addAllMoviesFrm" 
-action="<%= request.getContextPath() %>/admin/addAllMovies"
->
-	
-</form>
-	<button type="submit">º¸³»±â</button>
-</filedset> --%>
 
-<Script>
+<script>
 	
 	$.ajax({
 		url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
@@ -39,10 +29,10 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 			console.log("Result", Result);
 			
 			Result.forEach((movie) => {
-				// const {plots.plot[0].plotText} = movie;	
-				const vod = movie.vods.vod[0].vodUrl; // Æ¼Àú
-				const story = movie.plots.plot[0].plotText; // ÁÙ°Å¸®
-				const director = movie.directors.director[0].directorNm; // °¨µ¶
+				// const {plots.plot[0].plotText} = movie;
+				const vod = movie.vods.vod[0].vodUrl; // í‹°ì €
+				const story = movie.plots.plot[0].plotText; // ì¤„ê±°ë¦¬
+				const director = movie.directors.director[0].directorNm; // ê°ë…
 				const DOCID = movie.DOCID;
 				const title = movie.title;
 				const titleEng = movie.titleEng;
@@ -54,10 +44,10 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 				if(
 					vod !== "" && story !== "" && director !== "" && title !== "" && titleEng !== "" && genre !== "" 
 					&& repRlsDate !== "" && runtime !== "" && posters !== ""
-					&& !story.includes('¿ÁÅä³Ó') && !genre.includes('¿¡·Î')
+					&& !story.includes('ì˜¥í† ë„›') && !genre.includes('ì—ë¡œ')
 				) {
 					
-					let actors = ''; // ¹è¿ìµé
+					let actors = ''; // ë°°ìš°ë“¤
 					for(let i = 0; i < movie.actors.actor.length; i++) {
 						if(i == movie.actors.actor.length-1)
 							actors += movie.actors.actor[i].actorNm;
@@ -69,7 +59,7 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 					
 					// console.log("DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl", DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl);
 					
-					// 	               ¿µÈ­ÄÚµå   Á¦¸ñ     ¿µÈ­Á¦¸ñ      Àå¸£    ÁÙ°Å¸®       °³ºÀÀÏ       »ó¿µ½Ã°£     Æ÷½ºÅÍ       °¨µ¶	      ¹è¿ì     Æ¼Àú
+					// 	               ì˜í™”ì½”ë“œ   ì œëª©     ì˜í™”ì œëª©      ì¥ë¥´    ì¤„ê±°ë¦¬       ê°œë´‰ì¼       ìƒì˜ì‹œê°„     í¬ìŠ¤í„°       ê°ë…	      ë°°ìš°     í‹°ì €
 					infoOfMovies.push(DOCID + "#" +  title + "#" + titleEng + "#" + genre + "#" + story + "#" + repRlsDate + 
 												"#" + runtime + "#" + posters + "#" + director + "#" + actors + "#" + vod);
 				}
@@ -83,7 +73,7 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 				dataType : "json",
 				method : "post",
 				success(responseData){
-					console.log("ÅõÀÛ½º ¼®¼¼½º", responseData);		
+					console.log("íˆ¬ì‘ìŠ¤ ì„ì„¸ìŠ¤", responseData);		
 					
 				}
 				
