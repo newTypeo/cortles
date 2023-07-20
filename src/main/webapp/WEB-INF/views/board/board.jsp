@@ -28,7 +28,7 @@
 	<thead>
 		<tr>
 			<th>No</th>
-			<th>Title</th>
+			<th>Title [views]</th>
 			<th>Like</th>
 			<th>Writer</th>
 			<th>RegDate</th>
@@ -44,10 +44,10 @@
 							
 							<td>
 								<a href="<%= request.getContextPath() %>/board/boardDetail?no=<%= board.getBoardNo() %>"><%= board.getTitle() %></a>
-								<a href="<%= request.getContextPath() %>/board/boardDetail?no=<%= board.getBoardNo() %>">[<%= board.getReadCount() %>]</a>
+								<a href="<%= request.getContextPath() %>/board/boardDetail?no=<%= board.getBoardNo() %>">[<%= board.getLikeCount() %>]</a>
 								
 							</td>
-							<td><%= board.getLikeCount() %></td>
+							<td><%= board.getReadCount() %></td>
 							<td><%= board.getWriterId() %></td>
 							<td><%= board.getRegDate() %></td>
 						</tr>

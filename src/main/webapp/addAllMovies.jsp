@@ -1,89 +1,86 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 </head>
 <body>
 
 <script>
-	
-	$.ajax({
-		url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
-		data : {
-			ServiceKey : "8N7WULS3PZ7ER312R70R",
-			listCount : 200,
-			releaseDts : "20150201"
-			
-		},
-		dataType : 'json',
-		success(responseData){
-			const infoOfMovies = [];
-			// console.log("responseData", responseData);
-			const {Data} = responseData;
-			// console.log("Data", Data);
-			const {Result} = Data[0];
-			console.log("Result", Result);
-			
-			Result.forEach((movie) => {
-				// const {plots.plot[0].plotText} = movie;
-				const vod = movie.vods.vod[0].vodUrl; // Ìã∞Ï†Ä
-				const story = movie.plots.plot[0].plotText; // Ï§ÑÍ±∞Î¶¨
-				const director = movie.directors.director[0].directorNm; // Í∞êÎèÖ
-				const DOCID = movie.DOCID;
-				const title = movie.title;
-				const titleEng = movie.titleEng;
-				const genre = movie.genre;
-				const repRlsDate = movie.repRlsDate;
-				const runtime = movie.runtime;
-				const posters = movie.posters;
-								
-				if(
-					vod !== "" && story !== "" && director !== "" && title !== "" && titleEng !== "" && genre !== "" 
-					&& repRlsDate !== "" && runtime !== "" && posters !== ""
-					&& !story.includes('Ïò•ÌÜ†ÎÑõ') && !genre.includes('ÏóêÎ°ú')
-				) {
-					
-					let actors = ''; // Î∞∞Ïö∞Îì§
-					for(let i = 0; i < movie.actors.actor.length; i++) {
-						if(i == movie.actors.actor.length-1)
-							actors += movie.actors.actor[i].actorNm;
-						else
-							actors += movie.actors.actor[i].actorNm + ",";
-						
-						if(i == 5) break;
-					}
-					
-					// console.log("DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl", DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl);
-					
-					// 	               ÏòÅÌôîÏΩîÎìú   Ï†úÎ™©     ÏòÅÌôîÏ†úÎ™©      Ïû•Î•¥    Ï§ÑÍ±∞Î¶¨       Í∞úÎ¥âÏùº       ÏÉÅÏòÅÏãúÍ∞Ñ     Ìè¨Ïä§ÌÑ∞       Í∞êÎèÖ	      Î∞∞Ïö∞     Ìã∞Ï†Ä
-					infoOfMovies.push(DOCID + "#" +  title + "#" + titleEng + "#" + genre + "#" + story + "#" + repRlsDate + 
-												"#" + runtime + "#" + posters + "#" + director + "#" + actors + "#" + vod);
-				}
-			});
-			console.log("infoOfMovies", infoOfMovies);
-			
-			$.ajax({
-				url : "<%= request.getContextPath() %>/admin/addAllMovies",
-				data : {"infoOfMovies" : infoOfMovies},
-				traditional: true,
-				dataType : "json",
-				method : "post",
-				success(responseData){
-					console.log("Ìà¨ÏûëÏä§ ÏÑùÏÑ∏Ïä§", responseData);		
-					
-				}
-				
-			});
-			
-		}
-	});
-	
+   
+   $.ajax({
+      url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
+      data : {
+         ServiceKey : "8N7WULS3PZ7ER312R70R",
+         listCount : 10,
+         releaseDts : "20201201",
+         genre : "∑Œ∏«Ω∫"
+      },
+      dataType : 'json',
+      success(responseData){
+         const infoOfMovies = [];
+         // console.log("responseData", responseData);
+         const {Data} = responseData;
+         // console.log("Data", Data);
+         const {Result} = Data[0];
+         console.log("Result", Result);
+         
+         Result.forEach((movie) => {
+            // const {plots.plot[0].plotText} = movie;   
+            const vod = movie.vods.vod[0].vodUrl; // ∆º¿˙
+            const story = movie.plots.plot[0].plotText; // ¡Ÿ∞≈∏Æ
+            const director = movie.directors.director[0].directorNm; // ∞®µ∂
+            const DOCID = movie.DOCID;
+            const title = movie.title;
+            const titleEng = movie.titleEng;
+            const genre = movie.genre;
+            const repRlsDate = movie.repRlsDate;
+            const runtime = movie.runtime;
+            const posters = movie.posters;
+                        
+            if(
+               vod !== "" && story !== "" && director !== "" && title !== "" && titleEng !== "" && genre !== "" 
+               && repRlsDate !== "" && runtime !== "" && posters !== ""
+               && !story.includes('ø¡≈‰≥”') && !genre.includes('ø°∑Œ')
+            ) {
+               
+               let actors = ''; // πËøÏµÈ
+               for(let i = 0; i < movie.actors.actor.length; i++) {
+                  if(i == movie.actors.actor.length-1)
+                     actors += movie.actors.actor[i].actorNm;
+                  else
+                     actors += movie.actors.actor[i].actorNm + ",";
+                  
+                  if(i == 5) break;
+               }
+               
+               // console.log("DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl", DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl);
+               
+               //                   øµ»≠ƒ⁄µÂ   ¡¶∏Ò     øµ»≠¡¶∏Ò      ¿Â∏£    ¡Ÿ∞≈∏Æ       ∞≥∫¿¿œ       ªÛøµΩ√∞£     ∆˜Ω∫≈Õ       ∞®µ∂         πËøÏ     ∆º¿˙
+               infoOfMovies.push(DOCID + "#" +  title + "#" + titleEng + "#" + genre + "#" + story + "#" + repRlsDate + 
+                                    "#" + runtime + "#" + posters + "#" + director + "#" + actors + "#" + vod);
+            }
+         });
+         console.log("infoOfMovies", infoOfMovies);
+         
+         $.ajax({
+            url : "<%= request.getContextPath() %>/setMovie/addAllMovies",
+            data : {"infoOfMovies" : infoOfMovies},
+            traditional: true,
+            dataType : "json",
+            method : "post",
+            success(responseData){
+               console.log("≈ı¿€Ω∫ ºÆººΩ∫", responseData);      
+            }
+         });
+      }
+   });
+   
 
-	
+   
 </script>
 </body>
 </html>

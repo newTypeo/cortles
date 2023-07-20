@@ -29,6 +29,7 @@
       <!-- 컨테이너 -->
       <div class="container">
       
+      <!--  -->
       <% if(loginMember != null) { %>
 	      <form
 	      	name="myListFrm"
@@ -105,20 +106,35 @@
 	        	// 요청할 url
 	            url: "<%=request.getContextPath()%>/movie/json/findOneMovies",
 	            // 서버에 전달할 데이터를 가져와서 전달해주기
+	            
 	            data: { movie_code: "<%= favorite.getMovieCode() %>" },
+	            
 	            // 서버로 받을 데이터 타입 지정
+	            
 	            dataType: "json",
 	            
-	            // 요청 완료되면 콜백함수 
+	            // 요청이 성공적으로 완료되었을 때 실행되는 콜백 함수      
+	            
 	            success(movie) {
+	            	 // 서버로부터 전달된 JSON 데이터를 객체로 분해하여 변수에 저장
+	            	 
 	                const { posterUrl, genre, movieCode } = movie;
+	                
+	                // 이미지 태그를 동적으로 생성하여 #zzim 요소에 추가
+	                
 	                const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
+	                
 	                document.querySelector("#zzim").innerHTML += imgHTML;
+	                
 	            },
+	     		// 요청이 성공적으로 완료되었을 때 실행되는 콜백 함수
 	            complete() {
+	                // 이미지 태그들에 대해 클릭 이벤트 리스너를 추가
 	                [...document.querySelectorAll("img")].forEach((imgTag) => {
 	                    imgTag.addEventListener('click', (e) => {
+	                    	
 	                        openModal(e.target.name);
+	                        
 	                        document.querySelector("#modal-movie-code").value = e.target.name;
 	                    }); //eventListener
 	                }); // forEach
@@ -211,7 +227,9 @@ const createMovieComment = () => {
 		$.ajax({
 			url : "<%= request.getContextPath() %>/movie/createMovieComment",
 			data : {movieCode, movieContent, starGrade},
+			// 데이터 형식 json으로 지정
 			dataType : "json",
+			// post방식으로 보내기
 			method : "post",
 			success(duplitedMsg){
 				
