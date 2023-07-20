@@ -76,12 +76,14 @@ const findAllMovies = () => {
 </script>
 
 <section id="modal-section">
+<!--모달창 경빈 현우 -->
 <div id="myModal" class="modal" style="display: none;">
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
       
       <% if(loginMember != null) { %>
+      <!-- 찜 버튼 누르면 제출되는 폼 -->
       <form
          name="myListFrm"
          action="<%=request.getContextPath()%>/member/AddMyListServlet"
@@ -91,7 +93,8 @@ const findAllMovies = () => {
            <button type="button" id="ggimButton"><img src="<%= request.getContextPath() %>/images/찜2.png"/></button>
            <span class="close" onclick="closeModal();">&times;</span>
       </form>
-      <% }  else { %>  
+      <% }  else { %>
+      <!-- 모달창 닫기 버튼 -->  
           <span class="close" onclick="closeModal();" style="margin-bottom: 25px;">&times;</span>
        <% } %>
          
@@ -131,11 +134,8 @@ const findAllMovies = () => {
         <!-- 댓글 목록 -->
         <table id="commentList">
            <thead>
-              <tr>
-                 <th>writer</th>
-                 <th>content</th>
-                 <th>date</th>
-                 <th>starGrade</th>
+              <tr id="review-thead-tr">
+                 
               </tr>      
            </thead>
            <tbody id="movie-comment-body">
@@ -151,15 +151,15 @@ const findAllMovies = () => {
 
 <section id="searchMovies-section">
 
-<%       if(loginMember != null) {       %>
-         <div class="favorite-slider slider">
-         <span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
-            <button id="favorite-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-         <article id="recommendedMovies" class="favorite-slider-container slider-container"></article>
-            <button id="favorite-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
-         </div>
-         <br/>
-<%      }                      %>
+<%       if(loginMember != null) {      %>
+            <div class="favorite-slider slider">
+            <span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
+               <button id="favorite-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
+            <article id="recommendedMovies" class="favorite-slider-container slider-container"></article>
+               <button id="favorite-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
+            </div>
+            <br/>
+<%      }                               %>
          <div class="romance-slider slider">
             <span>romance</span>
                <button id="romance-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
@@ -212,7 +212,7 @@ const findAllMovies = () => {
          <div class="fantasy-slider slider">
             <span>fantasy</span>
                <button id="fantasy-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-            <article id="fantasy" class="fantasy-slider-container"></article>
+            <article id="fantasy" class="fantasy-slider-container slider-container"></article>
                <button id="fantasy-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
          </div>
       <br/>
@@ -230,9 +230,10 @@ const findAllMovies = () => {
 <script>
       <%if(loginMember!=null){%>
       const sliderContainers = document.querySelectorAll('.slider-container');
+      console.log("sliderContainers = ", sliderContainers);
       const slideWidth = 160; // 이미지의 너비와 간격을 기준으로 계산된 값입니다.
       let currentPositions = [0,0,0,0,0,0,0,0,0,0];
-  
+      
       function slideNext(index) {
         currentPositions[index] -= 160 * 5; // 한 번에 5개씩 이동하도록 수정합니다.
         if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
@@ -242,7 +243,7 @@ const findAllMovies = () => {
         
       }
       
-  
+      
       function slidePrev(index) {
         currentPositions[index] += slideWidth * 5; // 한 번에 5개씩 이동하도록 수정합니다.
         if (currentPositions[index] > 0) {
@@ -274,7 +275,7 @@ const findAllMovies = () => {
       const sliderContainers = document.querySelectorAll('.slider-container');
       const slideWidth = 160; // 이미지의 너비와 간격을 기준으로 계산된 값입니다.
       let currentPositions = [0,0,0,0,0,0,0,0,0];
-  
+      
       function slideNext(index) {
         currentPositions[index] -= 160 * 5; // 한 번에 5개씩 이동하도록 수정합니다.
         if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
@@ -284,7 +285,7 @@ const findAllMovies = () => {
         
       }
       
-  
+      
       function slidePrev(index) {
         currentPositions[index] += slideWidth * 5; // 한 번에 5개씩 이동하도록 수정합니다.
         if (currentPositions[index] > 0) {
@@ -311,7 +312,8 @@ const findAllMovies = () => {
       document.querySelector('#fantasy-next').addEventListener('click', () => slideNext(7));
       document.querySelector('#mystery-prev').addEventListener('click', () => slidePrev(8));
       document.querySelector('#mystery-next').addEventListener('click', () => slideNext(8));
-     <%}%> 
+      <%}%> 
+
       
     </script>         
 
@@ -329,7 +331,7 @@ function openModal(movie_code) {
          document.querySelector(".trailer").src = vod;
          document.querySelector("#modal-movie-code").value = movieCode; // 한줄평 등록시 필요한 영화코드 셋팅
          scroll.style.overflow = "hidden";   
-           document.getElementById("myModal").style.display = "block";
+         document.getElementById("myModal").style.display = "block";
       },
       complete (){
              // 버튼을 클릭했을 때 실행되는 코드
@@ -342,7 +344,7 @@ function openModal(movie_code) {
 <%         }                              %>
          document.movieCommentFrm.reset();
          // 영화 한줄평
-           printMovieComments();
+         printMovieComments();
       } // complete
    }) // ajax
 }; // openModal()
@@ -352,7 +354,7 @@ function openModal(movie_code) {
 // 모달 닫기
 function closeModal() {
    scroll.style.overflow = "auto";
-     document.getElementById("myModal").style.display = "none";
+   document.getElementById("myModal").style.display = "none";
 }
 
 
@@ -382,17 +384,19 @@ const createMovieComment = () => {
          data : {movieCode, movieContent, starGrade},
          dataType : "json",
          method : "post",
+         
          success(duplitedMsg){
-            
             if(duplitedMsg != null && duplitedMsg != ""){
                alert(`\${duplitedMsg}`);
             };
             
          }, // success
+         
          complete(){
             document.movieCommentFrm.reset();
             printMovieComments();
          } // complete
+         
       }) // ajax
    }; // else
 }; // method end
@@ -409,29 +413,38 @@ const printMovieComments = () => {
       method : "get",
       success(mapData) {
             const {movieComments, avgMovieGrade} = mapData;
-            
+            document.querySelector(".avgMovieGrade").innerHTML = ""; // 평점 칸 비우기
             // 한줄평이 하나라도 있을 때만 평점 출력
             if(avgMovieGrade != 0){
-               document.querySelector(".avgMovieGrade").innerHTML = avgMovieGrade;
+               document.querySelector("#review-thead-tr").innerHTML =  `<th>writer</th>
+                                                           <th>content</th>
+                                                           <th>date</th>
+                                                           <th>starGrade</th>`;
+                                                      
+               document.querySelector(".avgMovieGrade").innerHTML = "★" + avgMovieGrade;
+            } else {
+               document.querySelector("#review-thead-tr").innerHTML = ""; // 한줄평이 하나도 없으면 타이틀 제거
             }
             const body = document.querySelector("#movie-comment-body");
             body.innerHTML = "";
             
             // 영화 평점 입력하기 
             
-         // 가저온 comments 반복문         
-         [...movieComments].forEach((comment) => {
-            const {writerId, movieContent, regDate, starGrade} = comment;
-            const commentHTML = `
-               <tr>
-                  <td>\${writerId}</td>
-                  <td>\${movieContent}</td>
-                  <td>\${regDate}</td>
-                  <td>\${starGrade}</td>
-               </tr>
-            `;
-            body.innerHTML += commentHTML;
-         }); // forEach
+            // 가져온 comments 반복문         
+            [...movieComments].forEach((comment) => {
+               const {writerId, movieContent, regDate, starGrade} = comment;
+               const stars = starGrade == 1 ? "★" : starGrade == 2 ? "★★" : starGrade == 3 ? "★★★"
+                         : starGrade == 4 ? "★★★★" : "★★★★★";
+               const commentHTML = `
+                  <tr>
+                     <td>\${writerId}</td>
+                     <td>\${movieContent}</td>
+                     <td>\${regDate}</td>
+                     <td>\${stars}</td>
+                  </tr>
+               `;
+               body.innerHTML += commentHTML;
+            }); // forEach
       } // success
    }); // ajax
 }; // printMovieComments()
