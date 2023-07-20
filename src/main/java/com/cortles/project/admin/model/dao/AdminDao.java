@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import com.cortles.project.admin.model.exception.AdminException;
 import com.cortles.project.board.model.dao.BoardDao;
+import com.cortles.project.board.model.exception.BoardException;
 import com.cortles.project.movie.model.vo.Movie;
 
 public class AdminDao {
@@ -68,6 +69,21 @@ public class AdminDao {
 			throw new AdminException(e);
 		}
 		return result;
+	}
+
+	public int deleteReportCommentOnReportList(Connection conn, int reportCommentNo) {
+		int result2 = 0;
+		String sql = prop.getProperty("deleteReportCommentOnReportList");
+		// delete from report_comment where report_comment_no = ?
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, reportCommentNo);
+			
+			result2 = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new AdminException(e);
+		}
+		return result2;
 	}
 
 }

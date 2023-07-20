@@ -3,6 +3,7 @@ package com.cortles.project.board.model.vo;
 import java.sql.Date;
 
 public class ReportComment {
+	private int reportCommentNo;
 	private int commentNo;
 	private int boardNo;
 	private String reporterId; // 신고자
@@ -13,13 +14,12 @@ public class ReportComment {
 	private int reportCount;
 	private Date reportDate;
 	
-	public ReportComment() {
-		
-	}
-	
-	public ReportComment(int commentNo, int boardNo, String reporterId, String reportedId, String reportedName,
-			String reportType, String reportContent, int reportCount, Date reportDate) {
+	public ReportComment() {}
+
+	public ReportComment(int reportCommentNo, int commentNo, int boardNo, String reporterId, String reportedId,
+			String reportedName, String reportType, String reportContent, int reportCount, Date reportDate) {
 		super();
+		this.reportCommentNo = reportCommentNo;
 		this.commentNo = commentNo;
 		this.boardNo = boardNo;
 		this.reporterId = reporterId;
@@ -29,6 +29,14 @@ public class ReportComment {
 		this.reportContent = reportContent;
 		this.reportCount = reportCount;
 		this.reportDate = reportDate;
+	}
+
+	public int getReportCommentNo() {
+		return reportCommentNo;
+	}
+
+	public void setReportCommentNo(int reportCommentNo) {
+		this.reportCommentNo = reportCommentNo;
 	}
 
 	public int getCommentNo() {
@@ -105,14 +113,11 @@ public class ReportComment {
 
 	@Override
 	public String toString() {
-		return "ReportComment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", reporterId=" + reporterId
-				+ ", reportedId=" + reportedId + ", reportedName=" + reportedName + ", reportType=" + reportType
-				+ ", reportContent=" + reportContent + ", reportCount=" + reportCount + ", reportDate=" + reportDate
-				+ "]";
+		return "ReportComment [reportCommentNo=" + reportCommentNo + ", commentNo=" + commentNo + ", boardNo=" + boardNo
+				+ ", reporterId=" + reporterId + ", reportedId=" + reportedId + ", reportedName=" + reportedName
+				+ ", reportType=" + reportType + ", reportContent=" + reportContent + ", reportCount=" + reportCount
+				+ ", reportDate=" + reportDate + "]";
 	}
-	
-	
-	
 	
 	
 }

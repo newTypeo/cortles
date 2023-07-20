@@ -212,7 +212,7 @@ const findAllMovies = () => {
          <div class="fantasy-slider slider">
             <span>fantasy</span>
                <button id="fantasy-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-            <article id="fantasy" class="fantasy-slider-container"></article>
+            <article id="fantasy" class="fantasy-slider-container slider-container"></article>
                <button id="fantasy-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
          </div>
       <br/>
@@ -228,6 +228,7 @@ const findAllMovies = () => {
             <article id="searchMovies-article"></article>
          </div>
 <script>
+
       <%if(loginMember!=null){%>
 	      const slidelector('#mystery-prev').addEventListener('click', () => slidePrev(9));
 	      document.querySeerContainers = document.querySelectorAll('.slider-container');
@@ -239,7 +240,7 @@ const findAllMovies = () => {
 	        if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
 	            currentPositions[index] = 0;
 	          }
-	        sliderContainers[index].style.transform = "translateX($currentPositions[index]px)";
+	        sliderContainers[index].style.transform = "translateX(+currentPositions[index]+"px)";
 	        
 	      }
 	      
@@ -249,7 +250,7 @@ const findAllMovies = () => {
 	        if (currentPositions[index] > 0) {
 	            currentPositions[index] = -(slideWidth * (sliderContainers[index].children.length - 5));
 	        }
-	        sliderContainers[index].style.transform = "translateX($currentPositions[index]px)";
+	        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
 	      }
 	      document.querySelector('#favorite-next').addEventListener('click', (e) => slideNext(0));
 	      document.querySelector('#favorite-prev').addEventListener('click', () => slidePrev(0));
@@ -290,7 +291,7 @@ const findAllMovies = () => {
         if (currentPositions[index] > 0) {
             currentPositions[index] = -(slideWidth * (sliderContainers[index].children.length - 5));
           }
-        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+        sliderContainers[index].style.transform = "translateX($currentPositions[index]px)";
       }
       
       document.querySelector('#romance-next').addEventListener('click', () => slideNext(0));
@@ -312,6 +313,7 @@ const findAllMovies = () => {
       document.querySelector('#mystery-prev').addEventListener('click', () => slidePrev(8));
       document.querySelector('#mystery-next').addEventListener('click', () => slideNext(8));
      <%}%> 
+
       
     </script>         
 
