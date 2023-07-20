@@ -25,8 +25,8 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 		url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
 		data : {
 			ServiceKey : "8N7WULS3PZ7ER312R70R",
-			listCount : 100,
-			releaseDts : "20000201"
+			listCount : 200,
+			releaseDts : "20150201"
 			
 		},
 		dataType : 'json',
