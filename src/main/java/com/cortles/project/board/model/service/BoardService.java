@@ -131,17 +131,18 @@ public class BoardService {
 		return result;
 	}
 	/*
-	 * 게시글 삭제-주혜
+	 * 게시글 삭제-주혜, 창환
 	 */
 	public int boardDelete(int no) {
 		int result = 0;
 		Connection conn = getConnection();
 		try {
-			Attachment attachment = boardDao.findAttachmentByBoardNo(conn, no);
-			if(attachment != null) {
-				result = boardDao.deleteAttachmentByBoardNo(conn, no);
+			Attachment attachment = boardDao.findAttachmentByBoardNo(conn, no); // db 제약조건 때문에 attachment를 조회하고
+			
+			if(attachment != null) {	// attachment 정보가 있다면
+				result = boardDao.deleteAttachmentByBoardNo(conn, no); // attachment를 먼저 삭제한뒤
 			}
-			result = boardDao.boardDelete(conn, no);
+			result = boardDao.boardDelete(conn, no); // board를 삭제
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);
@@ -252,12 +253,12 @@ public class BoardService {
 		int result = 0;
 		Connection conn = getConnection();
 		try {
-			result = boardDao.updateBoard(conn, board);
+			result = boardDao.updateBoard(conn, board); // db board 테이블 update
 			
 			List<Attachment> attachments = board.getAttachments();
-			if(attachments != null && !attachments.isEmpty()) {
+			if(attachments != null && !attachments.isEmpty()) { // attachment가 null이거나 비어있지 않은 경우에만
 				for(Attachment attach : attachments) {
-					result = boardDao.insertAttachment(conn, attach);
+					result = boardDao.insertAttachment(conn, attach); // db의 attachment테이블에 삽입
 				}
 			}
 			commit(conn);
@@ -271,6 +272,10 @@ public class BoardService {
 		return result;
 	}
 
+	/**
+	 * BoardUpdateServlet ~
+	 * @author 창환
+	 */
 	public int deleteAttachment(int attachNo) {
 		int result = 0;
 		Connection conn = getConnection();

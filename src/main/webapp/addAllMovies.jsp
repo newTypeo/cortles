@@ -8,18 +8,8 @@
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-<filedset>
-<form 
-id="addAllMoviesFrm" 
-name="addAllMoviesFrm" 
-action="<%= request.getContextPath() %>/admin/addAllMovies"
->
-   
-</form>
-	<button type="submit">º¸³»±â</button>
-</filedset> 
 
-<Script>
+<script>
    
    $.ajax({
       url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
