@@ -19,7 +19,6 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-detail-container">
-	<div id="board" style ="width: 605px;">
     <div id="board_header"><span id="board_title" style="font-size: 30px;"><%= board.getTitle() %></span><br><br><br>
       <span style="margin: 0;">Writer / <%= board.getWriterId() %></span> <span>regDate | <%= board.getRegDate() %></span>
       <span id="option">
@@ -29,6 +28,10 @@
 
     <hr>
 
+	<%-- 
+		사용자가 파일 업로드 한 경우, 업로드한 사진을 띄워줌.
+		@author 창환
+	--%>
     <div id="board_content">
     	<% if(attachment.getRenamedFilename() != null) { %>
     		<img src="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>" />
@@ -51,14 +54,26 @@
    					|| loginMember.getMemberRole() == MemberRole.A);
    		if(showButton){
    	%>
-   	<input type="button" id="btn" class="subbtn" value="modify" onclick="updateBoard()" />
-   	<input type="button" id="btn" class="subbtn" value="delete" onclick="boardDelete()"/>
+   	
+   	<div id="subbtn-wrapper" style="display: flex; justify-content: center;">
+   	
+	   	<%-- modify 버튼 클릭시 updateBoard() 실행 --%>
+	   	<input type="button" id="btn" class="subbtn" value="modify" onclick="updateBoard()" />
+	   	
+	   	<%-- delete 버튼 클릭시 updateBoard() 실행 --%>
+	   	<input type="button" id="btn" class="subbtn" value="delete" onclick="boardDelete()"/>
+	   	
+   	</div>
   	<% } %>
-  </div>
   	<script>
+  	/**
+  	 * 게시글 수정을 위한 boardUpdate 서블릿으로 이동.
+  	 * @author 창환
+  	 */
   	const updateBoard = () => {
   		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
   	};
+  	
 	<%-- 글삭제-주혜 --%>
 	const boardDelete = () =>{
 		if(confirm("글을 삭제하시겠습니까?")){
@@ -121,12 +136,12 @@
 								<% 	if (canRemove) { %>
 								<%-- 로그인하고, 작성자본인 또는 관리자인 경우만 노출 --%>
 								
-								<button class="btn-delete" value="<%= bc.getCommentNo() %>">삭제</button>
-								<button class="btn-update" value="<%= bc.getCommentNo() %>">수정</button>
+								<button class="btn-update" value="<%= bc.getCommentNo() %>">update</button>
+								<button class="btn-delete" value="<%= bc.getCommentNo() %>">delete&nbsp;</button>
 								<%  } %>
 								
 							<% if (loginMember != null && !loginMember.getMemberId().equals(bc.getWriterId()) && MemberRole.A != loginMember.getMemberRole()) { %>
-							    <button class="btn-report" value="<%= bc.getCommentNo() %>">신고</button>
+							    <button class="btn-report" value="<%= bc.getCommentNo() %>">report</button>
 							<% } %>
 
 							</td>
@@ -154,7 +169,7 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<form 
-		action="<%= request.getContextPath() %>/board/boardCommentUpdate" 
+		action="<%= request.getContextPath() %>/board/boardCommentUpdate"
 		name="boardCommentUpdateFrm"
 		method="get">
 		<input type="hidden" name="no" />

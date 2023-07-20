@@ -16,12 +16,14 @@
    			<button class="btn" type="submit" style="margin: 5px;">SELECT</button>
    	 </form>
 	
+	<%-- 로그인 했을시에만 글 작성할 수 있음 --%>
 	<% if(loginMember != null) { %>
 		<button type="button" id="btn-add" class="btn"
 			onclick="location.href = '<%= request.getContextPath() %>/board/boardCreate';"
 			>Writing
 		</button>
 	<% } %>
+	
 <table id="tbl-board">
 	<thead>
 		<tr>

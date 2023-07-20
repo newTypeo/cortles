@@ -19,7 +19,6 @@ import com.cortles.project.member.model.vo.MemberRole;
 
 
 @WebFilter({
-		"/admin/*",
 		"/report/*"
 })
 public class AdminFilter extends HttpFilter implements Filter {
