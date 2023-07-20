@@ -16,14 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.admin.model.service.AdminService;
 import com.cortles.project.movie.model.vo.Movie;
 
-@WebServlet("/admin/addAllMovies")
+@WebServlet("/setMovie/addAllMovies")
 public class AdminAddAllMoviesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminService adminService = new AdminService();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("왜 안 되니 갑자기?");
 		// ajax를 통해 넘어온 배열 데이터 선언
 		String[] infoOfMovies = req.getParameterValues("infoOfMovies");
 
