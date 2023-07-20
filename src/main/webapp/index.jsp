@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/modal.css" />
 
 <script>
-// 홈화면이 로딩되면 모든영화 가져올 method 실행
+// 홈화면이 로딩되면 findAllMovies()를 실행하여 비동기로 타이틀별로 영화 배치
 window.addEventListener("load", () => { findAllMovies(); });
 
 const findAllMovies = () => {
@@ -19,8 +19,8 @@ const findAllMovies = () => {
     $.ajax({
       url : "<%= request.getContextPath() %>/movie/json/findAllMovies",
       dataType : "json",
-      success(movies) {
-         // console.log(movies); // DB에 있는 모든 영화들
+      success(movies) { // movies = DB에 저장해둔 모든 영화
+         // console.log(movies); 
          <% if(loginMember != null) { %>
             const favoriteGenre = "<%= loginMember.getFavoriteGenre() %>";
             const favoriteGenres = favoriteGenre.split(","); // ','기준으로 배열화하여 랜덤인덱스에 있는 장르 추천을 위함
@@ -28,7 +28,7 @@ const findAllMovies = () => {
          <% } %>
          movies.forEach((movie) => {
             const {posterUrl, genre, movieCode} = movie;
-            const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
+            const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`; // 모달오픈 & 한줄평등록 시 필요한 movieCode도 함께 적어준다.
             
             // 로그인 상태일 시 회원별 추천 영화
             <% if(loginMember != null) { %>
@@ -66,7 +66,7 @@ const findAllMovies = () => {
       complete() {
          [...document.querySelectorAll("img")].forEach((imgTag) => { // 모든 포스터에 clickEvent 추가(모달오픈)
             imgTag.addEventListener('click', (e) =>{
-               openModal(e.target.name);
+               openModal(e.target.name); // 매개변수로 담아둔 movieCode를 함께 넘겨준다.
                
             }) // eventListener
          }); // forEach
@@ -99,13 +99,13 @@ const findAllMovies = () => {
        <% } %>
          
           
-          <!-- 동영상 재생 구역 -->
+          <!-- 모달 내 영화정보 페이지 구역 -->
           <div class="video-container">
             <form>
               <iframe class="trailer" name="modal" width="800" height="470" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </form>
           </div>
-        <!-- 댓글 작성 폼 -->
+   <!-- 댓글 작성 폼 -->
    <form name="movieCommentFrm">  
       <div class="avgMovieGrade"></div>
         <!-- 별점 평점 구역 -->
@@ -135,11 +135,11 @@ const findAllMovies = () => {
         <table id="commentList">
            <thead>
               <tr id="review-thead-tr">
-                 
+              <!-- 한줄평이 없을 경우를 위해 있는 경우에만 title들을 보여준다. -->   
               </tr>      
            </thead>
            <tbody id="movie-comment-body">
-              
+            <!-- 한줄평이 들어올 공간 -->  
            </tbody>
         </table>
     </div>   
@@ -153,7 +153,7 @@ const findAllMovies = () => {
 
 <%       if(loginMember != null) {      %>
 	         <div class="favorite-slider slider">
-	         <span><%= loginMember.getMemberId() %> 님이 좋아할만한 콘텐츠</span>
+	         <span>Top picks for <%= loginMember.getMemberId() %></span>
 	            <button id="favorite-prev" class="slider-button"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
 	         <article id="recommendedMovies" class="favorite-slider-container slider-container"></article>
 	            <button id="favorite-next" class="slider-button"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
@@ -326,7 +326,7 @@ function openModal(movie_code) {
    $.ajax({
       url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
       data : {movie_code},
-      success(movieInfo){
+      success(movieInfo){ // movie_code로 가져온 영화 정보
          const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = movieInfo;
          document.querySelector(".trailer").src = vod;
          document.querySelector("#modal-movie-code").value = movieCode; // 한줄평 등록시 필요한 영화코드 셋팅
@@ -334,7 +334,7 @@ function openModal(movie_code) {
          document.getElementById("myModal").style.display = "block";
       },
       complete (){
-             // 버튼을 클릭했을 때 실행되는 코드
+           // 찜버튼을 클릭 이벤트
 <%         if(loginMember != null) {             %>
               document.querySelector("#ggimButton").addEventListener("click", (e) => {
                  const frm = document.myListFrm;
@@ -342,9 +342,9 @@ function openModal(movie_code) {
                  document.myListFrm.submit();
               }); // eventListener
 <%         }                              %>
-         document.movieCommentFrm.reset();
-         // 영화 한줄평
-         printMovieComments();
+         document.movieCommentFrm.reset(); // 폼 리셋
+         // 영화 한줄평 출력
+         printMovieComments(); 
       } // complete
    }) // ajax
 }; // openModal()
@@ -381,22 +381,20 @@ const createMovieComment = () => {
       // 한줄평 등록
       $.ajax({
          url : "<%= request.getContextPath() %>/movie/createMovieComment",
-         data : {movieCode, movieContent, starGrade},
+         data : {movieCode, movieContent, starGrade}, // 영화코드, 작성내용, 별점 서블릿으로 전송
          dataType : "json",
          method : "post",
          
-         success(duplitedMsg){
+         success(duplitedMsg){ // 이미 해당영화에 한줄평을 등록했을 때 보여줄 메세지
             if(duplitedMsg != null && duplitedMsg != ""){
                alert(`\${duplitedMsg}`);
             };
             
-         }, // success
-         
+         },
          complete(){
-            document.movieCommentFrm.reset();
-            printMovieComments();
+            document.movieCommentFrm.reset(); // 한줄평등록이 끝나면 작성한 내용 초기화
+            printMovieComments(); // 방금작성한 한줄평까지 다시 보여주기위해 한줄평 출력 메소드 실행
          } // complete
-         
       }) // ajax
    }; // else
 }; // method end
@@ -414,7 +412,8 @@ const printMovieComments = () => {
       success(mapData) {
             const {movieComments, avgMovieGrade} = mapData;
             document.querySelector(".avgMovieGrade").innerHTML = ""; // 평점 칸 비우기
-            // 한줄평이 하나라도 있을 때만 평점 출력
+            
+            // 한줄평이 하나라도 있을 경우에만 타이틀 & 평점 출력
             if(avgMovieGrade != 0){
             	document.querySelector("#review-thead-tr").innerHTML =  `<th>writer</th>
 														                 <th>content</th>
@@ -422,17 +421,21 @@ const printMovieComments = () => {
 														                 <th>starGrade</th>`;
 													            	
                document.querySelector(".avgMovieGrade").innerHTML = "★" + avgMovieGrade;
-            } else {
-            	document.querySelector("#review-thead-tr").innerHTML = ""; // 한줄평이 하나도 없으면 타이틀 제거
+               
+            } else { // 한줄평이 하나도 없으면 타이틀 제거
+            	document.querySelector("#review-thead-tr").innerHTML = ""; 
             }
-            const body = document.querySelector("#movie-comment-body");
-            body.innerHTML = "";
             
-            // 영화 평점 입력하기 
+         	// 기존에 출력된 한줄평 초기화
+            const body = document.querySelector("#movie-comment-body"); 
+            body.innerHTML = ""; 
             
-	         // 가져온 comments 반복문         
+            
+             // 영화 평점 입력하기 
+	         // 가져온 comments 반복하며 정보들 HTML로 누적     
 	         [...movieComments].forEach((comment) => {
 	            const {writerId, movieContent, regDate, starGrade} = comment;
+	            // 작성자가 적은 점수 별문자로 전환
 	            const stars = starGrade == 1 ? "★" : starGrade == 2 ? "★★" : starGrade == 3 ? "★★★"
 	            			 : starGrade == 4 ? "★★★★" : "★★★★★";
 	            const commentHTML = `

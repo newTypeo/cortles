@@ -10,37 +10,26 @@ import javax.servlet.http.HttpSession;
 
 import com.cortles.project.member.model.service.MemberService;
 
-/**
- * Servlet implementation class AddMyListServlet
- */
-@WebServlet("/member/AddMyListServlet") // 영화 폼 제출 만들고 매핑하기
+@WebServlet("/member/AddMyListServlet") 
 public class AddMyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberService memberService = new MemberService();
 	
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 영화 폼 제출 만들고 매핑하기 - 경빈
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 사용자 입력값 받아오기
-		
 		String memberId = request.getParameter("memberId");
 		String movieCode = request.getParameter("movieCode");
 		
-		
 		// 업무로직처리 
-			
-		int result = memberService.addMyList(memberId, movieCode);
-		
-		// alert를 띄우기 위해
 		HttpSession session = request.getSession();
+		
 		// alert 띄우기
-		session.setAttribute("msg", "mylist추가 완료 ! ! !");
+		session.setAttribute("msg", "The movie added on myList（＾∀＾●）ﾉｼ");
 		
 		// 응답처리
 		response.sendRedirect(request.getContextPath());
-
-
-
 	}
 }

@@ -20,16 +20,17 @@ public class MovieSerachServlet extends HttpServlet {
 	private final MovieService movieService = new MovieService();
 	
 	
+	/**
+	 * 비동기식 영화 검색 - 종환, 현우
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String inputText = request.getParameter("input_text");
+		// 사용자가 타자를 입력할 때마다 oninput 이벤트로 영화 조회
+		String inputText = request.getParameter("input_text"); // 입력값
 		
-//		System.out.println("inputText = " + inputText);
-		List<Movie> movies = movieService.searchMovie(inputText);
-//		System.out.println("movies = " + movies);
+		List<Movie> movies = movieService.searchMovie(inputText); // like %입력값%
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(movies, response.getWriter());
-		
 	}
 
 }

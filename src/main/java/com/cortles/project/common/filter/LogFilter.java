@@ -36,23 +36,8 @@ public class LogFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// 서블릿 가기전 작업 공간
-//		HttpServletRequest httpReq = (HttpServletRequest) request; 
-//		String uri = httpReq.getRequestURI();
-//		String method = httpReq.getMethod();
-		
-//		System.out.println("======================================");
-//		System.out.printf("%s %s\n", method, uri);
-//		System.out.println("--------------------------------------");
-		
 		chain.doFilter(request, response); 
-		
 		// 응답메세지 발송전 작업 공간
-//		HttpServletResponse httpRes = (HttpServletResponse) response;
-//		int status = httpRes.getStatus();
-//		System.out.println("______________________________________");
-//		System.out.println(status);
-//		System.out.println("______________________________________");
-//		System.out.println();
 	}
 
 }

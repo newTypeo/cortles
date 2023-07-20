@@ -33,7 +33,5 @@ public class CortlesWebSocketConfigurator extends Configurator {
 		
 		Map<String, Object> configProperties = sec.getUserProperties();
 		configProperties.put("memberId", memberId);
-		
-		
 	}
 }

@@ -24,7 +24,6 @@ public class BoardDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리 ?no=12
 		int boardNo = Integer.parseInt(request.getParameter("no"));
-//		System.out.println("no = " + boardNo);
 		
 		// 2. 업무로직
 		// 게시글 읽음 여부 검사
@@ -44,7 +43,6 @@ public class BoardDetailServlet extends HttpServlet {
 		}
 		
 		
-//		System.out.println("hasRead = " + hasRead);
 		if(!hasRead) {
 			int result = boardService.updateReadCount(boardNo);
 			System.out.println("result = " + result);
@@ -55,9 +53,6 @@ public class BoardDetailServlet extends HttpServlet {
 			response.addCookie(cookie); // Set-Cookie : boardCookie=[10][20]
 		}
 		Board board = boardService.findById(boardNo); // Board, List<Attachment>
-//		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
-//		System.out.println("board = " + board);
-//		System.out.println("boardComments = " + boardComments);
 		List<BoardComment> boardComments = boardService.findBoardCommentByBoardNo(boardNo);
 
 		Attachment attachment = boardService.findAttachmentByBoardNo(boardNo);

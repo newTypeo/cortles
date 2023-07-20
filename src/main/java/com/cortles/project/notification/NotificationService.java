@@ -13,7 +13,6 @@ import com.cortles.project.ws.MessageType;
 import com.google.gson.Gson;
 
 /**
- * 
  * 알림 요청이 있을때마다
  * - 1. db notification테이블 저장 (생략)
  * - 2. HelloWebSocket.clientMap에서 해당 사용자를 찾아서 실시간 알림처리
@@ -25,9 +24,6 @@ public class NotificationService {
 	/**
 	 * 1. db저장
 	 * 2. 실시간알림
-	 * 
-	 * @param board
-	 * @return
 	 */
 	public int notifyNewBoardComment(Board board) {
 		// 1. 저장
@@ -51,7 +47,6 @@ public class NotificationService {
 				e.printStackTrace();
 			}
 		}
-		
 		return 0;
 	}
 	

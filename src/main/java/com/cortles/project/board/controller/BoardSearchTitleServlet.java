@@ -12,16 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.Board;
 
-/**
- * Servlet implementation class BoardSearchTitleServlet
- */
 @WebServlet("/board/searchTitle")
 public class BoardSearchTitleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String Keyword = request.getParameter("searchKeyword");
