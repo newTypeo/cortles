@@ -23,6 +23,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("왜 안 되니 갑자기?");
 		// ajax를 통해 넘어온 배열 데이터 선언
 		String[] infoOfMovies = req.getParameterValues("infoOfMovies");
 

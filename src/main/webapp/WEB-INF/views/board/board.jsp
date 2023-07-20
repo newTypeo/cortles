@@ -26,7 +26,7 @@
 	<thead>
 		<tr>
 			<th>No</th>
-			<th>Title</th>
+			<th>Title [views]</th>
 			<th>Like</th>
 			<th>Writer</th>
 			<th>RegDate</th>
