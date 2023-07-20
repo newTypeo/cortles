@@ -48,10 +48,15 @@ public class BoardDao {
 		return totalContent;
 	}
 
-
+	/**
+	 * 게시판 목록 전체 조회 - 장준 
+	 */
 	public List<BoardEntity> findAll(Connection conn, int start, int end) {
 		List<BoardEntity> boards = new ArrayList<>();
+		
+		// select * from (select row_number() over (order by b.board_no desc) rnum, b.*  from board b) where rnum between ? and ?
 		String sql = prop.getProperty("findAll");
+		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
@@ -195,9 +200,10 @@ public class BoardDao {
 		return result;
 	}
 
-
+	// 게시글 댓글 등록 -장준-
 	public int insertBoardComment(Connection conn, BoardComment boardComment) {
 		int result = 0;
+		// insert into board_comment values(seq_board_comment_no.nextval, ?, ?, ?, sysdate)
 		String sql = prop.getProperty("insertBoardComment");
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, boardComment.getBoardNo());
@@ -271,9 +277,12 @@ public class BoardDao {
 		return result;
 	}
 		
-		
+	/**
+	 * 게시글 댓글 삭제 -장준- 
+	 */
 	public int deleteBoardComment(Connection conn, int commentNo) {
 		int result = 0;
+		// delete from board_comment where comment_no = ?
 		String sql = prop.getProperty("deleteBoardComment");
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, commentNo);
@@ -344,9 +353,12 @@ public class BoardDao {
 		return boardCommentCnt;
 	}
 
-
+	/**
+	 * 댓글하나 가져오기 - 장준 
+	 */
 	public BoardComment boardCommentfindById(Connection conn, int no) {
 		BoardComment updateBoardComment = null;
+		// select * from board_comment where comment_no = ?
 		String sql = prop.getProperty("boardCommentfindById");
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -407,11 +419,14 @@ public class BoardDao {
 		return boards;
 	}
 
-
+	/**
+	 * 댓글 수정 - 장준 
+	 */
 	public int updateBoardComment(Connection conn, int no, String content) {
 		int result = 0;
-		String sql = prop.getProperty("updateBoardComment");
 		// update board_comment set content = ? where comment_no = ?
+		String sql = prop.getProperty("updateBoardComment");
+		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, content);
 			pstmt.setInt(2, no);
@@ -466,12 +481,13 @@ public class BoardDao {
 		return new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, reportCount, reportDate);
 	}
 
-
+	/**
+	 * 신고댓글 추가 - 장준
+	 */
 	public int insertReportBoardComment(Connection conn, ReportComment reportComment) {
 		int result = 0;
 		String sql = prop.getProperty("insertReportBoardComment");
 		//insert into report_comment values(seq_report_comment_no.nextval, ?, ?, ?, ?, ?, ?, 0, default)
-		// comment_no, board_no, reporter_id, reported_id, report_type, report_content
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, reportComment.getCommentNo());
 			pstmt.setInt(2, reportComment.getBoardNo());
@@ -544,9 +560,12 @@ public class BoardDao {
 		return attach;
 	}
 
-
+	/**
+	 * 신고수 조회 - 장준
+	 */
 	public int countReport(Connection conn, int commentNo) {
 		int reportCnt = 0;
+		// select count(*) from report_comment where comment_no = ?
 		String sql = prop.getProperty("countReport");
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -563,9 +582,12 @@ public class BoardDao {
 		return reportCnt;
 	}
 
-
+	/**
+	 * 신고 수 DB에 넣기 - 장준 
+	 */
 	public int updateCountReport(Connection conn, int commentNo, int reportCnt) {
 		int result = 0;
+		// update report_comment set report_count = ? where comment_no = ?
 		String sql = prop.getProperty("updateCountReport");
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, reportCnt);

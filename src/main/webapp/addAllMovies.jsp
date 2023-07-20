@@ -22,7 +22,6 @@
       dataType : 'json',
       success(responseData){
          const infoOfMovies = [];
-         // console.log("responseData", responseData);
          const {Data} = responseData;
          // console.log("Data", Data);
          const {Result} = Data[0];
