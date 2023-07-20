@@ -107,34 +107,6 @@ public class BoardDao {
 	}
 	
 
-
-//	public List<Attachment> findAttachmentByBoardNo(Connection conn, int boardNo) {
-//		List<Attachment> attachments = new ArrayList<>();
-//		String sql = prop.getProperty("findAttachmentByBoardNo");
-//		
-//		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-//			pstmt.setInt(1, boardNo);
-//			try(ResultSet rset = pstmt.executeQuery()){
-//				while(rset.next()) {
-//					Attachment attach = new Attachment();
-//					attach.setNo(rset.getInt("no"));
-//					attach.setBoardNo(rset.getInt("board_no"));
-//					attach.setOriginalFilename(rset.getString("original_filename"));
-//					attach.setRenamedFilename(rset.getString("renamed_filename"));
-//					attach.setRegDate(rset.getDate("reg_date"));
-//					
-//					attachments.add(attach);
-//				}
-//			}
-//		} catch (SQLException e) {
-//			throw new BoardException(e);
-//		}
-//		
-//		
-//		return attachments;
-//	}
-
-
 	public int updateReadCount(Connection conn, int boardNo) {
 		int result = 0;
 		String sql = prop.getProperty("updateReadCount");
@@ -381,8 +353,9 @@ public class BoardDao {
 		
 		return updateBoardComment;
 	}
-
-
+	/**
+	 * 영화 검색 - 현우 
+	 */
 	public List<Board> searchboard(Connection conn, String keyword) {
 		List<Board> boards = new ArrayList<>();
 		String sql = prop.getProperty("searchBoard");
@@ -439,7 +412,7 @@ public class BoardDao {
 		return result;
 	}
 
-	/*
+	/**
 	 * 신고 댓글 조회 - 주혜 
 	 */
 	public List<ReportComment> reportCommentFindAll(Connection conn) {
@@ -465,7 +438,7 @@ public class BoardDao {
 		return reportComments;
 	}
 
-	/*
+	/**
 	 * 신고 댓글 조회 메소드 - 주혜 
 	 */
 	private ReportComment handleReportCommentResultSet(ResultSet rset) throws SQLException {
@@ -603,7 +576,7 @@ public class BoardDao {
 		return result;
 	}
 
-	/*
+	/**
 	 * 신고 회수 조회 - 주혜
 	 */
 	public int memberCountReport(Connection conn, String reportedId) {

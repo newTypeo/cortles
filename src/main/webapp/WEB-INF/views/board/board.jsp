@@ -28,8 +28,8 @@
 	<thead>
 		<tr>
 			<th>No</th>
-			<th>Title [views]</th>
-			<th>Like</th>
+			<th>Title [Like]</th>
+			<th>Views</th>
 			<th>Writer</th>
 			<th>RegDate</th>
 		</tr>

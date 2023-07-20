@@ -86,7 +86,6 @@
 
 
 /*배경 블록*/
-
 #blocksection
     {
         position: absolute;
@@ -121,6 +120,7 @@
             transform: translateY(100%);
         }
     }
+    /*블록 타일 효과*/
     #blocksection span
     {
         position: relative;
@@ -130,7 +130,7 @@
         background: #181818;
         transition: 1.5s;
     }
-    /*3번*/
+    /*블록 hover 시 타일 효과*/
     #blocksection span:hover
     {
         background: #df0b0b;

@@ -197,7 +197,9 @@ public class BoardService {
 		commit(conn);
 		return updateBoardComment;
 	}
-
+	/**
+	 * 영화 검색 - 현우 
+	 */
 	public List<Board> searchboard(String keyword) {
 		Connection conn = getConnection();
 		List<Board> boards = new ArrayList<>();

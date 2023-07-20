@@ -19,12 +19,15 @@ public class BoardSearchTitleServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 사용자 입력 값 처리
 		String Keyword = request.getParameter("searchKeyword");
 		
+		// 업무로직
 		List<Board> boards = boardService.searchboard(Keyword);
 		
 		request.setAttribute("boards", boards);
 		
+		// 응답처리
 		request.getRequestDispatcher("/WEB-INF/views/board/board.jsp")
 			.forward(request, response);
 	}
