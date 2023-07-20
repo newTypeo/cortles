@@ -52,7 +52,7 @@
           
     <!-- 댓글 작성 폼 -->
 	<form name="movieCommentFrm">  
-		
+		<div class="avgMovieGrade"></div>
         <!-- 별점 평점 구역 -->
         <div class="rating-container">
             <div class="star-rating">
@@ -80,11 +80,8 @@
         <!-- 댓글 목록 -->
         <table id="commentList">
 	        <thead>
-	  			<tr>
-	  				<th>writer</th>
-	  				<th>content</th>
-	  				<th>date</th>
-	  				<th>starGrade</th>
+	  			<tr id="review-thead-tr">
+	  			
 	  			</tr>      
 	        </thead>
 	        <tbody id="movie-comment-body"><!-- 한줄평 출력할 영역 --></tbody>
@@ -256,23 +253,41 @@ const printMovieComments = () => {
 		data : {movieCode},
 		dataType : "json",
 		method : "get",
-		success(movieComments) {
-				const body = document.querySelector("#movie-comment-body");
-				body.innerHTML = "";
-			// 가저온 comments 반복문			
-			[...movieComments].forEach((comment) => {
-				const {writerId, movieContent, regDate, starGrade} = comment;
-				const commentHTML = `
-					<tr>
-						<td>\${writerId}</td>
-						<td>\${movieContent}</td>
-						<td>\${regDate}</td>
-						<td>\${starGrade}</td>
-					</tr>
-				`;
-				body.innerHTML += commentHTML;
-			}); // forEach
-		} // success
+		success(mapData) {
+            const {movieComments, avgMovieGrade} = mapData;
+            document.querySelector(".avgMovieGrade").innerHTML = ""; // 평점 칸 비우기
+            // 한줄평이 하나라도 있을 때만 평점 출력
+            if(avgMovieGrade != 0){
+            	document.querySelector("#review-thead-tr").innerHTML =  `<th>writer</th>
+														                 <th>content</th>
+														                 <th>date</th>
+														                 <th>starGrade</th>`;
+													            	
+               document.querySelector(".avgMovieGrade").innerHTML = "★" + avgMovieGrade;
+            } else {
+            	document.querySelector("#review-thead-tr").innerHTML = ""; // 한줄평이 하나도 없으면 타이틀 제거
+            }
+            const body = document.querySelector("#movie-comment-body");
+            body.innerHTML = "";
+            
+            // 영화 평점 입력하기 
+            
+	         // 가져온 comments 반복문         
+	         [...movieComments].forEach((comment) => {
+	            const {writerId, movieContent, regDate, starGrade} = comment;
+	            const stars = starGrade == 1 ? "★" : starGrade == 2 ? "★★" : starGrade == 3 ? "★★★"
+	            			 : starGrade == 4 ? "★★★★" : "★★★★★";
+	            const commentHTML = `
+	               <tr>
+	                  <td>\${writerId}</td>
+	                  <td>\${movieContent}</td>
+	                  <td>\${regDate}</td>
+	                  <td>\${stars}</td>
+	               </tr>
+	            `;
+	            body.innerHTML += commentHTML;
+	         }); // forEach
+      } // success
 	}); // ajax
 }; // printMovieComments()
 
