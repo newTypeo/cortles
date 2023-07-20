@@ -25,8 +25,6 @@ public class BoardCommentDeleteServlet extends HttpServlet {
 				int commentNo = Integer.parseInt(request.getParameter("no"));
 				//System.out.println("boardNo="+boardNo+", no=" + commentNo);
 				
-				
-				
 				//2. 비지니스로직 호출
 				int result = boardService.deleteBoardComment(commentNo);
 				//3. 리다이렉트
