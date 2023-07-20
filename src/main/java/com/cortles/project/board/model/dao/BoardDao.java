@@ -469,6 +469,7 @@ public class BoardDao {
 	 * 신고 댓글 조회 메소드 - 주혜 
 	 */
 	private ReportComment handleReportCommentResultSet(ResultSet rset) throws SQLException {
+		int reportCommentNo = rset.getInt("report_comment_no");
 		int commentNo = rset.getInt("comment_no");
 		int boardNo = rset.getInt("board_no");
 		int reportCount = rset.getInt("report_count");
@@ -478,7 +479,7 @@ public class BoardDao {
 		String reportType = rset.getString("report_type");
 		Date reportDate = rset.getDate("report_date");
 		
-		return new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, reportCount, reportDate);
+		return new ReportComment(reportCommentNo, commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, reportCount, reportDate);
 	}
 
 	/**

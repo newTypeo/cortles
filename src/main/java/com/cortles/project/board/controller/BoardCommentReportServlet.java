@@ -53,7 +53,7 @@ public class BoardCommentReportServlet extends HttpServlet {
 		String reportContent = request.getParameter("reportContent");
 		 
 		 
-		ReportComment reportComment = new ReportComment(commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, 0, null);
+		ReportComment reportComment = new ReportComment(0,commentNo, boardNo, reporterId, reportedId, null, reportType, reportContent, 0, null);
 		 
 		 /*
 		  * 신고 횟수 조회 - 주혜 

@@ -51,7 +51,7 @@
 					<td><%= reportComment.getReportCount() == 3	? "O" : "X"	%></td> 
 					<td> <!-- 댓글 삭제 라디오 -->
 						<input class="yes" type="radio" name="<%= reportComment.getReportedId() %>" id="<%= reportComment.getCommentNo() + "" + commentNo %>" value="<%= reportComment.getCommentNo() %>"/>
-						<label for="<%= reportComment.getReportedId() %>">Y</label>
+						<label id="<%= reportComment.getReportCommentNo() %>" for="<%= reportComment.getReportedId() %>">Y</label>
 						<input type="radio" name="<%= reportComment.getCommentNo() + commentNo %>" id="<%= reportComment.getCommentNo() + "" +  commentNo++ %>" value="N" checked/>
 						<label for="<%= reportComment.getCommentNo() + "" +  commentNo++ %>">N</label> <!-- 같은 댓글이 신고 되었을 경우 ++로 다른 값을 줌  -->
 					</td>
@@ -70,6 +70,7 @@
 	action="<%= request.getContextPath() %>/admin/reportCommentDelete"
 	method="POST">
 	<input type="hidden" name="no" id="no" value="">
+	<input type="hidden" name="reportCommentNo" id="reportCommentNo" value="">
 	<input type="hidden" name="delOnReportComment" id="delOnReportComment" value="delOnReportComment">
 </form>
 <script>
@@ -85,7 +86,10 @@
 		//console.log("e.target.nextSibling.nextElementSibling.nextElementSibling",e.target.nextSibling.nextElementSibling.nextElementSibling);
 		if (confirm(`\${memberName}님의 댓글을 삭제하시겠습니까?`)){
 			document.querySelector("#delReportCommentFrm #no").value = commentNo;
+			// console.log("e.target.nextSibling.nextSibling.id", e.target.nextSibling.nextSibling.id);
+			document.querySelector("#reportCommentNo").value = e.target.nextSibling.nextSibling.id;
 			document.delReportCommentFrm.submit();
+			e.target.querySelector(".yes").selected = true;
 		} else { // 취소 
 			e.target.nextSibling.nextElementSibling.checked = true;
 			return false;

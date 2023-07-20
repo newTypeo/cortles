@@ -45,6 +45,20 @@ public class AdminService {
 		}
 		return result;
 	}
+
+	public int deleteReportCommentOnReportList(int reportCommentNo) {
+		Connection conn = getConnection();
+		int result2 = 0;
+		try {
+			result2 = adminDao.deleteReportCommentOnReportList(conn, reportCommentNo);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+		} finally {
+			close(conn);
+		}
+		return result2;
+	}
 	
 	
 	
