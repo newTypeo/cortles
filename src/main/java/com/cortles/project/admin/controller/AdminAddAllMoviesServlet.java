@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.admin.model.service.AdminService;
 import com.cortles.project.movie.model.vo.Movie;
 
-@WebServlet("/admin/addAllMovies")
+@WebServlet("/setMovie/addAllMovies")
 public class AdminAddAllMoviesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminService adminService = new AdminService();
@@ -25,7 +25,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// ajax를 통해 넘어온 배열 데이터 선언
 		String[] infoOfMovies = req.getParameterValues("infoOfMovies");
-
+		System.out.println("asdasdsad");
 		// 영화 담을 리스트
 		List<Movie> movies = new ArrayList<>();
 		
@@ -62,7 +62,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
         // Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
         SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
         
-        java.util.Date tempDate = null;
+        java.util.Date tempDate = null;   
         
         try {
             // 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
