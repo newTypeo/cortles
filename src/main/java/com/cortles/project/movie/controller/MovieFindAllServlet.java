@@ -21,7 +21,7 @@ public class MovieFindAllServlet extends HttpServlet {
     private final MovieService movieService = new MovieService(); 
     
 	/**
-	 * 영화 객체 모두 가져오기
+	 * 영화 객체 모두 가져오기 - 종환
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
