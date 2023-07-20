@@ -16,8 +16,8 @@
       data : {
          ServiceKey : "8N7WULS3PZ7ER312R70R",
          listCount : 10,
-         releaseDts : "20201201",
-         genre : "·Î¸Ç½º"
+         releaseDts : "20151201",
+         genre : "SF"
       },
       dataType : 'json',
       success(responseData){
