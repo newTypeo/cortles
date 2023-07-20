@@ -24,40 +24,44 @@ public class BoardCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final BoardService boardService = new BoardService();
 
+	/**
+	 * board.jsp에서 writing 버튼 클릭시 boardCreate.jsp로 이동.
+	 * @author 창환
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getRequestDispatcher("/WEB-INF/views/board/boardCreate.jsp")
 			.forward(request, response);
 	}
 	
+	/**
+	 * boardCreate.jsp에서 writing 버튼 클릭시
+	 * 사용자가 파일 업로드 할 수도 있으므로 MultipartRequest로 사용자 입력값 받아옴
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			// 업로드파일 저장경로 C:\\Workspaces\\web_server_workspace\\hello-mvc\\src\\main\\webapp\\upload\\board
+			// 업로드파일 저장경로 C:\\Workspaces\\web_server_workspace\\cortles\\src\\main\\webapp\\upload\\board
 			ServletContext application = getServletContext();
 			String saveDirectory = application.getRealPath("/upload/board");
-			// System.out.println("saveDirectory = " + saveDirectory);
 			
 			// 파일하나당 최대크기 10MB
 			int maxPostSize = 1024 * 1024 * 10;
 			// 인코딩
 			String encoding = "utf-8";
 			
-			// 파일명 재지정 정책객체
-			// 한글.txt --> 20230629_160430123_999.txt
 			FileRenamePolicy policy = new DefaultFileRenamePolicy();
-			  
 			
 			MultipartRequest multiReq = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
 			
 			// 1. 사용자 입력값 처리
-			String title = multiReq.getParameter("title");
-			String writer = multiReq.getParameter("writer");
-			String content = multiReq.getParameter("content");
+			// 사용자 입력값을 받아와서 board 객체 생성 후 삽입 
+			String title = multiReq.getParameter("title"); // 사용자가 입력한 제목
+			String writer = multiReq.getParameter("writer"); // 사용자 아이디
+			String content = multiReq.getParameter("content"); // 사용자가 입력한 내용
 			Board board = new Board();
 			
 			board.setTitle(title);
 			board.setWriterId(writer);
 			board.setContent(content);
-			// System.out.println("확인용 = " + board); 
 			
 			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2
 			while(filenames.hasMoreElements()) {
@@ -71,13 +75,15 @@ public class BoardCreateServlet extends HttpServlet {
 				}
 			}
 			
-			// 2. 업무로직
+			// 2. 업무로직 (db에 board객체를 전달)
 			int result = boardService.insertBoard(board);
 			
-			// 3. 응답처리 (목록페이지로 redirect) - POST방식 DML처리후 url변경을 위해 redirect처리
+			// 게시글 등록 완료 알림을 위한 session 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("msg", "게시글 등록 완료!");
-			// session.setAttribute("boar", session)
+			
+			// 3. 응답처리 (목록페이지로 redirect) - POST방식 DML처리후 url변경을 위해 redirect처리
+			// 작성한 detail 페이지로 이동
 			response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + board.getBoardNo());
 	}
 

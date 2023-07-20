@@ -70,6 +70,10 @@
 <button type="button" class="btn_cancel">cancel</button>
 </section>
 <script>
+/**
+ * 신고하는 내용 작성 안했을 시 신고 못하게 막아놓았음
+ * @author 창환
+ */
 document.querySelector(".btn-report").onclick = (e) => {
 	const frm = document.boardCommentReportFrm;
 	const content = frm.reportContent.value.length;
