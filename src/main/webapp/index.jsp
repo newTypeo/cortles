@@ -76,12 +76,14 @@ const findAllMovies = () => {
 </script>
 
 <section id="modal-section">
+<!--모달창 경빈 현우 -->
 <div id="myModal" class="modal" style="display: none;">
   <div class="modal-content">
       <!-- 컨테이너 -->
       <div class="container">
       
       <% if(loginMember != null) { %>
+      <!-- 찜 버튼 누르면 제출되는 폼 -->
       <form
          name="myListFrm"
          action="<%=request.getContextPath()%>/member/AddMyListServlet"
@@ -91,7 +93,8 @@ const findAllMovies = () => {
            <button type="button" id="ggimButton"><img src="<%= request.getContextPath() %>/images/찜2.png"/></button>
            <span class="close" onclick="closeModal();">&times;</span>
       </form>
-      <% }  else { %>  
+      <% }  else { %>
+      <!-- 모달창 닫기 버튼 -->  
           <span class="close" onclick="closeModal();" style="margin-bottom: 25px;">&times;</span>
        <% } %>
          

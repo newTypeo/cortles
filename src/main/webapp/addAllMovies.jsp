@@ -8,7 +8,7 @@
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-<%-- <filedset>
+<filedset>
 <form 
 id="addAllMoviesFrm" 
 name="addAllMoviesFrm" 
@@ -16,8 +16,8 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 >
    
 </form>
-   <button type="submit">보내기</button>
-</filedset> --%>
+	<button type="submit">보내기</button>
+</filedset> 
 
 <Script>
    
