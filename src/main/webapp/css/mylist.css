@@ -1,5 +1,5 @@
 @charset "UTF-8";
-section {height:680px; padding:20px;}
+section {min-height:170px; padding:20px;}
 section h1 {margin-bottom : 50px;}
 
 

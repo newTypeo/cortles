@@ -13,7 +13,7 @@ import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 
 /**
- * Servlet implementation class BoardCommentCreateServlet
+ * 게시글 댓글 등록 -장준-
  */
 @WebServlet("/board/boardCommentCreate")
 public class BoardCommentCreateServlet extends HttpServlet {
@@ -30,12 +30,8 @@ public class BoardCommentCreateServlet extends HttpServlet {
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				String writerId = request.getParameter("writerId");
 				String content = request.getParameter("content");
-				// System.out.println("boardNo = " + boardNo);
-				// System.out.println("writerId = " + writerId);
-				// System.out.println("content = " + content);
 				
 				BoardComment boardComment = new BoardComment(0, boardNo, writerId, content, null);
-				// System.out.println("boardComment = " + boardComment);
 				
 				// 2. 업무로직
 				// 댓글 등록

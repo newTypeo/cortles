@@ -15,7 +15,7 @@
 	<h1>My List</h1>
 	
 	<div>
-		<article id="zzim"></article>
+		<article id="zzim"  style="display: inline-block; width: 100vw;"></article>
 	</div>
 	<!-- 사진부분 회원 테이블의 찜 영화코드 조회 후 script로 넣기 -->
 	<!-- 없을시에는 -->
@@ -292,5 +292,4 @@ const printMovieComments = () => {
 }; // printMovieComments()
 
 </script>
-
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
