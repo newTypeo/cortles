@@ -16,7 +16,7 @@ import com.cortles.project.board.model.vo.ReportComment;
 import com.cortles.project.member.model.service.MemberService;
 
 /**
- * Servlet implementation class BoardCommentReportServlet
+ * 댓글신고 -장준-
  */
 @WebServlet("/board/boardCommentReport")
 public class BoardCommentReportServlet extends HttpServlet {
@@ -25,7 +25,9 @@ public class BoardCommentReportServlet extends HttpServlet {
 	private final MemberService memberService = new MemberService();
 
 
-	
+	/**
+	 * 댓글신고 페이지 요청 -장준-
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
@@ -39,7 +41,7 @@ public class BoardCommentReportServlet extends HttpServlet {
 	
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 댓글신고 -장준-
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
@@ -57,13 +59,13 @@ public class BoardCommentReportServlet extends HttpServlet {
 		  * 신고 횟수 조회 - 주혜 
 		  */
 		 int memberCountReport = boardService.memberCountReport(reportedId);
-		 System.out.println("memberCountReport="+memberCountReport);
 		 
-		 
-		 
+		 /**
+		  * 신고 댓글 db에 추가 - 장준
+		  * 신고 수 - 장준
+		  */
 		 int result = boardService.insertReportBoardComment(reportComment);
 		 int reportCnt = boardService.countReport(commentNo);
-		// System.out.println("reportCnt = " + reportCnt);
 		 result = boardService.updateCountReport(commentNo, reportCnt);
 
 	
