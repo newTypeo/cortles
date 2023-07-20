@@ -42,9 +42,9 @@ header ul li:hover {filter: blur(0px);}
     width: 350px;
   }
 
-#login {margin-left: 0;}
+#login {margin-left: 230px;}
 a {text-decoration: none;}
-header .login1 {margin-left:0;}
+header .login1 {margin-left: 170px;}
 header .login1 span {margin-right:20px; padding-left:30px;}
 
 /********** body ************/

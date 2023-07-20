@@ -121,4 +121,4 @@
   opacity: 1; /* hover 시 해당 버튼만 나타남 */
 }
 
-#modal-section th,td,div {color : black;}
+#modal-section th,#modal-section td, div {color : black;}

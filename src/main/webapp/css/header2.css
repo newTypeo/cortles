@@ -33,9 +33,9 @@ header ul li:hover {filter: blur(0px);}
 
 /*#saveId+label{font-size:12px;font-family:'고딕'}*/
 
-#login {margin-left: 150px;}
+#login {margin-left: 380px;}
 a {text-decoration: none;}
-header .login1 {margin-left:150px;}
+header .login1 {margin-left: 170px;}
 header .login1 span {margin-right:20px; padding-left:30px;}
 
 /********** body ************/

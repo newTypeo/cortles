@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/memberUpdate.css" />
-<%
+<%                                                                                                           
 	 String genre = loginMember.getFavoriteGenre();
 	// 선호장르 List로 처리하기
 	List<String> genres = null;
@@ -26,24 +26,28 @@
 		method="POST">
 		<table>
 		<input type="hidden"  name="memberId" id="memberId" value="<%= loginMember.getMemberId() %>">
+		
 			<tr>
 				<th>Name<sup>*</sup></th>
 				<td>	
 				<input type="text"  name="name" id="name" value="<%= loginMember.getMemberName() %>" required><br>
 				</td>
 			</tr>
+			
 			<tr>
 				<th>Birthday</th>
 				<td>	
 				<input type="date" name="birthday" id="birthday" value="<%= loginMember.getBirthday() %>"><br />
 				</td>
-			</tr> 
+			</tr>
+			 
 			<tr>
 				<th>E-mail</th>
 				<td>	
 					<input type="email" placeholder="abc@xyz.com" name="email" id="email" value="<%= loginMember.getEmail() %>"><br>
 				</td>
 			</tr>
+			
 			<tr>
 				<th>Phone<sup>*</sup></th>
 				<td>	

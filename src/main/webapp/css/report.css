@@ -14,7 +14,7 @@ th {background-color: #333333;}
 	transform: translate(-50%, -50%);
 }
 
-table {
+#report {
 	width: 1500px;
 	border-collapse: collapse;
 	overflow: hidden;
@@ -24,28 +24,28 @@ table {
 	border-radius: 8px;
 }
 
-th, td {
+#report th, #report td {
 	padding: 15px;
 	
 	
 }
 
-th {
+#report th {
 	background-color:#e50914;
 	color:#000;
 }
 
 
-tbody tr:hover {
+#report tbody tr:hover {
 	
 	background-color: #222;
 }
 
-tbody td {
+#report tbody td {
 	position: relative;
 }
 
-tbody td:hover:before {
+#report tbody td:hover:before {
 	content: "";
 	position: absolute;
 	left: 0;

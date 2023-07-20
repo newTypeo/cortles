@@ -8,7 +8,7 @@
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-<%-- <filedset>
+<filedset>
 <form 
 id="addAllMoviesFrm" 
 name="addAllMoviesFrm" 
@@ -17,7 +17,7 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 	
 </form>
 	<button type="submit">º¸³»±â</button>
-</filedset> --%>
+</filedset> 
 
 <Script>
 	
@@ -25,8 +25,8 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 		url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2",
 		data : {
 			ServiceKey : "8N7WULS3PZ7ER312R70R",
-			listCount : 100,
-			releaseDts : "20210201"
+			listCount : 200,
+			releaseDts : "20150201"
 			
 		},
 		dataType : 'json',
