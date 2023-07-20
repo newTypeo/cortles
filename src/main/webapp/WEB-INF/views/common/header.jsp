@@ -49,7 +49,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<img src="<%=request.getContextPath()%>/images/LOGO.png">
+			<a href="<%= request.getContextPath()%>/index.jsp"><img src="https://fontmeme.com/permalink/230720/d5f0db1f4809bc0deb07cc374662a4d6.png" alt="netflix-type" border="0"></a>
 		</div>
 		<ul>
 			<li><a href="<%= request.getContextPath() %>">Home</a></li>
