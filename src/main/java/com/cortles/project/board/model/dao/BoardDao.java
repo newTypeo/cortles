@@ -252,6 +252,10 @@ public class BoardDao {
 	}
 
 
+	/**
+	 * 경빈
+	 * 좋아요 기능
+	 */
 	public int updateLike(Connection conn, int boardNo, int likeCount) {
 		int result = 0;
 		String sql = prop.getProperty("updateLike");

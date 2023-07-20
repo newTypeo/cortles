@@ -111,6 +111,11 @@ public class BoardService {
         return boardComments;
     }
 
+	/**
+	 * 좋아요 기능
+	 * 경빈
+	 * @return
+	 */
 	public int updateLike(int boardNo, int likeCount) {
 		Connection conn = getConnection();
 		int result = 0;
