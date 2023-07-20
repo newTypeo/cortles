@@ -94,14 +94,22 @@
 </section>
 
 <script>
+	//로그인 정보가 있고 찜목록이 null이 아닌 경우
 <%  if (loginMember != null && favorites != null) { 
+	
+	/*  favorites안에 있는 것을 없을떄 까지 favorite안에 넣어주기 */
 	 	for(Favorite favorite : favorites){
 	 %>
-	    
+	    // ajax시작 
 	        $.ajax({
+	        	// 요청할 url
 	            url: "<%=request.getContextPath()%>/movie/json/findOneMovies",
+	            // 서버에 전달할 데이터를 가져와서 전달해주기
 	            data: { movie_code: "<%= favorite.getMovieCode() %>" },
+	            // 서버로 받을 데이터 타입 지정
 	            dataType: "json",
+	            
+	            // 요청 완료되면 콜백함수 
 	            success(movie) {
 	                const { posterUrl, genre, movieCode } = movie;
 	                const imgHTML = `<img name=\${movieCode} src=\${posterUrl}>`;
@@ -121,27 +129,50 @@
 	} // if 	%>
  
 	
-//모달 열기 (찜목록)
+//모달 열기 (찜목록) 
+// 모달 열면 body의 scroll를 없애기 위해 가져오기
 const scroll = document.querySelector("body");
 function openModal(movie_code) {
+	
  	$.ajax({
+ 		
+ 		// 위의 URL에 해당하는 서버로 비동기 요청을 보냄
  		url : "<%= request.getContextPath() %>/movie/json/findOneMovies",
+ 		
+ 		// 서버에 전달할 데이터 (movie_code 변수의 값을 전달)
  		data : {movie_code},
+ 		 																
+ 		// 요청이 성공적으로 완료되었을 때 실행되는 콜백 함수
  		success(clickedMovie) {
+ 			
+ 			//  서버로부터 전달된 JSON 데이터를 객체로 분해하여 변수에 저장
  			const {actors, director, genre, openDate, runtime, story, title, titleEng, vod, movieCode} = clickedMovie;
+ 			
+ 	        // 서버에서 받은 vod 값을 .trailer 요소의 src 속성에 할당하여 동영상 재생
  			document.querySelector(".trailer").src = vod;
- 			scroll.style.overflow = "hidden";	
+ 	        
+ 			// 스크롤을 제한하여 모달창이 열릴 때 스크롤을 막음
+ 			scroll.style.overflow = "hidden";
+ 			
+ 			// 모달창 scroll띄우기
  		  	document.getElementById("myModal").style.display = "block";
  		},
  		complete (){
 	  		document.querySelector("#ggimButton").addEventListener("click", (e) => {
 		  		const frm = document.myListFrm;
+		  		
+		  		// 폼안에 value값에 movieCode넣어주기
 		  		frm.movieCode.value = movie_code;
+		  		
+		  		// 다 실행되면 제출
 		  		document.myListFrm.submit();
 	  		}); // EventListener
 	  		printMovieComments(); // 모달열면 한줄평 출력
+	  		
  		} // complete
+ 		
  	}) // ajax
+ 	
 }; // method end
   
   

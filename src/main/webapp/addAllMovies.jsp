@@ -8,7 +8,7 @@
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 </head>
 <body>
-<%-- <filedset>
+<filedset>
 <form 
 id="addAllMoviesFrm" 
 name="addAllMoviesFrm" 
@@ -17,7 +17,7 @@ action="<%= request.getContextPath() %>/admin/addAllMovies"
 	
 </form>
 	<button type="submit">º¸³»±â</button>
-</filedset> --%>
+</filedset> 
 
 <Script>
 	
