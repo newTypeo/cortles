@@ -55,10 +55,10 @@
 			<li><a href="<%= request.getContextPath() %>">Home</a></li>
 			<li><a href="<%= request.getContextPath() %>/board/boardList">Community</a></li>
 			<li><a href="#" onclick="mylist()">MyList</a></li> <!-- 로그인 했을시에만 보이게 -->
-			<!-- if(loginMember != null && loginMember.getMemberRole() == MemberRole.A){ %>  -->
+			<% if(loginMember != null && loginMember.getMemberRole() == MemberRole.A){ %> 
 			<li><a href="<%= request.getContextPath() %>/admin/findAllMembers">Members</a></li> <!-- 관리자  -->
 			<li><a href="<%= request.getContextPath() %>/report">Report</a></li> <!-- 관리자  -->
-			<!--  } %>  -->
+			<%  } %> 
 			<li id="search" style="margin-left: 70px;"><i class="fa-solid fa-magnifying-glass"></i></li>
 		</ul>
 		
