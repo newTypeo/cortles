@@ -21,15 +21,14 @@ public class BoardCommentUpdateServlet extends HttpServlet {
 	private final BoardService boardService = new BoardService();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 댓글 수정 페이지 요청
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
 		int no = Integer.parseInt(request.getParameter("no"));
 
-		// 2. 업무로직
+		// 2. 업무로직 댓글하나 가져오기
 		BoardComment updateBoardComment = boardService.boardCommentfindById(no);
-		System.out.println("updateBoardComment = " + updateBoardComment);
 		
 		request.setAttribute("updateBoardComment", updateBoardComment);
 		// 3. 응답처리
@@ -38,16 +37,16 @@ public class BoardCommentUpdateServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 댓글 수정 - 장준 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		String content = request.getParameter("content");
 		
-		
+		// 수정할 댓글 가져오기
 		BoardComment _updateBoardComment = boardService.boardCommentfindById(no);
-		// update board_comment set content = ? where comment_no = ?
+		// 댓글 수정
 		int result = boardService.updateBoardComment(no, content);
 		_updateBoardComment.setContent(content);
 		System.out.println("_updateBoardComment = " + _updateBoardComment);
