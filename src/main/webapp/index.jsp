@@ -239,7 +239,7 @@ const findAllMovies = () => {
 	        if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
 	            currentPositions[index] = 0;
 	          }
-	        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+	        sliderContainers[index].style.transform = "translateX($currentPositions[index]px)";
 	        
 	      }
 	      
@@ -249,7 +249,7 @@ const findAllMovies = () => {
 	        if (currentPositions[index] > 0) {
 	            currentPositions[index] = -(slideWidth * (sliderContainers[index].children.length - 5));
 	        }
-	        sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
+	        sliderContainers[index].style.transform = "translateX($currentPositions[index]px)";
 	      }
 	      document.querySelector('#favorite-next').addEventListener('click', (e) => slideNext(0));
 	      document.querySelector('#favorite-prev').addEventListener('click', () => slidePrev(0));
