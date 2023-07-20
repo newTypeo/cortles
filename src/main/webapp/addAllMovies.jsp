@@ -16,8 +16,8 @@
       data : {
          ServiceKey : "8N7WULS3PZ7ER312R70R",
          listCount : 10,
-         releaseDts : "20201201",
-         genre : "로맨스"
+         releaseDts : "20211201",
+          genre : "로맨스"
       },
       dataType : 'json',
       success(responseData){
