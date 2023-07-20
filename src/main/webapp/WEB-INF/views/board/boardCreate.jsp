@@ -6,6 +6,12 @@
 <div id="board-wrapper">
   <section id="board-container">
     <h2>Create Bulletin Board</h2>
+    
+    <%-- 
+    	게시판에 글 작성한정보들을 boardCreate 서블릿으로 보내기 위한 폼
+    	(파일 삽입할 수 있으므로 multipart 사용)
+    	@author 창환
+   	--%>
     <form name="boardCreateFrm" action="<%=request.getContextPath() %>/board/boardCreate" method="post" enctype="multipart/form-data">
         <table id="tbl-board-view">
             <tr>

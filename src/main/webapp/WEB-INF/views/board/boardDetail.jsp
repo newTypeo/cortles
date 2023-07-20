@@ -28,6 +28,10 @@
 
     <hr>
 
+	<%-- 
+		사용자가 파일 업로드 한 경우, 업로드한 사진을 띄워줌.
+		@author 창환
+	--%>
     <div id="board_content">
     	<% if(attachment.getRenamedFilename() != null) { %>
     		<img src="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>" />
@@ -50,15 +54,26 @@
    					|| loginMember.getMemberRole() == MemberRole.A);
    		if(showButton){
    	%>
+   	
    	<div id="subbtn-wrapper" style="display: flex; justify-content: center;">
-   	<input type="button" id="btn" class="subbtn" value="modify" onclick="updateBoard()" />
-   	<input type="button" id="btn" class="subbtn" value="delete" onclick="boardDelete()"/>
+   	
+	   	<%-- modify 버튼 클릭시 updateBoard() 실행 --%>
+	   	<input type="button" id="btn" class="subbtn" value="modify" onclick="updateBoard()" />
+	   	
+	   	<%-- delete 버튼 클릭시 updateBoard() 실행 --%>
+	   	<input type="button" id="btn" class="subbtn" value="delete" onclick="boardDelete()"/>
+	   	
    	</div>
   	<% } %>
   	<script>
+  	/**
+  	 * 게시글 수정을 위한 boardUpdate 서블릿으로 이동.
+  	 * @author 창환
+  	 */
   	const updateBoard = () => {
   		location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= board.getBoardNo() %>";
   	};
+  	
 	<%-- 글삭제-주혜 --%>
 	const boardDelete = () =>{
 		if(confirm("글을 삭제하시겠습니까?")){
@@ -154,7 +169,7 @@
 		<input type="hidden" name="boardNo" value="<%= board.getBoardNo() %>"/>
 	</form>
 	<form 
-		action="<%= request.getContextPath() %>/board/boardCommentUpdate" 
+		action="<%= request.getContextPath() %>/board/boardCommentUpdate"
 		name="boardCommentUpdateFrm"
 		method="get">
 		<input type="hidden" name="no" />
