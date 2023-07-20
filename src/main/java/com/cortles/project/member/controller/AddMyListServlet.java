@@ -22,16 +22,22 @@ public class AddMyListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 사용자 입력값 받아오기
+		
 		String memberId = request.getParameter("memberId");
 		String movieCode = request.getParameter("movieCode");
-		System.out.println(memberId);
-		System.out.println(movieCode);
 		
+		
+		// 업무로직처리 
+			
 		int result = memberService.addMyList(memberId, movieCode);
 		
+		// alert를 띄우기 위해
 		HttpSession session = request.getSession();
+		// alert 띄우기
 		session.setAttribute("msg", "mylist추가 완료 ! ! !");
 		
+		// 응답처리
 		response.sendRedirect(request.getContextPath());
 
 

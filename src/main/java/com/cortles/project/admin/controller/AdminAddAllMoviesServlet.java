@@ -62,7 +62,7 @@ public class AdminAddAllMoviesServlet extends HttpServlet {
         // Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
         SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
         
-        java.util.Date tempDate = null;
+        java.util.Date tempDate = null;   
         
         try {
             // 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
