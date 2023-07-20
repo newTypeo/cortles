@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.admin.model.service.AdminService;
 import com.cortles.project.movie.model.vo.Movie;
 
-@WebServlet("/admin/addAllMovies")
+@WebServlet("/setMovie/addAllMovies")
 public class AdminAddAllMoviesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminService adminService = new AdminService();
