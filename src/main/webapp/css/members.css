@@ -16,7 +16,7 @@ th {background-color: #333333;}
 	transform: translate(-50%, -50%);
 }
 
-table {
+#member_management {
 	width: 1500px;
 	border-collapse: collapse;
 	overflow: hidden;
@@ -26,28 +26,28 @@ table {
 	border-radius: 8px;
 }
 
-th, td {
+#member_management th, #member_management td {
 	padding: 15px;
 	
 	
 }
 
-th {
+#member_management th {
 	background-color:#e50914;
 	color:#000;
 }
 
 
-tbody tr:hover {
+#member_management tbody tr:hover {
 	
 	background-color: #222;
 }
 
-tbody td {
+#member_management tbody td {
 	position: relative;
 }
 
-tbody td:hover:before {
+#member_management tbody td:hover:before {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -58,6 +58,55 @@ tbody td:hover:before {
 	background-color: #222;
 	z-index: -1;
 }
+
+/* Quit  */
+
+#quitTable {
+	width: 1500px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	margin:auto;
+	border-radius: 8px;
+}
+
+#quitTable th, #quitTable td {
+	padding: 15px;
+	
+	
+}
+
+#quitTable th {
+	background-color:#e50914;
+	color:#000;
+}
+
+
+#quitTable tbody tr:hover {
+	
+	background-color: #222;
+}
+
+#quitTable tbody td {
+	position: relative;
+}
+
+#quitTable tbody td:hover:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+
+	background-color: #222;
+	z-index: -1;
+}
+
+
+
+
 
 
 

@@ -10,7 +10,7 @@
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/report.css" />
-		<table>
+		<table id="report">
 		<!-- 신고할 회원의 정보 -->
 			<thead>
 				<tr>

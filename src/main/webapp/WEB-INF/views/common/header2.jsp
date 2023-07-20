@@ -17,7 +17,7 @@
 <script src="<%= request.getContextPath() %>/js/jquery-3.7.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css"/>
+	href="<%=request.getContextPath()%>/css/header2.css"/>
 <%
 	
 	Member loginMember = (Member) session.getAttribute("loginMember");
