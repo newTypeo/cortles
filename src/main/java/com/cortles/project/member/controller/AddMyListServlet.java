@@ -26,6 +26,8 @@ public class AddMyListServlet extends HttpServlet {
 		// 업무로직처리 
 		HttpSession session = request.getSession();
 		
+		int result = memberService.addMyList(memberId, movieCode);
+		
 		// alert 띄우기
 		session.setAttribute("msg", "The movie added on myList（＾∀＾●）ﾉｼ");
 		
