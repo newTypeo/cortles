@@ -94,7 +94,7 @@ const findAllMovies = () => {
            <span class="close" onclick="closeModal();">&times;</span>
       </form>
       <% }  else { %>
-      <!-- 모달창 닫기 버튼 -->  
+      <!-- 모달창 닫기 버튼 -->  	
           <span class="close" onclick="closeModal();" style="margin-bottom: 25px;">&times;</span>
        <% } %>
          
