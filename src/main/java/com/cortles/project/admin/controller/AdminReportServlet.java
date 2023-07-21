@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.ReportComment;
-// 신고 댓글 전체 조회 - 주혜 
+
 @WebServlet("/report")
 public class AdminReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final BoardService boardService = new BoardService();
 
+	/**
+	 * 신고 댓글 전체 조회 - 주혜 
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<ReportComment> reportComments = boardService.reportCommentFindAll();
 		request.setAttribute("reportComments", reportComments);

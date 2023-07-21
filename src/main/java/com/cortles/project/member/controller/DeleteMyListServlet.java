@@ -16,7 +16,6 @@ public class DeleteMyListServlet extends HttpServlet {
 	private final MemberService memberService = new MemberService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//사용자 입력값 처리
 		// id랑 moviecode가져오기
 		String memberId = request.getParameter("memberId");
@@ -24,7 +23,6 @@ public class DeleteMyListServlet extends HttpServlet {
 		
 		// 업무로직
 		int result = memberService.deleteMyList(memberId, movieCode);
-		
 		
 		// 응답처리
 		response.sendRedirect(request.getContextPath() + "/member/myList?memberId=" + memberId);

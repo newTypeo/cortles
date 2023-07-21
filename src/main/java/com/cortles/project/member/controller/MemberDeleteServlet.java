@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cortles.project.member.model.service.MemberService;
-// 회원 탈퇴 
-// 관리자의 회원 탈퇴 - 주혜 
+
 @WebServlet("/member/memberDelete")
 public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final MemberService memberService = new MemberService();  
     
+	/**
+	 * 관리자의 회원 탈퇴 - 주혜 
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String delMemberId = request.getParameter("memberId");
 		String delOnMembers = request.getParameter("delOnMembers");
-		//System.out.println("delMemberId =" + delMemberId);
 		
 		int result = memberService.deleteMemberById(delMemberId);
-		//System.out.println("주혜result@deleteMemberservlet=" + result);
 		
 		// 세션 회원 삭제해야함
 		if(delOnMembers == null || "".equals(delOnMembers)) { // 회원 조회에서 탈퇴 시 
@@ -36,5 +36,4 @@ public class MemberDeleteServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/admin/searchMembers");
 		}
 	}
-
 }

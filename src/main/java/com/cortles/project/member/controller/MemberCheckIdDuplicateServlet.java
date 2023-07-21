@@ -12,18 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
 
-
-/**
- * Servlet implementation class MemberCheckIdDuplicateServlet
- */
 @WebServlet("/member/checkIdDuplicate")
 public class MemberCheckIdDuplicateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberService memberService = new MemberService();
 	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
 		String memberId = request.getParameter("memberId");

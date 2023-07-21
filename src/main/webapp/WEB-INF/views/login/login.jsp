@@ -15,7 +15,7 @@
         <i style="--clr:#ff0057;"></i>
         <i style="--clr:#fffd44;"></i>
         <div class="login">
-            <h2>login</h2>
+            <h2>Login</h2>
             <div class="inputBx">
                 <input type="text" id="memberId" name="memberId" placeholder="Username">
             </div>

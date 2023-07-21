@@ -15,9 +15,6 @@ import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.BoardEntity;
 import com.cortles.project.common.util.CortlesUtils;
 
-/**
- * Servlet implementation class BoardServlet
- */
 @WebServlet("/board/boardList")
 public class BoardListServlet extends HttpServlet {
 	private final BoardService boardService = new BoardService();
