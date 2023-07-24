@@ -238,7 +238,7 @@ const findAllMovies = () => {
         currentPositions[index] -= 160 * 5; // 한 번에 5개씩 이동하도록 수정합니다.
         if (currentPositions[index] < -(slideWidth * (sliderContainers[index].children.length - 5))) {
             currentPositions[index] = 0;
-          }
+        }
         sliderContainers[index].style.transform = "translateX("+currentPositions[index]+"px)";
         
       }
