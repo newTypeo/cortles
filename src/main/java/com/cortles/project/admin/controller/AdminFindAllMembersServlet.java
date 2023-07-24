@@ -12,13 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
 import com.cortles.project.member.model.vo.QuitMember;
-// 멤버 전체 조회 - 주혜 
+
 @WebServlet("/admin/findAllMembers")
 public class AdminFindAllMembersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private final MemberService memberService = new MemberService();
 
+	/**
+	 * 멤버 전체 조회 - 주혜 
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 일반 회원 리스트 

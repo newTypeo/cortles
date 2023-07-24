@@ -24,18 +24,15 @@ public class CortlesUtils {
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-//		System.out.println(new String(output));
 		
 		// 2. 인코딩
 		Encoder encoder = Base64.getEncoder();
 		encryptedPassword = encoder.encodeToString(output);
-//		System.out.println(encryptedPassword);
 		
 		return encryptedPassword;
 	}
 	
 	/**
-	 * 
 	 *  - totalContent 전체게시물수 
 	 *  - totalPage 전체페이지수
 	 *  - pagebarSize 5개
@@ -43,12 +40,6 @@ public class CortlesUtils {
 	 *  - pageStart 페이지바 시작번호
 	 *  - pageEnd 페이지바 끝번호
 	 *  - url 요청url
-	 *  
-	 * @param cpage
-	 * @param limit
-	 * @param totalContent
-	 * @param url
-	 * @return
 	 */
 	public static String getPagebar(int cpage, int limit, int totalContent, String url) {
 		StringBuilder pagebar = new StringBuilder(); // 문자열 더하기 연산에 최적화

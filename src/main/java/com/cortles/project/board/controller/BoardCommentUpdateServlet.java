@@ -12,9 +12,6 @@ import com.cortles.project.board.model.service.BoardService;
 import com.cortles.project.board.model.vo.Board;
 import com.cortles.project.board.model.vo.BoardComment;
 
-/**
- * Servlet implementation class BoardCommentUpdateServlet
- */
 @WebServlet("/board/boardCommentUpdate")
 public class BoardCommentUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

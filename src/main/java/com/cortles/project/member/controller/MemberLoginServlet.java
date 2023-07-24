@@ -14,16 +14,12 @@ import com.cortles.project.common.util.CortlesUtils;
 import com.cortles.project.member.model.service.MemberService;
 import com.cortles.project.member.model.vo.Member;
 
-/**
- * Servlet implementation class MemberLoginServlet
- */
 @WebServlet("/member/memberLogin")
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberService memberService = new MemberService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("넘어왔는지 확인");
 		request.getRequestDispatcher("/WEB-INF/views/login/login.jsp").
 			forward(request, response);
 	}
@@ -34,14 +30,13 @@ public class MemberLoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String saveId = request.getParameter("saveId");
 		password = CortlesUtils.getEncryptedPassword(password, memberId);
+		
 		// 업무로직
 		Member member = memberService.findById(memberId);
-//		System.out.println("MemberLogin = " + member);
-		
 		
 		// 응답처리
 		HttpSession session = request.getSession(); // request.getSession(true)와 동일.
-//		System.out.println(session.getId());
+		
 		if(member != null && password.equals(member.getMemberPw())) {
 			// 로그인 성공
 			session.setAttribute("loginMember", member);
@@ -70,12 +65,7 @@ public class MemberLoginServlet extends HttpServlet {
 			// 로그인 실패
 			session.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			String referer = request.getHeader("Referer");
-//			System.out.println("referer = " + referer);
 			response.sendRedirect(referer);
 		}
-		
-		// 3. 응답처리
-		
 	}
-
 }

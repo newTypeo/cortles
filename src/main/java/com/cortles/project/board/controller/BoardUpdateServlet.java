@@ -19,9 +19,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
-/**
- * Servlet implementation class BoardUpdateServlet
- */
 @WebServlet("/board/boardUpdate")
 public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +50,6 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		ServletContext application = getServletContext();
 		String saveDirectory = application.getRealPath("/upload/board");
-		// System.out.println("saveDirectory = " + saveDirectory);
 		
 		int maxPostSize = 1024 * 1024 * 10;
 		String encoding = "utf-8";
@@ -70,20 +66,12 @@ public class BoardUpdateServlet extends HttpServlet {
 		// db attachment 행삭제, 저장된 파일삭제
 		String[] delFiles = multiReq.getParameterValues("delFile");
 		
-//		System.out.println("no = " + no);
-		System.out.println("title = " + title);
-		System.out.println("content = " + content);
-		System.out.println("writer = " + writer);
-		System.out.println("delFiles = " + Arrays.toString(delFiles));
-		
 		// update board set ? = ? where no = ?
 		Board board = new Board();
 		board.setBoardNo(no);
 		board.setTitle(title);
 		board.setWriterId(writer);
 		board.setContent(content);
-		// System.out.println(board);
-		
 		
 		// Attachment객체 생성 (Board 추가)
 		Enumeration<String> filenames = multiReq.getFileNames();

@@ -47,7 +47,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setFavoriteGenre(favoriteGenre);
 		
 		int result = memberService.updateMember(member);
-		// System.out.println("회원수정 결과 : " + result);
 		
 		// session의 속성 loginMember도 바로 갱신
 		HttpSession session = request.getSession();
@@ -57,8 +56,5 @@ public class MemberUpdateServlet extends HttpServlet {
 		session.setAttribute("msg", "성공적으로 회원정보를 수정했습니다.");
 
 		response.sendRedirect(request.getContextPath());
-		
-		
 	}
-
 }

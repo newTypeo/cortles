@@ -30,14 +30,14 @@ public class MovieFindMovieCommentsServlet extends HttpServlet {
 		
 		double avgMovieGrade = movieService.findMovieAvgGrade(movieCode);
 
-		// 소숫점 첫번 째에서 버림
+		// 영화 avg(별점) 소숫점 첫번 째에서 버림
 		avgMovieGrade = Math.floor(avgMovieGrade * 10) / 10;
 		
 		// 응답
 		response.setContentType("application/json; charset=utf-8");
 		Map<String, Object> map = new HashMap<>();
-		map.put("movieComments", movieComments);
-		map.put("avgMovieGrade", avgMovieGrade);
+		map.put("movieComments", movieComments); // 영화 한줄평 전체 
+		map.put("avgMovieGrade", avgMovieGrade); // 영화 평점
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(map, response.getWriter());
