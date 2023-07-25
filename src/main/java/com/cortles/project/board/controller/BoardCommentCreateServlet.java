@@ -36,7 +36,7 @@ public class BoardCommentCreateServlet extends HttpServlet {
 		
 		// 댓글 등록 실시간 알림
 		Board board = boardService.findById(boardNo);
-		result = notificationService.notifyNewBoardComment(board);
+//		result = notificationService.notifyNewBoardComment(board);
 		
 		// 3. 응답처리 - redirect
 		response.sendRedirect(request.getContextPath() + "/board/boardDetail?no=" + boardNo);
