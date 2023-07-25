@@ -124,7 +124,7 @@
 								(loginMember.getMemberId().equals(bc.getWriterId())
 								  || MemberRole.A == loginMember.getMemberRole());
 				%>
-						<%-- 댓글인 경우 tr.level1 --%>
+						
 						<tr class="level1">
 							<td>
 								<sub class=comment-writer><%= bc.getWriterId() %></sub>

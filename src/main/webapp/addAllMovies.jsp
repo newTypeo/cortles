@@ -14,6 +14,7 @@
    $.ajax({
       url : "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2", // 영화정보 API
       data : {
+
          ServiceKey : "8N7WULS3PZ7ER312R70R", // 인증키
          listCount : 10, // 영화 요청 갯수
          releaseDts : "20201201", // 개봉일 기준
@@ -23,7 +24,6 @@
       success(responseData){
          const infoOfMovies = [];
          const {Data} = responseData;
-         // console.log("Data", Data);
          const {Result} = Data[0];
          console.log("Result", Result);
          
@@ -56,7 +56,6 @@
                   if(i == 5) break;
                }
                
-               // console.log("DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl", DOCID, title, titleEng, genre, repRlsDate, runtime, posters, vodUrl);
                
                // 영화객체에서 추출한 정보 '#'기준으로 붙여서 infoOfMovies배열에 String형식으로 추가
                // 				[{"영화코드#제목#영화제목#장르#줄거리#개봉일#상영시간#포스터#감독#배우#티저"}]
